@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/29 18:23:12 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/22 14:49:51 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ DEBUGDIR			:=	./debugobj
 
 LIBFTSRC			:=	ft_atoi.c 				\
 						ft_atoi_err.c			\
+						ft_atof.c				\
 						ft_bzero.c 				\
 						ft_calloc.c 			\
 						ft_gnl.c 				\
