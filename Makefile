@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/22 14:49:57 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/22 16:36:18 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	common/test.c			\
+COMMONSRCS			:=	amir/main.c amir/graphics/error_mlx.c		\
+						amir/graphics/graphic_process.c amir/graphics/graphic_hook.c \
+						amir/graphics/graphic_render.c
 
 CC					:=	cc
 RM					:=	rm

@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 15:22:03 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:52:45 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include "structs_utils.h"
 //# include <fcntl.h>
 //# include <errno.h>
 //# include <stdio.h>
@@ -32,32 +33,27 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
-typedef struct s_data_mlx
+typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-}			t_data_mlx;
+	t_scene	*scene;
+}			t_data;
 
-//		error.c
-void	error_mlx_data(t_point **map, int height_map, void *to_free_1,
-			void *to_free_2);
-void	error_malloc_strs(char **map);
-void	error_malloc_strs2(t_point **map_int, char **map, int j);
+//		graphics/error_mlx.c
+void	error_mlx_data(t_data *data, void *mlx_ptr);
 
-//		parse_fdf.c
-t_point	**parse_fdf(char *arg, int *width_map, int *height_map);
+//		parse_rt.c
+//void	parse_rt(char *str, t_scene *data);
 
-//		fdf.c
-int		set_color(t_point **map, t_data *data);
+//		graphics/graphics_process.c
+int		graphic_process(t_scene *scene);
 
-//		graphics_process.c
-int		graphic_process(t_point **map, int width_map, int height_map);
+//		graphics/graphic_render.c
+int		graphic_render(t_data *data);
 
-//		graphic_render.c
-int		render(t_data *data);
-
-//		graphic_hook.c
+//		graphics/graphic_hook.c
 void	handle_hooks(t_data *data);
 
 #endif
