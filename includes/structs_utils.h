@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 13:29:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:51:28 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_scene
 {
-	t_list	vols;
-	t_list	lights;
+	t_list	*vols;
+	t_list	*lights;
 	t_cam	cam;
 	//struct bvh_root;
 }	t_scene;
@@ -46,12 +46,12 @@ typedef enum e_type
 
 typedef struct s_vol
 {
-	t_type	type;
-	t_pos	pos;
-	t_pos	vec3;
-	unsigned float d;
-	unsigned float h;
-	t_rgb	col;
+	t_type			type;
+	t_pos			pos;
+	t_pos			vec3;
+	unsigned float	d;
+	unsigned float	h;
+	t_rgb			col;
 }	t_vol;
 
 typedef struct s_cam
