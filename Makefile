@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/22 16:36:18 by amahla           ###   ########.fr        #
+#    Updated: 2022/08/22 21:09:07 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,10 @@ DEBUGDIR			:=	./debugobj
 
 COMMONSRCS			:=	amir/main.c amir/graphics/error_mlx.c		\
 						amir/graphics/graphic_process.c amir/graphics/graphic_hook.c \
-						amir/graphics/graphic_render.c
+						amir/graphics/graphic_render.c amir/parse/parse_rt.c \
+						amir/parse/format_data.c amir/parse/parse_volume.c \
+						amir/parse/set_variables.c amir/parse/parse_light.c \
+						amir/parse/parse_camera.c
 
 CC					:=	cc
 RM					:=	rm

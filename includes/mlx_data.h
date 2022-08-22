@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 16:52:45 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:57:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ typedef struct s_data
 
 //		graphics/error_mlx.c
 void	error_mlx_data(t_data *data, void *mlx_ptr);
-
-//		parse_rt.c
-//void	parse_rt(char *str, t_scene *data);
 
 //		graphics/graphics_process.c
 int		graphic_process(t_scene *scene);

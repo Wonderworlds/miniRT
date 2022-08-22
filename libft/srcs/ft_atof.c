@@ -6,13 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:21:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 15:16:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:09:31 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <float.h>
 #include "libft.h"
-#include "stdio.h"
 
 static unsigned int	ft_atof_pre(const char *nptr, float *n)
 {
@@ -24,7 +23,7 @@ static unsigned int	ft_atof_pre(const char *nptr, float *n)
 	minus = 1;
 	index = 0;
 	while (nptr[index] == ' ' || (nptr[index] >= 9 && nptr[index] <= 13))
-		index++;
+		nptr++;
 	if (nptr[index] == '-' || nptr[index] == '+')
 	{
 		if (nptr[index] == '-')
@@ -33,11 +32,11 @@ static unsigned int	ft_atof_pre(const char *nptr, float *n)
 	}
 	while (nptr[index] >= '0' && nptr[index] <= '9')
 	{
-		if (minus > 0 && (FLT_MAX - nptr[index] + '0') / 10 < value)
+/*		if (minus > 0 && (FLT_MAX - nptr[index] + '0') / 10 < value)
 			return (0);
 		if (minus < 0 && (FLT_MIN + nptr[index] - '0') / 10 > -value)
 			return (0);
-		value *= 10;
+*/		value *= 10;
 		value += (nptr[index] - '0');
 		index++;
 	}

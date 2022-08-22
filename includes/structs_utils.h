@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 16:50:41 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/22 21:44:28 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define STRUCTS_UTILS_H
 
 # include "libft.h"
+
+
+typedef int	bool;
+
+typedef enum e_bool
+{ 
+	false,
+	true 
+}	t_bool;
 
 typedef struct s_pos
 {
@@ -25,14 +34,16 @@ typedef struct s_pos
 
 typedef struct s_rgb
 {
-	short unsigned int	r;
-	short unsigned int	g;
-	short unsigned int	b;
+	int	r;
+	int	g;
+	int	b;
 
 }	t_rgb;
 
 typedef enum e_type
 {
+	AMB_LIGHT,
+	LIGHT,
 	SPHERE,
 	PLANE,
 	CYLINDER
@@ -45,19 +56,21 @@ typedef struct s_vol
 	t_pos	vec3;
 	float	d;
 	float	h;
-	t_rgb			col;
+	float	sp_d;
+	t_rgb	col;
 }	t_vol;
 
 typedef struct s_cam
 {
-	t_pos			pos;
-	t_pos			vec3;
-	unsigned int	h_fov;
+	t_pos	pos;
+	t_pos	vec3;
+	int		h_fov;
+	bool	is_set;
 }	t_cam;
 
 typedef struct s_light
 {
-	char		ambient;
+	t_type		type;
 	t_rgb		col;
 	float		r;
 	t_pos		pos;
