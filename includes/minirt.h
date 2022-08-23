@@ -6,15 +6,15 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 21:44:56 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 20:42:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#include <fcntl.h>
-#include "structs_utils.h"
+# include <fcntl.h>
+# include "structs_utils.h"
 
 //		parse/parse_rt.c
 void	parse_rt(char *arg, t_scene *scene);
@@ -46,4 +46,6 @@ void	light(t_scene *scene, char *str);
 //		parse/parse_camera.c
 void	camera(t_scene *scene, char *str);
 
+//		volume/inside_vol.c
+bool	inside_vol(t_pos pos, t_vol volume);
 #endif

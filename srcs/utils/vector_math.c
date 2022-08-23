@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   vector_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 20:41:49 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/23 20:41:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "structs_utils.h"
 
-# include "structs_utils.h"
+double	dot_product(t_pos a, t_pos b)
+{
+	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
+}
 
-//		utils/ft_gnl_rt.c
-char	*ft_gnl_rt(int fd);
-
-//		utils/error_msg.c
-void	error_msg(char *str);
-
-//		utils/vector_math.c
-void	vector_ab(t_pos a, t_pos b, t_pos *vec);
-double	dot_product(t_pos a, t_pos b);
-
-#endif
+void	vector_ab(t_pos a, t_pos b, t_pos *vec)
+{
+	vec->x = b.x - a.x;
+	vec->y = b.y - a.y;
+	vec->z = b.z - a.z;
+}
