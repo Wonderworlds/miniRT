@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 15:02:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:35:25 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	check_value(t_scene scene)
 	{
 		vol = (t_vol *)(check_vols->content);
 		if (vol->type == SPHERE)
-			printf("pl	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->sp_d, vol->col.r, vol->col.g, vol->col.b);
+			printf("sp	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->d, vol->col.r, vol->col.g, vol->col.b);
 		if (vol->type == PLANE)
-			printf("sp	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
+			printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
 		if (vol->type == CYLINDER)
 			printf("cy	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f		%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->d, vol->h, vol->col.r, vol->col.g, vol->col.b);
 		check_vols = check_vols->next;
