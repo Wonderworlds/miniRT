@@ -6,16 +6,18 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 13:09:19 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/23 13:14:05 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "structs_utils.h"
 #include "minirt.h"
-#include <stdio.h>
+#include "mlx_data.h"
 
 /* ======================= Check parsing ============================
+
+#include <stdio.h>
 
 void	check_value(t_scene scene)
 {

@@ -6,19 +6,16 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 16:57:34 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:15:34 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef MLX_DATA_H
+# define MLX_DATA_H
 
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "structs_utils.h"
-//# include <fcntl.h>
-//# include <errno.h>
-//# include <stdio.h>
 # include "mlx.h"
 
 # define WIN_HEIGHT 600
