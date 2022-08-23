@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_variables.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 23:52:19 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:59:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	set_rgb(t_scene *scene, t_rgb *col, char *str)
 		else if (times == 2 && (ft_atoi_err(str + i, &col->g) || col->g < 0
 			|| col->g > 255))
 			exit_parse(scene);
-		else if (times == 1 && (ft_atoi_err(str + i, &col->b) || &col->b < 0
+		else if (times == 1 && (ft_atoi_err(str + i, &col->b) || col->b < 0
 			|| col->b > 255))
 			exit_parse(scene);
 		while (ft_isdigit(str[i]))
