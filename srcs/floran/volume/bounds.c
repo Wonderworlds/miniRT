@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:47:12 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 19:24:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:15:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ double dotProduct(t_pos a, t_pos b)
 
 void vector(t_pos a, t_pos b, t_pos *vec)
 {
-
 	vec->x = b.x - a.x;
 	vec->y = b.y - a.y;
 	vec->z = b.z - a.z;
@@ -29,8 +28,8 @@ void vector(t_pos a, t_pos b, t_pos *vec)
 
 bool	inside_sphere(t_pos pos, t_vol sp)
 {
-	if ((exp2(pos.x - sp.pos.x) + exp2(pos.y - sp.pos.y)
-		+ exp2(pos.z - sp.pos.z)) < exp2(sp.d / 2))
+	if ((powf(pos.x - sp.pos.x, 2) + powf(pos.y - sp.pos.y, 2)
+		+ powf(pos.z - sp.pos.z, 2)) < powf(sp.d / 2, 2))
 		return (true);
 	return (false);
 }
@@ -43,24 +42,29 @@ bool	inside_cylinder(t_pos pos, t_vol cy)
 	double	dot;
 	double	lengthsquared;
 
-	cy_top.x = (cy.pos.x + cy.h) * cy.vec3.x;
-	cy_top.y = (cy.pos.y + cy.h) * cy.vec3.y;
-	cy_top.z = (cy.pos.z + cy.h) * cy.vec3.z;
+	cy_top.x = cy.pos.x + (cy.h * cy.vec3.x);
+	cy_top.y = cy.pos.y + (cy.h * cy.vec3.y);
+	cy_top.z = cy.pos.z + (cy.h * cy.vec3.z);
 	vector(cy.pos, cy_top, &vec_cy);
-	vector(pos, cy.pos, &vec_pt);
+	vector(cy.pos, pos, &vec_pt);
 	dot = dotProduct(vec_cy, vec_pt);
-	lengthsquared = exp2(cy.h);
-	if ( dot < 0.0f || dot > lengthsquared)
+	lengthsquared = powf(cy.h, 2);
+	if (dot < 0.0f || dot > lengthsquared)
 		return (false);
-	else if (((exp2(vec_pt.x) + exp2(vec_pt.y) + exp2(vec_pt.z))
-		- (exp2(dot) / lengthsquared)) > cy.d / 2)
+	else if (((powf(vec_pt.x, 2) + powf(vec_pt.y, 2) + powf(vec_pt.z, 2))
+		- (powf(dot, 2) / lengthsquared)) > cy.d / 2)
 		return (false);
 	return (true);
 }
 
 bool	inside_plane(t_pos pos, t_vol pl)
 {
-	if (dotProduct(pos, pl.pos) == 1)
+	double	dot;
+	t_pos	vec_pt;
+
+	vector(pos, pl.pos, &vec_pt);
+	dot = dotProduct(vec_pt, pl.vec3);
+	if (dot == 0)
 		return (true);
 	return (false);
 }
