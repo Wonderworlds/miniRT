@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 12:21:12 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/23 21:37:04 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sphere(t_scene *scene, char *str)
 	i += set_pos(scene, &sp->pos, str + i);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &sp->sp_d, str + i);
+	i += set_float(scene, &sp->d, str + i);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
