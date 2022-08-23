@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 21:44:56 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 19:03:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ void	light(t_scene *scene, char *str);
 //		parse/parse_camera.c
 void	camera(t_scene *scene, char *str);
 
+//		volume/bounds.c
+bool	inside_vol(t_pos pos, t_vol volume);
 #endif
