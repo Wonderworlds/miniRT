@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 13:15:14 by ammah            ###   ########.fr        #
+#    Updated: 2022/08/23 14:53:41 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,25 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	amir/main.c amir/graphics/error_mlx.c		\
-						amir/graphics/graphic_process.c amir/graphics/graphic_hook.c \
-						amir/graphics/graphic_render.c amir/parse/parse_rt.c \
-						amir/parse/format_data.c amir/parse/parse_volume.c \
-						amir/parse/set_variables.c amir/parse/parse_light.c \
-						amir/parse/parse_camera.c
+COMMONSRCS			:=
 
+UTILSSRC			:=	$(addprefix utils/,	ft_gnl_rt.c		\
+											error_msg.c		\
+											)
+
+
+AMIRSRC				:=	$(addprefix amir/,	main.c 			\
+											$(addprefix graphics/,	graphic_process.c	\
+																	error_mlx.c			\
+																	graphic_hook.c		\
+																	graphic_render.c)	\
+											$(addprefix parse/,		parse_rt.c			\
+																	format_data.c		\
+																	parse_volume.c		\
+																	parse_light.c		\
+																	parse_camera.c		\
+																	set_variables.c)	\
+																	)
 CC					:=	cc
 RM					:=	rm
 
@@ -56,8 +68,8 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(INCLUDEDIR)) $(addprefix -I ,$(dir $(LIBFT))) $(addprefix -I ,$(dir $(MLX))) $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 
 all					:	$(NAME) $(BONUSNAME)
@@ -115,3 +127,5 @@ re					:	fclean
 .PHONY				:	all bonus clean fclean re
 
 -include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.d))

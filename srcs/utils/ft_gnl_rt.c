@@ -1,15 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl_rt.c                                           :+:      :+:    :+:   */
+/*   ft_gnl_rt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 21:54:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 14:25:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:54:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
+#include "utils.h"
 #include "libft.h"
 #include <unistd.h>
 
@@ -49,26 +51,30 @@ static size_t	find_newline(const char *s, size_t size)
 	return (0);
 }
 
-static char	*read_fd(size_t *size, t_leftover *leftover, int fd)
+static char	*read_fd(size_t *size, t_leftover *leftover, int fd, ssize_t r)
 {
-	ssize_t		r;
 	char		*ret;
 
 	ret = NULL;
 	*size = gnl_join(&ret, 0, leftover->str, leftover->size);
 	if (!ret && leftover->size > 0)
-		return (NULL);
-	r = 1;
+			error_msg("Error\nmalloc: fail\n");
 	while (r && !find_newline(ret, *size))
 	{
 		r = read(fd, leftover->str, BUFFER_SIZE);
-		if (r <= 0)
-			return (free(ret), NULL);
+		if (r < 0)
+		{
+			free(ret);
+			error_msg("Error\nread: fail\n");
+		}
 		if (r == 0)
 			break ;
 		*size = gnl_join(&ret, *size, leftover->str, r);
 		if (!ret)
-			return (free(ret), NULL);
+		{
+			free(ret);
+			error_msg("Error\nmalloc: fail\n");
+		}
 	}
 	return (ret);
 }
@@ -110,11 +116,14 @@ char	*ft_gnl_rt(int fd)
 		return (NULL);
 	size = 0;
 	newline = NULL;
-	newline = read_fd(&size, &leftover, fd);
+	newline = read_fd(&size, &leftover, fd, 1);
 	if (newline)
 	{
 		if (gnl_leftover(&newline, size, &leftover))
-			return (free(newline), NULL);
+		{
+			free(newline);
+			error_msg("Error\nmalloc: fail\n");
+		}
 	}
 	return (newline);
 }

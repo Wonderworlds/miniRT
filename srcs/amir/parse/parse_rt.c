@@ -3,22 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 14:13:16 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/23 14:57:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "utils.h"
 #include "structs_utils.h"
 #include "libft.h"
-
-void	error_format(char *str)
-{
-	ft_fprintf(2, "%s", str);
-	exit(EXIT_FAILURE);
-}
 
 void	exit_parse(t_scene *scene)
 {
@@ -36,10 +31,10 @@ int	open_file(char *arg)
 
 	size = ft_strlen(arg);
 	if (size < 4 || ft_strncmp(arg + size - 3, ".rt", 3) != 0)
-		error_format("Error\nInvalid format: expected '.rt'\n");
+		error_msg("Error\nInvalid format: expected '.rt'\n");
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		error_format("Error\nopen: error file\n");
+		error_msg("Error\nopen: error file\n");
 	return (fd);
 }
 
@@ -47,7 +42,9 @@ void	read_rt(int fd, t_scene *scene)
 {
 	char *str;
 
-	str = ft_gnl(fd);
+	str = ft_gnl_rt(fd);
+	if (!str)
+		error_msg("Error\nfile: empty\n");
 	while (str)
 	{
 		if (str[0] == 'A' && str[1] == ' ')
@@ -65,7 +62,7 @@ void	read_rt(int fd, t_scene *scene)
 		else if (str[0] != '\n')
 			exit_parse(scene);
 		free(str);
-		str = ft_gnl(fd);
+		str = ft_gnl_rt(fd);
 	}
 }
 
