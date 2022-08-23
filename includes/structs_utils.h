@@ -6,7 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/23 20:39:25 by fmauguin         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/23 16:17:32 by ammah            ###   ########.fr       */
+>>>>>>> e55804c42abf31db4608eae7d64150120eda9d87
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +85,7 @@ typedef struct s_scene
 	t_list	**lights;
 	t_cam	cam;
 	int		fd;
+	char	*line_gnl;
 	//struct bvh_root;
 }	t_scene;
 
