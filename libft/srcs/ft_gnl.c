@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl_rt.c                                           :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 21:54:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 14:25:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:31:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-static size_t	gnl_join(char **dest, size_t size_d, char *src, size_t size_s)
+size_t	gnl_join(char **dest, size_t size_d, char *src, size_t size_s)
 {
 	size_t	len;
 	size_t	j;
@@ -35,7 +35,7 @@ static size_t	gnl_join(char **dest, size_t size_d, char *src, size_t size_s)
 	return (len + j);
 }
 
-static size_t	find_newline(const char *s, size_t size)
+size_t	find_newline(const char *s, size_t size)
 {
 	size_t	i;
 
@@ -49,7 +49,7 @@ static size_t	find_newline(const char *s, size_t size)
 	return (0);
 }
 
-static char	*read_fd(size_t *size, t_leftover *leftover, int fd)
+char	*read_fd(size_t *size, t_leftover *leftover, int fd)
 {
 	ssize_t		r;
 	char		*ret;
@@ -73,7 +73,7 @@ static char	*read_fd(size_t *size, t_leftover *leftover, int fd)
 	return (ret);
 }
 
-static int	gnl_leftover(char **newline, size_t size, t_leftover *leftover)
+int	gnl_leftover(char **newline, size_t size, t_leftover *leftover)
 {
 	size_t	i_nl;
 	size_t	i;
@@ -100,7 +100,7 @@ static int	gnl_leftover(char **newline, size_t size, t_leftover *leftover)
 	return (0);
 }
 
-char	*ft_gnl_rt(int fd)
+char	*ft_gnl(int fd)
 {
 	static t_leftover	leftover = {{0}, 0};
 	char				*newline;

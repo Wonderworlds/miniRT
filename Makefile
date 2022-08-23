@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 15:07:44 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/23 15:29:13 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,23 +27,28 @@ DEBUGDIR			:=	./debugobj
 
 COMMONSRCS			:=
 
-UTILSSRC			:=	$(addprefix utils/,	ft_gnl_rt.c		\
-											error_msg.c		\
-											)
+UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
+												error_msg.c		\
+												)
 
 
-AMIRSRC				:=	$(addprefix amir/,	main.c 			\
-											$(addprefix graphics/,	graphic_process.c	\
-																	error_mlx.c			\
-																	graphic_hook.c		\
-																	graphic_render.c)	\
-											$(addprefix parse/,		parse_rt.c			\
-																	format_data.c		\
-																	parse_volume.c		\
-																	parse_light.c		\
-																	parse_camera.c		\
-																	set_variables.c)	\
-																	)
+AMIRSRC				:=	$(addprefix amir/,		main.c 			\
+												$(addprefix graphics/,	graphic_process.c	\
+																		error_mlx.c			\
+																		graphic_hook.c		\
+																		graphic_render.c)	\
+												$(addprefix parse/,		parse_rt.c			\
+																		format_data.c		\
+																		parse_volume.c		\
+																		parse_light.c		\
+																		parse_camera.c		\
+																		set_variables.c)	\
+																		)
+
+FLORANSRC			:=	$(addprefix floran/,	main.c 			\
+												$(addprefix volume/,	bounds.c)			\
+																				)
+
 CC					:=	cc
 RM					:=	rm
 
@@ -52,6 +57,7 @@ LIBFLAGS			:=	-lXext -lX11 -lm -lbsd
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
+FLORAN				:=	floran
 
 OUTDIR				:=	$(OBJDIR)
 
@@ -72,6 +78,8 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
+$(FLORAN)			:	$(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORAN) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 all					:	$(NAME) $(BONUSNAME)
 
@@ -123,3 +131,4 @@ re					:	fclean
 -include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
 -include	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.d))
 -include	$(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.d))
