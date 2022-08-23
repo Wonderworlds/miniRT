@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 20:08:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:40:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_cylinder(t_vol *cy, t_pos pos, t_pos vec, float h, float d)
 	cy->h = h;
 }
 
-int main(void)
+int	main(void)
 {
  	t_pos pos = {0, 0, 0};
  	t_pos pt1 = {5, 5, 5};

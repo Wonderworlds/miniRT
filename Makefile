@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 15:29:13 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/23 20:42:15 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ COMMONSRCS			:=
 
 UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												error_msg.c		\
+												vector_math.c	\
 												)
 
 
@@ -46,7 +47,7 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		)
 
 FLORANSRC			:=	$(addprefix floran/,	main.c 			\
-												$(addprefix volume/,	bounds.c)			\
+												$(addprefix volume/,	inside_vol.c)		\
 																				)
 
 CC					:=	cc
