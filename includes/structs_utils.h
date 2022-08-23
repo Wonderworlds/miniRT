@@ -59,7 +59,6 @@ typedef struct s_vol
 	t_pos	vec3;
 	float	d;
 	float	h;
-	float	sp_d;
 	t_rgb	col;
 }	t_vol;
 
