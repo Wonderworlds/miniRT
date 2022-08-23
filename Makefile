@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 15:04:40 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/23 15:07:44 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PROGNAME			:=	miniRT
 
 LIBFT				:=	libft/libft.a
 
-MLX					:=	minilibx-linux/libmlx.a
+MLX					:=	minilibx-linux/libmlx_Linux.a
 
 INCLUDEDIR			:=	includes libft/includes minilibx-linux
 SRCDIR				:=	srcs
