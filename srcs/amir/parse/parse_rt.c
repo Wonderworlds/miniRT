@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 14:57:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:18:37 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void	exit_parse(t_scene *scene)
 {
+	free(scene->line_gnl);
 	ft_lstclear(scene->lights, &free);
 	ft_lstclear(scene->vols, &free);
 	close(scene->fd);
@@ -47,6 +48,7 @@ void	read_rt(int fd, t_scene *scene)
 		error_msg("Error\nfile: empty\n");
 	while (str)
 	{
+		scene->line_gnl = str;
 		if (str[0] == 'A' && str[1] == ' ')
 			ambient_lightning(scene, str);
 		else if (str[0] == 'C' && str[1] == ' ')
