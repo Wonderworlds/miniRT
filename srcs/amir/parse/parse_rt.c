@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 22:04:54 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 12:51:46 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void	error_format(char *str)
 
 void	exit_parse(t_scene *scene)
 {
-	ft_lstclear(&scene->lights, &free);
-	ft_lstclear(&scene->vols, &free);
+	ft_lstclear(scene->lights, &free);
+	ft_lstclear(scene->vols, &free);
+	close(scene->fd);
 	ft_fprintf(2, "Error parse format\n");
 	exit(EXIT_FAILURE);
 }
@@ -34,7 +35,7 @@ int	open_file(char *arg)
 	int	fd;
 
 	size = ft_strlen(arg);
-	if (size < 4 && ft_strncmp(arg + size - 3, ".rt", 3) != 0)
+	if (size < 4 || ft_strncmp(arg + size - 3, ".rt", 3) != 0)
 		error_format("Invalid format: expected '.rt'\n");
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -73,6 +74,7 @@ void	parse_rt(char *arg, t_scene *scene)
 	int	fd;
 
 	fd = open_file(arg);
+	scene->fd = fd;
 	read_rt(fd, scene);
 	close(fd);
 }

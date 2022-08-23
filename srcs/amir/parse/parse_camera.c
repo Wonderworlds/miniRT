@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 21:43:00 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 12:21:43 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	camera(t_scene *scene, char *str)
 	i = 1;
 	if (scene->cam.is_set == true)
 		exit_parse(scene);
-	scene->cam.is_set = false;
+	scene->cam.is_set = true;
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &scene->cam.pos, str + i);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/22 21:44:28 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/23 12:14:04 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ typedef struct s_light
 
 typedef struct s_scene
 {
-	t_list	*vols;
-	t_list	*lights;
+	t_list	**vols;
+	t_list	**lights;
 	t_cam	cam;
+	int		fd;
 	//struct bvh_root;
 }	t_scene;
 
