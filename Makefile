@@ -6,9 +6,10 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 13:55:58 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/23 15:04:40 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 SHELL				=	/bin/sh
 
@@ -24,8 +25,25 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	common/test.c			\
+COMMONSRCS			:=
 
+UTILSSRC			:=	$(addprefix utils/,	ft_gnl_rt.c		\
+											error_msg.c		\
+											)
+
+
+AMIRSRC				:=	$(addprefix amir/,	main.c 			\
+											$(addprefix graphics/,	graphic_process.c	\
+																	error_mlx.c			\
+																	graphic_hook.c		\
+																	graphic_render.c)	\
+											$(addprefix parse/,		parse_rt.c			\
+																	format_data.c		\
+																	parse_volume.c		\
+																	parse_light.c		\
+																	parse_camera.c		\
+																	set_variables.c)	\
+																	)
 CC					:=	cc
 RM					:=	rm
 
@@ -51,8 +69,8 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(INCLUDEDIR)) $(addprefix -I ,$(dir $(LIBFT))) $(addprefix -I ,$(dir $(MLX))) $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 
 all					:	$(NAME) $(BONUSNAME)
@@ -103,3 +121,5 @@ re					:	fclean
 .PHONY				:	all bonus clean fclean re debug
 
 -include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.d))

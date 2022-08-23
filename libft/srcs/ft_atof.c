@@ -6,13 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:21:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 13:54:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:05:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <float.h>
 #include "libft.h"
-#include "stdio.h"
 
 static unsigned int	ft_atof_pre(const char *nptr, float *n)
 {
@@ -24,7 +23,7 @@ static unsigned int	ft_atof_pre(const char *nptr, float *n)
 	minus = 1;
 	index = 0;
 	while (nptr[index] == ' ' || (nptr[index] >= 9 && nptr[index] <= 13))
-		index++;
+		nptr++;
 	if (nptr[index] == '-' || nptr[index] == '+')
 	{
 		if (nptr[index] == '-')
@@ -35,7 +34,7 @@ static unsigned int	ft_atof_pre(const char *nptr, float *n)
 	{
 		if (minus > 0 && (FLT_MAX - nptr[index] + '0') / 10 < value)
 			return (0);
-		if (minus < 0 && (FLT_MIN + nptr[index] - '0') / 10 > -value)
+		if (minus < 0 && (-FLT_MAX + nptr[index] - '0') / 10 > -value)
 			return (0);
 		value *= 10;
 		value += (nptr[index] - '0');
@@ -57,7 +56,7 @@ int ft_atof(const char *s, float *n)
 		return (1);
 	if (s[i] == '.')
 	{
-		if (i == FLT_MAX || i == FLT_MIN)
+		if (i == FLT_MAX || i == -FLT_MAX)
 			return (1);
 		dec = 0;
 		i++;
