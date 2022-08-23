@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 12:14:04 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/23 17:08:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 typedef int	bool;
 
 typedef enum e_bool
-{ 
+{
 	false,
-	true 
+	true
 }	t_bool;
 
 typedef struct s_pos
