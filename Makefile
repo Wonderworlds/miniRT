@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/22 14:49:57 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/23 13:55:58 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ CC					:=	cc
 RM					:=	rm
 
 CCFLAGS				:=	-Wall -Wextra -Werror
-LIBFLAGS			:= -lXext -lX11 -lm -lbsd
+LIBFLAGS			:=	-lXext -lX11 -lm -lbsd
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
 
 OUTDIR				:=	$(OBJDIR)
 
-DEBUGNAME			:= $(addsuffix .debug,$(PROGNAME))
+DEBUGNAME			:=	$(addsuffix .debug,$(PROGNAME))
 
 ifdef DEBUG
 	OPTFLAG 		:=	-g
@@ -57,16 +57,9 @@ $(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(LIBFT) $(MLX)
 
 all					:	$(NAME) $(BONUSNAME)
 
-bonus				:	$(BONUSNAME)
-
 $(DEBUGNAME)		:
 ifndef DEBUG
 	$(MAKE) $(DEBUGNAME) DEBUG=1
-endif
-
-$(BONUSDEBUGNAME)	:
-ifndef DEBUG
-	$(MAKE) $(BONUSDEBUGNAME) DEBUG=1
 endif
 
 ifdef DEBUG
@@ -81,7 +74,7 @@ endif
 
 ifdef LIBFT
 $(LIBFT)			:
-	$(MAKE) -j -C $(dir $(LIBFT)) $(notdir $(LIBFT))
+	$(MAKE) -j -C $(dir $(LIBFT))
 endif
 
 ifdef MLX
@@ -107,6 +100,6 @@ fclean				:	clean
 re					:	fclean
 	$(MAKE) $(NAME)
 
-.PHONY				:	all bonus clean fclean re
+.PHONY				:	all bonus clean fclean re debug
 
 -include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
