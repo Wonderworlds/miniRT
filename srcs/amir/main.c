@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 12:48:35 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/23 13:09:19 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "minirt.h"
 #include <stdio.h>
 
-/* ======================= Check parsing ============================ */
+/* ======================= Check parsing ============================
 
 void	check_value(t_scene scene)
 {
@@ -50,7 +50,7 @@ void	check_value(t_scene scene)
 	}
 }
 
-/* =================================================================== */
+ =================================================================== */
 
 void	init_scene(t_scene *scene, t_list **lights, t_list **vols)
 {
@@ -81,11 +81,11 @@ int	main(int ac, char **av)
 	}
 	parse_rt(av[1], &scene);
 
-/*	----> test parse <----- */
+/*	----> test parse <-----
 	check_value(scene);
-/*	----------------------- */
+	----------------------- */
 
-	//	graphic_process(&scene);
+	graphic_process(&scene);
 	leave_rt(&scene);
 	return (0);
 }
