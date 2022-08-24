@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/24 15:10:13 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/24 18:42:01 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ double	dot_product(t_pos a, t_pos b)
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
-double	vector_norm(t_pos vec)
+double	vector_norm(t_pos vec1, t_pos vec2)
 {
-	return (sqrt(dot_product(vec, vec));
+	return (sqrt(dot_product(vec1, vec2));
 }
 
 void	vector_ab(t_pos a, t_pos b, t_pos *vec)
