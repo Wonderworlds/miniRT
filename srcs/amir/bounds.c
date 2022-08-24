@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/24 17:41:08 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/24 18:00:10 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	sphere_bounds(t_vol sp, t_box *box)
 	float	r;
 
 	r = sp.d / 2;
-	set_vector(r, r, r, &box->max);
-	set_vector(-r, -r, -r, &box->min);
+	set_vector(0, r, 0, &box->max);
+	set_vector(0, -r, 0, &box->min);
 	vector_add(sp.pos, box->max, &box->max);
 	vector_add(sp.pos, box->min, &box->min);
 	vector_ab(box->min, box->max, &box->size);
