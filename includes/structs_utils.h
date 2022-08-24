@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 21:37:25 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/24 15:28:41 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ typedef struct s_light
 	float		r;
 	t_pos		pos;
 }	t_light;
+
+typedef struct s_box
+{
+	t_pos	min;
+	t_pos	max;
+	t_pos	size;
+}				t_box;
 
 typedef struct s_scene
 {
