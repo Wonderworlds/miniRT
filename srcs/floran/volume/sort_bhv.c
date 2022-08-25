@@ -6,38 +6,39 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 17:29:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:16:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
 #include "utils.h"
 
-static t_vol *get_furthest_vol(const t_pos *pos, t_vol **vols, int size)
+static t_list *get_furthest_vol(const t_pos *pos, t_list *vols)
 {
-	double			dst;
-	double			tmp;
-	t_vol			*ret;
-	unsigned int	index;
+	double	dst;
+	double	tmp;
+	t_list	*ret;
+	t_list	*index;
 
-	ret = NULL;
-	index = 0;
-	dst = dist_ab(pos, &(*vols)[index].box.center);
-	ret = &(*vols)[index++];
-	while (index < size)
+	if (!vols)
+		return (NULL);
+	index = vols;
+	dst = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
+	ret = index;
+	while (index)
 	{
-		tmp = dist_ab(pos, &(*vols)[index].box.center);
+		tmp = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
 		if (tmp < dst)
 		{
 			dst = tmp;
-			ret = &(*vols)[index];
+			ret = index;
 		}
-		index++;
+		index = index->next;
 	}
 	return (ret);
 }
 
-static int tab_fill(t_vol **vols, int size, t_vol **tab, t_pos origin)
+static int tab_fill(t_list **vols, t_list origin)
 {
 	unsigned int	index;
 	unsigned int	j;
@@ -45,8 +46,6 @@ static int tab_fill(t_vol **vols, int size, t_vol **tab, t_pos origin)
 	double			dist;
 	t_vol			*tmp;
 
-	*tab = ft_calloc(sizeof(t_vol), size);
-	if (!*tab)
 		return (1);
 	index = 0;
 	while (index < size)
@@ -73,27 +72,31 @@ static int tab_fill(t_vol **vols, int size, t_vol **tab, t_pos origin)
 	return (0);
 }
 
-int sort_vols(t_vol **vols, int size, const t_box *box)
+void new_lst_start(t_list **vols, t_list *new_start)
 {
-	t_vol	*left_vol;
-	t_vol	*tab_sorted;
+	t_list	*index;
+
+	index = *vols;
+	while (index && index->next != new_start)
+		index = index->next;
+	if (index)
+	{
+		index->next = NULL;
+		index = new_start;
+		while (index)
+			index = index->next;
+		index->next = *vols;
+		*vols = new_start;
+	}
+}
+
+int sort_vols(t_list **vols ,const t_box *box)
+{
+	t_list	*new_start;
 	int		index;
 
-	if (size < 2)
-		return (0);
-	else if (size == 2)
-		return (1);
-	left_vol = get_furthest_vol(&(box->center), vols, size);
-	if (tab_fill(vols, size, &tab_sorted, left_vol->box.center))
-		return (-1);
-	index = 1;
-	while (index < size - 1)
-	{
-		if (!(dist_ab(&tab_sorted[0].box.center, &tab_sorted[index].box.center)
-			< dist_ab(&tab_sorted[size - 1].box.center, &tab_sorted[index].box.center)))
-			break ;
-		index++;
-	}
-	*vols = tab_sorted;
+	new_start = get_furthest_vol(&(box->center), vols);
+	new_lst_start(vols, new_start);
+	
 	return (index);
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 15:10:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:34:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ double	vector_norm(t_pos vec);
 void	vector_add(t_pos a, t_pos b, t_pos *vec);
 void	set_vector(float x, float y, float z, t_pos *vec);
 double	dist_ab(const t_pos *a, const t_pos *b);
+
+//		utils/quicksort_lst_custom.c
+void	sort_list_custom(t_list **lst, const t_pos *origin);
 
 #endif
