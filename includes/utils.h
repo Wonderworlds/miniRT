@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 20:41:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:10:29 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ void	error_msg(char *str);
 //		utils/vector_math.c
 void	vector_ab(t_pos a, t_pos b, t_pos *vec);
 double	dot_product(t_pos a, t_pos b);
+double	vector_norm(t_pos vec);
+void	vector_add(t_pos a, t_pos b, t_pos *vec);
+void	set_vector(float x, float y, float z, t_pos *vec);
 
 #endif

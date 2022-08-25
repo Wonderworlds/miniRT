@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/23 20:42:15 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/24 18:56:07 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
+												$(addprefix volume/,		bounds.c)			\
 																		)
 
 FLORANSRC			:=	$(addprefix floran/,	main.c 			\

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 16:18:37 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/25 14:13:42 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 void	exit_parse(t_scene *scene)
 {
 	free(scene->line_gnl);
-	ft_lstclear(scene->lights, &free);
-	ft_lstclear(scene->vols, &free);
+	ft_lstclear(&scene->lights, &free);
+	ft_lstclear(&scene->vols, &free);
 	close(scene->fd);
 	ft_fprintf(2, "Error\nError parse format\n");
 	exit(EXIT_FAILURE);
