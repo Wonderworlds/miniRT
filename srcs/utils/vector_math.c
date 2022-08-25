@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/24 18:59:24 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/25 15:10:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	vector_add(t_pos a, t_pos b, t_pos *vec)
 	vec->x = a.x + b.x;
 	vec->y = a.y + b.y;
 	vec->z = a.z + b.z;
+}
+
+double	dist_ab(const t_pos *a, const t_pos *b)
+{
+	return (fabs((b->x - a->x) + (b->y - a->y) + (b->z - a->z)));
 }
 
 void	set_vector(float x, float y, float z, t_pos *vec)
