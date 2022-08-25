@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 17:26:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:29:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int sort_vols(t_vol **vols, int size, const t_box *box)
 			break ;
 		index++;
 	}
-	//need to returb the good sorted vols
+	*vols = tab_sorted;
 	return (index);
 }
