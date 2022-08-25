@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 21:35:25 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/25 14:17:43 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "minirt.h"
 #include "mlx_data.h"
 
-/* ======================= Check parsing ============================
+// ======================= Check parsing ============================
 
 #include <stdio.h>
 
 void	check_value(t_scene scene)
 {
-	t_list	*check_lights = *(scene.lights);
-	t_list	*check_vols = *(scene.vols);
+	t_list	*check_lights = scene.lights;
+	t_list	*check_vols = scene.vols;
 	t_cam	cam = scene.cam;
 	t_vol	*vol;
 	t_light *light;
@@ -52,21 +52,21 @@ void	check_value(t_scene scene)
 	}
 }
 
- =================================================================== */
+// =================================================================== */
 
 void	init_scene(t_scene *scene, t_list **lights, t_list **vols)
 {
 	*lights = NULL;
 	*vols = NULL;
-	scene->vols = vols;
-	scene->lights = lights;
+	scene->vols = *vols;
+	scene->lights = *lights;
 	scene->cam.is_set = false;
 }
 
 void	leave_rt(t_scene *scene)
 {
-	ft_lstclear(scene->lights, &free);
-	ft_lstclear(scene->vols, &free);
+	ft_lstclear(&scene->lights, &free);
+	ft_lstclear(&scene->vols, &free);
 }
 
 int	main(int ac, char **av)
@@ -83,9 +83,9 @@ int	main(int ac, char **av)
 	}
 	parse_rt(av[1], &scene);
 
-/*	----> test parse <-----
+///*	----> test parse <-----
 	check_value(scene);
-	----------------------- */
+//	----------------------- */
 
 	graphic_process(&scene);
 	leave_rt(&scene);

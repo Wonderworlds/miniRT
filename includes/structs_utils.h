@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/24 15:28:41 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/25 14:12:05 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define STRUCTS_UTILS_H
 
 # include "libft.h"
-
-typedef int	bool;
 
 typedef enum e_bool
 {
@@ -39,6 +37,12 @@ typedef struct s_rgb
 
 }	t_rgb;
 
+typedef struct s_box
+{
+	t_pos	center;
+	float	rayon;
+}				t_box;
+
 typedef enum e_type
 {
 	AMB_LIGHT,
@@ -56,6 +60,8 @@ typedef struct s_vol
 	float	d;
 	float	h;
 	t_rgb	col;
+	t_box	rayon;
+	t_box	box;
 }	t_vol;
 
 typedef struct s_cam
@@ -63,7 +69,7 @@ typedef struct s_cam
 	t_pos	pos;
 	t_pos	vec3;
 	int		h_fov;
-	bool	is_set;
+	t_bool	is_set;
 }	t_cam;
 
 typedef struct s_light
@@ -74,17 +80,11 @@ typedef struct s_light
 	t_pos		pos;
 }	t_light;
 
-typedef struct s_box
-{
-	t_pos	min;
-	t_pos	max;
-	t_pos	size;
-}				t_box;
 
 typedef struct s_scene
 {
-	t_list	**vols;
-	t_list	**lights;
+	t_list	*vols;
+	t_list	*lights;
 	t_cam	cam;
 	int		fd;
 	char	*line_gnl;
