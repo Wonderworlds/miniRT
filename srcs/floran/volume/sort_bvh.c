@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_bhv.c                                         :+:      :+:    :+:   */
+/*   sort_bvh.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 19:48:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:55:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ unsigned int sort_vols(t_list **vols ,const t_box *box)
 	t_list			*index;
 	unsigned int	m;
 
-	new_start = get_furthest_vol(&(box->center), vols);
+	new_start = get_furthest_vol(&(box->center), *vols);
 	new_lst_start(vols, new_start);
 	sort_list_custom(&(*vols)->next, &((t_vol *)new_start->content)->box.center);
 	m = 0;

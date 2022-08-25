@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:17:59 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 19:50:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:56:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	sort_list_custom(t_list **lst, const t_pos *origin)
 	quicksort_lst(lst, size, origin);
 }
 
-int	cmp_nearest_vol(t_vol *left, t_vol *right, t_pos *origin)
+int	cmp_nearest_vol(const t_vol *left, const t_vol *right,
+		const t_pos *origin)
 {
 	if (dist_ab(origin, &(left->box.center))
 		< dist_ab(origin, &(right->box.center)))

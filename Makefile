@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/24 18:56:07 by amahla           ###   ########.fr        #
+#    Updated: 2022/08/25 19:57:36 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ COMMONSRCS			:=
 UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												error_msg.c		\
 												vector_math.c	\
+												vector_math2.c	\
+												struct_utils.c	\
+												quicksort_lst_custom.c	\
 												)
 
 
@@ -44,11 +47,13 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
-												$(addprefix volume/,		bounds.c)			\
+												$(addprefix volume/,		bounds.c)		\
 																		)
 
 FLORANSRC			:=	$(addprefix floran/,	main.c 			\
-												$(addprefix volume/,	inside_vol.c)		\
+												$(addprefix volume/,	inside_vol.c		\
+																		sort_bvh.c			\
+																					)		\
 																				)
 
 CC					:=	cc
@@ -59,7 +64,7 @@ LIBFLAGS			:=	-lXext -lX11 -lm -lbsd
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
-FLORAN				:=	floran
+FLORAN				:=	floranprog
 
 OUTDIR				:=	$(OBJDIR)
 
