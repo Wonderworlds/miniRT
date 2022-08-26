@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:04:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:37:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:52:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	print_cy(t_vol *cy)
 
 void	print_vol(t_vol *vol)
 {
-	void (*f[3])(t_vol *);
+	void	(*f[3])(t_vol *);
 
 	f[0] = &print_sp;
 	f[1] = &print_pl;
