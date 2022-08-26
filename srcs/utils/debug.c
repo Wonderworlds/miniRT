@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:04:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 18:02:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:06:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	print_pos(const t_pos *pos, const char *str)
 
 static void	print_sp(const t_vol *sp)
 {
-	printf("\nSPHERE\n");
+	printf("\n| SPHERE\n");
 	printf("| diametre:\t%f\n", sp->d);
-	printf("-----------------------------------------------------------------\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| vol\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&sp->pos, "center");
-	printf("-----------------------------------------------------------------\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| box\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&sp->box.center, "center");
 	print_pos(&sp->box.min, "   min");
@@ -36,12 +36,12 @@ static void	print_sp(const t_vol *sp)
 
 static void	print_pl(const t_vol *pl)
 {
-	printf("\nPLANE\n");
-	printf("-----------------------------------------------------------------\n");
+	printf("\n| PLANE\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| name\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&pl->pos, "origin");
 	print_pos(&pl->vec3, "normal");
-	printf("-----------------------------------------------------------------\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| box\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&pl->box.center, "center");
 	print_pos(&pl->box.min, "   min");
@@ -51,14 +51,14 @@ static void	print_pl(const t_vol *pl)
 
 static void	print_cy(const t_vol *cy)
 {
-	printf("\nCYLINDER\n");
+	printf("\n| CYLINDER\n");
 	printf("| rayon:\t%f\n", cy->d);
 	printf("| height:\t%f\n", cy->h);
-	printf("-----------------------------------------------------------------\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| name\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&cy->pos, "origin");
 	print_pos(&cy->vec3, "normal");
-	printf("-----------------------------------------------------------------\n");
+	printf("|----------------------------------------------------------------\n");
 	printf("| box\t\t| x\t\t| y\t\t| z\t\t|\n");
 	print_pos(&cy->box.center, "center");
 	print_pos(&cy->box.min, "   min");
