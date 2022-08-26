@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 18:30:58 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/26 18:33:26 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end)
 		box->expend = vol->box.expend;
 		return (1);
 	}
-	init_pos_axe(vol, box);
 	while (vols && begin <= end)
 	{
 		vol = (t_vol *)(vols->content);
