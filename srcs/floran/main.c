@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 17:55:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:46:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,30 @@ void	create_cylinder(t_vol *cy, t_pos pos, t_pos vec, float h, float d)
 int main(void)
 {
 	t_list	*lst;
-	t_vol	a, b, c;
+	t_vol	a, b, c, d;
 	t_pos	pos = {0, 0, 0};
 	t_pos	pos2 = {10, 0, 20};
 	t_pos	pos3 = {0, 5, 5};
+	t_pos	pos4 = {0, -5, -5};
+	t_box	box_total;
 
+	lst = NULL;
 	create_sphere(&a, 10, pos);
 	create_sphere(&b, 10, pos2);
 	create_sphere(&c, 10, pos3);
+	create_sphere(&d, 10, pos4);
 	sphere_bounds(&a);
 	sphere_bounds(&b);
 	sphere_bounds(&c);
+	sphere_bounds(&d);
 	ft_lstadd_front(&lst, ft_lstnew((void *)&a));
 	ft_lstadd_front(&lst, ft_lstnew((void *)&b));
 	ft_lstadd_front(&lst, ft_lstnew((void *)&c));
+	ft_lstadd_front(&lst, ft_lstnew((void *)&d));
 	ft_lstiter(lst, print_vol);
+	bounds_total(lst, &box_total, 0, ft_lstsize(lst) - 1);
+	ft_fprintf(2, "\nbounds total\n");
+	print_pos(&box_total.center, "center box");
+	print_pos(&box_total.min, "   min box");
+	print_pos(&box_total.max, "   max box");
 }
