@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/25 19:57:36 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/26 12:28:53 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												vector_math.c	\
 												vector_math2.c	\
 												struct_utils.c	\
+												bbox_utils.c	\
 												quicksort_lst_custom.c	\
 												)
 
@@ -64,11 +65,12 @@ LIBFLAGS			:=	-lXext -lX11 -lm -lbsd
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
-FLORAN				:=	floranprog
+FLORAN				:=	floran
 
 OUTDIR				:=	$(OBJDIR)
 
 DEBUGNAME			:=	$(addsuffix .debug,$(PROGNAME))
+FLORANNAME			:=	$(addsuffix .prog,$(FLORAN))
 
 ifdef DEBUG
 	OPTFLAG 		:=	-g
@@ -86,7 +88,7 @@ $(NAME)				:	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(U
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 $(FLORAN)			:	$(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORAN) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORANNAME) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 all					:	$(NAME) $(BONUSNAME)
 
@@ -128,7 +130,7 @@ endif
 	$(RM) -rf $(OBJDIR) $(DEBUGDIR)
 
 fclean				:	clean
-	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME)
+	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME) $(FLORANNAME)
 
 re					:	fclean
 	$(MAKE) $(NAME)
