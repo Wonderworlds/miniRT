@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/26 14:09:32 by amahla           ###   ########.fr        #
+#    Updated: 2022/08/26 17:53:56 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 FLORANSRC			:=	$(addprefix floran/,	main.c 			\
 												$(addprefix volume/,	inside_vol.c		\
 																		sort_bvh.c			\
+																		bounds.c			\
 																					)		\
 																				)
 

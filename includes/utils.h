@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:20:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:57:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	vector_add(t_pos a, t_pos b, t_pos *vec);
 void	set_vector(float x, float y, float z, t_pos *vec);
 //		utils/vector_math2.c
 double	dist_ab(const t_pos *a, const t_pos *b);
+void	vector_equal(const t_pos src, t_pos  *dest);
 
 //		utils/bbox_utils.c
 void	bbox_center(const t_box *box, t_pos *center);
@@ -40,6 +41,7 @@ int		cmp_nearest_vol(const t_vol *left, const t_vol *right,
 			const t_pos *origin);
 
 //		utils/debug.c
-void	print_vol(t_vol *vol);
+void	print_vol(void *vol);
+void	print_pos(const t_pos *pos, const char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 17:55:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:59:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	sphere_bounds(t_vol *sp)
 	set_vector(r, r, r, &sp->box.max);
 	vector_add(sp->pos, sp->box.min, &sp->box.min);
 	vector_add(sp->pos, sp->box.max, &sp->box.max);
-	vector_ab(sp->box.max, sp->box.min, &sp->box.expend);
 	sp->box.expend = bbox_expend(&sp->box);
 	vector_equal(sp->pos, &sp->box.center);
 }
