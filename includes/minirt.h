@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 14:54:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:26:57 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,14 @@ void	camera(t_scene *scene, char *str);
 //		volume/inside_vol.c
 t_bool	inside_vol(t_pos pos, t_vol volume);
 
-//		volume/bounds.c
+//		volume/bounds_volume.c
 void	sphere_bounds(t_vol sp, t_box *box);
 void	cylinder_bounds(t_vol cy, t_box *box);
+
+//		volume/bounds_total.c
+int		bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end);
+
+//		volume/intersect.c
+t_bool	plane_and_sphere_intersect(t_vol pl, t_vol vol);
 
 #endif
