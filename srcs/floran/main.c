@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 20:40:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:21:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "structs_utils.h"
+#include "utils.h"
 #include "minirt.h"
 #include <stdio.h>
 
@@ -60,6 +61,7 @@ int	main(void)
 	ft_printf("Sphere inside test\n");
 	t_vol a;
 	create_sphere(&a, 10, pos);
+	print_vol(&a);
 	ft_printf("%d\n", inside_vol(pos, a));
 	ft_printf("%d\n", inside_vol(pt1, a));
 	ft_printf("%d\n", inside_vol(pt2, a));
@@ -67,6 +69,7 @@ int	main(void)
 	ft_printf("\nplane inside test\n");
 	t_vol b;
 	create_plane(&b, pos, vec);
+	print_vol(&b);
 	ft_printf("%d\n", inside_vol(pos, b));
 	ft_printf("%d\n", inside_vol(pt1, b));
 	ft_printf("%d\n", inside_vol(pt2, b));
@@ -74,6 +77,7 @@ int	main(void)
 	ft_printf("\nCylinder inside test\n");
 	t_vol c;
 	create_cylinder(&c, pos, vec, 10, 6);
+	print_vol(&c);
 	ft_printf("%d\n", inside_vol(pos, c));
 	ft_printf("%d\n", inside_vol(pt3, c));
 	ft_printf("%d\n", inside_vol(pt1, c));

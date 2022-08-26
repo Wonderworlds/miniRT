@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/26 12:28:53 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/26 13:22:00 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												vector_math2.c	\
 												struct_utils.c	\
 												bbox_utils.c	\
+												debug.c			\
 												quicksort_lst_custom.c	\
 												)
 

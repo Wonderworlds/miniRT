@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 12:41:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:23:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_box
     t_pos    min;
     t_pos    max;
     t_pos    center;
+    float    expend;
 }	t_box;
 
 typedef enum e_type

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 12:51:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:20:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ float	bbox_expend(const t_box *box);
 void	sort_list_custom(t_list **lst, const t_pos *origin);
 int		cmp_nearest_vol(const t_vol *left, const t_vol *right,
 			const t_pos *origin);
+
+//		utils/debug.c
+void	print_vol(t_vol *vol);
 
 #endif
