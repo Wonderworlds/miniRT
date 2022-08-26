@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/26 17:53:56 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/26 18:41:12 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
-												$(addprefix volume/,	bounds.c			\
+												$(addprefix volume/,	bounds_volumes.c	\
+																		bounds_total.c		\
 																		inside_vol.c)		\
 																		)
 
