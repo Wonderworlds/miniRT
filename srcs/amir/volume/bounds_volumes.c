@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 21:05:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/26 21:18:54 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	cylinder_bounds(t_vol *cy)
 	vector_sub(cy_top, vec_e, tmp + 1);
 	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].x, tmp[1].x),
 		fminf(tmp[0].x, tmp[1].x), &cy->box.min);
+	bbox_center(&cy->box, &cy->box.center);
+	cy->box.expend = bbox_expend(&cy->box);
 }
-
