@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 14:12:05 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/26 13:23:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ typedef struct s_rgb
 
 typedef struct s_box
 {
-	t_pos	center;
-	float	rayon;
-}				t_box;
+    t_pos    min;
+    t_pos    max;
+    t_pos    center;
+    float    expend;
+}	t_box;
 
 typedef enum e_type
 {

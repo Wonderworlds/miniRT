@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/22 14:49:51 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/25 19:21:10 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ LIBFTSRC			:=	ft_atoi.c 				\
 						ft_lstmap.c 			\
 						ft_lstnew.c 			\
 						ft_lstsize.c 			\
+						ft_lst_at.c 			\
 						ft_memchr.c 			\
 						ft_memcmp.c 			\
 						ft_memcpy.c 			\

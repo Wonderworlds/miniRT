@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 21:54:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 14:54:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:51:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*read_fd(size_t *size, t_leftover *leftover, int fd, ssize_t r)
 	ret = NULL;
 	*size = gnl_join(&ret, 0, leftover->str, leftover->size);
 	if (!ret && leftover->size > 0)
-			error_msg("Error\nmalloc: fail\n");
+		error_msg("Error\nmalloc: fail\n");
 	while (r && !find_newline(ret, *size))
 	{
 		r = read(fd, leftover->str, BUFFER_SIZE);

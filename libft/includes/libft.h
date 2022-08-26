@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:07:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 15:31:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:20:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lst_at(t_list *begin_list, unsigned int nbr);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /**			CUSTOM			**/
