@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 15:02:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:17:43 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "minirt.h"
 #include "mlx_data.h"
 
-/* ======================= Check parsing ============================
+// ======================= Check parsing ============================
 
 #include <stdio.h>
 
 void	check_value(t_scene scene)
 {
-	t_list	*check_lights = *(scene.lights);
-	t_list	*check_vols = *(scene.vols);
+	t_list	*check_lights = scene.lights;
+	t_list	*check_vols = scene.vols;
 	t_cam	cam = scene.cam;
 	t_vol	*vol;
 	t_light *light;
@@ -43,30 +43,30 @@ void	check_value(t_scene scene)
 	{
 		vol = (t_vol *)(check_vols->content);
 		if (vol->type == SPHERE)
-			printf("pl	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->sp_d, vol->col.r, vol->col.g, vol->col.b);
+			printf("sp	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->d, vol->col.r, vol->col.g, vol->col.b);
 		if (vol->type == PLANE)
-			printf("sp	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
+			printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
 		if (vol->type == CYLINDER)
 			printf("cy	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f		%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->d, vol->h, vol->col.r, vol->col.g, vol->col.b);
 		check_vols = check_vols->next;
 	}
 }
 
- =================================================================== */
+// =================================================================== */
 
 void	init_scene(t_scene *scene, t_list **lights, t_list **vols)
 {
 	*lights = NULL;
 	*vols = NULL;
-	scene->vols = vols;
-	scene->lights = lights;
+	scene->vols = *vols;
+	scene->lights = *lights;
 	scene->cam.is_set = false;
 }
 
 void	leave_rt(t_scene *scene)
 {
-	ft_lstclear(scene->lights, &free);
-	ft_lstclear(scene->vols, &free);
+	ft_lstclear(&scene->lights, &free);
+	ft_lstclear(&scene->vols, &free);
 }
 
 int	main(int ac, char **av)
@@ -83,9 +83,9 @@ int	main(int ac, char **av)
 	}
 	parse_rt(av[1], &scene);
 
-/*	----> test parse <-----
+///*	----> test parse <-----
 	check_value(scene);
-	----------------------- */
+//	----------------------- */
 
 	graphic_process(&scene);
 	leave_rt(&scene);

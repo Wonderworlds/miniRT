@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 22:02:03 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/25 13:58:14 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "structs_utils.h"
 #include "libft.h"
 
-bool	pos_format(char *str)
+t_bool	pos_format(char *str)
 {
 	int	i;
 	int	axis;
@@ -42,7 +42,7 @@ bool	pos_format(char *str)
 	return (true);
 }
 
-bool	r_format(char *str)
+t_bool	r_format(char *str)
 {
 	int		i;
 	float	n;
@@ -64,7 +64,7 @@ bool	r_format(char *str)
 	return (true);
 }
 
-bool	rgb_format(char *str)
+t_bool	rgb_format(char *str)
 {
 	int	i;
 	int	color;
@@ -85,7 +85,7 @@ bool	rgb_format(char *str)
 	return (true);
 }
 
-bool	h_fov_format(char *str)
+t_bool	h_fov_format(char *str)
 {
 	int		i;
 
@@ -99,7 +99,7 @@ bool	h_fov_format(char *str)
 	return (true);
 }
 
-bool	float_format(char *str)
+t_bool	float_format(char *str)
 {
 	int	i;
 

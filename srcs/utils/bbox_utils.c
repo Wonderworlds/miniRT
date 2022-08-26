@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   bbox_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 14:52:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 19:51:19 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/26 12:23:53 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/26 12:50:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "structs_utils.h"
+#include "utils.h"
 
-void	error_msg(char *str)
+void	bbox_center(const t_box *box, t_pos *center)
 {
-	ft_fprintf(2, "%s", str);
-	exit(EXIT_FAILURE);
+	set_vector(box->max.x - box->min.x, box->max.y - box->min.y,
+		box->max.z - box->min.z, center);
+}
+
+float	bbox_expend(const t_box *box)
+{
+	return (dist_ab(&box->min, &box->min));
 }

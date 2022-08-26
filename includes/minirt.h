@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 20:42:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:54:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	parse_rt(char *arg, t_scene *scene);
 void	exit_parse(t_scene *scene);
 
 //		parse/format_data.c
-bool	pos_format(char *str);
-bool	r_format(char *str);
-bool	rgb_format(char *str);
-bool	h_fov_format(char *str);
-bool	float_format(char *str);
+t_bool	pos_format(char *str);
+t_bool	r_format(char *str);
+t_bool	rgb_format(char *str);
+t_bool	h_fov_format(char *str);
+t_bool	float_format(char *str);
 
 //		parse/set_variables
 int		set_pos(t_scene *scene, t_pos *pos, char *str);
@@ -47,5 +47,10 @@ void	light(t_scene *scene, char *str);
 void	camera(t_scene *scene, char *str);
 
 //		volume/inside_vol.c
-bool	inside_vol(t_pos pos, t_vol volume);
+t_bool	inside_vol(t_pos pos, t_vol volume);
+
+//		volume/bounds.c
+void	sphere_bounds(t_vol sp, t_box *box);
+void	cylinder_bounds(t_vol cy, t_box *box);
+
 #endif

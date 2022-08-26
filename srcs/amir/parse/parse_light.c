@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 12:13:36 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/25 14:15:06 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 	int		i;
 
 	i = 1;
-	lights = *(scene->lights);
+	lights = scene->lights;
 	while (lights)
 	{
 		temp = (t_light *)(lights->content);
@@ -46,7 +46,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &a->col, str + i);
-	ft_lstadd_back(scene->lights, ft_lstnew(a));
+	ft_lstadd_back(&scene->lights, ft_lstnew(a));
 }
 
 void	light(t_scene *scene, char *str)
@@ -57,7 +57,7 @@ void	light(t_scene *scene, char *str)
 	int		i;
 
 	i = 1;
-	lights = *(scene->lights);
+	lights = scene->lights;
 	while (lights)
 	{
 		temp = lights->content;
@@ -76,5 +76,5 @@ void	light(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &l->col, str + i);
-	ft_lstadd_back(scene->lights, ft_lstnew(l));
+	ft_lstadd_back(&scene->lights, ft_lstnew(l));
 }

@@ -1,19 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   sorted_volume.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 14:52:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 19:51:19 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/24 20:08:21 by amahla            #+#    #+#             */
+/*   Updated: 2022/08/25 14:01:26 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "structs_utils.h"
+#include <math.h>
 
-void	error_msg(char *str)
-{
-	ft_fprintf(2, "%s", str);
-	exit(EXIT_FAILURE);
-}
