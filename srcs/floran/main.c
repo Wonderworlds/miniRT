@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:21:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:46:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,39 +49,70 @@ void	create_cylinder(t_vol *cy, t_pos pos, t_pos vec, float h, float d)
 	cy->h = h;
 }
 
-int	main(void)
+// int	main(void)
+// {
+// 	t_pos	pos = {0, 0, 0};
+// 	t_pos	pt1 = {5, 5, 5};
+// 	t_pos	pt2 = {2.5f, 2.5f, 2.5f};
+// 	t_pos	pt3 = {0, 0, 10};
+// 	t_pos	pt4 = {7, 7, 17};
+// 	t_pos	vec = {0, 0, 1};
+
+// 	ft_printf("Sphere inside test\n");
+// 	t_vol a;
+// 	create_sphere(&a, 10, pos);
+// 	print_vol(&a);
+// 	ft_printf("%d\n", inside_vol(&pos, &a));
+// 	ft_printf("%d\n", inside_vol(&pt1, &a));
+// 	ft_printf("%d\n", inside_vol(&pt2, &a));
+
+// 	ft_printf("\nplane inside test\n");
+// 	t_vol b;
+// 	create_plane(&b, pos, vec);
+// 	print_vol(&b);
+// 	ft_printf("%d\n", inside_vol(&pos, &b));
+// 	ft_printf("%d\n", inside_vol(&pt1, &b));
+// 	ft_printf("%d\n", inside_vol(&pt2, &b));
+
+// 	ft_printf("\nCylinder inside test\n");
+// 	t_vol c;
+// 	create_cylinder(&c, pos, vec, 10, 6);
+// 	print_vol(&c);
+// 	ft_printf("%d\n", inside_vol(&pos, &c));
+// 	ft_printf("%d\n", inside_vol(&pt3, &c));
+// 	ft_printf("%d\n", inside_vol(&pt1, &c));
+// 	ft_printf("%d\n", inside_vol(&pt2, &c));
+// 	ft_printf("%d\n", inside_vol(&pt4, &c));
+// 	return (0);
+// }
+
+int main(void)
 {
- 	t_pos pos = {0, 0, 0};
- 	t_pos pt1 = {5, 5, 5};
- 	t_pos pt2 = {2.5f, 2.5f, 2.5f};
- 	t_pos pt3 = {0, 0, 10};
- 	t_pos pt4 = {7, 7, 17};
-	t_pos vec = {0, 0, 1};
+	t_list	*lst;
+	t_vol	a, b, c, d;
+	t_pos	pos = {0, 0, 0};
+	t_pos	pos2 = {10, 0, 20};
+	t_pos	pos3 = {0, 5, 5};
+	t_pos	pos4 = {0, -5, -5};
+	t_box	box_total;
 
-	ft_printf("Sphere inside test\n");
-	t_vol a;
+	lst = NULL;
 	create_sphere(&a, 10, pos);
-	print_vol(&a);
-	ft_printf("%d\n", inside_vol(pos, a));
-	ft_printf("%d\n", inside_vol(pt1, a));
-	ft_printf("%d\n", inside_vol(pt2, a));
-
-	ft_printf("\nplane inside test\n");
-	t_vol b;
-	create_plane(&b, pos, vec);
-	print_vol(&b);
-	ft_printf("%d\n", inside_vol(pos, b));
-	ft_printf("%d\n", inside_vol(pt1, b));
-	ft_printf("%d\n", inside_vol(pt2, b));
-
-	ft_printf("\nCylinder inside test\n");
-	t_vol c;
-	create_cylinder(&c, pos, vec, 10, 6);
-	print_vol(&c);
-	ft_printf("%d\n", inside_vol(pos, c));
-	ft_printf("%d\n", inside_vol(pt3, c));
-	ft_printf("%d\n", inside_vol(pt1, c));
-	ft_printf("%d\n", inside_vol(pt2, c));
-	ft_printf("%d\n", inside_vol(pt4, c));
-	return (0);
+	create_sphere(&b, 10, pos2);
+	create_sphere(&c, 10, pos3);
+	create_sphere(&d, 10, pos4);
+	sphere_bounds(&a);
+	sphere_bounds(&b);
+	sphere_bounds(&c);
+	sphere_bounds(&d);
+	ft_lstadd_front(&lst, ft_lstnew((void *)&a));
+	ft_lstadd_front(&lst, ft_lstnew((void *)&b));
+	ft_lstadd_front(&lst, ft_lstnew((void *)&c));
+	ft_lstadd_front(&lst, ft_lstnew((void *)&d));
+	ft_lstiter(lst, print_vol);
+	bounds_total(lst, &box_total, 0, ft_lstsize(lst) - 1);
+	ft_fprintf(2, "\nbounds total\n");
+	print_pos(&box_total.center, "center box");
+	print_pos(&box_total.min, "   min box");
+	print_pos(&box_total.max, "   max box");
 }

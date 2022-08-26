@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:23:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:57:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct s_rgb
 
 typedef struct s_box
 {
-    t_pos    min;
-    t_pos    max;
-    t_pos    center;
-    float    expend;
+	t_pos	min;
+	t_pos	max;
+	t_pos	center;
+	float	expend;
 }	t_box;
 
 typedef enum e_type
@@ -81,7 +81,6 @@ typedef struct s_light
 	float		r;
 	t_pos		pos;
 }	t_light;
-
 
 typedef struct s_scene
 {
