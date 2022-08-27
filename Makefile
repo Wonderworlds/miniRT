@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/26 18:44:52 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/27 16:32:07 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,13 +54,22 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		inside_vol.c)		\
 																		)
 
-FLORANSRC			:=	$(addprefix floran/,	main.c 			\
-												$(addprefix volume/,	inside_vol.c		\
+FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
 																		sort_bvh.c			\
 																		bounds.c			\
-																		bounds_total.c		\
-																					)		\
-																				)
+																		bounds_total.c)		\
+												$(addprefix graphics/,	graphic_process.c	\
+																		error_mlx.c			\
+																		graphic_hook.c		\
+																		graphic_render.c)	\
+												$(addprefix parse/,		parse_rt.c			\
+																		format_data.c		\
+																		parse_volume.c		\
+																		parse_light.c		\
+																		parse_camera.c		\
+																		set_variables.c)	\
+												main_graphic.c		\
+																	)
 
 CC					:=	cc
 RM					:=	rm

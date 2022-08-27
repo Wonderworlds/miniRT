@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bounds_volumes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 21:18:54 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/27 16:06:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cylinder_bounds(t_vol *cy)
 	t_pos	vec_a;
 	t_pos	vec_e;
 	t_pos	tmp[2];
-	
+
 	cy_top.x = cy->pos.x + (cy->h * cy->vec3.x);
 	cy_top.y = cy->pos.y + (cy->h * cy->vec3.y);
 	cy_top.z = cy->pos.z + (cy->h * cy->vec3.z);
@@ -58,12 +58,12 @@ void	cylinder_bounds(t_vol *cy)
 	vec_e.z = (cy->d / 2) * sqrtf(1.f - tmp[0].z / dot_product(vec_a, vec_a));
 	vector_add(cy->pos, vec_e, tmp);
 	vector_add(cy_top, vec_e, tmp + 1);
-	set_vector(fmaxf(tmp[0].x, tmp[1].x), fmaxf(tmp[0].x, tmp[1].x),
-		fmaxf(tmp[0].x, tmp[1].x), &cy->box.max);
+	set_vector(fmaxf(tmp[0].x, tmp[1].x), fmaxf(tmp[0].y, tmp[1].y),
+		fmaxf(tmp[0].z, tmp[1].z), &cy->box.max);
 	vector_sub(cy->pos, vec_e, tmp);
 	vector_sub(cy_top, vec_e, tmp + 1);
-	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].x, tmp[1].x),
-		fminf(tmp[0].x, tmp[1].x), &cy->box.min);
+	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].y, tmp[1].y),
+		fminf(tmp[0].z, tmp[1].z), &cy->box.min);
 	bbox_center(&cy->box, &cy->box.center);
 	cy->box.expend = bbox_expend(&cy->box);
 }

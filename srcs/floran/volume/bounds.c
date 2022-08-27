@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 17:59:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:17:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void	sphere_bounds(t_vol *sp)
 {
-	float	r = sp->d / 2;
+	float	r;
 
+	r = sp->d / 2;
 	set_vector(-r, -r, -r, &sp->box.min);
 	set_vector(r, r, r, &sp->box.max);
 	vector_add(sp->pos, sp->box.min, &sp->box.min);
@@ -25,30 +26,29 @@ void	sphere_bounds(t_vol *sp)
 	vector_equal(sp->pos, &sp->box.center);
 }
 
-// void	cylinder_bounds(t_vol *cy)
-// {
-// 	float	rayon;
+void	cylinder_bounds(t_vol *cy)
+{
+	t_pos	cy_top;
+	t_pos	vec_a;
+	t_pos	vec_e;
+	t_pos	tmp[2];
 
-// 	rayon = sqrtf(powf(cy->h / 2, 2) + powf(cy->d / 2, 2));
-// 	cy->box.center.x = cy->pos.x + (cy->h / 2 * cy->vec3.x);
-// 	cy->box.center.y = cy->pos.y + (cy->h / 2 * cy->vec3.y);
-// 	cy->box.center.z = cy->pos.z + (cy->h / 2 * cy->vec3.z);
-// 	cy->box.rayon = rayon;
-// }
-
-// t_bool	plane_intersect(t_vol pl, t_vol vol)
-// {
-// 	float	d;
-// 	float	distance;
-
-// 	d = -1 * (pl.vec3.x * pl.pos.x + pl.vec3.y * pl.pos.y
-// 		+ pl.vec3.z * pl.pos.z);
-// 	distance = (pl.vec3.x * vol.box.center.x + pl.vec3.y * vol.box.center.y
-// 			+ pl.vec3.z * vol.box.center.z + d) / sqrtf(powf(pl.vec3.x, 2)
-// 			+ powf(pl.vec3.y, 2) + powf(pl.vec3.z, 2));
-// 	if (distance < 0)
-// 		distance *= -1;
-// 	if (vol.box.rayon > distance)
-// 		return (true);
-// 	return (false);
-// }
+	cy_top.x = cy->pos.x + (cy->h * cy->vec3.x);
+	cy_top.y = cy->pos.y + (cy->h * cy->vec3.y);
+	cy_top.z = cy->pos.z + (cy->h * cy->vec3.z);
+	vector_ab(cy->pos, cy_top, &vec_a);
+	vector_multi(vec_a, vec_a, tmp);
+	vec_e.x = (cy->d / 2) * sqrtf(1.f - tmp[0].x / dot_product(vec_a, vec_a));
+	vec_e.y = (cy->d / 2) * sqrtf(1.f - tmp[0].y / dot_product(vec_a, vec_a));
+	vec_e.z = (cy->d / 2) * sqrtf(1.f - tmp[0].z / dot_product(vec_a, vec_a));
+	vector_add(cy->pos, vec_e, tmp);
+	vector_add(cy_top, vec_e, tmp + 1);
+	set_vector(fmaxf(tmp[0].x, tmp[1].x), fmaxf(tmp[0].y, tmp[1].y),
+		fmaxf(tmp[0].z, tmp[1].z), &cy->box.max);
+	vector_sub(cy->pos, vec_e, tmp);
+	vector_sub(cy_top, vec_e, tmp + 1);
+	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].y, tmp[1].y),
+		fminf(tmp[0].z, tmp[1].z), &cy->box.min);
+	bbox_center(&cy->box, &cy->box.center);
+	cy->box.expend = bbox_expend(&cy->box);
+}
