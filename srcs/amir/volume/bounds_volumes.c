@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bounds_volumes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/27 00:56:55 by ammah            ###   ########.fr       */
+/*   Updated: 2022/08/27 16:06:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cylinder_bounds(t_vol *cy)
 	t_pos	vec_a;
 	t_pos	vec_e;
 	t_pos	tmp[2];
-	
+
 	cy_top.x = cy->pos.x + (cy->h * cy->vec3.x);
 	cy_top.y = cy->pos.y + (cy->h * cy->vec3.y);
 	cy_top.z = cy->pos.z + (cy->h * cy->vec3.z);
