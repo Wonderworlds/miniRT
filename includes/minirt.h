@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 19:45:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/27 15:28:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ t_bool	inside_vol(t_pos *pos, t_vol *volume);
 
 //		volume/bounds.c
 void	sphere_bounds(t_vol *sp);
-void	cylinder_bounds(t_vol cy, t_box *box);
+void	cylinder_bounds(t_vol *cy);
 
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end);
 
 //		volume/intersect.c
 t_bool	plane_and_sphere_intersect(t_vol pl, t_vol vol);
+
+//		volume/sort_bvh.c
+unsigned int	sort_vols(t_list **vols, const t_box *box);
 
 #endif

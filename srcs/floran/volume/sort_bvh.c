@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:54:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:04:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
 #include "utils.h"
+#include <stdio.h>
 
 static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols)
 {
@@ -25,10 +26,11 @@ static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols)
 	index = vols;
 	dst = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
 	ret = index;
+	index = index->next;
 	while (index)
 	{
 		tmp = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
-		if (tmp < dst)
+		if (tmp > dst)
 		{
 			dst = tmp;
 			ret = index;
@@ -49,7 +51,7 @@ static void	new_lst_start(t_list **vols, t_list *new_start)
 	{
 		index->next = NULL;
 		index = new_start;
-		while (index)
+		while (index->next)
 			index = index->next;
 		index->next = *vols;
 		*vols = new_start;
