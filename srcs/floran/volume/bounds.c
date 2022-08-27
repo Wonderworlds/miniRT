@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/27 14:59:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:17:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void	sphere_bounds(t_vol *sp)
 {
-	float	r = sp->d / 2;
+	float	r;
 
+	r = sp->d / 2;
 	set_vector(-r, -r, -r, &sp->box.min);
 	set_vector(r, r, r, &sp->box.max);
 	vector_add(sp->pos, sp->box.min, &sp->box.min);
@@ -24,6 +25,7 @@ void	sphere_bounds(t_vol *sp)
 	sp->box.expend = bbox_expend(&sp->box);
 	vector_equal(sp->pos, &sp->box.center);
 }
+
 void	cylinder_bounds(t_vol *cy)
 {
 	t_pos	cy_top;

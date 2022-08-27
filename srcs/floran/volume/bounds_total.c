@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 19:45:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:17:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	axe_value(t_vol *vol, t_box *box)
 		box->max.z = vol->box.max.z;
 }
 
-void	bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end)
+void	bounds_total(t_list *vols, t_box *box,
+			unsigned int begin, unsigned int end)
 {
 	t_vol				*vol;
 
