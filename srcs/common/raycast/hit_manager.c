@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:47:23 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:25:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:17:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ static int	hit_manager(int action, t_hit *ptr, int newdst)
 
 static void	set_hit(t_hit *ptr, int newdst)
 {
-	status_manager(1, ptr, newdst);
+	hit_manager(1, ptr, newdst);
 }
 
 void	reset_hit(void)
 {
-	status_manager(2, NULL, -1);
+	hit_manager(2, NULL, -1);
 }
 
 int	get_hit(t_hit *ptr)
 {
-	return (status_manager(ptr, 0));
+	return (hit_manager(ptr, 0, 0));
 }
 
 void	update_hit(t_hit *ptr, t_pos *cam)

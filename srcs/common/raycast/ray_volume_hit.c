@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:55:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:01:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 #include "libft.h"
 #include <math.h>
 
-t_bool is_aabb_hit(t_ray ray, t_box aabb) {
+t_bool is_aabb_hit(t_ray ray, t_box aabb)
+{
     float	t[6];
     float	tmin;
     float	tmax;
 
 	t[0] = (aabb.min.x - ray.origin.x) / ray.dir.x;
     t[1] = (aabb.min.y - ray.origin.y) / ray.dir.y;
-    t[2] = (aabb.min.y - ray.origin.z) / ray.dir.z;
+    t[2] = (aabb.min.z - ray.origin.z) / ray.dir.z;
     t[3] = (aabb.max.x - ray.origin.x) / ray.dir.x;
     t[4] = (aabb.max.y - ray.origin.y) / ray.dir.y;
     t[5] = (aabb.max.z - ray.origin.z) / ray.dir.z;
