@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:45:21 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:47:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	open_file(char *arg)
 
 void	read_rt(int fd, t_scene *scene)
 {
-	char *str;
+	char	*str;
 
 	str = ft_gnl_rt(fd);
 	if (!str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 16:51:24 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 16:49:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	graphic_process(t_scene *scene)
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		error_mlx_data(&data, NULL);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "miniRT");
+	data.win_ptr = mlx_new_window(data.mlx_ptr,
+			WIN_WIDTH, WIN_HEIGHT, "miniRT");
 	if (!data.win_ptr)
 		error_mlx_data(&data, data.mlx_ptr);
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
