@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bvh_construction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 13:40:02 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 14:46:02 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ t_bvh	*build_node(t_list *vols, t_bvh *root, unsigned int begin, unsigned int en
 		make_leaf(vols, root, begin, end);
 		return (root);
 	}
+<<<<<<< HEAD
 	m = sort_vols(&vols, &box);
+=======
+	m = sort_vols(&vols, &box, begin, end);
+>>>>>>> origin/floran
 	left = build_node(vols, root->left, begin, m - 1);
 	right = build_node(vols, root->right, m, end);
 	return (root);

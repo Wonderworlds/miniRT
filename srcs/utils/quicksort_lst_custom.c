@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:17:59 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/25 19:56:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:31:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 static void	swap_data(void **a, void **b);
 static void	quicksort_lst(t_list **lst, size_t len, const t_pos *origin);
 
-void	sort_list_custom(t_list **lst, const t_pos *origin)
+void	sort_list_custom(t_list **lst, const t_pos *origin,
+			unsigned int begin, unsigned int end)
 {
 	size_t	size;
+	t_list	*new_lst;
 
 	if (!lst || !*lst)
 		return ;
-	size = ft_lstsize(*lst);
-	quicksort_lst(lst, size, origin);
+	new_lst = ft_lst_at(*lst, begin);
+	size = end - begin;
+	quicksort_lst(&new_lst, size, origin);
 }
 
 int	cmp_nearest_vol(const t_vol *left, const t_vol *right,

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/27 16:04:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:32:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "utils.h"
 #include <stdio.h>
 
-static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols)
+static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols,
+					unsigned int begin, unsigned int end)
 {
 	double	dst;
 	double	tmp;
@@ -23,11 +24,11 @@ static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols)
 
 	if (!vols)
 		return (NULL);
-	index = vols;
+	index = ft_lst_at(vols, begin);
 	dst = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
 	ret = index;
 	index = index->next;
-	while (index)
+	while (end-- > begin)
 	{
 		tmp = dist_ab(pos, &(((t_vol *)(index->content))->box.center));
 		if (tmp > dst)
@@ -40,37 +41,59 @@ static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols)
 	return (ret);
 }
 
-static void	new_lst_start(t_list **vols, t_list *new_start)
+static void	new_lst_start(t_list **vols, t_list *new_start,
+				unsigned int begin, unsigned int end)
 {
 	t_list	*index;
+	t_list	*prev;
+	t_list	*next;
 
-	index = *vols;
-	while (index && index->next != new_start)
-		index = index->next;
-	if (index)
+	prev = *vols;
+	next = NULL;
+	if (begin != 0)
 	{
-		index->next = NULL;
+		prev = ft_lst_at(*vols, begin - 1);
+		index = prev->next;
+	}
+	else
+		index = *vols;
+	if (end != ft_lstsize(vols) - 1)
+		next = ft_lst_at(*vols, end);
+	while (index != next && index->next != new_start)
+		index = index->next;
+	if (index != next)
+	{
+		index->next = next;
 		index = new_start;
-		while (index->next)
+		while (index->next != next)
 			index = index->next;
-		index->next = *vols;
-		*vols = new_start;
+		if (begin == 0)
+		{
+			index->next = *vols;
+			*vols = new_start;
+		}
+		else
+		{
+			index->next = prev->next;
+			prev->next = new_start;
+		}
 	}
 }
 
-unsigned int	sort_vols(t_list **vols, const t_box *box)
+unsigned int	sort_vols(t_list **vols, const t_box *box,
+					unsigned int begin, unsigned int end)
 {
 	t_list			*new_start;
 	t_list			*index;
 	unsigned int	m;
 
-	new_start = get_furthest_vol(&(box->center), *vols);
-	new_lst_start(vols, new_start);
+	new_start = get_furthest_vol(&(box->center), *vols, begin, end);
+	new_lst_start(vols, new_start, begin, end);
 	sort_list_custom(&(*vols)->next,
-		&((t_vol *)new_start->content)->box.center);
+		&((t_vol *)new_start->content)->box.center, begin, end);
 	m = 0;
 	index = new_start;
-	while (index)
+	while (end-- > begin)
 	{
 		if (cmp_nearest_vol((t_vol *)new_start->content,
 				(t_vol *)ft_lstlast(new_start)->content,
