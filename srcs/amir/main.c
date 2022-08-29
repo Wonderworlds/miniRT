@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 12:40:20 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 13:36:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@
 
 #include <stdio.h>
 
-
-void	btree_suffix_prefix(t_btree *root, void (*applyf)(void *))
-{
-	if (!root)
-		return ;
-	(*applyf)(root->item);
-	btree_apply_prefix(root->left, applyf);
-	btree_apply_prefix(root->right, applyf);
-}
-
 void	check_value(t_scene scene)
 {
 	t_list	*check_lights = scene.lights;
@@ -38,7 +28,6 @@ void	check_value(t_scene scene)
 	t_cam	cam = scene.cam;
 	t_vol	*vol;
 	t_light	*light;
-	
 
 	if (scene.cam.is_set == true)
 		printf("C	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d\n", cam.pos.x, cam.pos.y, cam.pos.z, cam.vec3.x, cam.vec3.y, cam.vec3.z, cam.h_fov);
@@ -66,8 +55,6 @@ void	check_value(t_scene scene)
 		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
 		check_plane = check_plane->next;
 	}
-	
-
 }
 
 // =================================================================== */

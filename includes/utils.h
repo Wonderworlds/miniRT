@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 12:12:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 14:27:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	bbox_center(const t_box *box, t_pos *center);
 float	bbox_expend(const t_box *box);
 
 //		utils/quicksort_lst_custom.c
-void	sort_list_custom(t_list **lst, const t_pos *origin);
+
+void	sort_list_custom(t_list **lst, const t_pos *origin,
+			unsigned int begin, unsigned int end);
 int		cmp_nearest_vol(const t_vol *left, const t_vol *right,
 			const t_pos *origin);
 
