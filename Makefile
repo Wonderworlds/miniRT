@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/29 14:55:55 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/29 16:41:01 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,56 +25,41 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=
+COMMONSRCS			:=	$(addprefix floran/,	$(addprefix graphics/,	graphic_process.c	\
+																		error_mlx.c			\
+																		graphic_hook.c		\
+																		graphic_render.c)	\
+												$(addprefix parse/,		parse_rt.c			\
+																		format_data.c		\
+																		parse_volume.c		\
+																		parse_light.c		\
+																		parse_camera.c		\
+																		set_variables.c)	\
+												$(addprefix volume/,	inside_vol.c		\
+																		bounds.c			\
+																		bounds_total.c)		\
+												$(addprefix bvh/,		bvh_construction.c	\
+																		sort_bvh.c			\
+																		print_bvh.c			\
+																		bvh_utils.c)		\
+												)
 
-UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
-												error_msg.c		\
-												vector_math.c	\
-												vector_math2.c	\
-												struct_utils.c	\
-												bbox_utils.c	\
-												debug.c			\
-												display_tree.c			\
+UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
+												error_msg.c				\
+												vector_math.c			\
+												vector_math2.c			\
+												struct_utils.c			\
+												bbox_utils.c			\
+												debug.c					\
 												quicksort_lst_custom.c	\
-												bvh_utils.c				\
 												)
 
 
-AMIRSRC				:=	$(addprefix amir/,		main.c 			\
-												$(addprefix graphics/,	graphic_process.c	\
-																		error_mlx.c			\
-																		graphic_hook.c		\
-																		graphic_render.c)	\
-												$(addprefix parse/,		parse_rt.c			\
-																		format_data.c		\
-																		parse_volume.c		\
-																		parse_light.c		\
-																		parse_camera.c		\
-																		set_variables.c)	\
-												$(addprefix volume/,	bounds_volumes.c	\
-																		bounds_total.c		\
-																		sort_bvh.c			\
-																		inside_vol.c)		\
-												$(addprefix bvh/,		bvh_construction.c)	\
-																		)
+AMIRSRC				:=	$(addprefix amir/,		main.c 					\
+												)
 
-FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
-																		sort_bvh.c			\
-																		bounds.c			\
-																		bounds_total.c)		\
-												$(addprefix graphics/,	graphic_process.c	\
-																		error_mlx.c			\
-																		graphic_hook.c		\
-																		graphic_render.c)	\
-												$(addprefix parse/,		parse_rt.c			\
-																		format_data.c		\
-																		parse_volume.c		\
-																		parse_light.c		\
-																		parse_camera.c		\
-																		set_variables.c)	\
-												$(addprefix bvh/,		bvh_construction.c)	\
-												main.c		\
-																	)
+FLORANSRC			:=	$(addprefix floran/,	main.c					\
+												)
 
 CC					:=	cc
 RM					:=	rm
@@ -103,11 +88,11 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(INCLUDEDIR)) $(addprefix -I ,$(dir $(LIBFT))) $(addprefix -I ,$(dir $(MLX))) $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
-$(FLORAN)			:	$(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORANNAME) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+$(FLORAN)			:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORANNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 all					:	$(NAME) $(BONUSNAME)
 

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:15:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:32:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,5 @@ void	pos_cpy(const t_pos *src, t_pos *dest);
 void	col_cpy(const t_rgb *src, t_rgb *dest);
 void	box_cpy(const t_box *src, t_box *dest);
 void	vol_cpy(const t_vol *src, t_vol *dest);
-
-//		utils/bvh_utils.c
-t_bvh	*btree_create_node(t_box box, t_vol *vol);
-void	btree_remove_infix(t_bvh **root, void (*applyf)(void *));
-
-void	display_tree(char *prefix, t_bvh *node, int is_left);
 
 #endif
