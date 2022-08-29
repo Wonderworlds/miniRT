@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:27:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:03:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ void			bounds_total(t_list *vols, t_box *box,
 t_bool			plane_and_sphere_intersect(t_vol pl, t_vol vol);
 
 //		raycast/hit_manager.c
-void			update_hit(t_hit *ptr, t_pos *cam);
-void			get_hit(t_hit *ptr);
+void			update_hit(t_hit *ptr);
+float			get_hit(t_hit *ptr);
 void			reset_hit(void);
+
+//		raycast/hit_manager.c
+t_bool			is_aabb_hit(t_ray ray, t_box aabb);
+t_bool			is_sphere_hit(t_ray *ray, t_vol *sp);
 
 #endif
