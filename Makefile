@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/29 17:08:09 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/29 18:27:03 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		sort_bvh.c			\
 																		print_bvh.c			\
 																		bvh_utils.c)		\
+												$(addprefix raycast/,	hit_manager.c		\
+																		ray_volume_hit.c)	\
 												)
 
 UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\

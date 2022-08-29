@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 12:14:56 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 17:46:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ typedef struct s_light
 	float		r;
 	t_pos		pos;
 }	t_light;
+
+typedef struct s_hit
+{
+	t_pos	pos;
+	t_rgb	col;
+}	t_hit;
 
 typedef struct s_bvh
 {

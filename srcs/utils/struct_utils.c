@@ -6,11 +6,17 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:28:09 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:23:43 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:22:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
+
+void	hit_cpy(const t_hit *src, t_hit *dest)
+{
+	pos_cpy(&src->pos, &dest->pos);
+	col_cpy(&src->col, &dest->col);
+}
 
 void	pos_cpy(const t_pos *src, t_pos *dest)
 {
