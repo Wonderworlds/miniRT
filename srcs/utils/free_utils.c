@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_mlx.c                                        :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/31 16:03:03 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/22 16:51:06 by amahla           ###   ########.fr       */
+/*   Created: 2022/08/29 17:03:50 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/29 17:10:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_data.h"
+#include "structs_utils.h"
+#include <stdlib.h>
 
-void	error_mlx_data(t_data *data, void *mlx_ptr)
+void	free_vol(void *vol)
 {
-	(void)data;
-	if (mlx_ptr)
-		free(mlx_ptr);
-	ft_fprintf(2, "data initialize error\n");
-	exit(EXIT_FAILURE);
+	if (vol)
+		free((t_vol *)vol);
+}
+
+void	free_light(void *light)
+{
+	if (light)
+		free((t_light *)light);
+}
+
+void	free_plane(t_plane *pl)
+{
+	if (pl)
+		free((t_plane *)pl);
 }

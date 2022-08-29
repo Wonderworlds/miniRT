@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 15:21:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:27:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils.h"
 #include "structs_utils.h"
 #include "libft.h"
+#include "bvh.h"
 
 void	exit_parse(t_scene *scene)
 {
@@ -41,7 +42,7 @@ int	open_file(char *arg)
 
 void	read_rt(int fd, t_scene *scene)
 {
-	char *str;
+	char	*str;
 
 	str = ft_gnl_rt(fd);
 	if (!str)
@@ -77,6 +78,6 @@ void	parse_rt(char *arg, t_scene *scene)
 	scene->fd = fd;
 	read_rt(fd, scene);
 	size = ft_lstsize(scene->vols) - 1;
-	build_node(scene->vols, &scene->bvh, 0, (unsigned int)size);
+	build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
 }

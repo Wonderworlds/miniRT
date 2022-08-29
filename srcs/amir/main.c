@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 15:54:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:29:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	parse_rt(av[1], &scene);
-	display_tree("", scene.bvh, 0);
+	print_bvh("", scene.bvh, 0);
 ///*	----> test parse <-----
 	check_value(scene);
 //	----------------------- */

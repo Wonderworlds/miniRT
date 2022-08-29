@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_tree.c                                     :+:      :+:    :+:   */
+/*   print_bvh.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:19:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:20:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:50:24 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-#include "utils.h"
 #include "structs_utils.h"
 
-static void	display_tree_content(char *prefix, t_bvh *node, int is_left)
+static void	display_bvh_content(char *prefix, t_bvh *node, int is_left)
 {
 	const char	*e_type[] = {"NODE", "SPHERE", "PLANE", "CYLINDER"};
 	const char	*e_colors[] = {"\x1b[32m", "\x1b[33m", "\x1b[36m", "\x1b[34m"};
@@ -36,34 +35,34 @@ static void	display_tree_content(char *prefix, t_bvh *node, int is_left)
 	else
 	{
 		ft_printf("%s%s", e_colors[node->vol->type - SPHERE + 1],
-				e_type[node->vol->type - SPHERE + 1]);
+			e_type[node->vol->type - SPHERE + 1]);
 		printf(" (%.1f, %.1f, %.1f)\x1b[0m\n", node->vol->box.center.x,
 			node->vol->box.center.y, node->vol->box.center.z);
 	}
 }
 
-void	display_tree(char *prefix, t_bvh *node, int is_left)
+void	print_bvh(char *prefix, t_bvh *node, int is_left)
 {
 	char	*new_prefix;
 
 	if (node)
 	{
-		display_tree_content(prefix, node, is_left);
+		display_bvh_content(prefix, node, is_left);
 		if (is_left)
 		{
 			new_prefix = ft_strjoin(prefix, "│   ");
-			display_tree(new_prefix, node->left, 1);
-			display_tree(new_prefix, node->right, 0);
+			print_bvh(new_prefix, node->left, 1);
+			print_bvh(new_prefix, node->right, 0);
 			if (!node->right && !node->vol)
-				display_tree_content(new_prefix, node->right, 0);
+				display_bvh_content(new_prefix, node->right, 0);
 		}
 		else
 		{
 			new_prefix = ft_strjoin(prefix, "    ");
-			display_tree(new_prefix, node->left, 1);
-			display_tree(new_prefix, node->right, 0);
+			print_bvh(new_prefix, node->left, 1);
+			print_bvh(new_prefix, node->right, 0);
 			if (!node->right && !node->vol)
-				display_tree_content(new_prefix, node->right, 0);
+				display_bvh_content(new_prefix, node->right, 0);
 		}
 		free(new_prefix);
 	}
