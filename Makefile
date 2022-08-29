@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/29 12:14:15 by amahla           ###   ########.fr        #
+#    Updated: 2022/08/29 14:50:59 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												struct_utils.c	\
 												bbox_utils.c	\
 												debug.c			\
+												display_tree.c			\
 												quicksort_lst_custom.c	\
 												bvh_utils.c				\
 												)
@@ -71,7 +72,7 @@ FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
-												main_graphic.c		\
+												main.c		\
 																	)
 
 CC					:=	cc

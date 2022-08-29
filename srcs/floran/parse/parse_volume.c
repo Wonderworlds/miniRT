@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/27 16:43:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:38:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &cy->col, str + i);
+	cylinder_bounds(cy);
 	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 }

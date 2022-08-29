@@ -6,44 +6,36 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:19:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/25 15:00:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:51:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "astree.h"
 #include "libft.h"
 #include "utils.h"
+#include "structs_utils.h"
 
-static void	display_tree_content(char *prefix, t_astree *node, int is_left)
+static void	display_tree_content(char *prefix, t_bvh *node, int is_left)
 {
-	const char	*e_type[] = {"CMD", "PIPE", "OR", "AND", "P_START", "P_END"};
-	const char	*e_colors[] = {"\x1b[32m", "\x1b[33m", "\x1b[36m", "\x1b[34m",
-		"\x1b[35m", "\x1b[31m"};
-	int			type;
+	const char	*e_type[] = {"NODE", "SPHERE", "PLANE", "CYLINDER"};
+	const char	*e_colors[] = {"\x1b[32m", "\x1b[33m", "\x1b[36m", "\x1b[31m"};
 
 	if (is_left)
 		ft_printf("%s├──", prefix);
 	else
 		ft_printf("%s└──", prefix);
-	type = node->cmd->type;
-	if (type == CMD)
+	if (node->vol == NULL)
 	{
-		type = 0;
-		if (node->cmd->cmd)
-			ft_printf("%s%s %i\x1b[0m\n", e_colors[type],
-				node->cmd->cmd->cmd[0], node->depth);
-		else
-			ft_printf("%s%s %i\x1b[0m\n", e_colors[type],
-				node->cmd->cmd, node->depth);
+		ft_printf("%s%s\x1b[0m\n", e_colors[0],
+				e_type[0]);
 	}
 	else
 	{
-		type -= 4;
-		ft_printf("%s%s %i\x1b[0m\n", e_colors[type], e_type[type], node->depth);
+		ft_printf("%s%s\x1b[0m\n", e_colors[node->vol->type - SPHERE + 1],
+				e_type[node->vol->type - SPHERE + 1]);
 	}
 }
 
-void	display_tree(char *prefix, t_astree *node, int is_left)
+void	display_tree(char *prefix, t_bvh *node, int is_left)
 {
 	char	*new_prefix;
 

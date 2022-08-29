@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 14:32:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:44:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	new_lst_start(t_list **vols, t_list *new_start,
 	}
 	else
 		index = *vols;
-	if (end != ft_lstsize(vols) - 1)
+	if ((int)end != ft_lstsize(*vols) - 1)
 		next = ft_lst_at(*vols, end);
 	while (index != next && index->next != new_start)
 		index = index->next;
