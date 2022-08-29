@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 14:44:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:46:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 			m++;
 		index = index->next;
 	}
-	return (m);
+	return (m + begin);
 }

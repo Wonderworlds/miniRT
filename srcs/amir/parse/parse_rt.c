@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 12:36:37 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 15:20:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	parse_rt(char *arg, t_scene *scene)
 	scene->fd = fd;
 	read_rt(fd, scene);
 	size = ft_lstsize(scene->vols) - 1;
-	build_node(scene->vols, scene->bvh, 0, (unsigned int)size);
+	build_node(scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
 }
