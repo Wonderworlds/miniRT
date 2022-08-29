@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:46:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:27:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void	init_scene(t_scene *scene)
 
 void	leave_rt(t_scene *scene)
 {
-	ft_lstclear(&scene->lights, &free);
-	ft_lstclear(&scene->vols, &free);
+	ft_lstclear(&scene->lights, &free_light);
+	ft_lstclear(&scene->planes, &free_plane);
+	ft_lstclear(&scene->vols, &free_vol);
 	btree_remove_infix(&scene->bvh, &free);
 }
 
@@ -91,7 +92,7 @@ int	main(int ac, char **av)
 ///*	----> test parse <-----
 //	----------------------- */
 
-	graphic_process(&scene);
+	// graphic_process(&scene);
 	leave_rt(&scene);
 	return (0);
 }

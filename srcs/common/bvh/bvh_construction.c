@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:50:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:26:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	make_leaf(t_list *vols, t_bvh **root,
 	}
 }
 
-t_bvh	*build_node(t_list *vols, t_bvh **root,
+t_bvh	*build_node(t_list **vols, t_bvh **root,
 			unsigned int begin, unsigned int end)
 {
 	t_box			box;
@@ -39,19 +39,18 @@ t_bvh	*build_node(t_list *vols, t_bvh **root,
 
 	if (end == begin)
 	{
-		vols = ft_lst_at(vols, begin);
-		vol = (t_vol *)(vols->content);
+		vol = (t_vol *)(ft_lst_at(*vols, begin)->content);
 		*root = btree_create_node(vol->box, vol);
 		return (*root);
 	}
-	bounds_total(vols, &box, begin, end);
+	bounds_total(*vols, &box, begin, end);
 	*root = btree_create_node(box, NULL);
 	if (end - begin <= 1)
 	{
-		make_leaf(vols, root, begin, end);
+		make_leaf(*vols, root, begin, end);
 		return (*root);
 	}
-	m = sort_vols(&vols, &box, begin, end);
+	m = sort_vols(vols, &box, begin, end);
 	(*root)->left = build_node(vols, &(*root)->left, begin, m - 1);
 	(*root)->right = build_node(vols, &(*root)->right, m, end);
 	return (*root);

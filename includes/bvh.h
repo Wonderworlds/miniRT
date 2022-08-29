@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:31:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:45:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:25:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "structs_utils.h"
 
 //		bvh/bvh_construction.c
-t_bvh			*build_node(t_list *vols, t_bvh **root, unsigned int begin, unsigned int end);
+t_bvh			*build_node(t_list **vols, t_bvh **root, unsigned int begin, unsigned int end);
 
 //		bvh/bvh_utils.c
 t_bvh			*btree_create_node(t_box box, t_vol *vol);

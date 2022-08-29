@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 15:18:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 17:27:26 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/29 17:03:50 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/29 17:10:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "structs_utils.h"
+#include <stdlib.h>
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	free_vol(void *vol)
 {
-	t_list	*index;
-	t_list	*prev;
+	if (vol)
+		free((t_vol *)vol);
+}
 
-	if (!lst || !del)
-		return ;
-	if (!*lst)
-		return ;
-	index = *lst;
-	while (index)
-	{
-		prev = index;
-		index = index->next;
-		(*del)(prev->content);
-		free(prev);
-	}
-	*lst = NULL;
+void	free_light(void *light)
+{
+	if (light)
+		free((t_light *)light);
+}
+
+void	free_plane(t_plane *pl)
+{
+	if (pl)
+		free((t_plane *)pl);
 }
