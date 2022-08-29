@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/29 14:50:59 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/29 14:55:55 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
+												$(addprefix bvh/,		bvh_construction.c)	\
 												main.c		\
 																	)
 
