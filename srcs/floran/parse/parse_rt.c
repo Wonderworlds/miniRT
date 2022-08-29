@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 14:53:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:06:42 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ void	read_rt(int fd, t_scene *scene)
 		else if (str[0] == 'C' && str[1] == ' ')
 			camera(scene, str);
 		else if (str[0] == 'L' && str[1] == ' ')
+
 			light(scene, str);
 		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
 			sphere(scene, str);
+
 		else if (str[0] == 'p' && str[1] == 'l' && str[2] == ' ')
 			plane(scene, str);
 		else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
@@ -77,6 +79,6 @@ void	parse_rt(char *arg, t_scene *scene)
 	scene->fd = fd;
 	read_rt(fd, scene);
 	size = ft_lstsize(scene->vols) - 1;
-	build_node(scene->vols, scene->bvh, 0, (unsigned int)size);
+	build_node(scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
 }
