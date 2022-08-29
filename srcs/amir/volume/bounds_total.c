@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bounds_total.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/26 18:53:20 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:03:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_pos_axe(t_vol *vol, t_box *box)
 	box->min.z = vol->box.min.z;
 	box->max.x = vol->box.max.x;
 	box->max.y = vol->box.max.y;
-	box->min.z = vol->box.max.z;
+	box->max.z = vol->box.max.z;
 }
 
 void	axe_value(t_vol *vol, t_box *box)
@@ -36,21 +36,22 @@ void	axe_value(t_vol *vol, t_box *box)
 	if (vol->box.max.y > box->max.y)
 		box->max.y = vol->box.max.y;
 	if (vol->box.max.z > box->max.z)
-		box->min.z = vol->box.max.z;
+		box->max.z = vol->box.max.z;
 }
 
-int	bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end)
+void	bounds_total(t_list *vols, t_box *box,
+			unsigned int begin, unsigned int end)
 {
 	t_vol				*vol;
 
-	vols = ft_lst_at(vols, begin); 
+	vols = ft_lst_at(vols, begin);
 	vol = (t_vol *)(vols->content);
 	init_pos_axe(vol, box);
-	if (ft_lstsize(vols) == 1)
+	if (end == begin)
 	{
 		vector_equal(vol->box.center, &box->center);
 		box->expend = vol->box.expend;
-		return (1);
+		return ;
 	}
 	while (vols && begin <= end)
 	{
@@ -61,5 +62,4 @@ int	bounds_total(t_list *vols, t_box *box, unsigned int begin, unsigned int end)
 	}
 	bbox_center(box, &box->center);
 	box->expend = bbox_expend(box);
-	return (0);
 }

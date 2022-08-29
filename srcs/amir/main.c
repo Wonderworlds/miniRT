@@ -6,26 +6,38 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/25 14:17:43 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 12:40:20 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "structs_utils.h"
 #include "minirt.h"
+#include "utils.h"
 #include "mlx_data.h"
 
 // ======================= Check parsing ============================
 
 #include <stdio.h>
 
+
+void	btree_suffix_prefix(t_btree *root, void (*applyf)(void *))
+{
+	if (!root)
+		return ;
+	(*applyf)(root->item);
+	btree_apply_prefix(root->left, applyf);
+	btree_apply_prefix(root->right, applyf);
+}
+
 void	check_value(t_scene scene)
 {
 	t_list	*check_lights = scene.lights;
 	t_list	*check_vols = scene.vols;
+	t_list	*check_plane = scene.planes;
 	t_cam	cam = scene.cam;
 	t_vol	*vol;
-	t_light *light;
+	t_light	*light;
 	
 
 	if (scene.cam.is_set == true)
@@ -44,22 +56,28 @@ void	check_value(t_scene scene)
 		vol = (t_vol *)(check_vols->content);
 		if (vol->type == SPHERE)
 			printf("sp	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->d, vol->col.r, vol->col.g, vol->col.b);
-		if (vol->type == PLANE)
-			printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
 		if (vol->type == CYLINDER)
 			printf("cy	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f		%.1f		%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->d, vol->h, vol->col.r, vol->col.g, vol->col.b);
 		check_vols = check_vols->next;
 	}
+	while (check_plane)
+	{
+		vol = (t_vol *)(check_plane->content);
+		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
+		check_plane = check_plane->next;
+	}
+	
+
 }
 
 // =================================================================== */
 
-void	init_scene(t_scene *scene, t_list **lights, t_list **vols)
+void	init_scene(t_scene *scene)
 {
-	*lights = NULL;
-	*vols = NULL;
-	scene->vols = *vols;
-	scene->lights = *lights;
+	scene->vols = NULL;
+	scene->lights = NULL;
+	scene->planes = NULL;
+	scene->bvh = NULL;
 	scene->cam.is_set = false;
 }
 
@@ -67,15 +85,14 @@ void	leave_rt(t_scene *scene)
 {
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
+	btree_remove_infix(&scene->bvh, &free);
 }
 
 int	main(int ac, char **av)
 {
 	t_scene	scene;
-	t_list	*lights;
-	t_list	*vols;
 
-	init_scene(&scene, &lights, &vols);
+	init_scene(&scene);
 	if (ac != 2)
 	{
 		ft_fprintf(2, "Invalid arg\n");
