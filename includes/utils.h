@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/27 16:18:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:15:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,26 @@ void	bbox_center(const t_box *box, t_pos *center);
 float	bbox_expend(const t_box *box);
 
 //		utils/quicksort_lst_custom.c
-void	sort_list_custom(t_list **lst, const t_pos *origin);
+
+void	sort_list_custom(t_list **lst, const t_pos *origin,
+			unsigned int begin, unsigned int end);
 int		cmp_nearest_vol(const t_vol *left, const t_vol *right,
 			const t_pos *origin);
 
 //		utils/debug.c
 void	print_vol(void *vol);
 void	print_pos(const t_pos *pos, const char *str);
+
+//		utils/struct_utils.c
+void	pos_cpy(const t_pos *src, t_pos *dest);
+void	col_cpy(const t_rgb *src, t_rgb *dest);
+void	box_cpy(const t_box *src, t_box *dest);
+void	vol_cpy(const t_vol *src, t_vol *dest);
+
+//		utils/bvh_utils.c
+t_bvh	*btree_create_node(t_box box, t_vol *vol);
+void	btree_remove_infix(t_bvh **root, void (*applyf)(void *));
+
+void	display_tree(char *prefix, t_bvh *node, int is_left);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/27 16:32:07 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/29 14:55:55 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,9 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c		\
 												struct_utils.c	\
 												bbox_utils.c	\
 												debug.c			\
+												display_tree.c			\
 												quicksort_lst_custom.c	\
+												bvh_utils.c				\
 												)
 
 
@@ -51,7 +53,9 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 			\
 																		set_variables.c)	\
 												$(addprefix volume/,	bounds_volumes.c	\
 																		bounds_total.c		\
+																		sort_bvh.c			\
 																		inside_vol.c)		\
+												$(addprefix bvh/,		bvh_construction.c)	\
 																		)
 
 FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
@@ -68,7 +72,8 @@ FLORANSRC			:=	$(addprefix floran/,	$(addprefix volume/,	inside_vol.c		\
 																		parse_light.c		\
 																		parse_camera.c		\
 																		set_variables.c)	\
-												main_graphic.c		\
+												$(addprefix bvh/,		bvh_construction.c)	\
+												main.c		\
 																	)
 
 CC					:=	cc

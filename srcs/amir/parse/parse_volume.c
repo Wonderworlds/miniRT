@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_volume.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/25 14:13:08 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 14:39:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	sphere(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
+	sphere_bounds(sp);
 	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
 }
 
@@ -84,5 +85,6 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &cy->col, str + i);
+	cylinder_bounds(cy);
 	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 }

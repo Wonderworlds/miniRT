@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 13:57:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:14:56 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ typedef struct s_vol
 	t_box	box;
 }	t_vol;
 
+typedef struct s_plane
+{
+	t_pos	pos;
+	t_pos	vec3;
+	t_rgb	col;
+}	t_plane;
+
 typedef struct s_cam
 {
 	t_pos	pos;
@@ -82,14 +89,23 @@ typedef struct s_light
 	t_pos		pos;
 }	t_light;
 
+typedef struct s_bvh
+{
+	t_box			box;
+	t_vol			*vol;
+	struct s_bvh	*left;
+	struct s_bvh	*right;
+}	t_bvh;
+
 typedef struct s_scene
 {
 	t_list	*vols;
 	t_list	*lights;
+	t_list	*planes;
 	t_cam	cam;
 	int		fd;
 	char	*line_gnl;
-	//struct bvh_root;
+	t_bvh	*bvh;
 }	t_scene;
 
 #endif
