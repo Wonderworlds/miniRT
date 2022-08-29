@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 12:40:20 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 13:36:00 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@
 // ======================= Check parsing ============================
 
 #include <stdio.h>
-
-
-void	btree_suffix_prefix(t_btree *root, void (*applyf)(void *))
-{
-	if (!root)
-		return ;
-	(*applyf)(root->item);
-	btree_apply_prefix(root->left, applyf);
-	btree_apply_prefix(root->right, applyf);
-}
 
 void	check_value(t_scene scene)
 {

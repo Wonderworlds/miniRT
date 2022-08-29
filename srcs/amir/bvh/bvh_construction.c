@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 12:35:53 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/29 13:40:02 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bvh	*build_node(t_list *vols, t_bvh *root, unsigned int begin, unsigned int en
 		return (root);
 	}
 	m = sort_vols(&vols, &box);
-	left = build_node(vols, root->left, begin, m);
-	right = build_node(vols, root->right, begin, m);
+	left = build_node(vols, root->left, begin, m - 1);
+	right = build_node(vols, root->right, m, end);
 	return (root);
 }
