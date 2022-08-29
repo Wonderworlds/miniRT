@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:35:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:43:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
 #include "utils.h"
+#include "minirt.h"
 #include "bvh.h"
 
 static void	make_leaf(t_list *vols, t_bvh **root, unsigned int begin, unsigned int end)

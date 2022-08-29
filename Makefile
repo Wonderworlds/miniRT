@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/29 16:41:01 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/29 16:43:19 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	$(addprefix floran/,	$(addprefix graphics/,	graphic_process.c	\
+COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		error_mlx.c			\
 																		graphic_hook.c		\
 																		graphic_render.c)	\

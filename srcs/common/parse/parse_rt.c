@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 15:21:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:45:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils.h"
 #include "structs_utils.h"
 #include "libft.h"
+#include "bvh.h"
 
 void	exit_parse(t_scene *scene)
 {

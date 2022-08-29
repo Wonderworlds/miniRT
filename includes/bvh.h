@@ -6,12 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:31:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:34:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:45:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BVH_HPP
 # define BVH_HPP
+
+#include "structs_utils.h"
 
 //		bvh/bvh_construction.c
 t_bvh			*build_node(t_list *vols, t_bvh **root, unsigned int begin, unsigned int end);
