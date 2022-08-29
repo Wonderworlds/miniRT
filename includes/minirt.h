@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/27 16:20:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:37:07 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ t_bool			plane_and_sphere_intersect(t_vol pl, t_vol vol);
 
 //		volume/sort_bvh.c
 unsigned int	sort_vols(t_list **vols, const t_box *box);
+
+//		bvh/bvh_construction.c
+t_bvh			*build_node(t_list *vols, t_bvh *root, unsigned int begin, unsigned int end);
 
 #endif
