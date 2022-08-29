@@ -6,17 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:28:09 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:22:21 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:29:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
-
-void	hit_cpy(const t_hit *src, t_hit *dest)
-{
-	pos_cpy(&src->pos, &dest->pos);
-	col_cpy(&src->col, &dest->col);
-}
 
 void	pos_cpy(const t_pos *src, t_pos *dest)
 {
@@ -49,5 +43,11 @@ void	vol_cpy(const t_vol *src, t_vol *dest)
 	box_cpy(&src->box, &dest->box);
 	pos_cpy(&src->pos, &dest->pos);
 	pos_cpy(&src->vec3, &dest->vec3);
+	col_cpy(&src->col, &dest->col);
+}
+
+void	hit_cpy(const t_hit *src, t_hit *dest)
+{
+	pos_cpy(&src->pos, &dest->pos);
 	col_cpy(&src->col, &dest->col);
 }
