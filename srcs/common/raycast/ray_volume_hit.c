@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 20:04:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:47:22 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,17 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
     tmin =  fmaxf(fmaxf(fminf(t[0], t[1]), fminf(t[2], t[3])), fminf(t[4], t[5]));
     tmax = fminf(fminf(fmaxf(t[0], t[1]), fmaxf(t[2], t[3])), fmaxf(t[4], t[5]));
     // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
-    if (tmax < 0)
-        return false;
+	if (tmax < 0 && tmin > tmax)
+		return (true);
+	if (tmin > 0 && tmin > tmax)
+		return (true);
     // if tmin > tmax, ray doesn't intersect AABB
     if (tmin > tmax)
         return false;
     return true;
 }
 
-t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
+/*t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 {
 	t_pos	e;
     float	r;
@@ -67,4 +69,24 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 	col_cpy(&sp->col, &hit.col);
     update_hit(&hit);
 	return (true);
+}*/
+
+t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
+{
+	t_pos	e;
+    float	r;
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+
+	vector_ab(sp->pos, ray->origin, &e);
+	r = sp->d / 2;
+    a = dot_product(ray->dir, ray->dir);
+    b = 2.0 * dot_product(e, ray->dir);
+    c = dot_product(e, e) - r * r;
+	discriminant = (b * b) - (4 * a * c);
+
+	return (discriminant > 0);
 }
+
