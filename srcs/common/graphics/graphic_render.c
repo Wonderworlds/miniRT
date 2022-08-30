@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/30 16:54:59 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/30 17:25:48 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	graphic_render(t_data *data)
 		{
 			
 			// Raytracing ...
-			color = ray_render(y, x, data->scene->cam);
+			color = ray_render(y, x, data->scene->cam, data->scene);
 			img_pix_put(&data->img, x, y, color);
 		}
 	}
