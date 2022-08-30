@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 19:51:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:54:24 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ typedef struct s_cam
 	t_pos	vec3;
 	int		h_fov;
 	t_bool	is_set;
+
+	//		variable_for_scene
+	t_pos	origin;
+	t_pos	horizontal;
+	t_pos	vertical;
+	t_pos	lower_left_corner;
 }	t_cam;
 
 typedef struct s_light

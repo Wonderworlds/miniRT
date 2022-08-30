@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:29:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:31:55 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "minirt.h"
 #include "utils.h"
 #include "mlx_data.h"
+#include "bvh.h"
 
 // ======================= Check parsing ============================
 
