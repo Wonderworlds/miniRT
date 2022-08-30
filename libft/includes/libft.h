@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:07:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:49:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:40:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,12 @@ int		min(int a, int b);
 long 	minl(long a, long b);
 float	minf(float a, float b);
 double	mind(double a, double b);
+
+//max
+char	maxc(char a, char b);
+int		max(int a, int b);
+long 	maxl(long a, long b);
+float	maxf(float a, float b);
+double	maxd(double a, double b);
 
 #endif
