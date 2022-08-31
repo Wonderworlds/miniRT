@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/31 14:14:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:32:27 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	find_volume(t_bvh *root, t_ray ray)
 	{
 		if (root->vol->type == SPHERE)
 			is_sphere_hit(&ray, root->vol);
+		if (root->vol->type == CYLINDER)
+			is_cylinder_hit(&ray, root->vol);
 	}
 	else if (is_aabb_hit(ray, root->box) == true)
 	{
@@ -51,13 +53,10 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	t_hit	hit;
 	// int		is_set;
 
-	//	ray_cast...
-	// is_set = 0;
 	reset_hit();
 	find_plane(scene->planes, &ray);
-	// if (get_hit(&hit) != -1)
-	// 	ft_printf("hit colx %i coly %i colz%i\n", hit.col.r, hit.col.g, hit.col.b);
-	find_volume(scene->bvh, ray);
+	if (scene->bvh)
+		find_volume(scene->bvh, ray);
 	if (get_hit(&hit) != -1)
 		return(hit.col);
 // =================== test_color ====================
@@ -84,7 +83,7 @@ t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 	ray.dir.x = ray.dir.x / vector_norm(ray.dir);
 	ray.dir.y = ray.dir.y * -1 / vector_norm(ray.dir);
 	ray.dir.z = ray.dir.z / vector_norm(ray.dir);
-	// vector_add(cam.vec3, ray.dir, &ray.dir);
+	vector_add(cam.vec3, ray.dir, &ray.dir);
 	return (ray_color(ray, scene));
 }
 

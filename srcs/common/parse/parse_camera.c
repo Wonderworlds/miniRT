@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/31 14:15:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:21:30 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	camera(t_scene *scene, char *str)
 	i += set_vec3(scene, &scene->cam.vec3, str + i);
 	while (str[i] == ' ')
 		i++;
+	i += set_h_fov(scene, &scene->cam.h_fov, str + i);
 	set_vector(0.0, 0.0, 0.0, &scene->cam.origin);
 	set_vector(VIEWPORT_WIDTH, 0.0, 0.0, &scene->cam.horizontal);
 	set_vector(0.0, VIEWPORT_HEIGHT, 0.0, &scene->cam.vertical);
@@ -39,5 +40,4 @@ void	camera(t_scene *scene, char *str)
 	scene->cam.lower_left_corner.y = scene->cam.origin.y - VIEWPORT_HEIGHT / 2;
 	scene->cam.lower_left_corner.z = scene->cam.origin.z - FOCAL_LENGTH;
 
-	i += set_h_fov(scene, &scene->cam.h_fov, str + i);
 }
