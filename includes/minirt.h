@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/30 17:25:07 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/31 13:28:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,12 @@ void			update_hit(t_hit *ptr);
 float			get_hit(t_hit *ptr);
 void			reset_hit(void);
 
-//		raycast/hit_manager.c
+//		raycast/ray_volume_hit.c
 t_bool			is_aabb_hit(t_ray ray, t_box aabb);
 t_bool			is_sphere_hit(t_ray *ray, t_vol *sp);
+t_bool 			is_plane_hit(t_ray *ray, t_plane *pl);
 
 //		raycast/ray_print.c
 t_rgb			ray_render(int y, int x, t_cam cam, t_scene *scene);
+
 #endif

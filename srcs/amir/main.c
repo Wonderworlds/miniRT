@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/30 14:31:55 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/31 13:58:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	check_value(t_scene scene)
 	t_list	*check_plane = scene.planes;
 	t_cam	cam = scene.cam;
 	t_vol	*vol;
+	t_plane	*plane;
 	t_light	*light;
 
 	if (scene.cam.is_set == true)
@@ -52,8 +53,8 @@ void	check_value(t_scene scene)
 	}
 	while (check_plane)
 	{
-		vol = (t_vol *)(check_plane->content);
-		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, vol->col.r, vol->col.g, vol->col.b);
+		plane = (t_plane *)(check_plane->content);
+		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d\n", plane->pos.x, plane->pos.y, plane->pos.z, plane->vec3.x, plane->vec3.y, plane->vec3.z, plane->col.r, plane->col.g, plane->col.b);
 		check_plane = check_plane->next;
 	}
 }
@@ -73,6 +74,7 @@ void	leave_rt(t_scene *scene)
 {
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
+	ft_lstclear(&scene->planes, &free);
 	btree_remove_infix(&scene->bvh, &free);
 }
 

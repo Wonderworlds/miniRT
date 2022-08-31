@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/30 17:25:48 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/31 14:18:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	graphic_render(t_data *data)
 		x = 0;
 		while (x++ < WIN_WIDTH)
 		{
-			
 			// Raytracing ...
 			color = ray_render(y, x, data->scene->cam, data->scene);
 			img_pix_put(&data->img, x, y, color);
