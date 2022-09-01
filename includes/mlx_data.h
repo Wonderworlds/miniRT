@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_data.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/30 19:57:34 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:44:38 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # define WIN_WIDTH 1500
 # define ASPECT_RATIO (16.0 / 9.0)
 # define WIN_HEIGHT WIN_WIDTH / ASPECT_RATIO
-# define VIEWPORT_HEIGHT 2.0
-# define VIEWPORT_WIDHT VIEWPORT_HEIGHT * ASPECT_RATIO
-# define FOCAL_LENGHT 1.0
+# define VIEWPORT_HEIGHT VIEWPORT_WIDTH / ASPECT_RATIO
+# define VIEWPORT_WIDTH 3.0
+# define FOCAL_LENGTH 1
 
 
 typedef struct s_img
