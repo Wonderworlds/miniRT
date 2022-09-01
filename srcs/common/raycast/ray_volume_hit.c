@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/01 11:32:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:14:09 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,37 +102,75 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 	return (false);
 }
 
-t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
+/*t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 {
 	t_hit	hit;
 	float	rabc[4];
-	float	discriminant;
+	float	t;
+	float	d;
 
 	rabc[0] = cy->d / 2;
 	rabc[1] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
 	rabc[2] = 2.0 * (ray->dir.x * (ray->origin.x - cy->pos.x) + ray->dir.z * (ray->origin.z - cy->pos.z));
 	rabc[3] = powf((ray->origin.x - cy->pos.x), 2) + powf((ray->origin.z - cy->pos.z), 2) - rabc[0] * rabc[0];
-	discriminant = (rabc[2] * rabc[2]) - (4 * rabc[1] * rabc[3]);
-/*	if (discriminant > 0)
-	{
-		hit.dst_origin = dist_ab(&sp->pos, &ray->origin) - rabc[0];
-		col_cpy(&sp->col, &hit.col);
-		update_hit(&hit);
-	} */
-	if (/*fabs(discriminant) < 0.0001 ||*/ discriminant < 0)
+	t = solve_quadratic(rabc[1], rabc[2], rabc[3]);
+	if (t == -1)
 		return (false);
-	rabc[0] = (-1 * rabc[2] - sqrtf(discriminant)) / (2 * rabc[1]);
-	rabc[3] = (-1 * rabc[2] + sqrtf(discriminant)) / (2 * rabc[1]);
+	d = ray->origin.y + t * ray->dir.y;
 
-	if (rabc[0] > rabc[3])
-		rabc[1] = rabc[3];
-	else
-		rabc[1] = rabc[0];
-	rabc[2] = ray->origin.y + rabc[1] * ray->dir.y;
-
-	if (rabc[2] >= cy->pos.y && rabc[2] <= cy->pos.y + cy->h + cy->vec3.y)
+	if (d >= cy->pos.y && d <= cy->pos.y + (cy->h * cy->vec3.y))
 	{
 		hit.dst_origin = rabc[1];
+		col_cpy(&cy->col, &hit.col);
+		update_hit(&hit);
+		return (true);
+	}
+	return (false);
+}*/
+
+t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
+{
+	t_hit	hit;
+	t_pos	vec3_cy;
+	t_pos	vec3[2];
+	float	abcdef[6];
+	float	hty[3];
+
+	set_vector(cy->pos.x + cy->h * cy->vec3.x, cy->pos.y + cy->h * cy->vec3.y,
+			cy->pos.z + cy->h * cy->vec3.z, &vec3_cy);
+	vector_ab(cy->pos, vec3_cy, vec3);
+	vector_ab(cy->pos, ray->origin, vec3 + 1);
+
+	abcdef[0] = dot_product(vec3[0], vec3[0]);
+	abcdef[1] = dot_product(vec3[0], ray->dir);
+	abcdef[2] = dot_product(vec3[0], vec3[1]);
+
+	abcdef[3] = abcdef[0] - abcdef[1] * abcdef[1];
+	abcdef[4] = abcdef[0] * dot_product(vec3[1], ray->dir) - abcdef[2] * abcdef[1];
+	abcdef[5] = abcdef[0] * dot_product(vec3[1], vec3[1]) - abcdef[2] * abcdef[2]
+			- cy->d / 2 * cy->d / 2 * abcdef[0];
+
+	hty[0] = abcdef[4] * abcdef[4] -  abcdef[3] * abcdef[5];
+	if (hty[0] < 0.0f)
+		return (false);
+	hty[0] = sqrtf(hty[0]);
+	hty[1] = (-1 * abcdef[4] - hty[0]) / abcdef[3];
+
+	hty[2] = abcdef[2] + hty[1] * abcdef[1];
+	if (hty[2] > 0.0 && hty[2] < abcdef[0])
+	{
+		hit.dst_origin = hty[1];
+		col_cpy(&cy->col, &hit.col);
+		update_hit(&hit);
+		return (true);
+	}
+	
+	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
+
+	hty[2] = abcdef[2] + hty[1] * abcdef[1];
+	if (hty[2] > 0.0 && hty[2] < abcdef[0])
+	{
+		hit.dst_origin = hty[1];
 		col_cpy(&cy->col, &hit.col);
 		update_hit(&hit);
 		return (true);
