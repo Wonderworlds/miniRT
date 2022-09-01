@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/31 18:45:03 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/01 11:32:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,40 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 	return (true);
 }
 
+float	solve_quadratic(float a, float b, float c)
+{
+	float	discriminant;
+	float	t0;
+	float	t1;
+
+	discriminant = (b * b) - (4 * a * c);
+	if (discriminant < 0)
+		return (-1);
+	t0 = (-b - sqrtf(discriminant)) / (2 * a);
+	t1 = (-b + sqrtf(discriminant)) / (2 * a);
+	if (t0 > t1)
+		return (t1);
+	return (t0);
+}
+
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 {
 	t_pos	e;
 	t_hit	hit;
-	float	rabc[4];
-	float	discriminant;
+	float	abc[3];
+	float	t;
 
 	vector_ab(sp->pos, ray->origin, &e);
-	rabc[0] = sp->d / 2;
-	rabc[1] = dot_product(ray->dir, ray->dir);
-	rabc[2] = 2.0 * dot_product(e, ray->dir);
-	rabc[3] = dot_product(e, e) - rabc[0] * rabc[0];
-	discriminant = (rabc[2] * rabc[2]) - (4 * rabc[1] * rabc[3]);
-	if (discriminant > 0)
-	{
-		hit.dst_origin = dist_ab(&sp->pos, &ray->origin) - rabc[0];
-		col_cpy(&sp->col, &hit.col);
-		update_hit(&hit);
-	}
-	return (discriminant > 0);
+	abc[0] = dot_product(ray->dir, ray->dir);
+	abc[1] = 2.0 * dot_product(e, ray->dir);
+	abc[2] = dot_product(e, e) - powf(sp->d / 2, 2);
+	t = solve_quadratic(abc[0], abc[1], abc[2]);
+	if (t == -1)
+		return (false);
+	hit.dst_origin = t;
+	col_cpy(&sp->col, &hit.col);
+	update_hit(&hit);
+	return (true);
 }
 
 t_bool is_plane_hit(t_ray *ray, t_plane *pl)
