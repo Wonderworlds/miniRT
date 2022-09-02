@@ -6,26 +6,31 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 11:58:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:38:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
+#include "utils.h"
 #include <math.h>
-
-float	magnitude_vec(const t_pos *vec)
-{
-	return (fabsf(vec->x) + fabsf(vec->y) + fabsf(vec->z));
-}
 
 void	unit_vector(t_pos *vec)
 {
 	float	mag;
+	t_pos	tmp;
 
-	mag = magnitude_vec(vec);
+	set_vector(0, 0, 0, &tmp);
+	mag = dist_ab(&tmp, vec);
 	if (mag == 0)
 		return ;
 	vec->x /= mag;
 	vec->y /= mag;
 	vec->z /= mag;
+}
+
+void	vector_scale(float scale, t_pos *dst)
+{
+	dst->x *= scale;
+	dst->y *= scale;
+	dst->z *= scale;
 }

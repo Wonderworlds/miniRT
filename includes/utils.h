@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 11:58:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:38:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	vector_multi(t_pos a, t_pos b, t_pos *dst);
 void	vector_sub(t_pos a, t_pos b, t_pos *dst);
 
 //		utils/vector_math3.c
-float	magnitude_vec(const t_pos *vec);
 void	unit_vector(t_pos *vec);
+void	vector_scale(float scale, t_pos *dst);
 
 //		utils/bbox_utils.c
 void	bbox_center(const t_box *box, t_pos *center);
