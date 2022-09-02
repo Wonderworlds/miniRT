@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 17:52:25 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/02 20:46:48 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,24 @@ float	solve_quadratic(float a, float b, float c)
 	return (t0);
 }
 
+void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
+{
+	t_hit	hit;
+
+	hit.dst_origin = t;
+	if (vol)
+		col_cpy(&vol->col, &hit.col);
+	else if (pl)
+		col_cpy(&pl->col, &hit.col);
+	vector_equal(ray->dir, &hit.pos);
+	vector_scale(t, &hit.pos);
+	vector_add(ray->dir, ray->origin, &hit.pos);
+	update_hit(&hit);
+}
+
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 {
 	t_pos	e;
-	t_hit	hit;
 	float	abc[3];
 	float	t;
 
@@ -73,9 +87,7 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 	t = solve_quadratic(abc[0], abc[1], abc[2]);
 	if (t == -1)
 		return (false);
-	hit.dst_origin = t;
-	col_cpy(&sp->col, &hit.col);
-	update_hit(&hit);
+	create_hit(t, sp, NULL, ray);
 	return (true);
 }
 
@@ -84,7 +96,6 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 	float	denom;
 	float	t;
 	t_pos	e;
-	t_hit	hit;
 
 	denom = dot_product(pl->vec3, ray->dir);
 	if (fabsf(denom) > 0.0001f) // your favorite epsilon
@@ -93,48 +104,56 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 		t = dot_product(e, pl->vec3) / denom;
 		if (t >= 0.0001f)
 		{
-			hit.dst_origin = t;
-			col_cpy(&pl->col, &hit.col);
-			update_hit(&hit);
+			create_hit(t, NULL, pl, ray);
 			return (true); // you might want to allow an epsilon here too
 		}
 	}
 	return (false);
 }
 
-/*t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
+void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 {
-	t_hit	hit;
-	float	rabc[4];
+	float	denom;
+	t_pos	hit;	
+	t_pos	cy_pl;
 	float	t;
-	float	d;
+	t_pos	e;
 
-	rabc[0] = cy->d / 2;
-	rabc[1] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
-	rabc[2] = 2.0 * (ray->dir.x * (ray->origin.x - cy->pos.x) + ray->dir.z * (ray->origin.z - cy->pos.z));
-	rabc[3] = powf((ray->origin.x - cy->pos.x), 2) + powf((ray->origin.z - cy->pos.z), 2) - rabc[0] * rabc[0];
-	t = solve_quadratic(rabc[1], rabc[2], rabc[3]);
-	if (t == -1)
-		return (false);
-	d = ray->origin.y + t * ray->dir.y;
-
-	if (d >= cy->pos.y && d <= cy->pos.y + (cy->h * cy->vec3.y))
+	denom = dot_product(cy->vec3, ray->dir);
+	if (fabsf(denom) > 0.0001f)
 	{
-		hit.dst_origin = rabc[1];
-		col_cpy(&cy->col, &hit.col);
-		update_hit(&hit);
-		return (true);
+		if (dist_ab(&cy->pos, &ray->origin) < dist_ab(&cy_top, &ray->origin))
+		{
+			vector_ab(ray->origin, cy->pos, &e);
+			vector_equal(cy->pos, &cy_pl);
+		}
+		else
+		{
+			vector_ab(ray->origin, cy_top, &e);
+			vector_equal(cy_top, &cy_pl);
+		}
+		t = dot_product(e, cy->vec3) / denom;
+		if (t >= 0.0001f)
+		{
+			vector_equal(ray->dir, &hit);
+			vector_scale(t, &hit);
+			vector_add(hit, ray->origin, &hit);
+			if (dist_ab(&hit, &cy_pl) <= cy->d / 2)
+			{
+				create_hit(t, cy, NULL, ray);
+			}
+		}
 	}
-	return (false);
-}*/
+}
+
 
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 {
-	t_hit	hit;
 	t_pos	vec3_cy;
 	t_pos	vec3[2];
 	float	abcdef[6];
 	float	hty[4];
+	t_hit	hit;
 
 	set_vector(cy->pos.x + cy->h * cy->vec3.x, cy->pos.y + cy->h * cy->vec3.y,
 			cy->pos.z + cy->h * cy->vec3.z, &vec3_cy);
@@ -158,22 +177,16 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 
 	hty[2] = abcdef[2] + hty[1] * abcdef[1];
 	if (hty[2] > 0.0 && hty[2] < abcdef[0])
-	{
-		hit.dst_origin = hty[1];
-		col_cpy(&cy->col, &hit.col);
-		update_hit(&hit);
-		return (true);
-	}
+		create_hit(hty[1], cy, NULL, ray);	
 	
-	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
+/*	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
 
 	hty[3] = abcdef[2] + hty[1] * abcdef[1];
 	if (hty[3] > 0.0 && hty[3] < abcdef[0])
-	{
-		hit.dst_origin = hty[1];
-		col_cpy(&cy->col, &hit.col);
-		update_hit(&hit);
+		create_hit(hty[1], cy, NULL, ray);	
+*/		
+	check_cylinder_extremity(cy, vec3_cy, ray);
+	if (get_hit(&hit) != -1)
 		return (true);
-	}
 	return (false);
 }
