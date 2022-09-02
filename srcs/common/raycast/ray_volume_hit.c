@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 20:46:48 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/02 22:19:41 by ammah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,18 +173,17 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 	if (hty[0] < 0.0f)
 		return (false);
 	hty[0] = sqrtf(hty[0]);
-	hty[1] = (-1 * abcdef[4] - hty[0]) / abcdef[3];
 
+	hty[1] = (-1 * abcdef[4] - hty[0]) / abcdef[3];
 	hty[2] = abcdef[2] + hty[1] * abcdef[1];
 	if (hty[2] > 0.0 && hty[2] < abcdef[0])
 		create_hit(hty[1], cy, NULL, ray);	
 	
-/*	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
-
+	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
 	hty[3] = abcdef[2] + hty[1] * abcdef[1];
 	if (hty[3] > 0.0 && hty[3] < abcdef[0])
 		create_hit(hty[1], cy, NULL, ray);	
-*/		
+		
 	check_cylinder_extremity(cy, vec3_cy, ray);
 	if (get_hit(&hit) != -1)
 		return (true);
