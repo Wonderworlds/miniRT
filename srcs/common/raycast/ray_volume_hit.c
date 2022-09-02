@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 16:41:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:12:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,24 @@ float	solve_quadratic(float a, float b, float c)
 	return (t0);
 }
 
+void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
+{
+	t_hit	hit;
+
+	hit.dst_origin = t;
+	if (vol)
+		col_cpy(&vol->col, &hit.col);
+	else if (pl)
+		col_cpy(&pl->col, &hit.col);
+	vector_equal(ray->dir, &hit.pos);
+	vector_scale(t, &hit.pos);
+	vector_add(ray->dir, ray->origin, &hit.pos);
+	update_hit(&hit);
+}
+
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 {
 	t_pos	e;
-	t_hit	hit;
 	float	abc[3];
 	float	t;
 
@@ -73,9 +87,7 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 	t = solve_quadratic(abc[0], abc[1], abc[2]);
 	if (t == -1)
 		return (false);
-	hit.dst_origin = t;
-	col_cpy(&sp->col, &hit.col);
-	update_hit(&hit);
+	create_hit(t, sp, NULL, ray);
 	return (true);
 }
 
@@ -84,7 +96,6 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 	float	denom;
 	float	t;
 	t_pos	e;
-	t_hit	hit;
 
 	denom = dot_product(pl->vec3, ray->dir);
 	if (fabsf(denom) > 0.0001f) // your favorite epsilon
@@ -93,9 +104,7 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 		t = dot_product(e, pl->vec3) / denom;
 		if (t >= 0.0001f)
 		{
-			hit.dst_origin = t;
-			col_cpy(&pl->col, &hit.col);
-			update_hit(&hit);
+			create_hit(t, NULL, pl, ray);
 			return (true); // you might want to allow an epsilon here too
 		}
 	}
