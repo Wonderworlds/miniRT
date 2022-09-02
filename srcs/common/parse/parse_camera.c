@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 13:43:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:51:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	set_camera(t_cam *cam)
 	cam->viewport_width = VIEWPORT_WIDTH * h;
 	cam->viewport_height = cam->viewport_width / ASPECT_RATIO;
 	vector_equal(cam->vec3, &cam->uvw[2]);
-	vector_scale(-1, &cam->uvw[2]);
 	unit_vector(&cam->uvw[2]);
 	cross_product(vup, cam->uvw[2], &cam->uvw[0]);
 	unit_vector(&cam->uvw[0]);
