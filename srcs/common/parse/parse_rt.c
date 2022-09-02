@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/01 18:47:31 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:44:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,24 @@ void	read_rt(int fd, t_scene *scene)
 		error_msg("Error\nfile: empty\n");
 	while (str)
 	{
-		scene->line_gnl = str;
-		if (str[0] == 'A' && str[1] == ' ')
-			ambient_lightning(scene, str);
-		else if (str[0] == 'C' && str[1] == ' ')
-			camera(scene, str);
-		else if (str[0] == 'L' && str[1] == ' ')
-			light(scene, str);
-		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
-			sphere(scene, str);
-		else if (str[0] == 'p' && str[1] == 'l' && str[2] == ' ')
-			plane(scene, str);
-		else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
-			cylinder(scene, str);
-		else if (str[0] != '\n')
+		if (str[0] != '#')
+		{
+			scene->line_gnl = str;
+			if (str[0] == 'A' && str[1] == ' ')
+				ambient_lightning(scene, str);
+			else if (str[0] == 'C' && str[1] == ' ')
+				camera(scene, str);
+			else if (str[0] == 'L' && str[1] == ' ')
+				light(scene, str);
+			else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
+				sphere(scene, str);
+			else if (str[0] == 'p' && str[1] == 'l' && str[2] == ' ')
+				plane(scene, str);
+			else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
+				cylinder(scene, str);
+			else if (str[0] != '\n')
 			exit_parse(scene);
+		}
 		free(str);
 		str = ft_gnl_rt(fd);
 	}
