@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 16:48:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:15:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	set_h_fov(t_scene *scene, int *data, char *str)
 
 	i = 0;
 	if (!float_format(str + i) || ft_atoi_err(str + i, data) || *data <= 0
-		|| *data >= 180)
+		|| *data > 180)
 		exit_parse(scene);
 	while (ft_isdigit(str[i]))
 		i++;

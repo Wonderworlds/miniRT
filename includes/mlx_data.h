@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 13:21:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:26:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # include "structs_utils.h"
 # include "mlx.h"
 
-# define WIN_WIDTH 1500
-# define ASPECT_RATIO (16.0 / 9.0)
+# define WIN_WIDTH 1400
+# define ASPECT_RATIO (16.0f / 9.0f)
 # define WIN_HEIGHT WIN_WIDTH / ASPECT_RATIO
-# define VIEWPORT_WIDTH 5.0f
+# define VP_WIDTH 3.0f
 # define FOCAL_LENGTH 1.0f
 # define PI 3.1415926
 

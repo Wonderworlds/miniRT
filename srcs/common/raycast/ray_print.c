@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 14:02:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:27:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@ t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 	u = (double)x / (WIN_WIDTH - 1);
 	v = (double)y / (WIN_HEIGHT - 1);
 	vector_equal(cam.pos, &ray.origin);
-	ray.dir.x = cam.lower_left_corner.x + u * cam.horizontal.x + v * cam.vertical.x - cam.pos.x;
-	ray.dir.y = cam.lower_left_corner.y + u * cam.horizontal.y + v * cam.vertical.y - cam.pos.y;
-	ray.dir.z = cam.lower_left_corner.z + u * cam.horizontal.z + v * cam.vertical.z - cam.pos.z;
-	ray.dir.y = ray.dir.y * -1;
-	ray.dir.x = ray.dir.x * -1;
+	ray.dir.x = cam.lower_left_corner.x + (u * cam.horizontal.x) + (v * cam.vertical.x) - cam.pos.x;
+	ray.dir.y = cam.lower_left_corner.y + (u * cam.horizontal.y) + (v * cam.vertical.y) - cam.pos.y;
+	ray.dir.z = cam.lower_left_corner.z + (u * cam.horizontal.z) + (v * cam.vertical.z) - cam.pos.z;
 	unit_vector(&ray.dir);
-	vector_add(cam.vec3, ray.dir, &ray.dir);
+	vector_scale(-1, &ray.dir);
+	// vector_add(cam.vec3, ray.dir, &ray.dir);
 	return (ray_color(ray, scene));
 }
 

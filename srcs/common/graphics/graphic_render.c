@@ -6,11 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/31 14:18:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:24:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"mlx_data.h"
+#include "mlx_data.h"
 #include "minirt.h"
 
 int get_color(t_rgb color)
