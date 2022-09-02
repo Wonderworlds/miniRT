@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/01 19:14:09 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:41:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 	float	tmax;
 
 	t[0] = (aabb.min.x - ray.origin.x) / ray.dir.x;
-	t[1] = (aabb.min.y - ray.origin.y) / ray.dir.y;
-	t[2] = (aabb.min.z - ray.origin.z) / ray.dir.z;
-	t[3] = (aabb.max.x - ray.origin.x) / ray.dir.x;
-	t[4] = (aabb.max.y - ray.origin.y) / ray.dir.y;
+	t[1] = (aabb.max.x - ray.origin.x) / ray.dir.x;
+	t[2] = (aabb.min.y - ray.origin.y) / ray.dir.y;
+	t[3] = (aabb.max.y - ray.origin.y) / ray.dir.y;
+	t[4] = (aabb.min.z - ray.origin.z) / ray.dir.z;
 	t[5] = (aabb.max.z - ray.origin.z) / ray.dir.z;
 	tmin =  fmaxf(fmaxf(fminf(t[0], t[1]), fminf(t[2], t[3])),
 			fminf(t[4], t[5]));
