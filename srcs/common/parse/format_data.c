@@ -6,7 +6,7 @@
 /*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/25 13:58:14 by amahla           ###   ########.fr       */
+/*   Updated: 2022/08/31 18:22:43 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_bool	rgb_format(char *str)
 		if (str[i] == ',' && color > 1)
 			i++;
 	}
-	if (color || !(str[i] == ' ' || str[i] == '\n'))
+	if (color || str[i] != '\n')
 		return (false);
 	return (true);
 }
@@ -94,7 +94,7 @@ t_bool	h_fov_format(char *str)
 		return (false);
 	while (ft_isdigit(str[i]))
 		i++;
-	if (str[i] != ' ' && str[i] != '\0')
+	if (str[i] != '\n')
 		return (false);
 	return (true);
 }

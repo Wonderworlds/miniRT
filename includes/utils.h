@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 17:07:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:38:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	cross_product(t_pos a, t_pos b, t_pos *dst);
 void	vector_multi(t_pos a, t_pos b, t_pos *dst);
 void	vector_sub(t_pos a, t_pos b, t_pos *dst);
 
+//		utils/vector_math3.c
+void	unit_vector(t_pos *vec);
+void	vector_scale(float scale, t_pos *dst);
+
 //		utils/bbox_utils.c
 void	bbox_center(const t_box *box, t_pos *center);
 float	bbox_expend(const t_box *box);
@@ -55,6 +59,7 @@ void	pos_cpy(const t_pos *src, t_pos *dest);
 void	col_cpy(const t_rgb *src, t_rgb *dest);
 void	box_cpy(const t_box *src, t_box *dest);
 void	vol_cpy(const t_vol *src, t_vol *dest);
+void	hit_cpy(const t_hit *src, t_hit *dest);
 
 //		utils/free_utils.c
 void	free_vol(void *);

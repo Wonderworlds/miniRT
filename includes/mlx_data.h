@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_data.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/23 13:15:34 by ammah            ###   ########.fr       */
+/*   Updated: 2022/09/02 13:21:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 # include "structs_utils.h"
 # include "mlx.h"
 
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
+# define WIN_WIDTH 1500
+# define ASPECT_RATIO (16.0 / 9.0)
+# define WIN_HEIGHT WIN_WIDTH / ASPECT_RATIO
+# define VIEWPORT_WIDTH 5.0f
+# define FOCAL_LENGTH 1.0f
+# define PI 3.1415926
+
 
 typedef struct s_img
 {

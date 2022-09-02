@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 17:27:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:47:31 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ void	exit_parse(t_scene *scene)
 	ft_lstclear(&scene->vols, &free);
 	close(scene->fd);
 	ft_fprintf(2, "Error\nError parse format\n");
+	exit(EXIT_FAILURE);
+}
+
+void	exit_parse_cam(t_scene *scene)
+{
+	ft_lstclear(&scene->lights, &free);
+	ft_lstclear(&scene->vols, &free);
+	close(scene->fd);
+	ft_fprintf(2, "Error\nError parse format: camera 'C' is not set\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -78,6 +87,9 @@ void	parse_rt(char *arg, t_scene *scene)
 	scene->fd = fd;
 	read_rt(fd, scene);
 	size = ft_lstsize(scene->vols) - 1;
-	build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
+	if (scene->cam.is_set == false)
+		exit_parse_cam(scene);
+	if (size >= 0)
+		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
 }
