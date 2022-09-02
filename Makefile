@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/30 16:14:24 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/02 11:41:20 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
 												error_msg.c				\
 												vector_math.c			\
 												vector_math2.c			\
+												vector_math3.c			\
 												struct_utils.c			\
 												bbox_utils.c			\
 												free_utils.c			\
