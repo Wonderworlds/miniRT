@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 16:41:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:52:25 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 	t_pos	vec3_cy;
 	t_pos	vec3[2];
 	float	abcdef[6];
-	float	hty[3];
+	float	hty[4];
 
 	set_vector(cy->pos.x + cy->h * cy->vec3.x, cy->pos.y + cy->h * cy->vec3.y,
 			cy->pos.z + cy->h * cy->vec3.z, &vec3_cy);
@@ -167,8 +167,8 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 	
 	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
 
-	hty[2] = abcdef[2] + hty[1] * abcdef[1];
-	if (hty[2] > 0.0 && hty[2] < abcdef[0])
+	hty[3] = abcdef[2] + hty[1] * abcdef[1];
+	if (hty[3] > 0.0 && hty[3] < abcdef[0])
 	{
 		hit.dst_origin = hty[1];
 		col_cpy(&cy->col, &hit.col);
