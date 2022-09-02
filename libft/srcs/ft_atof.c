@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:21:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/23 16:00:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:31:09 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,16 @@ int	ft_atof(const char *s, float *n)
 {
 	unsigned int	i;
 	float			dec;
+	int				sign;
 
+	sign = 1;
+	if (s[0] == '-')
+		sign = -1;
 	i = ft_atof_pre(s, n, 0);
 	if (!i)
 		return (1);
+	if (*n != 0 && sign == -1)
+		sign = 1;
 	if (s[i] == '.')
 	{
 		i++;
@@ -85,5 +91,6 @@ int	ft_atof(const char *s, float *n)
 		else
 			*n -= dec;
 	}
+	*n *= sign;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/31 18:37:32 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/01 18:47:31 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	parse_rt(char *arg, t_scene *scene)
 	size = ft_lstsize(scene->vols) - 1;
 	if (scene->cam.is_set == false)
 		exit_parse_cam(scene);
-	if (size >= 1)
+	if (size >= 0)
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
 }
