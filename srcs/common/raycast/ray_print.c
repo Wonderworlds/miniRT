@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 16:27:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:00:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include "mlx_data.h"
 #include "minirt.h"
 #include <math.h>
+
+void	create_ray(const t_pos origin, const t_pos dir , t_ray *ray)
+{
+	vector_equal(origin, &ray->origin);
+	vector_equal(dir, &ray->dir);
+	unit_vector(&ray->dir);
+}
 
 int	find_volume(t_bvh *root, t_ray ray)
 {
@@ -48,8 +55,8 @@ void	find_plane(t_list *pl, t_ray *ray)
 
 t_rgb	ray_color(t_ray ray, t_scene *scene)
 {
-	float	t;
-	t_rgb	color;
+	// float	t;
+	// t_rgb	color;
 	t_hit	hit;
 	// int		is_set;
 
@@ -58,29 +65,29 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	if (scene->bvh)
 		find_volume(scene->bvh, ray);
 	if (get_hit(&hit) != -1)
-		return(hit.col);
+		return(add_lights(scene, &hit));
 // =================== test_color ====================
-    t = 0.5*(ray.dir.y + 1.0);
-	color.r = 255.999 * ((1.0-t) * 1.0 + t * 0.5);
-	color.g = 255.999 * ((1.0-t) * 1.0 + t * 0.7);
-	color.b = 255.999 * ((1.0-t) * 1.0 + t * 1.0);
+    // t = 0.5*(ray.dir.y + 1.0);
+	// color.r = 255.999 * ((1.0-t) * 1.0 + t * 0.5);
+	// color.g = 255.999 * ((1.0-t) * 1.0 + t * 0.7);
+	// color.b = 255.999 * ((1.0-t) * 1.0 + t * 1.0);
 // ===================================================
-    return (color);
+    return (gen_rgb(0, 0, 0));
 }
 
 t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 {
 	t_ray	ray;
+	t_pos	dir;
 	double	u;
 	double	v;
 
 	u = (double)x / (WIN_WIDTH - 1);
 	v = (double)y / (WIN_HEIGHT - 1);
-	vector_equal(cam.pos, &ray.origin);
-	ray.dir.x = cam.lower_left_corner.x + (u * cam.horizontal.x) + (v * cam.vertical.x) - cam.pos.x;
-	ray.dir.y = cam.lower_left_corner.y + (u * cam.horizontal.y) + (v * cam.vertical.y) - cam.pos.y;
-	ray.dir.z = cam.lower_left_corner.z + (u * cam.horizontal.z) + (v * cam.vertical.z) - cam.pos.z;
-	unit_vector(&ray.dir);
+	dir.x = cam.lower_left_corner.x + (u * cam.horizontal.x) + (v * cam.vertical.x) - cam.pos.x;
+	dir.y = cam.lower_left_corner.y + (u * cam.horizontal.y) + (v * cam.vertical.y) - cam.pos.y;
+	dir.z = cam.lower_left_corner.z + (u * cam.horizontal.z) + (v * cam.vertical.z) - cam.pos.z;
+	create_ray(cam.pos, dir, &ray);
 	vector_scale(-1, &ray.dir);
 	// vector_add(cam.vec3, ray.dir, &ray.dir);
 	return (ray_color(ray, scene));

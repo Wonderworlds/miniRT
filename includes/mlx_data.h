@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 16:30:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:53:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # define WIN_HEIGHT WIN_WIDTH / ASPECT_RATIO
 # define VP_WIDTH 3.0f
 # define FOCAL_LENGTH 2.0f
-# define PI 3.1415926
-
 
 typedef struct s_img
 {

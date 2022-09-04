@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/31 14:00:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:14:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "structs_utils.h"
+#include "utils.h"
 #include "libft.h"
 
 void	malloc_volume(t_vol **vol, t_scene *scene)
@@ -45,6 +46,7 @@ void	sphere(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
+	unit_vector(&sp->vec3);
 	sphere_bounds(sp);
 	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
 }
@@ -65,6 +67,7 @@ void	plane(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &pl->col, str + i);
+	unit_vector(&pl->vec3);
 	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 }
 
@@ -91,6 +94,7 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &cy->col, str + i);
+	unit_vector(&cy->vec3);
 	cylinder_bounds(cy);
 	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 }
