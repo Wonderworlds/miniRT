@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 15:15:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:26:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ t_bool			is_cylinder_hit(t_ray *ray, t_vol *cy);
 
 //		raycast/ray_print.c
 t_rgb			ray_render(int y, int x, t_cam cam, t_scene *scene);
+
+//		lights/lights.c
+t_rgb			add_lights(t_scene *scene, t_hit *hit);
 
 #endif
