@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 15:24:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:02:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	graphic_render(t_data *data)
 		{
 			// Raytracing ...
 			color = ray_render(y, x, data->scene->cam, data->scene);
+			
 			img_pix_put(&data->img, x, y, color);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:26:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:53:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <fcntl.h>
 # include "structs_utils.h"
+
+# define ALBEDO 0.3f
 
 //		parse/parse_rt.c
 void			parse_rt(char *arg, t_scene *scene);
@@ -72,6 +74,7 @@ t_bool 			is_plane_hit(t_ray *ray, t_plane *pl);
 t_bool			is_cylinder_hit(t_ray *ray, t_vol *cy);
 
 //		raycast/ray_print.c
+void			create_ray(const t_pos origin, const t_pos dir , t_ray *ray);
 t_rgb			ray_render(int y, int x, t_cam cam, t_scene *scene);
 
 //		lights/lights.c

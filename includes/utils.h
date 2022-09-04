@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/03 14:14:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:00:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	unit_vector(t_pos *vec);
 void	vector_scale(float scale, t_pos *dst);
 
 //		utils/color_utils.c
+t_rgb	gen_rgb(const int r, const int g, const int b);
 void	c_mult(const t_rgb *c1, const t_rgb *c2, t_rgb *dest);
 void	c_add(const t_rgb *c1, const t_rgb *c2, t_rgb *dest);
 void	c_scale(const float f, t_rgb *rgb);
