@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 21:50:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:53:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 	coeff = dot_product(hit->normal, dir_light);
 	if (coeff > 0)
 	{
-		coeff = lights->r * (dot_product(hit->normal, dir_light) / (vector_norm(hit->normal) * vector_norm(dir_light)));
+		coeff *= lights->r / (vector_norm(hit->normal) * vector_norm(dir_light));
 		add_coeficient(&diffuse, coeff, &lights->col);
 	}
 	c_mult(&diffuse, &hit->col, &hit->col);
