@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:11:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:21:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 	hit.dst_origin = t;
 	vector_equal(ray->dir, &hit.pos);
 	vector_scale(t, &hit.pos);
-	vector_add(ray->dir, ray->origin, &hit.pos);
+	vector_add(hit.pos, ray->origin, &hit.pos);
 	if (vol)
 	{
 		col_cpy(&vol->col, &hit.col);
