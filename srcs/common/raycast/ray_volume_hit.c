@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/02 22:19:41 by ammah            ###   ########.fr       */
+/*   Updated: 2022/09/04 18:11:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,24 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 	t_hit	hit;
 
 	hit.dst_origin = t;
-	if (vol)
-		col_cpy(&vol->col, &hit.col);
-	else if (pl)
-		col_cpy(&pl->col, &hit.col);
 	vector_equal(ray->dir, &hit.pos);
 	vector_scale(t, &hit.pos);
 	vector_add(ray->dir, ray->origin, &hit.pos);
+	if (vol)
+	{
+		col_cpy(&vol->col, &hit.col);
+		if (vol->type == SPHERE)
+		{
+			vector_ab(vol->pos, hit.pos, &hit.normal);
+			vector_add(hit.normal, hit.pos, &hit.normal);
+			unit_vector(&hit.normal);
+		}
+	}
+	else if (pl)
+	{
+		col_cpy(&pl->col, &hit.col);
+		pos_cpy(&pl->vec3, &hit.normal);
+	}
 	update_hit(&hit);
 }
 
