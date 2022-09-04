@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/04 19:02:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:00:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	find_plane(t_list *pl, t_ray *ray)
 
 t_rgb	ray_color(t_ray ray, t_scene *scene)
 {
-	float	t;
-	t_rgb	color;
+	// float	t;
+	// t_rgb	color;
 	t_hit	hit;
 	// int		is_set;
 
@@ -67,12 +67,12 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	if (get_hit(&hit) != -1)
 		return(add_lights(scene, &hit));
 // =================== test_color ====================
-    t = 0.5*(ray.dir.y + 1.0);
-	color.r = 255.999 * ((1.0-t) * 1.0 + t * 0.5);
-	color.g = 255.999 * ((1.0-t) * 1.0 + t * 0.7);
-	color.b = 255.999 * ((1.0-t) * 1.0 + t * 1.0);
+    // t = 0.5*(ray.dir.y + 1.0);
+	// color.r = 255.999 * ((1.0-t) * 1.0 + t * 0.5);
+	// color.g = 255.999 * ((1.0-t) * 1.0 + t * 0.7);
+	// color.b = 255.999 * ((1.0-t) * 1.0 + t * 1.0);
 // ===================================================
-    return (color);
+    return (gen_rgb(0, 0, 0));
 }
 
 t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
