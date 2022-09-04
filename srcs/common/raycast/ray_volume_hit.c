@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 19:21:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:09:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 		if (vol->type == SPHERE)
 		{
 			vector_ab(vol->pos, hit.pos, &hit.normal);
-			vector_add(hit.normal, hit.pos, &hit.normal);
+			// vector_add(hit.normal, hit.pos, &hit.normal);
 			unit_vector(&hit.normal);
 		}
 	}

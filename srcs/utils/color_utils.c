@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:41:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 20:48:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:49:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	c_add(const t_rgb *c1, const t_rgb *c2, t_rgb *dest)
 	dest->b = check_rgb(c1->b + c2->b);
 }
 
-void	c_mult(const t_rgb *c1, const t_rgb *c2, t_rgb *dest)
+void	c_mult(const t_pos *c1, const t_rgb *c2, t_rgb *dest)
 {
-	dest->r = check_rgb((c1->r * c2->r));
-	dest->g = check_rgb((c1->g * c2->g));
-	dest->b = check_rgb((c1->b * c2->b));
+	dest->r = check_rgb((c1->x * c2->r));
+	dest->g = check_rgb((c1->y * c2->g));
+	dest->b = check_rgb((c1->z * c2->b));
 }
