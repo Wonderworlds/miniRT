@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:43:06 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 19:10:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:01:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ void ft_ftoa_custom(float n, char *str, size_t size)
 	n *= 10;
 	ft_itoa_custom(n, str, size);
 	i = ft_strlen(str);
-	if (i == 2 && str[i] == '-')
+	if (i == 2 && str[0] == '-')
 	{
-		str[i++] = '.';
-		str[i++] = '0';
-		str[i] = 0;
+		str[4] = 0;
+		str[3] = str[1];
+		str[2] = '.';
+		str[1] = '0';
 	}
 	else
 	{
