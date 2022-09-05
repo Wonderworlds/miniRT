@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 19:58:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:37:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,7 +362,7 @@ int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 	size_t	size;
 
 	menu->is_visible = true;
-	menu->item = 4;
+	menu->item = 0;
 	str_vol(scene, menu);
 	size = ft_strlen(&menu->bprint[0]);
 	rect_display(data, gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y,
