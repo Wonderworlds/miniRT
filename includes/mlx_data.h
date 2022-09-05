@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 21:58:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:22:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,11 @@ void	handle_hooks(t_data *data);
 
 //		menu/graphic_menu.c
 int		display_menu(t_data *data, t_menu *menu, t_scene *scene);
+
+//		menu/event_menu.c
+void	close_menu(t_data *data);
+void	open_menu(t_data *data);
+void	switch_menu(t_data *data);
+void	updown_menu(t_data *data, int i);
 
 #endif
