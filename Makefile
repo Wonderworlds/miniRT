@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/04 18:56:35 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/05 18:36:58 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ DEBUGDIR			:=	./debugobj
 COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		error_mlx.c			\
 																		graphic_hook.c		\
+																		graphic_menu.c		\
 																		graphic_render.c)	\
 												$(addprefix parse/,		parse_rt.c			\
 																		format_data.c		\
@@ -58,6 +59,8 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
 												color_utils.c			\
 												bbox_utils.c			\
 												free_utils.c			\
+												ft_itoa_custom.c		\
+												ft_ftoa_custom.c		\
 												debug.c					\
 												quicksort_lst_custom.c	\
 												)

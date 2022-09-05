@@ -4,3 +4,5 @@ obj/
 miniRT
 libft.a
 floran.prog
+*pdf
+*.debug
