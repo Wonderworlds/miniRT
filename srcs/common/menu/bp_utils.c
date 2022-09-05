@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:30:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:34:40 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:01:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	bp_ambient(t_menu *menu)
 	menu->bprint[4] = '1';
 	menu->bprint[5] = '1';
 	menu->bprint[6] = 0;
+	menu->max_f_index = 3;
 }
 
 void	bp_light(t_menu *menu)
@@ -37,6 +38,7 @@ void	bp_light(t_menu *menu)
 	menu->bprint[9] = '1';
 	menu->bprint[10] = '1';
 	menu->bprint[11] = 0;
+	menu->max_f_index = 7;
 }
 
 void	bp_plane(t_menu *menu)
@@ -55,6 +57,7 @@ void	bp_plane(t_menu *menu)
 	menu->bprint[11] = '1';
 	menu->bprint[12] = '1';
 	menu->bprint[13] = 0;
+	menu->max_f_index = 9;
 }
 
 void	bp_sphere(t_menu *menu)
@@ -71,6 +74,7 @@ void	bp_sphere(t_menu *menu)
 	menu->bprint[9] = '1';
 	menu->bprint[10] = '1';
 	menu->bprint[11] = 0;
+	menu->max_f_index = 7;
 }
 
 void	bp_cylinder(t_menu *menu)
@@ -92,4 +96,5 @@ void	bp_cylinder(t_menu *menu)
 	menu->bprint[14] = '1';
 	menu->bprint[15] = '1';
 	menu->bprint[16] = 0;
+	menu->max_f_index = 11;
 }

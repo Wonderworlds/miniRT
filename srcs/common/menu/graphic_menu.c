@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:38:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:01:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	bp_cam(t_menu *menu)
 	menu->bprint[9] = '0';
 	menu->bprint[10] = '1';
 	menu->bprint[11] = 0;
+	menu->max_f_index = 6;
 }
 
 void	str_vol(t_scene *scene, t_menu *menu)
@@ -54,8 +55,6 @@ int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 {
 	size_t	size;
 
-	menu->is_visible = true;
-	menu->item = 4;
 	str_vol(scene, menu);
 	size = ft_strlen(&menu->bprint[0]);
 	rect_display(data, gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y,
