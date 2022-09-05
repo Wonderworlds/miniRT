@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 19:41:38 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/05 20:08:18 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,7 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 			vector_scale(d, &vec3);
 			vector_add(vol->pos, vec3, &hit.normal);
 			vector_ab(hit.normal, hit.pos, &hit.normal);
-
-			if (dot_product(hit.normal, hit.normal) > (vol->d / 2 * vol->d / 2) - 0.001)
-				unit_vector(&hit.normal);
-			else
-				vector_equal(vol->vec3, &hit.normal);
+			unit_vector(&hit.normal);
 		}
 	}
 	else if (pl)
@@ -146,6 +142,7 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 	t_pos	cy_pl;
 	float	t;
 	t_pos	e;
+	t_hit	h;
 
 	denom = dot_product(cy->vec3, ray->dir);
 	if (fabsf(denom) > 0.0001f)
@@ -166,9 +163,15 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 			vector_equal(ray->dir, &hit);
 			vector_scale(t, &hit);
 			vector_add(hit, ray->origin, &hit);
-			if (dist_ab(&hit, &cy_pl) <= cy->d / 2)
+			if (dist_ab(&hit, &cy_pl) < cy->d / 2)
 			{
-				create_hit(t, cy, NULL, ray);
+				h.dst_origin = t;
+				vector_equal(ray->dir, &h.pos);
+				vector_scale(t, &h.pos);
+				vector_add(h.pos, ray->origin, &h.pos);
+				col_cpy(&cy->col, &h.col);
+				vector_equal(cy->vec3, &h.normal); 
+				update_hit(&h);
 			}
 		}
 	}
@@ -207,15 +210,16 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 	if (hty[2] > 0.0 && hty[2] < abcdef[0])
 		create_hit(hty[1], cy, NULL, ray);	
 	
-/*	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
+	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
 	hty[3] = abcdef[2] + hty[1] * abcdef[1];
-	if (hty[3] > 0.0 && hty[3] < abcdef[0])
+	if (hty[3] > 0.f && hty[3] < abcdef[0])
 		create_hit(hty[1], cy, NULL, ray);	
-*/
+
+/*
 	hty[1] = abcdef[0] * (hty[2] >= 0) - abcdef[2] / abcdef[1];
 	if (fabsf(abcdef[4] + abcdef[3] * hty[1]) < hty[2])
 		create_hit(hty[1], cy, NULL, ray);
-
+*/
 	check_cylinder_extremity(cy, vec3_cy, ray);
 	if (get_hit(&hit) != -1)
 		return (true);
