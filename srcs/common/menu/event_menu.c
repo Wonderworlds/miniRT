@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 23:58:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 00:09:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ void	close_menu(t_data *data)
 void	open_menu(t_data *data)
 {
 	data->menu.is_visible = true;
-	data->menu.field_index = 0;
-	data->menu.index = 0;
 	display_menu(data, &data->menu, data->scene);
 }
 
 void	switch_menu(t_data *data)
 {
 	data->menu.field_index = 0;
-	data->menu.index = 0;
 	if (data->menu.is_visible)
 	{
+		data->menu.index = 0;
 		data->menu.item++;
 		if (data->menu.item > 4)
 			data->menu.item = 0;

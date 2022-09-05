@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 23:58:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 00:03:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,33 @@ void	add_dec(void *value, int type, int op)
 	}
 }
 
+int	add_dec_sphere(t_data *data, int i)
+{
+	t_menu	*menu;
+	t_vol	*sp;
+
+	menu = &data->menu;
+	if (menu->field_index == 0)
+		return (check_lst_index(data->scene->vols, &menu->index, i));
+	sp = (t_vol *)(ft_lst_at(data->scene->vols,
+				menu->index)->content);
+	if (menu->field_index == 1)
+		add_dec(&sp->pos.x, m_float, i);
+	else if (menu->field_index == 2)
+		add_dec(&sp->pos.y, m_float, i);
+	else if (menu->field_index == 3)
+		add_dec(&sp->pos.z, m_float, i);
+	else if (menu->field_index == 4)
+		add_dec(&sp->d, m_float, i);
+	else if (menu->field_index == 5)
+		add_dec(&sp->col.r, m_int, i);
+	else if (menu->field_index == 6)
+		add_dec(&sp->col.g, m_int, i);
+	else if (menu->field_index == 7)
+		add_dec(&sp->col.b, m_int, i);
+	return (0);
+}
+
 int	add_dec_cam(t_data *data, int i)
 {
 	t_menu	*menu;
@@ -54,10 +81,8 @@ int	add_dec_cam(t_data *data, int i)
 	else if (menu->field_index == 5)
 		add_dec(&data->scene->cam.vec3.z, m_float, i);
 	else if (menu->field_index == 6)
-	{
 		add_dec(&data->scene->cam.h_fov, m_int, i);
-		set_camera(&data->scene->cam);
-	}
+	set_camera(&data->scene->cam);
 	return (0);
 }
 
