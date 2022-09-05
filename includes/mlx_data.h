@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 19:43:18 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:49:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_menu
 	int		item;
 	int		index;
 	int		field_index;
-	char	bprint[16];
+	char	bprint[17];
 }			t_menu;
 
 typedef struct s_data
@@ -65,9 +65,7 @@ int		graphic_render(t_data *data);
 //		graphics/graphic_hook.c
 void	handle_hooks(t_data *data);
 
-//		graphics/graphic_menu.c
+//		menu/graphic_menu.c
 int		display_menu(t_data *data, t_menu *menu, t_scene *scene);
-void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
-
 
 #endif

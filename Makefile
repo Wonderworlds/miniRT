@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/05 18:36:58 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/05 21:32:40 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ DEBUGDIR			:=	./debugobj
 COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		error_mlx.c			\
 																		graphic_hook.c		\
-																		graphic_menu.c		\
 																		graphic_render.c)	\
 												$(addprefix parse/,		parse_rt.c			\
 																		format_data.c		\
@@ -46,6 +45,12 @@ COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 												$(addprefix raycast/,	hit_manager.c		\
 																		ray_print.c			\
 																		ray_volume_hit.c)	\
+												$(addprefix menu/,		graphic_menu.c		\
+																		build_menu.c		\
+																		bp_utils.c			\
+																		fill_menu.c			\
+																		fill_menu2.c		\
+																		)	\
 												$(addprefix lights/,	lights.c			\
 																		)					\
 												)

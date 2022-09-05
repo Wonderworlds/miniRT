@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 16:42:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:46:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	graphic_process(t_scene *scene)
 			WIN_WIDTH, WIN_HEIGHT, "miniRT");
 	if (!data.win_ptr)
 		error_mlx_data(&data, data.mlx_ptr);
-	mlx_set_font(data.mlx_ptr, data.win_ptr, "10x20");
+	mlx_set_font(data.mlx_ptr, data.win_ptr, "9x15bold");
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);

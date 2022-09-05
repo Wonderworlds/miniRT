@@ -6,12 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:14:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:32:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MENU_H
 # define MENU_H
+
+# include "mlx_data.h"
 
 #define WHITE_PIXEL 13158600
 #define BLACK_PIXEL 2631720
@@ -39,8 +41,8 @@ typedef enum e_menu_item
 	m_cam,
 	m_ambient,
 	m_light,
-	m_vol,
-	m_plane
+	m_plane,
+	m_vol
 }	t_mitem;
 
 typedef enum e_m_key
@@ -58,5 +60,30 @@ typedef struct s_rect
 	int	minY;
 	int	maxY;
 }	t_rect;
+
+//		menu/build_menu.c
+t_rect	gen_rect(int minX, int maxX, int minY, int maxY);
+void	rect_display(t_data *data, t_rect rect, int color);
+void	display_field(t_data *data, t_menu *menu, size_t size);
+void	select_field(t_data *data, t_menu *menu, size_t size);
+
+//		menu/bp_utils.c
+void	bp_ambient(t_menu *menu);
+void	bp_light(t_menu *menu);
+void	bp_plane(t_menu *menu);
+void	bp_sphere(t_menu *menu);
+void	bp_cylinder(t_menu *menu);
+
+//		menu/fill_menu2.c
+void 	fill_field(t_data *data, int y, void *item, int type);
+void	fill_camera(t_data *data, t_cam *cam, int y_start);
+void	fill_ambient(t_data *data, t_list *lg, int y_start);
+void	fill_light(t_data *data, t_list *lg, int y_start);
+void	fill_vol(t_data *data, t_list *lvol, int y_start);
+
+//		menu/fill_menu.c
+int		fill_template(t_data *data, int y_start, char *name,
+			const int type);
+void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
 
 #endif
