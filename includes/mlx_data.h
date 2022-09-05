@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:22:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:28:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	close_menu(t_data *data);
 void	open_menu(t_data *data);
 void	switch_menu(t_data *data);
 void	updown_menu(t_data *data, int i);
+void	left_right_menu(t_data *data, int i);
 
 #endif

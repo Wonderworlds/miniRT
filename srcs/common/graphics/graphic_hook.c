@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:25:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:28:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int	key_press_hook(int keysym, t_data *data)
 		updown_menu(data, -1);
 	if (keysym == XK_Up && data->menu.is_visible)
 		updown_menu(data, 1);
+	if (keysym == XK_Left && data->menu.is_visible)
+		left_right_menu(data, -1);
+	if (keysym == XK_Right && data->menu.is_visible)
+		left_right_menu(data, 1);
 	return (0);
 }
 

@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 22:25:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:36:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "menu.h"
 
 void	close_menu(t_data *data)
 {
@@ -51,4 +52,30 @@ void	updown_menu(t_data *data, int i)
 			data->menu.field_index = data->menu.max_f_index;
 	}
 	display_menu(data, &data->menu, data->scene);
+}
+
+void	add_dec_cam(t_menu *menu, int i)
+{
+	(void)menu;
+	(void)i;
+}
+
+void	left_right_menu(t_data *data, int i)
+{
+	void	(*f[6])(t_menu *, int );
+	int		add;
+	t_menu	*menu;
+
+	menu = &data->menu;
+	f[0] = &add_dec_cam;
+	f[1] = &add_dec_ambient;
+	f[2] = &add_dec_light;
+	f[3] = &add_dec_plane;
+	f[4] = &add_dec_sphere;
+	f[5] = &add_dec_cylinder;
+	add = 0;
+	if (menu->item == m_vol && ((t_vol *)ft_lst_at(data->scene->vols,
+				menu->index)->content)->type == CYLINDER)
+		add = 1;
+	(*f[menu->item + add])(menu, i);
 }
