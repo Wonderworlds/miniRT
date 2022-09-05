@@ -6,17 +6,27 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 12:39:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:42:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+
+void init_menu(t_menu *menu)
+{
+	menu->is_visible = false;
+	menu->index = 0;
+	menu->item = 0;
+	menu->field_index = 0;
+	ft_memset(&menu->bprint, 0, 15);
+}
 
 int	graphic_process(t_scene *scene)
 {
 	t_data	data;
 
 	data.scene = scene;
+	init_menu(&data.menu);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		error_mlx_data(&data, NULL);
