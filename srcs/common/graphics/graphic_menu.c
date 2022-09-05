@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:19:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:44:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,11 +199,23 @@ void fill_field(t_data *data, int y, void *item, int type)
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
 			FOFFSET_MID_X, y, WHITE_PIXEL, &str[0]);
 	}
+	else if (type == m_float)
+	{
+		ft_ftoa_custom(*((float *)item), &str[0], 50);
+		mlx_string_put(data->mlx_ptr, data->win_ptr,
+			FOFFSET_MID_X, y, WHITE_PIXEL, &str[0]);
+	}
 	else if (type == m_t_rgb)
 	{
 		fill_field(data, y, &((t_rgb *)item)->r, m_int);
 		fill_field(data, y + STEP_FIELD, &((t_rgb *)item)->g, m_int);
 		fill_field(data, y + STEP_FIELD * 2, &((t_rgb *)item)->b, m_int);
+	}
+	else if (type == m_t_pos)
+	{
+		fill_field(data, y, &((t_pos *)item)->x, m_float);
+		fill_field(data, y + STEP_FIELD, &((t_pos *)item)->y, m_float);
+		fill_field(data, y + STEP_FIELD * 2, &((t_pos *)item)->z, m_float);
 	}
 }
 
@@ -226,7 +238,21 @@ int	fill_template(t_data *data, int y_start, char *name,  const int type)
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
 			FOFFSET_1_X, y_start, WHITE_PIXEL, "z");
 	}
-	else
+	else if (type == 2)
+	{
+		mlx_string_put(data->mlx_ptr, data->win_ptr,
+			FOFFSET_TITLE_X, y_start, WHITE_PIXEL, name);
+		y_start += STEP_FIELD;
+		mlx_string_put(data->mlx_ptr, data->win_ptr,
+			FOFFSET_1_X, y_start, WHITE_PIXEL, "r");
+		y_start += STEP_FIELD;
+		mlx_string_put(data->mlx_ptr, data->win_ptr,
+			FOFFSET_1_X, y_start, WHITE_PIXEL, "g");
+		y_start += STEP_FIELD;
+		mlx_string_put(data->mlx_ptr, data->win_ptr,
+			FOFFSET_1_X, y_start, WHITE_PIXEL, "b");
+	}
+	else if (type == 3)
 	{
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
 			FOFFSET_1_X - (FOFFSET_X / 2), y_start, WHITE_PIXEL, name);
@@ -238,14 +264,24 @@ void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
 {
 	int		y_start;
 
-	(void)scene;
 	if (menu->item == m_cam)
 	{
 		y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
 		y_start = fill_template(data, y_start, "CAMERA", 0);
+		fill_field(data, y_start + STEP_FIELD, &scene->cam.pos, m_t_pos);
 		y_start = fill_template(data, y_start, "position", 1);
+		fill_field(data, y_start + STEP_FIELD, &scene->cam.vec3, m_t_pos);
 		y_start = fill_template(data, y_start, "direction", 1);
-		y_start = fill_template(data, y_start, "fov", 2);
+		fill_field(data, y_start, &scene->cam.h_fov, m_int);
+		y_start = fill_template(data, y_start, "fov", 3);
+	}
+	else if (menu->item == m_ambient)
+	{
+		y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
+		y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
+		y_start = fill_template(data, y_start, "r", 3);
+		fill_field(data, y_start + STEP_FIELD, &((t_light *)scene->lights->content)->col, m_t_rgb);
+		y_start = fill_template(data, y_start, "color", 2);
 	}
 }
 
@@ -255,6 +291,7 @@ int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 	size_t	size;
 
 	menu->is_visible = true;
+	// menu->item = 1;
 	str_vol(scene, menu);
 	size = ft_strlen(&menu->bprint[0]);
 	rect_display(data, gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y,
