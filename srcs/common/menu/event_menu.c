@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 22:36:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:58:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ void	open_menu(t_data *data)
 {
 	data->menu.is_visible = true;
 	data->menu.field_index = 0;
+	data->menu.index = 0;
 	display_menu(data, &data->menu, data->scene);
 }
 
 void	switch_menu(t_data *data)
 {
+	data->menu.field_index = 0;
+	data->menu.index = 0;
 	if (data->menu.is_visible)
 	{
 		data->menu.item++;
@@ -54,15 +57,9 @@ void	updown_menu(t_data *data, int i)
 	display_menu(data, &data->menu, data->scene);
 }
 
-void	add_dec_cam(t_menu *menu, int i)
-{
-	(void)menu;
-	(void)i;
-}
-
 void	left_right_menu(t_data *data, int i)
 {
-	void	(*f[6])(t_menu *, int );
+	int		(*f[6])(t_data *, int );
 	int		add;
 	t_menu	*menu;
 
@@ -77,5 +74,6 @@ void	left_right_menu(t_data *data, int i)
 	if (menu->item == m_vol && ((t_vol *)ft_lst_at(data->scene->vols,
 				menu->index)->content)->type == CYLINDER)
 		add = 1;
-	(*f[menu->item + add])(menu, i);
+	if (!(*f[menu->item + add])(data, i))
+		display_menu(data, &data->menu, data->scene);
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:28:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:46:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct s_data
 	t_scene	*scene;
 	t_menu	menu;
 }			t_data;
+
+//		parse/parse_camera.c
+void	set_camera(t_cam *cam);
 
 //		graphics/error_mlx.c
 void	error_mlx_data(t_data *data, void *mlx_ptr);
