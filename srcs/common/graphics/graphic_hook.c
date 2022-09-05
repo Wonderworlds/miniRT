@@ -6,19 +6,38 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:02:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:09:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "libft.h"
+
+#define XK_Enter 65293
 
 int	key_press_hook(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-		mlx_loop_end(data->mlx_ptr);
+		if (data->menu.is_visible)
+		{
+			data->menu.is_visible = false;
+			graphic_render(data);
+		}
+		else
+		{
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+			data->win_ptr = NULL;
+			mlx_loop_end(data->mlx_ptr);
+		}
+	}
+	if (keysym == XK_Enter)
+	{
+		if (data->menu.is_visible)
+		{
+			data->menu.is_visible = false;
+			graphic_render(data);
+		}
 	}
 	if (keysym == XK_Tab)
 	{
