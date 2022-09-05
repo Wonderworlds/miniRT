@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 21:46:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:01:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void init_menu(t_menu *menu)
 	menu->index = 0;
 	menu->item = 0;
 	menu->field_index = 0;
+	menu->max_f_index = 0;
 	ft_memset(&menu->bprint, 0, 15);
 }
 
