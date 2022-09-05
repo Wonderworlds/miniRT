@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 20:08:18 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/05 20:31:51 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,17 +140,20 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 	float	denom;
 	t_pos	hit;	
 	t_pos	cy_pl;
+	t_bool	normal_minus;
 	float	t;
 	t_pos	e;
 	t_hit	h;
 
 	denom = dot_product(cy->vec3, ray->dir);
+	normal_minus = false;
 	if (fabsf(denom) > 0.0001f)
 	{
 		if (dist_ab(&cy->pos, &ray->origin) < dist_ab(&cy_top, &ray->origin))
 		{
 			vector_ab(ray->origin, cy->pos, &e);
 			vector_equal(cy->pos, &cy_pl);
+			normal_minus = true;
 		}
 		else
 		{
@@ -158,12 +161,12 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 			vector_equal(cy_top, &cy_pl);
 		}
 		t = dot_product(e, cy->vec3) / denom;
-		if (t >= 0.0f)
+		if (t >= 0.00001f)
 		{
 			vector_equal(ray->dir, &hit);
 			vector_scale(t, &hit);
 			vector_add(hit, ray->origin, &hit);
-			if (dist_ab(&hit, &cy_pl) < cy->d / 2)
+			if (dist_ab(&hit, &cy_pl) <= cy->d / 2)
 			{
 				h.dst_origin = t;
 				vector_equal(ray->dir, &h.pos);
@@ -171,6 +174,8 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 				vector_add(h.pos, ray->origin, &h.pos);
 				col_cpy(&cy->col, &h.col);
 				vector_equal(cy->vec3, &h.normal); 
+				if (normal_minus == true)
+					vector_scale(-1, &h.normal);
 				update_hit(&h);
 			}
 		}
