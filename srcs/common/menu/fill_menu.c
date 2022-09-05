@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:46:58 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:34:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:47:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	fill_template2(t_data *data, int y_start, char *name,
 {
 	if (type == 0)
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
-			FOFFSET_TITLE_X, y_start, WHITE_PIXEL, name);
+			FOFFSET_TITLE_X + FOFFSET_1_X, y_start, WHITE_PIXEL, name);
 	else if (type == 1)
 	{
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
@@ -58,7 +58,7 @@ int	fill_template(t_data *data, int y_start, char *name, const int type)
 	else if (type == 3)
 	{
 		mlx_string_put(data->mlx_ptr, data->win_ptr,
-			FOFFSET_1_X - (FOFFSET_X / 2), y_start, WHITE_PIXEL, name);
+			FOFFSET_1_X, y_start, WHITE_PIXEL, name);
 	}
 	return (y_start + STEP_FIELD);
 }
