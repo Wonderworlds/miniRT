@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/05 13:49:22 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/05 18:36:58 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
 												color_utils.c			\
 												bbox_utils.c			\
 												free_utils.c			\
+												ft_itoa_custom.c		\
+												ft_ftoa_custom.c		\
 												debug.c					\
 												quicksort_lst_custom.c	\
 												)

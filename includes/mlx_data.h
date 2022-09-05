@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 19:20:30 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/05 19:43:18 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,23 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_menu
+{
+	t_bool	is_visible;
+	t_img	menu_img;
+	int		item;
+	int		index;
+	int		field_index;
+	char	bprint[16];
+}			t_menu;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
 	t_scene	*scene;
+	t_menu	menu;
 }			t_data;
 
 //		graphics/error_mlx.c
@@ -55,7 +66,8 @@ int		graphic_render(t_data *data);
 void	handle_hooks(t_data *data);
 
 //		graphics/graphic_menu.c
-int		display_menu(t_data *data, t_scene *scene);
+int		display_menu(t_data *data, t_menu *menu, t_scene *scene);
+void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
 
 
 #endif

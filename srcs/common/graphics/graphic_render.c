@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 16:06:32 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/05 19:40:40 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ int	graphic_render(t_data *data)
 			img_pix_put(&data->img, x, y, get_color(color));
 		}
 	}
-//	ft_printf("\ngrey = %i\n", get_color(gen_rgb(40, 40, 40)));
-//	ft_printf("\nwhite = %i\n", get_color(gen_rgb(200, 200, 200)));
-//	display_menu(data, data->scene);
+	display_menu(data, &data->menu, data->scene);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img.mlx_img, 0, 0);
+	fill_menu(&data->menu, data, data->scene);
 	return (0);
 }
