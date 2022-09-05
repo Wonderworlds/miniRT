@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 19:53:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:58:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,6 +312,33 @@ void	fill_plane(t_data *data, t_list *lpl, int y_start)
 	y_start = fill_template(data, y_start, "color", 2);
 }
 
+void	fill_vol(t_data *data, t_list *lvol, int y_start)
+{
+	t_vol	*vol;
+
+	vol = (t_vol *)lvol->content;
+	if (vol->type == SPHERE)
+	{
+		y_start = fill_template(data, y_start, "SPHERE", 0);
+		fill_field(data, y_start + STEP_FIELD, &vol->pos, m_t_pos);
+		y_start = fill_template(data, y_start, "position", 1);
+
+	}
+	if (vol->type == CYLINDER)
+	{
+		y_start = fill_template(data, y_start, "CYLINDER", 0);
+		fill_field(data, y_start + STEP_FIELD, &vol->pos, m_t_pos);
+		y_start = fill_template(data, y_start, "position", 1);
+		fill_field(data, y_start + STEP_FIELD, &vol->vec3, m_t_pos);
+		fill_field(data, y_start + STEP_FIELD, &vol->h, m_float);
+		y_start = fill_template(data, y_start, "h", 3);
+	}
+	fill_field(data, y_start + STEP_FIELD, &vol->d, m_float);
+	y_start = fill_template(data, y_start, "d", 3);
+	fill_field(data, y_start + STEP_FIELD, &vol->col, m_t_rgb);
+	y_start = fill_template(data, y_start, "color", 2);
+}
+
 void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
 {
 	int		y_start;
@@ -325,18 +352,8 @@ void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
 		fill_light(data, ft_lst_at(scene->lights, menu->index), y_start);
 	else if (menu->item == m_plane)
 		fill_plane(data, ft_lst_at(scene->planes, menu->index), y_start);
-	else if (menu->item == m_vol &&((t_vol *)ft_lst_at(scene->vols,
-		menu->index)->content)->type == SPHERE)
-	{
-		y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
-		y_start = fill_template(data, y_start, "PLANE", 0);
-		fill_field(data, y_start + STEP_FIELD, &((t_plane *)ft_lst_at(scene->planes, menu->index)->content)->pos, m_t_pos);
-		y_start = fill_template(data, y_start, "position", 1);
-		fill_field(data, y_start + STEP_FIELD, &((t_plane *)ft_lst_at(scene->planes, menu->index)->content)->vec3, m_t_pos);
-		y_start = fill_template(data, y_start, "direction", 1);
-		fill_field(data, y_start + STEP_FIELD, &((t_plane *)ft_lst_at(scene->planes, menu->index)->content)->col, m_t_rgb);
-		y_start = fill_template(data, y_start, "color", 2);
-	}
+	else if (menu->item == m_vol)
+		fill_vol(data, ft_lst_at(scene->vols, menu->index), y_start);
 }
 
 
