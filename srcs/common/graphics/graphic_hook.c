@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:09:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:12:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include "libft.h"
 
 #define XK_Enter 65293
+
+int	exit_hook(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
+	mlx_loop_end(data->mlx_ptr);
+	return (0);
+}
 
 int	key_press_hook(int keysym, t_data *data)
 {
@@ -25,11 +33,7 @@ int	key_press_hook(int keysym, t_data *data)
 			graphic_render(data);
 		}
 		else
-		{
-			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-			data->win_ptr = NULL;
-			mlx_loop_end(data->mlx_ptr);
-		}
+			return (exit_hook(data));
 	}
 	if (keysym == XK_Enter)
 	{
@@ -71,13 +75,6 @@ int	key_press_hook(int keysym, t_data *data)
 			display_menu(data, &data->menu, data->scene);
 		}
 	}
-	return (0);
-}
-
-int	exit_hook(t_data *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
 	return (0);
 }
 
