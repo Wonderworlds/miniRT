@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:18:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:32:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef enum e_menu_item
 	m_cam,
 	m_ambient,
 	m_light,
-	m_vol,
-	m_plane
+	m_plane,
+	m_vol
 }	t_mitem;
 
 typedef enum e_m_key
@@ -66,6 +66,13 @@ t_rect	gen_rect(int minX, int maxX, int minY, int maxY);
 void	rect_display(t_data *data, t_rect rect, int color);
 void	display_field(t_data *data, t_menu *menu, size_t size);
 void	select_field(t_data *data, t_menu *menu, size_t size);
+
+//		menu/bp_utils.c
+void	bp_ambient(t_menu *menu);
+void	bp_light(t_menu *menu);
+void	bp_plane(t_menu *menu);
+void	bp_sphere(t_menu *menu);
+void	bp_cylinder(t_menu *menu);
 
 //		menu/fill_menu2.c
 void 	fill_field(t_data *data, int y, void *item, int type);

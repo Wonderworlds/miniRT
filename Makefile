@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/05 21:18:51 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/05 21:32:40 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		ray_print.c			\
 																		ray_volume_hit.c)	\
 												$(addprefix menu/,		graphic_menu.c		\
-																		build_menu.c			\
+																		build_menu.c		\
+																		bp_utils.c			\
 																		fill_menu.c			\
 																		fill_menu2.c		\
 																		)	\

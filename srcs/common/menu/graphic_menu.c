@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:19:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:32:50 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,101 +16,39 @@
 #include "mlx_data.h"
 #include "minirt.h"
 
+
+void	bp_cam(t_menu *menu)
+{
+	menu->bprint[0] = '0';
+	menu->bprint[1] = '0';
+	menu->bprint[2] = '1';
+	menu->bprint[3] = '1';
+	menu->bprint[4] = '1';
+	menu->bprint[5] = '0';
+	menu->bprint[6] = '1';
+	menu->bprint[7] = '1';
+	menu->bprint[8] = '1';
+	menu->bprint[9] = '0';
+	menu->bprint[10] = '1';
+	menu->bprint[11] = 0;
+}
+
 void	str_vol(t_scene *scene, t_menu *menu)
 {
-	if (menu->item == m_cam)
-	{
-		menu->bprint[0] = '0';
-		menu->bprint[1] = '0';
-		menu->bprint[2] = '1';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '0';
-		menu->bprint[6] = '1';
-		menu->bprint[7] = '1';
-		menu->bprint[8] = '1';
-		menu->bprint[9] = '0';
-		menu->bprint[10] = '1';
-		menu->bprint[11] = 0;
-	}
-	else if (menu->item == m_ambient)
-	{
-		menu->bprint[0] = '0';
-		menu->bprint[1] = '1';
-		menu->bprint[2] = '0';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '1';
-		menu->bprint[6] = 0;
-	}
-	else if (menu->item == m_light)
-	{
-		menu->bprint[0] = '1';
-		menu->bprint[1] = '0';
-		menu->bprint[2] = '1';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '0';
-		menu->bprint[6] = '1';
-		menu->bprint[7] = '0';
-		menu->bprint[8] = '1';
-		menu->bprint[9] = '1';
-		menu->bprint[10] = '1';
-		menu->bprint[11] = 0;
-	}
-	else if (menu->item == m_plane)
-	{
-		menu->bprint[0] = '1';
-		menu->bprint[1] = '0';
-		menu->bprint[2] = '1';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '0';
-		menu->bprint[6] = '1';
-		menu->bprint[7] = '1';
-		menu->bprint[8] = '1';
-		menu->bprint[9] = '0';
-		menu->bprint[10] = '1';
-		menu->bprint[11] = '1';
-		menu->bprint[12] = '1';
-		menu->bprint[13] = 0;
-	}
-	else if (menu->item == m_vol &&((t_vol *)ft_lst_at(scene->vols,
-		menu->index)->content)->type == SPHERE)
-	{
-		menu->bprint[0] = '1';
-		menu->bprint[1] = '0';
-		menu->bprint[2] = '1';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '0';
-		menu->bprint[6] = '1';
-		menu->bprint[7] = '0';
-		menu->bprint[8] = '1';
-		menu->bprint[9] = '1';
-		menu->bprint[10] = '1';
-		menu->bprint[11] = 0;
-	}
-	else if (menu->item == m_vol)
-	{
-		menu->bprint[0] = '1';
-		menu->bprint[1] = '0';
-		menu->bprint[2] = '1';
-		menu->bprint[3] = '1';
-		menu->bprint[4] = '1';
-		menu->bprint[5] = '0';
-		menu->bprint[6] = '1';
-		menu->bprint[7] = '1';
-		menu->bprint[8] = '1';
-		menu->bprint[9] = '0';
-		menu->bprint[10] = '1';
-		menu->bprint[11] = '1';
-		menu->bprint[12] = '0';
-		menu->bprint[13] = '1';
-		menu->bprint[14] = '1';
-		menu->bprint[15] = '1';
-		menu->bprint[16] = 0;
-	}
+	void	(*f[6])(t_menu *);
+	int		add;
+
+	f[0] = &bp_cam;
+	f[1] = &bp_ambient;
+	f[2] = &bp_light;
+	f[3] = &bp_plane;
+	f[4] = &bp_sphere;
+	f[5] = &bp_cylinder;
+	add = 0;
+	if (menu->item == m_vol &&((t_vol *)ft_lst_at(scene->vols,
+		menu->index)->content)->type == CYLINDER)
+		add = 1;
+	(*f[menu->item + add])(menu);
 }
 
 int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
