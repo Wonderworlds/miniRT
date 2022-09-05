@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:30:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:31:40 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:34:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	bp_sphere(t_menu *menu)
 	menu->bprint[10] = '1';
 	menu->bprint[11] = 0;
 }
+
 void	bp_cylinder(t_menu *menu)
 {
 	menu->bprint[0] = '1';

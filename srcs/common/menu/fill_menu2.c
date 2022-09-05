@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:13:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:40:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 #include "mlx_data.h"
 #include "utils.h"
 
-void fill_field(t_data *data, int y, void *item, int type)
+#define WP WHITE_PIXEL
+#define FX FOFFSET_MID_X
+
+void	fill_field(t_data *data, int y, void *item, int type)
 {
-	char str[50];
+	char	str[50];
 
 	if (type == m_int)
 	{
 		ft_itoa_custom(*((int *)item), &str[0], 50);
-		mlx_string_put(data->mlx_ptr, data->win_ptr,
-			FOFFSET_MID_X, y, WHITE_PIXEL, &str[0]);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y, WP, &str[0]);
 	}
 	else if (type == m_float)
 	{
 		ft_ftoa_custom(*((float *)item), &str[0], 50);
-		mlx_string_put(data->mlx_ptr, data->win_ptr,
-			FOFFSET_MID_X, y, WHITE_PIXEL, &str[0]);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y, WP, &str[0]);
 	}
 	else if (type == m_t_rgb)
 	{

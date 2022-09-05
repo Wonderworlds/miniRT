@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:16:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:19:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:37:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	select_field(t_data *data, t_menu *menu, size_t size)
 		rect_display(data,
 			gen_rect(x_start, RECT_END_X - FOFFSET_X,
 				y_start, y_start + STEP_FIELD - FOFFSET_Y),
-				SELFIELD_PIXEL);
+			SELFIELD_PIXEL);
 	}
 }
