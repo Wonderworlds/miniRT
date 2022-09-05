@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/04 18:53:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:47:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ void	error_mlx_data(t_data *data, void *mlx_ptr);
 int		graphic_process(t_scene *scene);
 
 //		graphics/graphic_render.c
+int		img_pix_put(t_img *img, int x, int y, int color);
 int		graphic_render(t_data *data);
 
 //		graphics/graphic_hook.c
 void	handle_hooks(t_data *data);
+
+//		graphics/graphic_menu.c
+int		display_menu(t_data *data, t_scene *scene);
+
 
 #endif
