@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 21:53:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:19:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,26 @@ t_rgb	int_to_rgb(int col)
 t_rgb	add_lights(t_scene *scene, t_hit *hit)
 {
 	t_light	*lights;
-	t_light	*lights1;
+	t_light	*ambient;
 	t_pos	dir_light;
 	double	coeff;
 	t_pos	diffuse;
 
 	set_vector(0, 0, 0, &diffuse);
-	lights = (t_light *)scene->lights->next->content;
-	lights1 = (t_light *)scene->lights->content;
-	add_coeficient(&diffuse, lights1->r, &lights1->col);
-	vector_ab(hit->pos, lights->pos, &dir_light);
-	unit_vector(&dir_light);
-	coeff = dot_product(hit->normal, dir_light);
-	if (coeff > 0)
+	ambient = scene->ambient;
+	if (ambient)
+		add_coeficient(&diffuse, ambient->r, &ambient->col);
+	if (scene->lights)
 	{
-		coeff *= lights->r / (vector_norm(hit->normal) * vector_norm(dir_light));
-		add_coeficient(&diffuse, coeff, &lights->col);
+		lights = (t_light *)scene->lights->content;
+		vector_ab(hit->pos, lights->pos, &dir_light);
+		unit_vector(&dir_light);
+		coeff = dot_product(hit->normal, dir_light);
+		if (coeff > 0)
+		{
+			coeff *= lights->r / (vector_norm(hit->normal) * vector_norm(dir_light));
+			add_coeficient(&diffuse, coeff, &lights->col);
+		}
 	}
 	c_mult(&diffuse, &hit->col, &hit->col);
 	return (hit->col);

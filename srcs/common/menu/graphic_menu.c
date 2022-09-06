@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:07:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:14:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static int	check_empty(t_scene *scene, int type)
 		return (1);
 	if (type == m_plane && !scene->planes)
 		return (1);
-	if (type == m_ambient && !scene->lights)
+	if (type == m_ambient && !scene->ambient)
 		return (1);
-	if (type == m_light && (!scene->lights || !scene->lights->next))
+	if (type == m_light && !scene->lights)
 		return (1);
 	return (0);
 }
