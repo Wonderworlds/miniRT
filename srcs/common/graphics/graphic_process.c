@@ -6,18 +6,18 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 15:18:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:42:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 
-int init_menu(t_menu *menu, t_data *data)
+int	init_menu(t_menu *menu, t_data *data)
 {
-	size_t size;
+	size_t	size;
 
 	size = sizeof(char) * (WIN_HEIGHT * data->img.line_len
-		+ (WIN_WIDTH) * (data->img.bpp / 8) + 10);
+			+ (WIN_WIDTH) * (data->img.bpp / 8) + 10);
 	menu->save_img = malloc(size);
 	if (!menu->save_img)
 	{
