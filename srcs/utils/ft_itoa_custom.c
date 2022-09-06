@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:43:06 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 22:55:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:39:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,19 @@ void	ft_reverse(char *str, size_t size)
 	}
 }
 
-void ft_itoa_custom(int n, char *str, size_t size)
+static void	ft_itoa_custom2(int minus, char *str, size_t index)
+{
+	ft_reverse(str, index);
+	if (minus)
+	{
+		str[++index] = 0;
+		while (--index)
+			str[index] = str[index - 1];
+		str[index] = '-';
+	}
+}
+
+void	ft_itoa_custom(int n, char *str, size_t size)
 {
 	size_t	index;
 	int		minus;
@@ -56,12 +68,5 @@ void ft_itoa_custom(int n, char *str, size_t size)
 			break ;
 	}
 	str[index] = 0;
-	ft_reverse(str, index);
-	if (minus)
-	{
-		str[++index] = 0;
-		while (--index)
-			str[index] = str[index - 1];
-		str[index] = '-';
-	}
+	ft_itoa_custom2(minus, str, index);
 }
