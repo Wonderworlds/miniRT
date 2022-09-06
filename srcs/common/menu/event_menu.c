@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 14:53:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:05:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ void	open_menu(t_data *data)
 
 void	switch_menu(t_data *data)
 {
-	size_t size;
+	size_t	size;
 
-	int h = WIN_HEIGHT - 2;
-
-	size = sizeof(char) * (h * data->img.line_len
-		+ (WIN_WIDTH - 1) * (data->img.bpp / 8));
+	size = sizeof(char) * ((WIN_HEIGHT - 2) * data->img.line_len
+			+ (WIN_WIDTH - 1) * (data->img.bpp / 8));
 	data->menu.field_index = 0;
 	if (data->menu.is_visible)
 	{

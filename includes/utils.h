@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:36:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:12:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,8 @@ void	box_cpy(const t_box *src, t_box *dest);
 void	vol_cpy(const t_vol *src, t_vol *dest);
 void	hit_cpy(const t_hit *src, t_hit *dest);
 
-//		utils/free_utils.c
-void	free_vol(void *);
-void	free_light(void *);
-void	free_plane(void *);
-
 //		utils/ft_itoa_custom.c
-void ft_itoa_custom(int n, char *str, size_t size);
-void ft_ftoa_custom(float n, char *str, size_t size);
+void	ft_itoa_custom(int n, char *str, size_t size);
+void	ft_ftoa_custom(float n, char *str, size_t size);
 
 #endif

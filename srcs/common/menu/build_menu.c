@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:16:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:37:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:23:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "structs_utils.h"
 #include "mlx_data.h"
 
-t_rect	gen_rect(int minX, int maxX, int minY, int maxY)
+t_rect	gen_rect(int min_x, int max_x, int min_y, int max_y)
 {
 	t_rect	ret;
 
-	ret.maxX = maxX;
-	ret.maxY = maxY;
-	ret.minX = minX;
-	ret.minY = minY;
+	ret.max_x = max_x;
+	ret.max_y = max_y;
+	ret.min_x = min_x;
+	ret.min_y = min_y;
 	return (ret);
 }
 
@@ -29,13 +29,11 @@ void	rect_display(t_data *data, t_rect rect, int color)
 {
 	int	x;
 
-	while (--rect.maxY >= rect.minY)
+	while (--rect.max_y >= rect.min_y)
 	{
-		x = rect.minX;
-		while (x++ < rect.maxX)
-		{
-			img_pix_put(&data->img, x, rect.maxY, color);
-		}
+		x = rect.min_x;
+		while (x++ < rect.max_x)
+			img_pix_put(&data->img, x, rect.max_y, color);
 	}
 }
 
