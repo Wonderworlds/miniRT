@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 21:10:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:35:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 		if (scene->bvh) {
 			find_volume(scene->bvh, ray_to_light);
 		}
-		if (get_hit(hit) == -1)
+		if (get_hit(hit) == -1 || hit->dst_origin > dist_ab(&hit_from_camera.pos, &lights->pos))
 		{
 			coeff = dot_product(hit_from_camera.normal, dir_light);
 			if (coeff > 0)

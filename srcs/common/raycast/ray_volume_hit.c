@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 19:51:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:49:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 	{
 		col_cpy(&pl->col, &hit.col);
 		pos_cpy(&pl->vec3, &hit.normal);
+		if (dot_product(hit.normal, ray->dir) > 0)
+			vector_scale(-1, &hit.normal);
 	}
 	vector_equal(hit.normal, &offset);
 	vector_scale(0.02f, &offset);
