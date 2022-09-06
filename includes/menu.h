@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 00:03:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:28:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 
 # include "mlx_data.h"
 
-#define WHITE_PIXEL 13158600
-#define BLACK_PIXEL 2631720
-#define GREYD_PIXEL 4276545
-#define GREY_PIXEL 9868950
-#define BG_PIXEL BLACK_PIXEL
-#define BGFIELD_PIXEL GREYD_PIXEL
-#define SELFIELD_PIXEL GREY_PIXEL
-#define FONT_PIXEL WHITE_PIXEL
+# define WHITE_PIXEL 13158600
+# define BLACK_PIXEL 2631720
+# define GREYD_PIXEL 4276545
+# define GREY_PIXEL 9868950
+# define BG_PIXEL 2631720
+# define BGFIELD_PIXEL 4276545
+# define SELFIELD_PIXEL 9868950
+# define FONT_PIXEL 13158600
 
-#define RECT_START_X 10
-#define RECT_END_X (RECT_START_X + 200)
-#define RECT_START_Y 20
+# define RECT_START_X 10
+# define RECT_END_X 210
+# define RECT_START_Y 20
 
-#define FOFFSET_Y 5
-#define FOFFSET_X 10
-#define FOFFSET_TITLE_X RECT_START_X + FOFFSET_X * 4
-#define FOFFSET_1_X RECT_START_X + FOFFSET_X
-#define FOFFSET_MID_X (RECT_END_X / 2) + RECT_START_X
+# define FOFFSET_Y 5
+# define FOFFSET_X 10
+# define FOFFSET_TITLE_X 50
+# define FOFFSET_1_X 20
+# define FOFFSET_MID_X 115
 
-#define STEP_FIELD 26
+# define STEP_FIELD 26
 
 typedef enum e_menu_item
 {
@@ -55,11 +55,17 @@ typedef enum e_m_key
 
 typedef struct s_rect
 {
-	int	minX;
-	int	maxX;
-	int	minY;
-	int	maxY;
+	int	min_x;
+	int	max_x;
+	int	min_y;
+	int	max_y;
 }	t_rect;
+
+typedef struct s_delim
+{
+	int	min;
+	int	max;
+}	t_delim;
 
 //		menu/build_menu.c
 t_rect	gen_rect(int minX, int maxX, int minY, int maxY);
@@ -75,7 +81,7 @@ void	bp_sphere(t_menu *menu);
 void	bp_cylinder(t_menu *menu);
 
 //		menu/fill_menu2.c
-void 	fill_field(t_data *data, int y, void *item, int type);
+void	fill_field(t_data *data, int y, void *item, int type);
 void	fill_camera(t_data *data, t_cam *cam, int y_start);
 void	fill_ambient(t_data *data, t_list *lg, int y_start);
 void	fill_light(t_data *data, t_list *lg, int y_start);
@@ -87,7 +93,6 @@ int		fill_template(t_data *data, int y_start, char *name,
 void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
 
 //		menu/add_dec_menu.c
-void	add_dec(void *value, int type, int op);
 int		add_dec_cam(t_data *data, int i);
 int		add_dec_ambient(t_data *data, int i);
 int		add_dec_light(t_data *data, int i);
@@ -97,4 +102,9 @@ int		add_dec_sphere(t_data *data, int i);
 int		check_lst_index(t_list *lst, int *index, int i);
 int		add_dec_plane(t_data *data, int i);
 int		add_dec_cylinder(t_data *data, int i);
+
+//		menu/add_dec_menu3.c
+void	add_dec_float(float *value, int op, t_delim lim);
+void	add_dec_int(int *value, int op, t_delim lim);
+t_delim	gen_lim(int min, int max);
 #endif

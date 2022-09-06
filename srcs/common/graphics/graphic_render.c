@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 12:25:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:23:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	graphic_render(t_data *data)
 	while (--y >= 0)
 	{
 		r_bar[0]++;
-		ft_printf("\rRendering [ \x1b[1;32m%i%%\x1b[0m ] ...",
+		ft_printf("\rRendering ... [ \x1b[1;32m%i%%\x1b[0m ]",
 			(r_bar[0] * 100) / r_bar[1]);
 		x = 0;
 		while (x++ < WIN_WIDTH)
