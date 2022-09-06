@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 00:03:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:50:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ typedef struct s_rect
 	int	maxY;
 }	t_rect;
 
+typedef struct s_delim
+{
+	int	min;
+	int	max;
+}	t_delim;
+
 //		menu/build_menu.c
 t_rect	gen_rect(int minX, int maxX, int minY, int maxY);
 void	rect_display(t_data *data, t_rect rect, int color);
@@ -87,7 +93,6 @@ int		fill_template(t_data *data, int y_start, char *name,
 void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
 
 //		menu/add_dec_menu.c
-void	add_dec(void *value, int type, int op);
 int		add_dec_cam(t_data *data, int i);
 int		add_dec_ambient(t_data *data, int i);
 int		add_dec_light(t_data *data, int i);
@@ -97,4 +102,9 @@ int		add_dec_sphere(t_data *data, int i);
 int		check_lst_index(t_list *lst, int *index, int i);
 int		add_dec_plane(t_data *data, int i);
 int		add_dec_cylinder(t_data *data, int i);
+
+//		menu/add_dec_menu3.c
+void	add_dec_float(float *value, int op, t_delim lim);
+void	add_dec_int(int *value, int op, t_delim lim);
+t_delim	gen_lim(int min, int max);
 #endif

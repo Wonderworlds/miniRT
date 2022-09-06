@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 00:05:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:01:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	check_lst_index(t_list *lst, int *index, int i)
 static void	add_dec_plane2(t_plane *pl, int i, t_menu *menu)
 {
 	if (menu->field_index == 4)
-		add_dec(&pl->vec3.x, m_float, i);
+		add_dec_float(&pl->vec3.x, i, gen_lim(-1, 1));
 	else if (menu->field_index == 5)
-		add_dec(&pl->vec3.y, m_float, i);
+		add_dec_float(&pl->vec3.y, i, gen_lim(-1, 1));
 	else if (menu->field_index == 6)
-		add_dec(&pl->vec3.z, m_float, i);
+		add_dec_float(&pl->vec3.z, i, gen_lim(-1, 1));
 	else if (menu->field_index == 7)
-		add_dec(&pl->col.r, m_int, i);
+		add_dec_int(&pl->col.r, i, gen_lim(0, 255));
 	else if (menu->field_index == 8)
-		add_dec(&pl->col.g, m_int, i);
+		add_dec_int(&pl->col.g, i, gen_lim(0, 255));
 	else if (menu->field_index == 9)
-		add_dec(&pl->col.b, m_int, i);
+		add_dec_int(&pl->col.b, i, gen_lim(0, 255));
 }
 
 int	add_dec_plane(t_data *data, int i)
@@ -58,11 +58,11 @@ int	add_dec_plane(t_data *data, int i)
 	pl = (t_plane *)(ft_lst_at(data->scene->planes,
 				menu->index)->content);
 	if (menu->field_index == 1)
-		add_dec(&pl->pos.x, m_float, i);
+		add_dec_float(&pl->pos.x, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 2)
-		add_dec(&pl->pos.y, m_float, i);
+		add_dec_float(&pl->pos.y, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 3)
-		add_dec(&pl->pos.z, m_float, i);
+		add_dec_float(&pl->pos.z, i, gen_lim(-10000, 10000));
 	else
 		add_dec_plane2(pl, i, menu);
 	return (0);
@@ -71,21 +71,21 @@ int	add_dec_plane(t_data *data, int i)
 static void	add_dec_cylinder2(int i, t_menu *menu, t_vol *cy)
 {
 	if (menu->field_index == 4)
-		add_dec(&cy->vec3.x, m_float, i);
+		add_dec_float(&cy->vec3.x, i, gen_lim(-1, 1));
 	else if (menu->field_index == 5)
-		add_dec(&cy->vec3.y, m_float, i);
+		add_dec_float(&cy->vec3.y, i, gen_lim(-1, 1));
 	else if (menu->field_index == 6)
-		add_dec(&cy->vec3.z, m_float, i);
+		add_dec_float(&cy->vec3.z, i, gen_lim(-1, 1));
 	else if (menu->field_index == 7)
-		add_dec(&cy->h, m_float, i);
+		add_dec_float(&cy->h, i, gen_lim(0, 10000));
 	else if (menu->field_index == 8)
-		add_dec(&cy->d, m_float, i);
+		add_dec_float(&cy->d, i, gen_lim(0, 10000));
 	else if (menu->field_index == 9)
-		add_dec(&cy->col.r, m_int, i);
+		add_dec_int(&cy->col.r, i, gen_lim(0, 255));
 	else if (menu->field_index == 10)
-		add_dec(&cy->col.g, m_int, i);
+		add_dec_int(&cy->col.g, i, gen_lim(0, 255));
 	else if (menu->field_index == 11)
-		add_dec(&cy->col.b, m_int, i);
+		add_dec_int(&cy->col.b, i, gen_lim(0, 255));
 }
 
 int	add_dec_cylinder(t_data *data, int i)
@@ -99,11 +99,11 @@ int	add_dec_cylinder(t_data *data, int i)
 	cy = (t_vol *)(ft_lst_at(data->scene->vols,
 				menu->index)->content);
 	if (menu->field_index == 1)
-		add_dec(&cy->pos.x, m_float, i);
+		add_dec_float(&cy->pos.x, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 2)
-		add_dec(&cy->pos.y, m_float, i);
+		add_dec_float(&cy->pos.y, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 3)
-		add_dec(&cy->pos.z, m_float, i);
+		add_dec_float(&cy->pos.z, i, gen_lim(-10000, 10000));
 	else
 		add_dec_cylinder2(i, menu, cy);
 	return (0);
