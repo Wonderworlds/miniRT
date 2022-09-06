@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 18:13:48 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/06 19:50:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 	lights = (t_light *)scene->lights->next->content;
 	lights1 = (t_light *)scene->lights->content;
 	add_coeficient(&diffuse, lights1->r, &lights1->col);
+
 	vector_ab(hit_from_camera.pos, lights->pos, &dir_light);
 	unit_vector(&dir_light);
 
@@ -103,7 +104,6 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 	if (scene->bvh) {
 		find_volume(scene->bvh, ray_to_light);
 	}
-	// if (get_hit(&hit) == -1), there aren't a hit
 	if (get_hit(hit) == -1)
 	{
 		coeff = dot_product(hit_from_camera.normal, dir_light);

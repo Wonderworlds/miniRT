@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 18:09:29 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/06 19:51:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 		return (false);
 	return (true);
 }
-
+#include <stdio.h>
 float	solve_quadratic(float a, float b, float c)
 {
 	float	discriminant;
@@ -63,9 +63,10 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 {
 	t_hit	hit;
 	t_pos	vec3;
+	t_pos	offset;
 	double	d;
 
-	hit.dst_origin = t - 0.001;
+	hit.dst_origin = t;
 	vector_equal(ray->dir, &hit.pos);
 	vector_scale(t, &hit.pos);
 	vector_add(hit.pos, ray->origin, &hit.pos);
@@ -95,6 +96,9 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 		col_cpy(&pl->col, &hit.col);
 		pos_cpy(&pl->vec3, &hit.normal);
 	}
+	vector_equal(hit.normal, &offset);
+	vector_scale(0.02f, &offset);
+	vector_add(hit.pos, offset, &hit.pos);
 	update_hit(&hit);
 }
 
@@ -110,6 +114,8 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 	abc[2] = dot_product(e, e) - powf(sp->d / 2, 2);
 	t = solve_quadratic(abc[0], abc[1], abc[2]);
 	if (t == -1)
+		return (false);
+	if (t < 0)
 		return (false);
 	create_hit(t, sp, NULL, ray);
 	return (true);
