@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 17:13:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:27:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ambient_lightning(t_scene *scene, char *str)
 	int		i;
 	t_light	*a;
 
+	ft_printf("\nhere a\n");
+	i = 1;
 	if (scene->ambient)
 		exit_parse(scene);
 	malloc_light(&a, scene);
@@ -38,6 +40,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 		i++;
 	i += set_rgb(scene, &a->col, str + i);
 	scene->ambient = a;
+	ft_printf("\nhere b\n");
 }
 
 void	light(t_scene *scene, char *str)
