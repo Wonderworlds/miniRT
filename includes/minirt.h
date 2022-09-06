@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:53:40 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:40:33 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_bool			is_cylinder_hit(t_ray *ray, t_vol *cy);
 
 //		raycast/ray_print.c
 void			create_ray(const t_pos origin, const t_pos dir , t_ray *ray);
+int				find_volume(t_bvh *root, t_ray ray);
+void			find_plane(t_list *pl, t_ray *ray);
 t_rgb			ray_render(int y, int x, t_cam cam, t_scene *scene);
 
 //		lights/lights.c
