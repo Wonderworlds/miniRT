@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:19:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:08:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,82 @@ t_rgb	int_to_rgb(int col)
 	return (rgb);
 }
 
+/*t_rgb	add_lights(t_scene *scene, t_hit *hit)
+{
+	t_light	*lights;
+	t_light	*lights1;
+	t_pos	dir_light;
+	double	coeff;
+	t_pos	diffuse;
+	t_hit	hit_from_camera;
+//	t_ray	ray_to_light;
+
+	hit_cpy(hit, &hit_from_camera);
+	set_vector(0, 0, 0, &diffuse);
+	lights = (t_light *)scene->lights->next->content;
+	lights1 = (t_light *)scene->lights->content;
+
+	add_coeficient(&diffuse, lights1->r, &lights1->col);
+	vector_ab(hit_from_camera.pos, lights->pos, &dir_light);
+	unit_vector(&dir_light);
+
+//	// new_ray from old_hit to light, check if ther're a hit between them 
+	reset_hit();
+	create_ray(hit_from_camera.pos, dir_light, &ray_to_light);
+	find_plane(scene->planes, &ray_to_light);
+	if (scene->bvh)
+		find_volume(scene->bvh, ray_to_light);
+//
+	// if (get_hit(&hit) == -1), there aren't a hit
+	if (get_hit(hit) == -1)
+	{
+		ft_printf("YOOOOOOOOOOOO\n");
+		coeff = dot_product(hit_from_camera.normal, dir_light);
+		if (coeff > 0.f)
+		{
+			coeff *= lights->r / (vector_norm(hit_from_camera.normal) * vector_norm(dir_light));
+			add_coeficient(&diffuse, coeff, &lights->col);
+		}
+	}
+	c_mult(&diffuse, &hit_from_camera.col, &hit_from_camera.col);
+	return (hit_from_camera.col);
+}*/
+
 t_rgb	add_lights(t_scene *scene, t_hit *hit)
 {
 	t_light	*lights;
 	t_light	*ambient;
 	t_pos	dir_light;
+	t_hit	hit_from_camera;
 	double	coeff;
 	t_pos	diffuse;
+	t_ray	ray_to_light;
 
+	hit_cpy(hit, &hit_from_camera);
 	set_vector(0, 0, 0, &diffuse);
-	ambient = scene->ambient;
-	if (ambient)
-		add_coeficient(&diffuse, ambient->r, &ambient->col);
-	if (scene->lights)
+	lights = (t_light *)scene->lights->next->content;
+	lights1 = (t_light *)scene->lights->content;
+	add_coeficient(&diffuse, lights1->r, &lights1->col);
+
+	vector_ab(hit_from_camera.pos, lights->pos, &dir_light);
+	unit_vector(&dir_light);
+
+//	// new_ray from old_hit to light, check if ther're a hit between them 
+	reset_hit();
+	create_ray(hit_from_camera.pos, dir_light, &ray_to_light);
+	find_plane(scene->planes, &ray_to_light);
+	if (scene->bvh) {
+		find_volume(scene->bvh, ray_to_light);
+	}
+	if (get_hit(hit) == -1)
 	{
-		lights = (t_light *)scene->lights->content;
-		vector_ab(hit->pos, lights->pos, &dir_light);
-		unit_vector(&dir_light);
-		coeff = dot_product(hit->normal, dir_light);
+		coeff = dot_product(hit_from_camera.normal, dir_light);
 		if (coeff > 0)
 		{
-			coeff *= lights->r / (vector_norm(hit->normal) * vector_norm(dir_light));
+			coeff *= lights->r / (vector_norm(hit_from_camera.normal) * vector_norm(dir_light));
 			add_coeficient(&diffuse, coeff, &lights->col);
 		}
 	}
-	c_mult(&diffuse, &hit->col, &hit->col);
-	return (hit->col);
+	c_mult(&diffuse, &hit_from_camera.col, &hit_from_camera.col);
+	return (hit_from_camera.col);
 }
