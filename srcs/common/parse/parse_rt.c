@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 16:44:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:27:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	read_rt(int fd, t_scene *scene)
 			else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
 				cylinder(scene, str);
 			else if (str[0] != '\n')
-			exit_parse(scene);
+				exit_parse(scene);
 		}
 		free(str);
 		str = ft_gnl_rt(fd);

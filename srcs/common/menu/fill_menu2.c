@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 21:40:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:21:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,12 @@ void	fill_camera(t_data *data, t_cam *cam, int y_start)
 	y_start = fill_template(data, y_start, "fov", 3);
 }
 
-void	fill_ambient(t_data *data, t_list *lg, int y_start)
+void	fill_ambient(t_data *data, t_light *lg, int y_start)
 {
-	t_light	*ambient;
-
-	ambient = (t_light *)lg->content;
 	y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
-	fill_field(data, y_start, &ambient->r, m_float);
+	fill_field(data, y_start, &lg->r, m_float);
 	y_start = fill_template(data, y_start, "r", 3);
-	fill_field(data, y_start + STEP_FIELD, &ambient->col, m_t_rgb);
+	fill_field(data, y_start + STEP_FIELD, &lg->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);
 }
 

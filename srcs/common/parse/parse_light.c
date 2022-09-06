@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/25 14:15:06 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/06 17:29:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,12 @@ void	malloc_light(t_light **light, t_scene *scene)
 
 void	ambient_lightning(t_scene *scene, char *str)
 {
-	t_light	*a;
-	t_list	*lights;
-	t_light	*temp;
 	int		i;
+	t_light	*a;
 
 	i = 1;
-	lights = scene->lights;
-	while (lights)
-	{
-		temp = (t_light *)(lights->content);
-		if (temp->type == AMB_LIGHT)
-			exit_parse(scene);
-		lights = lights->next;
-	}
+	if (scene->ambient)
+		exit_parse(scene);
 	malloc_light(&a, scene);
 	a->type = AMB_LIGHT;
 	while (str[i] == ' ')
@@ -46,7 +38,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &a->col, str + i);
-	ft_lstadd_back(&scene->lights, ft_lstnew(a));
+	scene->ambient = a;
 }
 
 void	light(t_scene *scene, char *str)
