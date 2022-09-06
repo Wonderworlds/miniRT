@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 22:01:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:05:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,46 @@ void	str_vol(t_scene *scene, t_menu *menu)
 	(*f[menu->item + add])(menu);
 }
 
+static int	check_empty(t_scene *scene, int type)
+{
+	if (type == m_vol && !scene->vols)
+		return (1);
+	if (type == m_plane && !scene->planes)
+		return (1);
+	if (type == m_ambient && !scene->ambient)
+		return (1);
+	if (type == m_light && !scene->lights)
+		return (1);
+	return (0);
+}
+
+void	graphic_refresh(t_data *data, t_delim x, t_delim y)
+{
+	t_rgb		color;
+	int			i;
+
+	while (--y.max >= y.min)
+	{
+		i = x.min;
+		while (i++ < x.max)
+		{
+			color = ray_render(y.max, i, data->scene->cam, data->scene);
+			img_pix_put(&data->img, i, y.max, get_color(color));
+		}
+	}
+}
+
 int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 {
 	size_t	size;
 
+	if (check_empty(scene, menu->item))
+	{
+		menu->item++;
+		if (menu->item > 4)
+			menu->item = 0;
+		display_menu(data, menu, scene);
+	}
 	str_vol(scene, menu);
 	size = ft_strlen(&menu->bprint[0]);
 	rect_display(data, gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y,

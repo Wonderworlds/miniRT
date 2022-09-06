@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:26:12 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/06 16:37:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 double	dist_ab(const t_pos *a, const t_pos *b)
 {
-	return (sqrt(powf(b->x - a->x, 2) + powf(b->y - a->y, 2) + powf(b->z - a->z, 2)));
+	return (sqrt(powf(b->x - a->x, 2)
+			+ powf(b->y - a->y, 2) + powf(b->z - a->z, 2)));
 }
 
-void	vector_equal(const t_pos src, t_pos  *dest)
+void	vector_equal(const t_pos src, t_pos *dest)
 {
 	dest->x = src.x;
 	dest->y = src.y;

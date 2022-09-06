@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 14:40:33 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/06 21:07:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void			reset_hit(void);
 //		raycast/ray_volume_hit.c
 t_bool			is_aabb_hit(t_ray ray, t_box aabb);
 t_bool			is_sphere_hit(t_ray *ray, t_vol *sp);
-t_bool 			is_plane_hit(t_ray *ray, t_plane *pl);
+t_bool			is_plane_hit(t_ray *ray, t_plane *pl);
 t_bool			is_cylinder_hit(t_ray *ray, t_vol *cy);
 
 //		raycast/ray_print.c

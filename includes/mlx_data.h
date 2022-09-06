@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 23:46:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:07:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "mlx.h"
 
 # define WIN_WIDTH 1400
-# define ASPECT_RATIO (16.0f / 9.0f)
-# define WIN_HEIGHT WIN_WIDTH / ASPECT_RATIO
+# define ASPECT_RATIO 1.78f
+# define WIN_HEIGHT 786.5f
 # define VP_WIDTH 3.0f
 # define FOCAL_LENGTH 2.0f
 
@@ -36,7 +36,6 @@ typedef struct s_img
 typedef struct s_menu
 {
 	t_bool	is_visible;
-	t_img	menu_img;
 	int		item;
 	int		index;
 	int		field_index;
@@ -65,9 +64,11 @@ int		graphic_process(t_scene *scene);
 //		graphics/graphic_render.c
 int		img_pix_put(t_img *img, int x, int y, int color);
 int		graphic_render(t_data *data);
+int		get_color(t_rgb color);
 
 //		graphics/graphic_hook.c
 void	handle_hooks(t_data *data);
+int		exit_hook(t_data *data);
 
 //		menu/graphic_menu.c
 int		display_menu(t_data *data, t_menu *menu, t_scene *scene);

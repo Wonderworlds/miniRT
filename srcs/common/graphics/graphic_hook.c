@@ -6,18 +6,16 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:28:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:49:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 
-#define XK_Enter 65293
+#define XK_ENTER 65293
 
 int	exit_hook(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
 	mlx_loop_end(data->mlx_ptr);
 	return (0);
 }
@@ -31,7 +29,7 @@ int	key_press_hook(int keysym, t_data *data)
 		else
 			return (exit_hook(data));
 	}
-	if (keysym == XK_Enter && data->menu.is_visible)
+	if (keysym == XK_ENTER && data->menu.is_visible)
 		close_menu(data);
 	if (keysym == XK_Tab)
 		switch_menu(data);

@@ -6,13 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/05 22:01:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:10:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 
-void init_menu(t_menu *menu)
+void	init_menu(t_menu *menu)
 {
 	menu->is_visible = false;
 	menu->index = 0;
@@ -27,7 +27,6 @@ int	graphic_process(t_scene *scene)
 	t_data	data;
 
 	data.scene = scene;
-	init_menu(&data.menu);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		error_mlx_data(&data, NULL);
@@ -39,9 +38,11 @@ int	graphic_process(t_scene *scene)
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
+	init_menu(&data.menu);
 	handle_hooks(&data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
+	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 	return (0);
