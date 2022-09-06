@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 17:13:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:08:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ void	check_value(t_scene scene)
 
 	if (scene.cam.is_set == true)
 		printf("C	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d\n", cam.pos.x, cam.pos.y, cam.pos.z, cam.vec3.x, cam.vec3.y, cam.vec3.z, cam.h_fov);
+	if (scene.ambient)
+		printf("A	%.1f		%d,%d,%d\n", scene.ambient->r, scene.ambient->col.r, scene.ambient->col.g, scene.ambient->col.b);
 	while (check_lights)
 	{
 		light = (t_light *)(check_lights->content);
-		if (light->type == AMB_LIGHT) 
-			printf("A	%.1f		%d,%d,%d\n", light->r, light->col.r, light->col.g, light->col.b);
-		else if (light->type == LIGHT) 
-			printf("L	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", light->pos.x, light->pos.y, light->pos.z, light->r, light->col.r, light->col.g, light->col.b);
+		printf("L	%.1f,%.1f,%.1f	%.1f		%d,%d,%d\n", light->pos.x, light->pos.y, light->pos.z, light->r, light->col.r, light->col.g, light->col.b);
 		check_lights = check_lights->next;
 	} 
 	while (check_vols)
@@ -76,7 +75,8 @@ void	leave_rt(t_scene *scene)
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
 	ft_lstclear(&scene->planes, &free);
-	free(scene->ambient);
+	if (scene->ambient)
+		free(scene->ambient);
 	btree_remove_infix(&scene->bvh, &free);
 }
 

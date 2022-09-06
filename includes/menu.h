@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:21:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:06:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,7 @@ int		add_dec_cylinder(t_data *data, int i);
 void	add_dec_float(float *value, int op, t_delim lim);
 void	add_dec_int(int *value, int op, t_delim lim);
 t_delim	gen_lim(int min, int max);
+
+//		menu/graphic_menu.c
+void	graphic_refresh(t_data *data, t_delim x, t_delim y);
 #endif

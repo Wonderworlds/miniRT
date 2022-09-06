@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 16:30:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:07:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_img
 typedef struct s_menu
 {
 	t_bool	is_visible;
-	char	*save_img;
 	int		item;
 	int		index;
 	int		field_index;
@@ -65,6 +64,7 @@ int		graphic_process(t_scene *scene);
 //		graphics/graphic_render.c
 int		img_pix_put(t_img *img, int x, int y, int color);
 int		graphic_render(t_data *data);
+int		get_color(t_rgb color);
 
 //		graphics/graphic_hook.c
 void	handle_hooks(t_data *data);
