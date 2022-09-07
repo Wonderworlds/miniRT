@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/07 19:26:27 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/07 19:57:22 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,10 @@ COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		bvh_utils.c)		\
 												$(addprefix raycast/,	hit_manager.c		\
 																		ray_print.c			\
-																		ray_volume_hit.c)	\
+																		create_hit.c		\
+																		ray_volume_hit.c	\
+																		ray_cylinder_hit.c	\
+																		ray_cylinder_hit2.c)\
 												$(addprefix menu/,		graphic_menu.c		\
 																		build_menu.c		\
 																		bp_utils.c			\
