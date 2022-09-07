@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:47:23 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:55:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:30:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	update_hit(t_hit *ptr)
 {
 	float	dst;
 
+	if (ptr->dst_origin < 0)
+		return ;
 	dst = get_hit(NULL);
 	if (dst > ptr->dst_origin || dst == -1)
 		set_hit(ptr, ptr->dst_origin);
