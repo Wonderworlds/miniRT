@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:46:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 22:24:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 23:23:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,35 @@
 #include "mlx_data.h"
 #include "libft.h"
 
-const int BYTES_PER_PIXEL = 3; /// red, green, & blue
-const int FILE_HEADER_SIZE = 14;
-const int INFO_HEADER_SIZE = 40;
+#define BYTES_PER_PIXEL 3
+#define FILE_HEADER_SIZE 14
+#define INFO_HEADER_SIZE 40
+#define FILENAME_BASE "screenshot_"
 
-static void	createBitmapFileHeader (int filesize, unsigned char *dest);
+static void	gen_bmp_fheader(int filesize, unsigned char *dest);
 static void	createBitmapInfoHeader(int height, int width, unsigned char *dest);
+static char	*create_filename(const char *base);
 
-int	generateBitmapImage(const unsigned char* img, int height, int width,
-		const char* filename)
+int	gen_bmp(const unsigned char	*img, int height, int width)
 {
 	int				fd;
 	int				line;
 	char			*filename_bmp;
-	unsigned char	fileHeader[FILE_HEADER_SIZE];
-	unsigned char	infoHeader[INFO_HEADER_SIZE];
+	unsigned char	file_header[FILE_HEADER_SIZE];
+	unsigned char	info_header[INFO_HEADER_SIZE];
 
-	line = ft_strlen(filename);
-	filename_bmp = ft_calloc(sizeof(char), line + 5);
+	filename_bmp = create_filename(FILENAME_BASE);
 	if (!filename_bmp)
 		return (1);
-	ft_memcpy(filename_bmp, filename, line + 1);
-	ft_strlcat(filename_bmp, ".bmp", line + 5);
 	fd = open(filename_bmp, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0755);
-	line = FILE_HEADER_SIZE + INFO_HEADER_SIZE + (BYTES_PER_PIXEL * height * width);
-	createBitmapFileHeader(line, &fileHeader[0]);
-	createBitmapInfoHeader(height, width, &infoHeader[0]);
-	write(fd, fileHeader, FILE_HEADER_SIZE);
-	write(fd, infoHeader, INFO_HEADER_SIZE);
+	line = FILE_HEADER_SIZE + INFO_HEADER_SIZE
+		+ (BYTES_PER_PIXEL * height * width);
+	gen_bmp_fheader(line, &file_header[0]);
+	createBitmapInfoHeader(height, width, &info_header[0]);
+	write(fd, file_header, FILE_HEADER_SIZE);
+	write(fd, info_header, INFO_HEADER_SIZE);
 	line = height;
-	while(--line + 1)
+	while (--line + 1)
 		write(fd, img + width * line * 4, width * 4);
 	ft_printf("\nScreenshot ==> %s\n", filename_bmp);
 	free(filename_bmp);
@@ -51,19 +50,49 @@ int	generateBitmapImage(const unsigned char* img, int height, int width,
 	return (0);
 }
 
-static void	createBitmapFileHeader (int filesize, unsigned char *dest)
+char	*create_filename(const char *base)
 {
-	ft_memcpy(dest, (char[]){'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0}, 14);
+	char	*filename;
+	size_t	size;
+	size_t	i;
+
+	size = ft_strlen(base);
+	filename = ft_calloc(sizeof(char), size + 8);
+	if (!filename)
+		return (NULL);
+	ft_memcpy(filename, base, size);
+	filename[size] = 0;
+	i = size + 4;
+	ft_strlcat(filename, "0000", 1 + i--);
+	ft_strlcat(filename, ".bmp", size + 9);
+	while (!access(filename, F_OK))
+	{
+		while (filename[i] == '9')
+			filename[i--] = '0';
+		if (i < size)
+			return (free(filename), NULL);
+		filename[i] = filename[i] + 1;
+		if (i < size + 3)
+			i = size + 3;
+	}
+	return (filename);
+}
+
+static void	gen_bmp_fheader(int filesize, unsigned char *dest)
+{
+	ft_memcpy(dest, (char []){'B', 'M',
+		0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0}, 14);
 	dest[2] = (unsigned char)(filesize);
 	dest[3] = (unsigned char)(filesize >> 8);
 	dest[4] = (unsigned char)(filesize >> 16);
 	dest[5] = (unsigned char)(filesize >> 24);
 }
 
-static void	createBitmapInfoHeader (int height, int width, unsigned char *dest)
+static void	gen_bmp_iheader(int height, int width, unsigned char *dest)
 {
-	ft_memcpy(dest, (char[]){40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 32,0,
-				0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0}, 40);
+	ft_memcpy(dest, (char []){40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 32, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0}, 40);
 	dest[4] = (unsigned char)(width);
 	dest[5] = (unsigned char)(width >> 8);
 	dest[6] = (unsigned char)(width >> 16);
