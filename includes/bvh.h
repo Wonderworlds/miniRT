@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:31:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:31:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:30:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void			print_bvh(char *prefix, t_bvh *node, int is_left);
 //		bvhbvh/sort_bvh.c
 unsigned int	sort_vols(t_list **vols, const t_box *box,
 					unsigned int begin, unsigned int end);
+
+void	check_value(t_scene scene);
 
 #endif

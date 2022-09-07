@@ -6,17 +6,28 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 22:46:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:45:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 #include "menu.h"
+#include "minirt.h"
+#include "bvh.h"
 
 void	close_menu(t_data *data)
 {
+	int	size;
+
 	data->menu.is_visible = false;
 	update_unit_vector(data->menu.item, data->scene);
+	size = ft_lstsize(data->scene->vols) - 1;
+	if (size >= 0)
+	{
+		btree_remove_infix(&data->scene->bvh, &free);
+		update_bounds_vol(data->scene->vols);
+		build_node(&data->scene->vols, &data->scene->bvh, 0, (unsigned int)size);
+	}
 	graphic_render(data);
 }
 
@@ -34,12 +45,15 @@ void	switch_menu(t_data *data)
 		data->menu.item++;
 		if (data->menu.item > 4)
 			data->menu.item = 0;
-		graphic_refresh(data, gen_lim(RECT_START_X, RECT_END_X),
-			gen_lim(RECT_START_Y + STEP_FIELD * 6,
-				RECT_START_Y + STEP_FIELD * 17));
+		get_save_img(&data->img,
+			gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y2, RECT_END_Y2));
 	}
 	else
+	{
 		data->menu.is_visible = true;
+		set_save_img(&data->img,
+			gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y2, RECT_END_Y2));
+	}
 	data->menu.field_index = 0;
 	open_menu(data);
 }

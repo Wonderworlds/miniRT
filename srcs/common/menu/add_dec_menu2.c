@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:01:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:04:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,13 @@ int	add_dec_cylinder(t_data *data, int i)
 
 	menu = &data->menu;
 	if (menu->field_index == 0)
-		return (check_lst_index(data->scene->vols, &menu->index, i));
+	{
+		if (check_lst_index(data->scene->vols, &menu->index, i))
+			return (1);
+		get_save_img(&data->img,
+			gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y2, RECT_END_Y2));
+		return (0);
+	}
 	cy = (t_vol *)(ft_lst_at(data->scene->vols,
 				menu->index)->content);
 	if (menu->field_index == 1)

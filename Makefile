@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/06 16:12:20 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/07 15:31:00 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
 																		build_menu.c		\
 																		bp_utils.c			\
 																		event_menu.c		\
+																		copy_img.c			\
 																		add_dec_menu.c		\
 																		add_dec_menu2.c		\
 																		add_dec_menu3.c		\

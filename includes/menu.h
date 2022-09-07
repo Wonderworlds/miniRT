@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 22:38:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:29:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define RECT_START_X 10
 # define RECT_END_X 210
 # define RECT_START_Y 20
+# define RECT_START_Y2 176
+# define RECT_END_Y2 462
 
 # define FOFFSET_Y 5
 # define FOFFSET_X 10
@@ -111,4 +113,8 @@ void	update_unit_vector(t_mitem type, t_scene *scene);
 
 //		menu/graphic_menu.c
 void	graphic_refresh(t_data *data, t_delim x, t_delim y);
+
+void get_save_img(t_img *img, t_rect rect);
+void set_save_img(t_img *img, t_rect rect);
+
 #endif
