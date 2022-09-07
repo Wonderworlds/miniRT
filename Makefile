@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/07 15:31:00 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/07 19:26:27 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 					\
 												)
 
 FLORANSRC			:=	$(addprefix floran/,	main.c					\
+												bmp_export.c				\
 												)
 
 CC					:=	cc
