@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/04 18:14:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 12:54:56 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	plane(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_vec3(scene, &pl->vec3, str + i);
+	if (pl->vec3.x == 0 && pl->vec3.y == 0 && pl->vec3.z == 0)
+		pl->vec3.y = 1.f;
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &pl->col, str + i);
@@ -85,6 +87,8 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_vec3(scene, &cy->vec3, str + i);
+	if (cy->vec3.x == 0 && cy->vec3.y == 0 && cy->vec3.z == 0)
+		cy->vec3.y = 1.f;
 	while (str[i] == ' ')
 		i++;
 	i += set_float(scene, &cy->d, str + i);

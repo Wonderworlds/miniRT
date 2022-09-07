@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/02 17:13:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 12:58:22 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	camera(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_vec3(scene, &scene->cam.vec3, str + i);
+	if (scene->cam.vec3.x == 0 && scene->cam.vec3.y == 0
+		&& scene->cam.vec3.z == 0)
+		scene->cam.vec3.z = -1.f;
 	while (str[i] == ' ')
 		i++;
 	i += set_h_fov(scene, &scene->cam.h_fov, str + i);
