@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 14:50:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:07:12 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,67 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 	return (false);
 }
 
+/*void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
+{
+	float	denom;
+	t_pos	hit;	
+	t_pos	cy_pl[2];
+	t_bool	normal_minus;
+	float	t[3];
+	t_pos	e[2];
+	t_hit	h;
+
+	denom = dot_product(cy->vec3, ray->dir);
+	normal_minus = false;
+	if (fabsf(denom) > 0.0001f)
+	{
+//		if (dist_ab(&cy->pos, &ray->origin) < dist_ab(&cy_top, &ray->origin))
+//		{
+			vector_ab(ray->origin, cy->pos, e);
+			vector_equal(cy->pos, &cy_pl[0]);
+		//	normal_minus = true;
+//		}
+//		else
+//		{
+			vector_ab(ray->origin, cy_top, e + 1);
+			vector_equal(cy_top, &cy_pl[1]);
+//		}
+		t[0] = dot_product(e[0], cy->vec3) / denom;
+		t[1] = dot_product(e[1], cy->vec3) / denom;
+		if (t[1] <= 0)
+		{
+			t[2] = t[0];
+			normal_minus = true;
+			vector_equal(cy_pl[0], &cy_pl[2]);
+		}
+		else
+		{
+			t[2] = t[1];
+			vector_equal(cy_pl[1], &cy_pl[2]);
+		}
+		if (t[2] >= 0.00001f)
+		{
+			vector_equal(ray->dir, &hit);
+			vector_scale(t[2], &hit);
+			vector_add(hit, ray->origin, &hit);
+			if (dist_ab(&hit, &cy_pl[2]) <= cy->d / 2)
+			{
+				h.dst_origin = t[2];
+				vector_equal(ray->dir, &h.pos);
+				vector_scale(t[2], &h.pos);
+				vector_add(h.pos, ray->origin, &h.pos);
+				col_cpy(&cy->col, &h.col);
+				vector_equal(cy->vec3, &h.normal);
+				if (normal_minus == true)
+					vector_scale(-1, &h.normal);
+				if (dot_product(h.normal, ray->dir) > 0)
+					vector_scale(-1, &h.normal);
+				update_hit(&h);
+			}
+		}
+	}
+}*/
+
 void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 {
 	float	denom;
@@ -151,18 +212,16 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 	normal_minus = false;
 	if (fabsf(denom) > 0.0001f)
 	{
-		if (dist_ab(&cy->pos, &ray->origin) < dist_ab(&cy_top, &ray->origin))
-		{
-			vector_ab(ray->origin, cy->pos, &e);
-			vector_equal(cy->pos, &cy_pl);
-			normal_minus = true;
-		}
-		else
+		vector_ab(ray->origin, cy->pos, &e);
+		vector_equal(cy->pos, &cy_pl);
+		normal_minus = true;
+		t = dot_product(e, cy->vec3) / denom;
+		if (t < 0.00001f || (t >= 0.00001f && dist_ab(&cy->pos, &ray->origin) > dist_ab(&cy_top, &ray->origin)))
 		{
 			vector_ab(ray->origin, cy_top, &e);
 			vector_equal(cy_top, &cy_pl);
+			t = dot_product(e, cy->vec3) / denom;
 		}
-		t = dot_product(e, cy->vec3) / denom;
 		if (t >= 0.00001f)
 		{
 			vector_equal(ray->dir, &hit);
