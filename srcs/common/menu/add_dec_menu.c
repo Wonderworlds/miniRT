@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:17:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:01:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	add_dec_sphere(t_data *data, int i)
 		add_dec_int(&sp->col.g, i, gen_lim(0, 255));
 	else if (menu->field_index == 7)
 		add_dec_int(&sp->col.b, i, gen_lim(0, 255));
+	if (1 <= menu->field_index && menu->field_index <= 4)
+		menu->has_changed = true;
 	return (0);
 }
 

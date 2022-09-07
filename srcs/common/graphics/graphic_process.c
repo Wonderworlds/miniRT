@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 15:45:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:03:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_menu(t_menu *menu)
 {
 	menu->is_visible = false;
+	menu->has_changed = false;
 	menu->index = 0;
 	menu->item = 0;
 	menu->field_index = 0;

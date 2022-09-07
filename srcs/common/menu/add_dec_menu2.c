@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 16:04:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:01:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int	add_dec_cylinder(t_data *data, int i)
 		add_dec_float(&cy->pos.z, i, gen_lim(-10000, 10000));
 	else
 		add_dec_cylinder2(i, menu, cy);
+	if (1 <= menu->field_index && menu->field_index <= 8)
+		menu->has_changed = true;
 	return (0);
 }
