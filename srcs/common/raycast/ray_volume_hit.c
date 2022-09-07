@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 16:18:47 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:52:30 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ t_bool is_plane_hit(t_ray *ray, t_plane *pl)
 void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 {
 	float	denom;
-	t_pos	hit;	
+//	t_pos	hit;	
 	t_pos	cy_pl;
 	t_bool	normal_minus;
 	float	t;
@@ -163,15 +163,15 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 		}
 		if (t >= 0.00001f)
 		{
-			vector_equal(ray->dir, &hit);
-			vector_scale(t, &hit);
-			vector_add(hit, ray->origin, &hit);
-			if (dist_ab(&hit, &cy_pl) <= cy->d / 2)
+//			vector_equal(ray->dir, &hit);
+//			vector_scale(t, &hit);
+//			vector_add(hit, ray->origin, &hit);
+			vector_equal(ray->dir, &h.pos);
+			vector_scale(t, &h.pos);
+			vector_add(h.pos, ray->origin, &h.pos);
+			if (dist_ab(&h.pos, &cy_pl) <= cy->d / 2)
 			{
 				h.dst_origin = t;
-				vector_equal(ray->dir, &h.pos);
-				vector_scale(t, &h.pos);
-				vector_add(h.pos, ray->origin, &h.pos);
 				col_cpy(&cy->col, &h.col);
 				vector_equal(cy->vec3, &h.normal);
 				if (normal_minus == true)
