@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 12:51:38 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 14:45:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ float	solve_quadratic(float a, float b, float c)
 		return (-1);
 	t0 = (-b - sqrtf(discriminant)) / (2 * a);
 	t1 = (-b + sqrtf(discriminant)) / (2 * a);
-	if (t0 > t1)
+	if (t0 > t1 || (t0 < 0 && t1 >= 0))
 		return (t1);
 	return (t0);
 }
@@ -95,9 +95,9 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 	{
 		col_cpy(&pl->col, &hit.col);
 		pos_cpy(&pl->vec3, &hit.normal);
-		if (dot_product(hit.normal, ray->dir) > 0)
-			vector_scale(-1, &hit.normal);
 	}
+	if (dot_product(hit.normal, ray->dir) > 0)
+		vector_scale(-1, &hit.normal);
 	vector_equal(hit.normal, &offset);
 	vector_scale(0.02f, &offset);
 	vector_add(hit.pos, offset, &hit.pos);
@@ -181,8 +181,10 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray)
 				vector_scale(t, &h.pos);
 				vector_add(h.pos, ray->origin, &h.pos);
 				col_cpy(&cy->col, &h.col);
-				vector_equal(cy->vec3, &h.normal); 
+				vector_equal(cy->vec3, &h.normal);
 				if (normal_minus == true)
+					vector_scale(-1, &h.normal);
+				if (dot_product(h.normal, ray->dir) > 0)
 					vector_scale(-1, &h.normal);
 				update_hit(&h);
 			}
