@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 15:46:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:02:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_img
 typedef struct s_menu
 {
 	t_bool	is_visible;
+	t_bool	has_changed;
 	int		item;
 	int		index;
 	int		field_index;

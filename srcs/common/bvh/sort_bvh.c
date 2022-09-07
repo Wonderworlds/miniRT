@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:35:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:23:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 	unsigned int	m;
 
 	new_start = get_furthest_vol(&(box->center), *vols, begin, end);
+	if (!new_start)
+	{
+		ft_printf("the fuck\n");
+	}
 	new_lst_start(vols, new_start, begin, end);
 	sort_list_custom(&(*vols)->next,
 		&((t_vol *)new_start->content)->box.center, begin, end);
