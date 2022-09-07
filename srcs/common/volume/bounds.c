@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/30 19:04:38 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:45:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+#include "structs_utils.h"
 #include <math.h>
 
 void	sphere_bounds(t_vol *sp)
@@ -51,4 +52,21 @@ void	cylinder_bounds(t_vol *cy)
 		fminf(tmp[0].z, tmp[1].z), &cy->box.min);
 	bbox_center(&cy->box, &cy->box.center);
 	cy->box.expend = bbox_expend(&cy->box);
+}
+
+void	update_bounds_vol(t_list *vols)
+{
+	t_vol	*vol;
+
+	if (!vols)
+		return ;
+	while (vols)
+	{
+		vol = (t_vol *)vols->content;
+		if (vol->type == SPHERE)
+			sphere_bounds(vol);
+		else
+			cylinder_bounds(vol);
+		vols = vols->next;
+	}
 }

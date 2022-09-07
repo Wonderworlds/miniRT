@@ -6,17 +6,28 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 16:06:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:45:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 #include "menu.h"
+#include "minirt.h"
+#include "bvh.h"
 
 void	close_menu(t_data *data)
 {
+	int	size;
+
 	data->menu.is_visible = false;
 	update_unit_vector(data->menu.item, data->scene);
+	size = ft_lstsize(data->scene->vols) - 1;
+	if (size >= 0)
+	{
+		btree_remove_infix(&data->scene->bvh, &free);
+		update_bounds_vol(data->scene->vols);
+		build_node(&data->scene->vols, &data->scene->bvh, 0, (unsigned int)size);
+	}
 	graphic_render(data);
 }
 

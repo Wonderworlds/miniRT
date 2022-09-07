@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:04:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 16:12:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:21:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "menu.h"
 #include "mlx_data.h"
+#include "utils.h"
 
 static void	copy_img(t_img *img, t_rect *rect, int *new_addr, int action);
 

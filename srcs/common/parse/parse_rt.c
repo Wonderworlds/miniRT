@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 17:27:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:23:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	parse_rt(char *arg, t_scene *scene)
 	fd = open_file(arg);
 	scene->fd = fd;
 	read_rt(fd, scene);
-	size = ft_lstsize(scene->vols) - 1;
 	if (scene->cam.is_set == false)
 		exit_parse_cam(scene);
+	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 	close(fd);
