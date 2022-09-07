@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 16:23:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:50:28 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ void	exit_parse(t_scene *scene)
 	free(scene->line_gnl);
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
+	if (scene->ambient)
+		free(scene->ambient);
 	close(scene->fd);
 	ft_fprintf(2, "Error\nError parse format\n");
 	exit(EXIT_FAILURE);
 }
 
-void	exit_parse_cam(t_scene *scene)
+void	exit_parse_cam(t_scene *scene, char *str)
 {
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
 	close(scene->fd);
-	ft_fprintf(2, "Error\nError parse format: camera 'C' is not set\n");
+	ft_fprintf(2, "%s", str);
 	exit(EXIT_FAILURE);
 }
 
@@ -90,7 +92,11 @@ void	parse_rt(char *arg, t_scene *scene)
 	scene->fd = fd;
 	read_rt(fd, scene);
 	if (scene->cam.is_set == false)
-		exit_parse_cam(scene);
+		exit_parse_cam(scene,
+			"Error\nError parse format: camera 'C' is not set\n");
+	if (!scene->ambient)
+		exit_parse_cam(scene,
+			"Error\nError parse format: ambient light 'A' is not set\n");
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
