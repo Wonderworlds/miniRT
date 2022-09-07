@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 21:07:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:17:21 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "structs_utils.h"
 
 # define ALBEDO 0.3f
+
+//		main.c
+void	leave_rt(t_scene *scene);
 
 //		parse/parse_rt.c
 void			parse_rt(char *arg, t_scene *scene);

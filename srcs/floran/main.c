@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 17:27:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:13:23 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,18 @@ void	init_scene(t_scene *scene)
 	scene->lights = NULL;
 	scene->planes = NULL;
 	scene->bvh = NULL;
+	scene->ambient = NULL;
 	scene->cam.is_set = false;
 }
 
 void	leave_rt(t_scene *scene)
 {
+	free(
 	ft_lstclear(&scene->lights, &free_light);
 	ft_lstclear(&scene->planes, &free_plane);
 	ft_lstclear(&scene->vols, &free_vol);
+	if (scene->ambient)
+		free(scene->ambient);
 	btree_remove_infix(&scene->bvh, &free);
 }
 

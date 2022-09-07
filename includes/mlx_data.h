@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 18:07:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 12:14:31 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIN_WIDTH 1400
 # define ASPECT_RATIO 1.78f
-# define WIN_HEIGHT 786.5f
+# define WIN_HEIGHT 786
 # define VP_WIDTH 3.0f
 # define FOCAL_LENGTH 2.0f
 
