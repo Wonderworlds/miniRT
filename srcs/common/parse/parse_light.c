@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 17:12:39 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 20:05:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	malloc_light(t_light **light, t_scene *scene)
 {
 	*light = malloc(sizeof(t_light));
 	if (!light)
-		exit_parse(scene);
+		exit_parse(scene, NULL);
 }
 
 void	ambient_lightning(t_scene *scene, char *str)
@@ -29,7 +29,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 
 	i = 1;
 	if (scene->ambient)
-		exit_parse(scene);
+		exit_parse(scene, NULL);
 	malloc_light(&a, scene);
 	a->type = AMB_LIGHT;
 	while (str[i] == ' ')
@@ -54,7 +54,7 @@ void	light(t_scene *scene, char *str)
 	{
 		temp = lights->content;
 		if (temp->type == LIGHT)
-			exit_parse(scene);
+			exit_parse(scene, NULL);
 		lights = lights->next;
 	}
 	malloc_light(&l, scene);

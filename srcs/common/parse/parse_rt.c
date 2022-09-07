@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 19:50:28 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 20:04:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "bvh.h"
 
-void	exit_parse(t_scene *scene)
+void	exit_parse(t_scene *scene, const char *error)
 {
 	free(scene->line_gnl);
 	ft_lstclear(&scene->lights, &free);
@@ -24,7 +24,10 @@ void	exit_parse(t_scene *scene)
 	if (scene->ambient)
 		free(scene->ambient);
 	close(scene->fd);
-	ft_fprintf(2, "Error\nError parse format\n");
+	if (!error)
+		ft_fprintf(2, "Error\nError parse format\n");
+	else
+		ft_fprintf(2, "%s", error);
 	exit(EXIT_FAILURE);
 }
 
@@ -76,7 +79,7 @@ void	read_rt(int fd, t_scene *scene)
 			else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
 				cylinder(scene, str);
 			else if (str[0] != '\n')
-				exit_parse(scene);
+				exit_parse(scene, NULL);
 		}
 		free(str);
 		str = ft_gnl_rt(fd);
@@ -99,6 +102,10 @@ void	parse_rt(char *arg, t_scene *scene)
 			"Error\nError parse format: ambient light 'A' is not set\n");
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
+	{
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
+		if (!scene->bvh)
+			exit_parse_cam(scene, "Error\nmalloc fail\n");
+	}
 	close(fd);
 }

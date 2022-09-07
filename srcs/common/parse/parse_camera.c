@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 12:58:22 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 20:05:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	camera(t_scene *scene, char *str)
 
 	i = 1;
 	if (scene->cam.is_set == true)
-		exit_parse(scene);
+		exit_parse(scene, NULL);
 	scene->cam.is_set = true;
 	while (str[i] == ' ')
 		i++;

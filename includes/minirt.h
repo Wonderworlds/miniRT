@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:12:50 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/07 20:05:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	leave_rt(t_scene *scene);
 
 //		parse/parse_rt.c
 void			parse_rt(char *arg, t_scene *scene);
-void			exit_parse(t_scene *scene);
+void			exit_parse(t_scene *scene, const char *error);
 
 //		parse/format_data.c
 t_bool			pos_format(char *str);
