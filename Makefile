@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/07 19:57:22 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/07 22:12:52 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
 												vector_math.c			\
 												vector_math2.c			\
 												vector_math3.c			\
+												bmp_export.c			\
 												struct_utils.c			\
 												color_utils.c			\
 												bbox_utils.c			\
@@ -82,7 +83,6 @@ AMIRSRC				:=	$(addprefix amir/,		main.c 					\
 												)
 
 FLORANSRC			:=	$(addprefix floran/,	main.c					\
-												bmp_export.c				\
 												)
 
 CC					:=	cc

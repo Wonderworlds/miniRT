@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:12:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:12:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,7 @@ void	hit_cpy(const t_hit *src, t_hit *dest);
 void	ft_itoa_custom(int n, char *str, size_t size);
 void	ft_ftoa_custom(float n, char *str, size_t size);
 
+//		utils/bmp_export.c
+int		generateBitmapImage(const unsigned char* img, int height, int width,
+			const char* filename);
 #endif

@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/06 17:49:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:17:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "utils.h"
 
 #define XK_ENTER 65293
 
@@ -31,6 +32,9 @@ int	key_press_hook(int keysym, t_data *data)
 	}
 	if (keysym == XK_ENTER && data->menu.is_visible)
 		close_menu(data);
+	if (keysym == XK_p)
+		generateBitmapImage((unsigned char *)data->img.addr,
+			WIN_HEIGHT, WIN_WIDTH, "screenshot");
 	if (keysym == XK_Tab)
 		switch_menu(data);
 	if (keysym == XK_Down && data->menu.is_visible)
