@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 20:04:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/07 20:11:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,21 @@ void	read_rt(int fd, t_scene *scene)
 		error_msg("Error\nfile: empty\n");
 	while (str)
 	{
-		if (str[0] != '#')
-		{
-			scene->line_gnl = str;
-			if (str[0] == 'A' && str[1] == ' ')
-				ambient_lightning(scene, str);
-			else if (str[0] == 'C' && str[1] == ' ')
-				camera(scene, str);
-			else if (str[0] == 'L' && str[1] == ' ')
-				light(scene, str);
-			else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
-				sphere(scene, str);
-			else if (str[0] == 'p' && str[1] == 'l' && str[2] == ' ')
-				plane(scene, str);
-			else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
-				cylinder(scene, str);
-			else if (str[0] != '\n')
-				exit_parse(scene, NULL);
-		}
+		scene->line_gnl = str;
+		if (str[0] == 'A' && str[1] == ' ')
+			ambient_lightning(scene, str);
+		else if (str[0] == 'C' && str[1] == ' ')
+			camera(scene, str);
+		else if (str[0] == 'L' && str[1] == ' ')
+			light(scene, str);
+		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
+			sphere(scene, str);
+		else if (str[0] == 'p' && str[1] == 'l' && str[2] == ' ')
+			plane(scene, str);
+		else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
+			cylinder(scene, str);
+		else if (str[0] != '\n')
+			exit_parse(scene, NULL);
 		free(str);
 		str = ft_gnl_rt(fd);
 	}
