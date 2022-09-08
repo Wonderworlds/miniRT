@@ -6,13 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/30 18:40:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:22:47 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char maxc(char a, char b)
+char	maxc(char a, char b)
 {
 	if (a >= b)
 		return (a);
@@ -26,7 +26,7 @@ int	max(int a, int b)
 	return (b);
 }
 
-long maxl(long a, long b)
+long	maxl(long a, long b)
 {
 	if (a >= b)
 		return (a);

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min.c                                              :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 18:47:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:22:18 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char minc(char a, char b)
+char	minc(char a, char b)
 {
 	if (a >= b)
 		return (a);
@@ -26,7 +26,7 @@ int	min(int a, int b)
 	return (b);
 }
 
-long minl(long a, long b)
+long	minl(long a, long b)
 {
 	if (a >= b)
 		return (a);
