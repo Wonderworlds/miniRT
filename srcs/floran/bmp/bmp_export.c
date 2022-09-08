@@ -21,7 +21,7 @@
 
 static void	gen_bmp_fheader(int filesize, unsigned char *dest);
 static void	createBitmapInfoHeader(int height, int width, unsigned char *dest);
-static void	create_filename(char *file);
+static int	create_filename(char *file);
 
 int	gen_bmp(const unsigned char	*img, int height, int width)
 {
@@ -44,7 +44,6 @@ int	gen_bmp(const unsigned char	*img, int height, int width)
 	while (--line + 1)
 		write(fd, img + width * line * 4, width * 4);
 	ft_printf("\nScreenshot ==> %s\n", filename_bmp);
-	free(filename_bmp);
 	close(fd);
 	return (0);
 }
