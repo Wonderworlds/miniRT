@@ -6,17 +6,19 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 23:14:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:56:42 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "libft.h"
 #include "utils.h"
 
 #define XK_ENTER 65293
 
 int	exit_hook(t_data *data)
 {
+	ft_printf("\n");
 	mlx_loop_end(data->mlx_ptr);
 	return (0);
 }

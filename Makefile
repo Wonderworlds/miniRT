@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/07 23:15:32 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/08 18:01:41 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	$(addprefix common/,	$(addprefix graphics/,	graphic_process.c	\
+COMMONSRCS			:=	$(addprefix common/,	$(addprefix main/,		main.c				\
+																		start_and_leave.c)	\
+												$(addprefix graphics/,	graphic_process.c	\
 																		error_mlx.c			\
 																		graphic_hook.c		\
 																		graphic_render.c)	\
@@ -78,10 +80,10 @@ UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
 												)
 
 
-AMIRSRC				:=	$(addprefix amir/,		main.c 					\
+AMIRSRC				:=	$(addprefix amir/,			 					\
 												)
 
-FLORANSRC			:=	$(addprefix floran/,	main.c					\
+FLORANSRC			:=	$(addprefix floran/,	main_floran.c					\
 												)
 
 CC					:=	cc
@@ -93,6 +95,7 @@ OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
 FLORAN				:=	floran
+AMIR				:=	amir
 
 OUTDIR				:=	$(OBJDIR)
 
@@ -111,7 +114,10 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(INCLUDEDIR)) $(addprefix -I ,$(dir $(LIBFT))) $(addprefix -I ,$(dir $(MLX))) $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+
+$(AMIR)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 $(FLORAN)			:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)

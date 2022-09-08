@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 20:05:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:04:06 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "mlx_data.h"
 #include "utils.h"
 #include <stdio.h>
-
 
 void	set_camera(t_cam *cam)
 {

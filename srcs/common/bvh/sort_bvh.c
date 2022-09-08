@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 18:03:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:29:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols,
 	return (ret);
 }
 
+static void	set_variable(t_list **vols, t_list **prev, t_list **index,
+	unsigned int begin)
+{
+	*prev = *vols;
+	*index = *vols;
+	if (begin != 0)
+	{
+		*prev = ft_lst_at(*vols, begin - 1);
+		*index = (*prev)->next;
+	}
+}
+
 static void	new_lst_start(t_list **vols, t_list *new_start,
 				unsigned int begin, unsigned int end)
 {
@@ -45,14 +57,7 @@ static void	new_lst_start(t_list **vols, t_list *new_start,
 	t_list	*prev;
 	t_list	*next;
 
-	prev = *vols;
-	if (begin != 0)
-	{
-		prev = ft_lst_at(*vols, begin - 1);
-		index = prev->next;
-	}
-	else
-		index = *vols;
+	set_variable(vols, &prev, &index, begin);
 	next = ft_lst_at(*vols, end)->next;
 	while (index != next && index->next != new_start)
 		index = index->next;

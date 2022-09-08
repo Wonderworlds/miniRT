@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/08 16:31:07 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	set_pos(t_scene *scene, t_pos *pos, char *str)
 	while (--times)
 	{
 		if (times == 3 && (ft_atof(str + i, &pos->x) || pos->x > 10000
-			|| pos->x < -10000))
+				|| pos->x < -10000))
 			exit_parse(scene, NULL);
 		else if (times == 2 && (ft_atof(str + i, &pos->y) || pos->y > 10000
-			|| pos->y < -10000))
+				|| pos->y < -10000))
 			exit_parse(scene, NULL);
 		else if (times == 1 && (ft_atof(str + i, &pos->z) || pos->z > 10000
-			|| pos->z < -10000))
+				|| pos->z < -10000))
 			exit_parse(scene, NULL);
 		while (ft_isdigit(str[i]) || str[i] == '.' || str[i] == '-')
 			i++;
@@ -53,14 +53,14 @@ int	set_vec3(t_scene *scene, t_pos *vec3, char *str)
 		exit_parse(scene, NULL);
 	while (--times)
 	{
-		if (times == 3 && (ft_atof(str + i, &vec3->x) || vec3->x < -1.0
-			|| vec3->y > 1.0))
+		if (times == 3 && (ft_atof(str + i, &vec3->x) || vec3->x < -1
+				|| vec3->x > 1))
 			exit_parse(scene, NULL);
-		else if (times == 2 && (ft_atof(str + i, &vec3->y) || vec3->y < -1.0
-			|| vec3->y > 1.0))
+		else if (times == 2 && (ft_atof(str + i, &vec3->y) || vec3->y < -1
+				|| vec3->y > 1))
 			exit_parse(scene, NULL);
-		else if (times == 1 && (ft_atof(str + i, &vec3->z) || vec3->z < -1.0
-			|| vec3->z > 1.0))
+		else if (times == 1 && (ft_atof(str + i, &vec3->z) || vec3->z < -1
+				|| vec3->z > 1))
 			exit_parse(scene, NULL);
 		while (ft_isdigit(str[i]) || str[i] == '.' || str[i] == '-')
 			i++;

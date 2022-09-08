@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:19:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 16:50:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:15:42 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ static void	display_bvh_content(char *prefix, t_bvh *node, int is_left)
 	if (!node)
 		ft_printf("\x1b[31mNULL\x1b[0m\n");
 	else if (node->vol == NULL)
-	{
 		ft_printf("%s%s\x1b[0m\n", e_colors[0], e_type[0]);
-		// ft_printf("%s%s", e_colors[0], e_type[0]);
-		// printf(" (%.1f, %.1f, %.1f)\x1b[0m\n", node->box.center.x,
-		// 	node->box.center.y, node->box.center.z);
-	}
 	else
 	{
 		ft_printf("%s%s", e_colors[node->vol->type - SPHERE + 1],

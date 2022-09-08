@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 15:21:59 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/08 16:40:29 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 #include "utils.h"
 #include "libft.h"
 
-void	malloc_volume(t_vol **vol, t_scene *scene)
+void	malloc_volume(t_vol **vol, t_scene *scene, int option)
 {
 	*vol = malloc(sizeof(t_vol));
 	if (!vol)
-		exit_parse(scene, NULL);
+		exit_parse(scene, "Error\nmalloc fail\n");
+	if (option == 0)
+		(*vol)->type = SPHERE;
+	else if (option == 1)
+		(*vol)->type = CYLINDER;
 }
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
 {
 	*pl = malloc(sizeof(t_plane));
 	if (!pl)
-		exit_parse(scene, NULL);
+		exit_parse(scene, "Error\nmalloc fail\n");
 }
 
 void	sphere(t_scene *scene, char *str)
@@ -35,8 +39,7 @@ void	sphere(t_scene *scene, char *str)
 	int		i;
 
 	i = 2;
-	malloc_volume(&sp, scene);
-	sp->type = SPHERE;
+	malloc_volume(&sp, scene, 0);
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &sp->pos, str + i);
@@ -79,8 +82,7 @@ void	cylinder(t_scene *scene, char *str)
 	int		i;
 
 	i = 2;
-	malloc_volume(&cy, scene);
-	cy->type = CYLINDER;
+	malloc_volume(&cy, scene, 1);
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &cy->pos, str + i);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 13:05:39 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/08 16:24:02 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_pos
 	float	x;
 	float	y;
 	float	z;
-
 }	t_pos;
 
 typedef struct s_rgb

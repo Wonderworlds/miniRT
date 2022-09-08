@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 15:29:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:59:18 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	update_unit_vector(t_mitem type, t_scene *scene);
 //		menu/graphic_menu.c
 void	graphic_refresh(t_data *data, t_delim x, t_delim y);
 
-void get_save_img(t_img *img, t_rect rect);
-void set_save_img(t_img *img, t_rect rect);
+void	get_save_img(t_img *img, t_rect rect);
+void	set_save_img(t_img *img, t_rect rect);
 
 #endif

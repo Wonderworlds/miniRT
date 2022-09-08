@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 15:17:51 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/08 16:34:27 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	malloc_light(t_light **light, t_scene *scene)
 {
 	*light = malloc(sizeof(t_light));
 	if (!light)
-		exit_parse(scene, NULL);
+		exit_parse(scene, "Error\nmalloc fail\n");
 }
 
 void	ambient_lightning(t_scene *scene, char *str)
@@ -45,16 +45,14 @@ void	light(t_scene *scene, char *str)
 {
 	t_light	*l;
 	t_list	*lights;
-	t_light	*temp;
 	int		i;
 
 	i = 1;
 	lights = scene->lights;
 	while (lights)
 	{
-		temp = lights->content;
-		if (temp->type == LIGHT)
-			exit_parse(scene, NULL);
+		if (((t_light *)lights->content)->type == LIGHT)
+			exit_parse(scene, "Error\nLight 'L' is already set\n");
 		lights = lights->next;
 	}
 	malloc_light(&l, scene);

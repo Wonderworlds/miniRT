@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:04:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 16:21:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:48:55 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 
 static void	copy_img(t_img *img, t_rect *rect, int *new_addr, int action);
 
-static int *save_img_manager(void)
+static int	*save_img_manager(void)
 {
 	static int	saved_img[57201];
 
 	return (&saved_img[0]);
 }
 
-void set_save_img(t_img *img, t_rect rect)
+void	set_save_img(t_img *img, t_rect rect)
 {
 	copy_img(img, &rect, save_img_manager(), 1);
 }
 
-void get_save_img(t_img *img, t_rect rect)
+void	get_save_img(t_img *img, t_rect rect)
 {
 	copy_img(img, &rect, save_img_manager(), 0);
 }
@@ -45,13 +45,12 @@ static void	copy_img(t_img *img, t_rect *rect, int *new_addr, int action)
 		x = rect->min_x;
 		while (x++ < rect->max_x)
 		{
-			pixel = img->addr +
-				(rect->max_y * img->line_len + x * (img->bpp / 8));
+			pixel = img->addr
+				+ (rect->max_y * img->line_len + x * (img->bpp / 8));
 			if (action == 1)
 				*(new_addr + i++) = *(int *)pixel;
 			else
 				*((int *)pixel) = *(new_addr + i++);
-				// *((int *)pixel) = get_color(gen_rgb(255, 255, 255));
 		}
 	}
 }

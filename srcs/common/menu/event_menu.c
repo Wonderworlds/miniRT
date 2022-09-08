@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 17:10:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:47:14 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	close_menu(t_data *data)
 		{
 			btree_remove_infix(&data->scene->bvh, &free);
 			update_bounds_vol(data->scene->vols);
-			build_node(&data->scene->vols, &data->scene->bvh, 0, (unsigned int)size);
+			build_node(&data->scene->vols, &data->scene->bvh, 0,
+				(unsigned int)size);
 		}
 	}
 	graphic_render(data);
