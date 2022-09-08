@@ -17,22 +17,21 @@
 #define BYTES_PER_PIXEL 3
 #define FILE_HEADER_SIZE 14
 #define INFO_HEADER_SIZE 40
-#define FILENAME_BASE "screenshot_"
+#define FILENAME_BASE "screenshot_0000.bmp"
 
 static void	gen_bmp_fheader(int filesize, unsigned char *dest);
 static void	createBitmapInfoHeader(int height, int width, unsigned char *dest);
-static char	*create_filename(const char *base);
+static void	create_filename(char *file);
 
 int	gen_bmp(const unsigned char	*img, int height, int width)
 {
 	int				fd;
 	int				line;
-	char			*filename_bmp;
+	char			filename_bmp[20];
 	unsigned char	file_header[FILE_HEADER_SIZE];
 	unsigned char	info_header[INFO_HEADER_SIZE];
 
-	filename_bmp = create_filename(FILENAME_BASE);
-	if (!filename_bmp)
+	if (create_filename(&filefilename_bmp, 20))
 		return (1);
 	fd = open(filename_bmp, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0755);
 	line = FILE_HEADER_SIZE + INFO_HEADER_SIZE
@@ -50,32 +49,25 @@ int	gen_bmp(const unsigned char	*img, int height, int width)
 	return (0);
 }
 
-char	*create_filename(const char *base)
+int	create_filename(char *file, size_t size)
 {
 	char	*filename;
-	size_t	size;
 	size_t	i;
 
-	size = ft_strlen(base);
-	filename = ft_calloc(sizeof(char), size + 8);
-	if (!filename)
-		return (NULL);
-	ft_memcpy(filename, base, size);
+	ft_memcpy(file, FILENAME_BASE, size);
 	filename[size] = 0;
-	i = size + 4;
-	ft_strlcat(filename, "0000", 1 + i--);
-	ft_strlcat(filename, ".bmp", size + 9);
+	i = size - 5;
 	while (!access(filename, F_OK))
 	{
 		while (filename[i] == '9')
 			filename[i--] = '0';
-		if (i < size)
-			return (free(filename), NULL);
+		if (i < size - 9)
+			return (1);
 		filename[i] = filename[i] + 1;
-		if (i < size + 3)
-			i = size + 3;
+		if (i < size - 5)
+			i = size - 5;
 	}
-	return (filename);
+	return (0);
 }
 
 static void	gen_bmp_fheader(int filesize, unsigned char *dest)
