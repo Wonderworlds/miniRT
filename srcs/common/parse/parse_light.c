@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 20:05:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:17:51 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ambient_lightning(t_scene *scene, char *str)
 	a->type = AMB_LIGHT;
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &a->r, str + i);
+	i += set_float(scene, &a->r, str + i, 0);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &a->col, str + i);
@@ -64,7 +64,7 @@ void	light(t_scene *scene, char *str)
 	i += set_pos(scene, &l->pos, str + i);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &l->r, str + i);
+	i += set_float(scene, &l->r, str + i, 0);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &l->col, str + i);

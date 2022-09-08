@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 20:05:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:22:51 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool			float_format(char *str);
 int				set_pos(t_scene *scene, t_pos *pos, char *str);
 int				set_vec3(t_scene *scene, t_pos *vec3, char *str);
 int				set_rgb(t_scene *scene, t_rgb *col, char *str);
-int				set_float(t_scene *scene, float *data, char *str);
+int				set_float(t_scene *scene, float *data, char *str, int option);
 int				set_h_fov(t_scene *scene, int *data, char *str);
 
 //		parse/parse_volume.c
