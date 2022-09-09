@@ -2,6 +2,7 @@
 obj/
 *debug*/
 miniRT
+miniRT_bonus
 libft.a
 floran.prog
 *pdf
