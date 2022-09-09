@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 18:03:17 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 22:32:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define FOCAL_LENGTH 2.0f
 
 //		parse/parse_camera.c
-void	set_camera(t_cam *cam);
+void	set_camera(t_cam *cam, t_resolut *res);
 
 //		graphics/error_mlx.c
 void	error_mlx_data(t_data *data, void *mlx_ptr);

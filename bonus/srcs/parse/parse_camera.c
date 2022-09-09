@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:04:06 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 22:29:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@
 #include "utils.h"
 #include <stdio.h>
 
-void	set_camera(t_cam *cam)
+void	malloc_cam(t_cam **cam, t_scene *scene)
+{
+	*cam = malloc(sizeof(t_cam));
+	if (!*cam)
+		exit_parse(scene, "Error\nmalloc fail\n");
+}
+
+void	set_camera(t_cam *cam, t_resolut *res)
 {
 	t_pos	vup;
 
 	set_vector(0, 1, 0, &vup);
 	cam->viewport_width = VP_WIDTH * tan((cam->h_fov * (M_PI / 180) / 2));
-	cam->viewport_height = cam->viewport_width / ASPECT_RATIO;
+	cam->viewport_height = cam->viewport_width / res->aspect_ratio;
 	vector_equal(cam->vec3, &cam->uvw[2]);
 	unit_vector(&cam->uvw[2]);
 	cross_product(vup, cam->uvw[2], &cam->uvw[0]);
@@ -44,24 +51,24 @@ void	set_camera(t_cam *cam)
 void	camera(t_scene *scene, char *str)
 {
 	int		i;
+	t_cam	*cam;
 
 	i = 1;
-	if (scene->cam.is_set == true)
-		exit_parse(scene, NULL);
-	scene->cam.is_set = true;
+	cam = malloc_cam(&cam, scene);
 	while (str[i] == ' ')
 		i++;
-	i += set_pos(scene, &scene->cam.pos, str + i);
+	i += set_pos(scene, &cam->pos, str + i);
 	while (str[i] == ' ')
 		i++;
-	i += set_vec3(scene, &scene->cam.vec3, str + i);
-	if (scene->cam.vec3.x == 0 && scene->cam.vec3.y == 0
-		&& scene->cam.vec3.z == 0)
-		scene->cam.vec3.z = -1.f;
+	i += set_vec3(scene, &cam->vec3, str + i);
+	if (cam->vec3.x == 0 && cam->vec3.y == 0
+		&& cam->vec3.z == 0)
+		cam->vec3.z = -1.f;
 	while (str[i] == ' ')
 		i++;
-	i += set_h_fov(scene, &scene->cam.h_fov, str + i);
-	scene->cam.focal_length = FOCAL_LENGTH;
-	unit_vector(&scene->cam.vec3);
-	set_camera(&scene->cam);
+	i += set_h_fov(scene, &cam->h_fov, str + i);
+	cam->focal_length = FOCAL_LENGTH;
+	unit_vector(&cam->vec3);
+	set_camera(&scene->cam, scene);
+	ft_lstadd_back(&scene->cameras, ft_lstnew(cam));
 }

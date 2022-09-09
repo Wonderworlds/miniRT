@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:01:02 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 22:18:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	exit_parse_cam(t_scene *scene, char *str)
 {
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
+	ft_lstclear(&scene->cameras, &free);
 	close(scene->fd);
 	ft_fprintf(2, "%s", str);
 	exit(EXIT_FAILURE);
@@ -70,7 +71,7 @@ void	read_rt(int fd, t_scene *scene)
 			resolution(scene, str);
 		else if (str[0] == 'c' && str[1] == ' ')
 			camera(scene, str);
-		else if (str[0] == 'L' && str[1] == ' ')
+		else if (str[0] == 'l' && str[1] == ' ')
 			light(scene, str);
 		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
 			sphere(scene, str);
