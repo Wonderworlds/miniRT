@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 23:09:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:17:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,22 @@ static void	free_vols(t_vol *vol)
 
 static void	free_planes(t_plane *pl)
 {
-	if (pl->tex && pl->data)
-		mlx_destroy_image(pl->data->mlx_ptr, pl->tex->mlx_img);
+	if (pl->tex)
+	{
+		if (!pl->tex->file && pl->data)
+			mlx_destroy_image(pl->data->mlx_ptr, &pl->tex->img.mlx_img);
+		if (pl->tex->file)
+			free(pl->tex->file);
+		free(pl->tex);
+	}
 	if (pl->bump && pl->data)
-		mlx_destroy_image(pl->data->mlx_ptr, pl->bump->mlx_img);
+	{
+		if (!pl->bump->file && pl->data)
+			mlx_destroy_image(pl->data->mlx_ptr, &pl->bump->img.mlx_img);
+		if (pl->bump->file)
+			free(pl->bump->file);
+		free(pl->bump);
+	}
 	free(pl);
 }
 
