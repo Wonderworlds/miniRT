@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:46:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 16:56:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:59:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	gen_bmp(const unsigned char	*img, int height, int width)
 	if (create_filename(&filename_bmp[0], 20))
 	{
 		ft_fprintf(2, "Error\nScreenshot ==> fail, \
-		name not available\n", filename_bmp);
+		filename not available\n", filename_bmp);
 		return ;
 	}
 	fd = open(filename_bmp, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0755);
