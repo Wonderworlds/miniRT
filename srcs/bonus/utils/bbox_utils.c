@@ -1,48 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   bbox_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 18:22:47 by amahla           ###   ########.fr       */
+/*   Created: 2022/08/26 12:23:53 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/26 22:01:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "structs_utils.h"
+#include "utils.h"
 
-char	maxc(char a, char b)
+void	bbox_center(const t_box *box, t_pos *center)
 {
-	if (a >= b)
-		return (a);
-	return (b);
+	vector_ab(box->min, box->max, center);
+	center->x = box->min.x + center->x / 2;
+	center->y = box->min.y + center->y / 2;
+	center->z = box->min.z + center->z / 2;
 }
 
-int	max(int a, int b)
+float	bbox_expend(const t_box *box)
 {
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-long	maxl(long a, long b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-float	maxf(float a, float b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-double	maxd(double a, double b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
+	return (dist_ab(&box->min, &box->max));
 }

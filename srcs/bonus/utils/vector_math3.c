@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   vector_math3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 18:22:47 by amahla           ###   ########.fr       */
+/*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/09/06 16:37:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "structs_utils.h"
+#include "utils.h"
+#include <math.h>
 
-char	maxc(char a, char b)
+void	unit_vector(t_pos *vec)
 {
-	if (a >= b)
-		return (a);
-	return (b);
+	float	mag;
+	t_pos	tmp;
+
+	set_vector(0, 0, 0, &tmp);
+	mag = dist_ab(&tmp, vec);
+	if (mag == 0)
+		return ;
+	vec->x /= mag;
+	vec->y /= mag;
+	vec->z /= mag;
 }
 
-int	max(int a, int b)
+void	vector_scale(float scale, t_pos *dst)
 {
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-long	maxl(long a, long b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-float	maxf(float a, float b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-double	maxd(double a, double b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
+	dst->x *= scale;
+	dst->y *= scale;
+	dst->z *= scale;
 }

@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 18:22:47 by amahla           ###   ########.fr       */
+/*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
+/*   Updated: 2022/09/08 17:44:29 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "structs_utils.h"
+#include "minirt.h"
+#include "mlx_data.h"
 
-char	maxc(char a, char b)
+int	main(int ac, char **av)
 {
-	if (a >= b)
-		return (a);
-	return (b);
-}
+	t_scene	scene;
 
-int	max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-long	maxl(long a, long b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-float	maxf(float a, float b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-double	maxd(double a, double b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
+	init_scene(&scene);
+	if (ac != 2)
+	{
+		if (ac < 2)
+			ft_fprintf(2, "Error\nMaps needed\n");
+		else
+			ft_fprintf(2, "Error\nToo many maps to load\nPlease choose one\n");
+		return (EXIT_FAILURE);
+	}
+	parse_rt(av[1], &scene);
+	graphic_process(&scene);
+	leave_rt(&scene);
+	return (EXIT_SUCCESS);
 }

@@ -1,48 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   error_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 18:22:47 by amahla           ###   ########.fr       */
+/*   Created: 2022/05/31 16:03:03 by amahla            #+#    #+#             */
+/*   Updated: 2022/09/07 19:50:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mlx_data.h"
+#include "minirt.h"
 
-char	maxc(char a, char b)
+void	error_mlx_data(t_data *data, void *mlx_ptr)
 {
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-int	max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-long	maxl(long a, long b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-float	maxf(float a, float b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-double	maxd(double a, double b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
+	if (mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(mlx_ptr);
+	}
+	ft_fprintf(2, "Error\nMlx data initialize error\n");
+	leave_rt(data->scene);
+	exit(EXIT_FAILURE);
 }
