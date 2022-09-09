@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:09:15 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 20:01:02 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	read_rt(int fd, t_scene *scene)
 		scene->line_gnl = str;
 		if (str[0] == 'A' && str[1] == ' ')
 			ambient_lightning(scene, str);
-		else if (str[0] == 'C' && str[1] == ' ')
+		else if (str[0] == 'R' && str[1] == ' ')
+			resolution(scene, str);
+		else if (str[0] == 'c' && str[1] == ' ')
 			camera(scene, str);
 		else if (str[0] == 'L' && str[1] == ' ')
 			light(scene, str);
@@ -76,7 +78,9 @@ void	read_rt(int fd, t_scene *scene)
 			plane(scene, str);
 		else if (str[0] == 'c' && str[1] == 'y' && str[2] == ' ')
 			cylinder(scene, str);
-		else if (str[0] != '\n')
+		else if (str[0] == 't' && str[1] == 'r' && str[2] == ' ')
+			triangle(scene, str);
+		else if (str[0] != '\n' && str[0] != '#')
 			exit_parse(scene, NULL);
 		free(str);
 		str = ft_gnl_rt(fd);
@@ -94,9 +98,9 @@ void	parse_rt(char *arg, t_scene *scene)
 	if (scene->cam.is_set == false)
 		exit_parse_cam(scene,
 			"Error\nError parse format: camera 'C' is not set\n");
-	if (!scene->ambient)
+	if (scene->resolut.is_set == false)
 		exit_parse_cam(scene,
-			"Error\nError parse format: ambient light 'A' is not set\n");
+			"Error\nError parse format: resolution 'R' is not set\n");
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
 	{

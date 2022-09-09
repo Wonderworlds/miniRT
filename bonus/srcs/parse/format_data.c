@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 20:27:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:58:29 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_bool	rgb_format(char *str)
 		if (str[i] == ',' && color > 1)
 			i++;
 	}
-	if (color || (str[i] && str[i] != '\n'))
+	if (color || (str[i] && !(str[i] == '\n' || str[i] == ' ')))
 		return (false);
 	return (true);
 }
