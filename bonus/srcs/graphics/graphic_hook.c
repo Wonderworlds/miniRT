@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 17:56:42 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 16:55:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	key_press_hook(int keysym, t_data *data)
 		close_menu(data);
 	if (keysym == XK_Tab)
 		switch_menu(data);
+	if (keysym == XK_p)
+		gen_bmp((unsigned char *)data->img.addr, WIN_HEIGHT, WIN_WIDTH);
 	if (keysym == XK_Down && data->menu.is_visible)
 		updown_menu(data, -1);
 	if (keysym == XK_Up && data->menu.is_visible)
