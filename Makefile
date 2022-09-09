@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/08 18:01:41 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/09 11:54:28 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@
 SHELL				=	/bin/sh
 
 PROGNAME			:=	miniRT
+
+PROGNAME_BONUS		:=	miniRT_bonus
 
 LIBFT				:=	libft/libft.a
 
@@ -25,44 +27,82 @@ SRCDIR				:=	srcs
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	$(addprefix common/,	$(addprefix main/,		main.c				\
-																		start_and_leave.c)	\
-												$(addprefix graphics/,	graphic_process.c	\
-																		error_mlx.c			\
-																		graphic_hook.c		\
-																		graphic_render.c)	\
-												$(addprefix parse/,		parse_rt.c			\
-																		format_data.c		\
-																		parse_volume.c		\
-																		parse_light.c		\
-																		parse_camera.c		\
-																		set_variables.c)	\
-												$(addprefix volume/,	inside_vol.c		\
-																		bounds.c			\
-																		bounds_total.c)		\
-												$(addprefix bvh/,		bvh_construction.c	\
-																		sort_bvh.c			\
-																		print_bvh.c			\
-																		bvh_utils.c)		\
-												$(addprefix raycast/,	hit_manager.c		\
-																		ray_print.c			\
-																		create_hit.c		\
-																		ray_volume_hit.c	\
-																		ray_cylinder_hit.c	\
-																		ray_cylinder_hit2.c)\
-												$(addprefix menu/,		graphic_menu.c		\
-																		build_menu.c		\
-																		bp_utils.c			\
-																		event_menu.c		\
-																		copy_img.c			\
-																		add_dec_menu.c		\
-																		add_dec_menu2.c		\
-																		add_dec_menu3.c		\
-																		fill_menu.c			\
-																		fill_menu2.c		\
-																		)	\
-												$(addprefix lights/,	lights.c			\
-																		)					\
+COMMONSRCS			:=	$(addprefix mandatory/,	$(addprefix common/,	$(addprefix main/,		main.c				\
+																								start_and_leave.c)	\
+																		$(addprefix graphics/,	graphic_process.c	\
+																								error_mlx.c			\
+																								graphic_hook.c		\
+																								graphic_render.c)	\
+																		$(addprefix parse/,		parse_rt.c			\
+																								format_data.c		\
+																								parse_volume.c		\
+																								parse_light.c		\
+																								parse_camera.c		\
+																								set_variables.c)	\
+																		$(addprefix volume/,	inside_vol.c		\
+																								bounds.c			\
+																								bounds_total.c)		\
+																		$(addprefix bvh/,		bvh_construction.c	\
+																								sort_bvh.c			\
+																								print_bvh.c			\
+																								bvh_utils.c)		\
+																		$(addprefix raycast/,	hit_manager.c		\
+																								ray_print.c			\
+																								create_hit.c		\
+																								ray_volume_hit.c	\
+																								ray_cylinder_hit.c	\
+																								ray_cylinder_hit2.c)\
+																		$(addprefix menu/,		graphic_menu.c		\
+																								build_menu.c		\
+																								bp_utils.c			\
+																								event_menu.c		\
+																								copy_img.c			\
+																								add_dec_menu.c		\
+																								add_dec_menu2.c		\
+																								add_dec_menu3.c		\
+																								fill_menu.c			\
+																								fill_menu2.c)		\
+																		$(addprefix lights/,	lights.c)			\
+																		)											\
+												)
+
+BONUSSRCS			:=	$(addprefix bonus/,		$(addprefix common/,	$(addprefix main/,		main.c				\
+																								start_and_leave.c)	\
+																		$(addprefix graphics/,	graphic_process.c	\
+																								error_mlx.c			\
+																								graphic_hook.c		\
+																								graphic_render.c)	\
+																		$(addprefix parse/,		parse_rt.c			\
+																								format_data.c		\
+																								parse_volume.c		\
+																								parse_light.c		\
+																								parse_camera.c		\
+																								set_variables.c)	\
+																		$(addprefix volume/,	inside_vol.c		\
+																								bounds.c			\
+																								bounds_total.c)		\
+																		$(addprefix bvh/,		bvh_construction.c	\
+																								sort_bvh.c			\
+																								print_bvh.c			\
+																								bvh_utils.c)		\
+																		$(addprefix raycast/,	hit_manager.c		\
+																								ray_print.c			\
+																								create_hit.c		\
+																								ray_volume_hit.c	\
+																								ray_cylinder_hit.c	\
+																								ray_cylinder_hit2.c)\
+																		$(addprefix menu/,		graphic_menu.c		\
+																								build_menu.c		\
+																								bp_utils.c			\
+																								event_menu.c		\
+																								copy_img.c			\
+																								add_dec_menu.c		\
+																								add_dec_menu2.c		\
+																								add_dec_menu3.c		\
+																								fill_menu.c			\
+																								fill_menu2.c)		\
+																		$(addprefix lights/,	lights.c)			\
+																		)											\
 												)
 
 UTILSSRC			:=	$(addprefix utils/,		ft_gnl_rt.c				\
@@ -94,12 +134,14 @@ LIBFLAGS			:=	-lXext -lX11 -lm -lbsd
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
+BONUS				:=	$(PROGNAME_BONUS)
 FLORAN				:=	floran
 AMIR				:=	amir
 
 OUTDIR				:=	$(OBJDIR)
 
 DEBUGNAME			:=	$(addsuffix .debug,$(PROGNAME))
+BONUSDEBUGNAME		:=	$(addsuffix .debug,$(PROGNAME_BONUS))
 FLORANNAME			:=	$(addsuffix .prog,$(FLORAN))
 
 ifdef DEBUG
@@ -117,13 +159,18 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
+$(BONUS)		:	$(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUS) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+
 $(AMIR)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 $(FLORAN)			:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(FLORANNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.o)) $(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
-all					:	$(NAME) $(BONUSNAME)
+all					:	$(NAME)
+
+bonus				:	$(BONUS)
 
 $(DEBUGNAME)		:
 ifndef DEBUG
@@ -166,11 +213,12 @@ fclean				:	clean
 	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME) $(FLORANNAME)
 
 re					:	fclean
-	$(MAKE) $(NAME)
+	$(MAKE) $(NAME) $(BONUS)
 
 .PHONY				:	all bonus clean fclean re debug
 
 -include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.d))
 -include	$(addprefix $(OUTDIR)/,$(AMIRSRC:.c=.d))
 -include	$(addprefix $(OUTDIR)/,$(UTILSSRC:.c=.d))
 -include	$(addprefix $(OUTDIR)/,$(FLORANSRC:.c=.d))
