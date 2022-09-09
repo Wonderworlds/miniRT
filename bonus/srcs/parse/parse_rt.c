@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:18:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:14:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 
 void	exit_parse(t_scene *scene, const char *error)
 {
-	free(scene->line_gnl);
-	ft_lstclear(&scene->lights, &free);
-	ft_lstclear(&scene->vols, &free);
-	if (scene->ambient)
-		free(scene->ambient);
-	close(scene->fd);
 	if (!error)
 		ft_fprintf(2, "Error\nError parse format\n");
 	else
 		ft_fprintf(2, "%s", error);
+	leave_rt(scene);
+	close(scene->fd);
 	exit(EXIT_FAILURE);
 }
 
@@ -96,7 +92,7 @@ void	parse_rt(char *arg, t_scene *scene)
 	fd = open_file(arg);
 	scene->fd = fd;
 	read_rt(fd, scene);
-	if (scene->cam.is_set == false)
+	if (!scene->cam)
 		exit_parse_cam(scene,
 			"Error\nError parse format: camera 'C' is not set\n");
 	if (scene->resolut.is_set == false)

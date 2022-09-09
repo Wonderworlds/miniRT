@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:23:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:21:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	malloc_volume(t_vol **vol, t_scene *scene, int option)
 		(*vol)->type = CYLINDER;
 	else if (option == 2)
 		(*vol)->type = TRIANGLE;
+	(*vol)->bump = NULL;
+	(*vol)->tex = NULL;
+	(*vol)->data = NULL;
 }
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
@@ -33,6 +36,9 @@ void	malloc_pl(t_plane **pl, t_scene *scene)
 	*pl = malloc(sizeof(t_plane));
 	if (!*pl)
 		exit_parse(scene, "Error\nmalloc fail\n");
+	(*pl)->bump = NULL;
+	(*pl)->tex = NULL;
+	(*pl)->data = NULL;
 }
 
 void	sphere(t_scene *scene, char *str)

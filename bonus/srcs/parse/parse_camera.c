@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:29:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:36:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	camera(t_scene *scene, char *str)
 	t_cam	*cam;
 
 	i = 1;
-	cam = malloc_cam(&cam, scene);
+	malloc_cam(&cam, scene);
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &cam->pos, str + i);

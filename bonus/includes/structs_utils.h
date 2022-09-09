@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 22:21:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:06:24 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ typedef enum e_disruption
 	OTHER,
 }	t_disruption;
 
+typedef struct s_xpm
+{
+	char	*file;
+	t_img	img;
+}	t_xpm;
+
 typedef struct s_pos
 {
 	float	x;
@@ -101,8 +107,9 @@ typedef struct s_vol
 	t_box			rayon;
 	t_box			box;
 	t_disruption	disruption;
-	t_img			*tex;
-	t_img			*bump;
+	t_xpm			*tex;
+	t_xpm			*bump;
+	t_data			*data;
 }	t_vol;
 
 typedef struct s_plane
@@ -111,8 +118,9 @@ typedef struct s_plane
 	t_pos			vec3;
 	t_rgb			col;
 	t_disruption	disruption;
-	t_img			*tex;
-	t_img			*bump;
+	t_xpm			*tex;
+	t_xpm			*bump;
+	t_data			*data;
 }	t_plane;
 
 typedef struct s_cam
