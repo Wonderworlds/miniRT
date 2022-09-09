@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:46:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 14:44:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:56:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define FILENAME_BASE "screenshot_0000.bmp"
 
 static void	gen_bmp_fheader(int filesize, unsigned char *dest);
-static void	createBitmapInfoHeader(int height, int width, unsigned char *dest);
+static void	gen_bmp_iheader(int height, int width, unsigned char *dest);
 static int	create_filename(char *file, size_t size);
 
 void	gen_bmp(const unsigned char	*img, int height, int width)
@@ -41,7 +41,7 @@ void	gen_bmp(const unsigned char	*img, int height, int width)
 	line = FILE_HEADER_SIZE + INFO_HEADER_SIZE
 		+ (BYTES_PER_PIXEL * height * width);
 	gen_bmp_fheader(line, &file_header[0]);
-	createBitmapInfoHeader(height, width, &info_header[0]);
+	gen_bmp_iheader(height, width, &info_header[0]);
 	write(fd, file_header, FILE_HEADER_SIZE);
 	write(fd, info_header, INFO_HEADER_SIZE);
 	line = height;
@@ -54,19 +54,18 @@ void	gen_bmp(const unsigned char	*img, int height, int width)
 
 int	create_filename(char *file, size_t size)
 {
-	char	*filename;
 	size_t	i;
 
 	ft_memcpy(file, FILENAME_BASE, size);
-	filename[size] = 0;
+	file[size] = 0;
 	i = size - 5;
-	while (!access(filename, F_OK))
+	while (!access(file, F_OK))
 	{
-		while (filename[i] == '9')
-			filename[i--] = '0';
+		while (file[i] == '9')
+			file[i--] = '0';
 		if (i < size - 9)
 			return (1);
-		filename[i] = filename[i] + 1;
+		file[i] = file[i] + 1;
 		if (i < size - 5)
 			i = size - 5;
 	}

@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 16:18:17 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/09 16:54:38 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,6 +132,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												ft_ftoa_custom.c		\
 												debug.c					\
 												quicksort_lst_custom.c	\
+												bmp_export.c			\
 												)
 
 CC					:=	cc
