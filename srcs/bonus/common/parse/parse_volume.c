@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:40:29 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 15:20:39 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	sphere(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
+	while (str[i] == ' ')
+		i++;
 	unit_vector(&sp->vec3);
 	sphere_bounds(sp);
 	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
@@ -72,6 +74,8 @@ void	plane(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &pl->col, str + i);
+	while (str[i] == ' ')
+		i++;
 	unit_vector(&pl->vec3);
 	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 }
@@ -100,6 +104,8 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &cy->col, str + i);
+	while (str[i] == ' ')
+		i++;
 	unit_vector(&cy->vec3);
 	cylinder_bounds(cy);
 	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
