@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 23:00:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:09:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,22 @@
 
 static void	free_vols(t_vol *vol)
 {
-	if (vol->tex && vol->data)
-		mlx_destroy_image(vol->data->mlx_ptr, vol->tex->mlx_img);
+	if (vol->tex)
+	{
+		if (!vol->tex->file && vol->data)
+			mlx_destroy_image(vol->data->mlx_ptr, &vol->tex->img.mlx_img);
+		if (vol->tex->file)
+			free(vol->tex->file);
+		free(vol->tex);
+	}
 	if (vol->bump && vol->data)
-		mlx_destroy_image(vol->data->mlx_ptr, vol->bump->mlx_img);
+	{
+		if (!vol->bump->file && vol->data)
+			mlx_destroy_image(vol->data->mlx_ptr, &vol->bump->img.mlx_img);
+		if (vol->bump->file)
+			free(vol->bump->file);
+		free(vol->bump);
+	}
 	free(vol);
 }
 
