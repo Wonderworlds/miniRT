@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 16:24:02 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 18:45:14 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,55 @@
 # define STRUCTS_UTILS_H
 
 # include "libft.h"
+# include "mlx.h"
 
 typedef enum e_bool
 {
 	false,
 	true
 }	t_bool;
+
+typedef struct s_resolut
+{
+	int		win_width;
+	int		win_height;
+	float	aspect_ratio;
+	t_bool	is_set;
+}	t_resolut;
+
+typedef struct s_menu
+{
+	t_bool	is_visible;
+	t_bool	has_changed;
+	int		item;
+	int		index;
+	int		field_index;
+	int		max_f_index;
+	char	bprint[17];
+}			t_menu;
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
+
+typedef struct s_xpm
+{
+	char			*file;
+	struct s_img	img;
+}	t_xpm;
+
+typedef enum e_disruption
+{
+	NONE,
+	CHECKERBOARD,
+	OTHER,
+	NO_SET
+}	t_disruption;
 
 typedef struct s_pos
 {
@@ -33,7 +76,6 @@ typedef struct s_rgb
 	int	r;
 	int	g;
 	int	b;
-
 }	t_rgb;
 
 typedef struct s_box
@@ -50,26 +92,34 @@ typedef enum e_type
 	LIGHT,
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	TRIANGLE
 }	t_type;
 
 typedef struct s_vol
 {
-	t_type	type;
-	t_pos	pos;
-	t_pos	vec3;
-	float	d;
-	float	h;
-	t_rgb	col;
-	t_box	rayon;
-	t_box	box;
+	t_type			type;
+	t_pos			pos;
+	t_pos			tr[3];
+	t_pos			vec3;
+	float			d;
+	float			h;
+	t_rgb			col;
+	t_box			rayon;
+	t_box			box;
+	t_disruption	disruption;
+	t_xpm			tex;
+	t_xpm			bump;
 }	t_vol;
 
 typedef struct s_plane
 {
-	t_pos	pos;
-	t_pos	vec3;
-	t_rgb	col;
+	t_pos			pos;
+	t_pos			vec3;
+	t_rgb			col;
+	t_disruption	disruption;
+	t_xpm			tex;
+	t_xpm			bump;
 }	t_plane;
 
 typedef struct s_cam
@@ -122,14 +172,24 @@ typedef struct s_bvh
 
 typedef struct s_scene
 {
-	t_list	*vols;
-	t_list	*lights;
-	t_light	*ambient;
-	t_list	*planes;
-	t_cam	cam;
-	int		fd;
-	char	*line_gnl;
-	t_bvh	*bvh;
+	t_resolut	resolut;
+	t_list		*vols;
+	t_list		*lights;
+	t_light		*ambient;
+	t_list		*planes;
+	t_cam		cam;
+	int			fd;
+	char		*line_gnl;
+	t_bvh		*bvh;
 }	t_scene;
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	t_scene	*scene;
+	t_menu	menu;
+}			t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:34:27 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 17:56:52 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ void	light(t_scene *scene, char *str)
 
 	i = 1;
 	lights = scene->lights;
-	while (lights)
-	{
-		if (((t_light *)lights->content)->type == LIGHT)
-			exit_parse(scene, "Error\nLight 'L' is already set\n");
-		lights = lights->next;
-	}
 	malloc_light(&l, scene);
 	l->type = LIGHT;
 	while (str[i] == ' ')

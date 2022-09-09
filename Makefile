@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 16:02:17 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/09 18:37:36 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,10 @@ BONUSSRCS			:=	$(addprefix srcs/,	$(addprefix main/,		main.c				\
 																	format_data.c		\
 																	parse_volume.c		\
 																	parse_light.c		\
+																	parse_texture.c		\
 																	parse_camera.c		\
+																	parse_volume2.c		\
+																	parse_resolution.c	\
 																	set_variables.c)	\
 											$(addprefix volume/,	inside_vol.c		\
 																	bounds.c			\
@@ -119,6 +122,7 @@ BONUSSRCS			:=	$(addprefix srcs/,	$(addprefix main/,		main.c				\
 																	fill_menu2.c)		\
 											$(addprefix lights/,	lights.c)			\
 											$(addprefix utils/,		ft_gnl_rt.c			\
+																	ft_strlen_rt.c			\
 																	error_msg.c				\
 																	vector_math.c			\
 																	vector_math2.c			\

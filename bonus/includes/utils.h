@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 23:15:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:22:22 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,6 @@ void	hit_cpy(const t_hit *src, t_hit *dest);
 void	ft_itoa_custom(int n, char *str, size_t size);
 void	ft_ftoa_custom(float n, char *str, size_t size);
 
+//		utils/ft_strlen_rt.c
+size_t	ft_strlen_rt(const char *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 17:02:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:03:17 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,6 @@
 # define WIN_HEIGHT 786
 # define VP_WIDTH 3.0f
 # define FOCAL_LENGTH 2.0f
-
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}			t_img;
-
-typedef struct s_menu
-{
-	t_bool	is_visible;
-	t_bool	has_changed;
-	int		item;
-	int		index;
-	int		field_index;
-	int		max_f_index;
-	char	bprint[17];
-}			t_menu;
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_scene	*scene;
-	t_menu	menu;
-}			t_data;
 
 //		parse/parse_camera.c
 void	set_camera(t_cam *cam);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 15:20:39 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 19:56:10 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	malloc_volume(t_vol **vol, t_scene *scene, int option)
 		(*vol)->type = SPHERE;
 	else if (option == 1)
 		(*vol)->type = CYLINDER;
+	else if (option == 2)
+		(*vol)->type = TRIANGLE;
 }
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
@@ -51,6 +53,7 @@ void	sphere(t_scene *scene, char *str)
 	i += set_rgb(scene, &sp->col, str + i);
 	while (str[i] == ' ')
 		i++;
+	parse_vol_texture(scene, sp, str + i);
 	unit_vector(&sp->vec3);
 	sphere_bounds(sp);
 	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
@@ -76,6 +79,7 @@ void	plane(t_scene *scene, char *str)
 	i += set_rgb(scene, &pl->col, str + i);
 	while (str[i] == ' ')
 		i++;
+	parse_pl_texture(scene, pl, str + i);
 	unit_vector(&pl->vec3);
 	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 }
@@ -106,6 +110,7 @@ void	cylinder(t_scene *scene, char *str)
 	i += set_rgb(scene, &cy->col, str + i);
 	while (str[i] == ' ')
 		i++;
+	parse_vol_texture(scene, cy, str + i);
 	unit_vector(&cy->vec3);
 	cylinder_bounds(cy);
 	ft_lstadd_back(&scene->vols, ft_lstnew(cy));

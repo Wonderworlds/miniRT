@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:57:49 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 18:39:11 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ int		set_float(t_scene *scene, float *data, char *str, int option);
 int		set_h_fov(t_scene *scene, int *data, char *str);
 
 //		parse/parse_volume.c
+void	malloc_volume(t_vol **vol, t_scene *scene, int option);
 void	sphere(t_scene *scene, char *str);
 void	plane(t_scene *scene, char *str);
 void	cylinder(t_scene *scene, char *str);
+
+//		parse/parse_volume2.c
+void	triangle(t_scene *scene, char *str);
 
 //		parse/parse_light.c
 void	ambient_lightning(t_scene *scene, char *str);
@@ -51,6 +55,13 @@ void	light(t_scene *scene, char *str);
 
 //		parse/parse_camera.c
 void	camera(t_scene *scene, char *str);
+
+//		parse/parse_texture.c
+void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str);
+void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str);
+
+//		parse/resolution.c
+void	resolution(t_scene *scene, char *str);
 
 //		volume/inside_vol.c
 t_bool	inside_vol(t_pos *pos, t_vol *volume);
