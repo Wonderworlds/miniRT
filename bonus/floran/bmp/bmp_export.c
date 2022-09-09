@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:46:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 23:23:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:44:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 static void	gen_bmp_fheader(int filesize, unsigned char *dest);
 static void	createBitmapInfoHeader(int height, int width, unsigned char *dest);
-static int	create_filename(char *file);
+static int	create_filename(char *file, size_t size);
 
-int	gen_bmp(const unsigned char	*img, int height, int width)
+void	gen_bmp(const unsigned char	*img, int height, int width)
 {
 	int				fd;
 	int				line;
@@ -31,8 +31,12 @@ int	gen_bmp(const unsigned char	*img, int height, int width)
 	unsigned char	file_header[FILE_HEADER_SIZE];
 	unsigned char	info_header[INFO_HEADER_SIZE];
 
-	if (create_filename(&filefilename_bmp, 20))
-		return (1);
+	if (create_filename(&filename_bmp[0], 20))
+	{
+		ft_fprintf(2, "Error\nScreenshot ==> fail, \
+		name not available\n", filename_bmp);
+		return ;
+	}
 	fd = open(filename_bmp, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0755);
 	line = FILE_HEADER_SIZE + INFO_HEADER_SIZE
 		+ (BYTES_PER_PIXEL * height * width);
@@ -45,7 +49,7 @@ int	gen_bmp(const unsigned char	*img, int height, int width)
 		write(fd, img + width * line * 4, width * 4);
 	ft_printf("\nScreenshot ==> %s\n", filename_bmp);
 	close(fd);
-	return (0);
+	return ;
 }
 
 int	create_filename(char *file, size_t size)
