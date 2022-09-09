@@ -1,5 +1,6 @@
 .vscode/
 obj/
+obj_bonus/
 *debug*/
 miniRT
 miniRT_bonus

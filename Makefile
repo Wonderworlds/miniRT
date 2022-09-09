@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 15:45:07 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/09 16:02:17 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ MINCLUDEDIR			:=	$(INCLUDEDIR) $(addprefix $(MANDATORYDIR)/, includes)
 BINCLUDEDIR			:=	$(INCLUDEDIR) $(addprefix $(BONUSDIR)/, includes)
 
 OBJDIR				:=	./obj
+BONUSOBJDIR			:=	$(OBJDIR)_bonus
 DEBUGDIR			:=	./debugobj
 
 MANDATORYSRCS		:=	$(addprefix srcs/,	$(addprefix main/,		main.c				\
@@ -143,6 +144,7 @@ NAME				:=	$(PROGNAME)
 BONUS				:=	$(PROGNAME_BONUS)
 
 OUTDIR				:=	$(OBJDIR)
+BONUSOUTDIR			:=	$(BONUSOBJDIR)
 
 DEBUGNAME			:=	$(addsuffix .debug,$(PROGNAME))
 BONUSDEBUGNAME		:=	$(addsuffix .debug,$(PROGNAME_BONUS))
@@ -159,15 +161,15 @@ $(OUTDIR)/%.o		:	$(MANDATORYDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(MINCLUDEDIR)) $< -o $@
 
-$(OUTDIR)/%.o		:	$(BONUSDIR)/%.c | $(OUTDIR)
+$(BONUSOUTDIR)/%.o	:	$(BONUSDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(BINCLUDEDIR)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(MANDATORYSRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(MANDATORYSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
-$(BONUS)			:	$(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUS) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
+$(BONUS)			:	$(addprefix $(BONUSOUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUS) $(addprefix $(BONUSOUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS)
 
 all					:	$(NAME)
 
@@ -194,12 +196,15 @@ $(LIBFT)			:
 endif
 
 ifdef MLX
-$(MLX)			:
+$(MLX)				:
 	$(MAKE) -j -C $(dir $(MLX))
 endif
 
 $(OUTDIR)			:
 	mkdir $(OUTDIR)
+
+$(BONUSOUTDIR)		:
+	mkdir $(BONUSOUTDIR)
 
 clean				:
 ifdef LIBFT
@@ -208,7 +213,7 @@ endif
 ifdef MLX
 	$(MAKE) -C $(dir $(MLX)) clean
 endif
-	$(RM) -rf $(OBJDIR) $(DEBUGDIR)
+	$(RM) -rf $(OBJDIR) $(BONUSOUTDIR) $(DEBUGDIR)
 
 fclean				:	clean
 	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME) $(FLORANNAME)
@@ -219,4 +224,4 @@ re					:	fclean
 .PHONY				:	all bonus clean fclean re debug
 
 -include	$(addprefix $(OUTDIR)/,$(MANDATORYSRCS:.c=.d))
--include	$(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.d))
+-include	$(addprefix $(BONUSOUTDIR)/,$(BONUSSRCS:.c=.d))
