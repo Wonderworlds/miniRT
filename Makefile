@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 16:12:15 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/09 16:18:17 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,7 +162,7 @@ $(OUTDIR)/%.o		:	$(MANDATORYSRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(MINCLUDEDIR)) $< -o $@
 
-$(BONUSOUTDIR)/%.o	:	$(BONUSSRCDIR)/%.c | $(OUTDIR)
+$(BONUSOUTDIR)/%.o	:	$(BONUSSRCDIR)/%.c | $(BONUSOUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(BINCLUDEDIR)) $< -o $@
 
