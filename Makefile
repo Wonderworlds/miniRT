@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 11:54:28 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/09 12:33:06 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -213,7 +213,7 @@ fclean				:	clean
 	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME) $(FLORANNAME)
 
 re					:	fclean
-	$(MAKE) $(NAME) $(BONUS)
+	$(MAKE) $(NAME)
 
 .PHONY				:	all bonus clean fclean re debug
 
