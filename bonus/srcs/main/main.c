@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:44:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 01:52:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int	main(int ac, char **av)
 //	==============================
 //
 	graphic_process(&scene);
-	leave_rt(&scene);
 	return (EXIT_SUCCESS);
 }

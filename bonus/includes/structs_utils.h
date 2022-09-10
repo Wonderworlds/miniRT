@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 23:06:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 01:40:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ typedef enum e_disruption
 typedef struct s_xpm
 {
 	char	*file;
-	t_img	img;
+	void	*img;
+	int		h;
+	int		w;
 }	t_xpm;
 
 typedef struct s_pos

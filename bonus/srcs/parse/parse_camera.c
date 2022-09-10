@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:36:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 00:45:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	camera(t_scene *scene, char *str)
 	i += set_h_fov(scene, &cam->h_fov, str + i);
 	cam->focal_length = FOCAL_LENGTH;
 	unit_vector(&cam->vec3);
-	set_camera(&scene->cam, scene);
+	set_camera(cam, scene);
+	if (&scene->cam)
+		scene->cam = cam;
 	ft_lstadd_back(&scene->cameras, ft_lstnew(cam));
 }
