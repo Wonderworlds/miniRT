@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 18:05:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:15:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,21 @@ static int	check_empty(t_scene *scene, int type)
 	return (0);
 }
 
-void	graphic_refresh(t_data *data, t_delim x, t_delim y)
-{
-	t_rgb		color;
-	int			i;
+// void	graphic_refresh(t_data *data, t_delim x, t_delim y)
+// {
+// 	t_rgb		color;
+// 	int			i;
 
-	while (--y.max >= y.min)
-	{
-		i = x.min;
-		while (i++ < x.max)
-		{
-			color = ray_render(y.max, i, data->scene->cam, data->scene);
-			img_pix_put(&data->img, i, y.max, get_color(color));
-		}
-	}
-}
+// 	while (--y.max >= y.min)
+// 	{
+// 		i = x.min;
+// 		while (i++ < x.max)
+// 		{
+// 			color = ray_render(y.max, i, data->scene->cam, data->scene);
+// 			img_pix_put(&data->img, i, y.max, get_color(color));
+// 		}
+// 	}
+// }
 
 int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 {

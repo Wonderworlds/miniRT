@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 22:39:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:25:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	update_unit_vector(t_mitem type, t_scene *scene)
 	t_vol	*vol;
 
 	if (type == m_cam)
-		unit_vector(&scene->cam.vec3);
+		unit_vector(&scene->cam->vec3);
 	else if (type == m_plane && scene->planes)
 	{
 		index = scene->planes;

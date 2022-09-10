@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 18:01:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:25:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,20 @@ int	add_dec_cam(t_data *data, int i)
 
 	menu = &data->menu;
 	if (menu->field_index == 0)
-		add_dec_float(&data->scene->cam.pos.x, i, gen_lim(-10000, 10000));
+		add_dec_float(&data->scene->cam->pos.x, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 1)
-		add_dec_float(&data->scene->cam.pos.y, i, gen_lim(-10000, 10000));
+		add_dec_float(&data->scene->cam->pos.y, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 2)
-		add_dec_float(&data->scene->cam.pos.z, i, gen_lim(-10000, 10000));
+		add_dec_float(&data->scene->cam->pos.z, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 3)
-		add_dec_float(&data->scene->cam.vec3.x, i, gen_lim(-1, 1));
+		add_dec_float(&data->scene->cam->vec3.x, i, gen_lim(-1, 1));
 	else if (menu->field_index == 4)
-		add_dec_float(&data->scene->cam.vec3.y, i, gen_lim(-1, 1));
+		add_dec_float(&data->scene->cam->vec3.y, i, gen_lim(-1, 1));
 	else if (menu->field_index == 5)
-		add_dec_float(&data->scene->cam.vec3.z, i, gen_lim(-1, 1));
+		add_dec_float(&data->scene->cam->vec3.z, i, gen_lim(-1, 1));
 	else if (menu->field_index == 6)
-		add_dec_int(&data->scene->cam.h_fov, i, gen_lim(0, 180));
-	set_camera(&data->scene->cam);
+		add_dec_int(&data->scene->cam->h_fov, i, gen_lim(0, 180));
+	set_camera(data->scene->cam, &data->scene->resolut);
 	return (0);
 }
 

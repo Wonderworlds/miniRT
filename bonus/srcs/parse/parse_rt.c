@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:01:02 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 03:40:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 
 void	exit_parse(t_scene *scene, const char *error)
 {
-	free(scene->line_gnl);
-	ft_lstclear(&scene->lights, &free);
-	ft_lstclear(&scene->vols, &free);
-	if (scene->ambient)
-		free(scene->ambient);
-	close(scene->fd);
 	if (!error)
 		ft_fprintf(2, "Error\nError parse format\n");
 	else
 		ft_fprintf(2, "%s", error);
+	leave_rt(scene);
+	close(scene->fd);
 	exit(EXIT_FAILURE);
 }
 
@@ -35,6 +31,7 @@ void	exit_parse_cam(t_scene *scene, char *str)
 {
 	ft_lstclear(&scene->lights, &free);
 	ft_lstclear(&scene->vols, &free);
+	ft_lstclear(&scene->cameras, &free);
 	close(scene->fd);
 	ft_fprintf(2, "%s", str);
 	exit(EXIT_FAILURE);
@@ -70,7 +67,7 @@ void	read_rt(int fd, t_scene *scene)
 			resolution(scene, str);
 		else if (str[0] == 'c' && str[1] == ' ')
 			camera(scene, str);
-		else if (str[0] == 'L' && str[1] == ' ')
+		else if (str[0] == 'l' && str[1] == ' ')
 			light(scene, str);
 		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
 			sphere(scene, str);
@@ -85,6 +82,7 @@ void	read_rt(int fd, t_scene *scene)
 		free(str);
 		str = ft_gnl_rt(fd);
 	}
+	scene->line_gnl = NULL;
 }
 
 void	parse_rt(char *arg, t_scene *scene)
@@ -95,7 +93,7 @@ void	parse_rt(char *arg, t_scene *scene)
 	fd = open_file(arg);
 	scene->fd = fd;
 	read_rt(fd, scene);
-	if (scene->cam.is_set == false)
+	if (!scene->cam)
 		exit_parse_cam(scene,
 			"Error\nError parse format: camera 'C' is not set\n");
 	if (scene->resolut.is_set == false)

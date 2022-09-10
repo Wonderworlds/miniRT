@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/09 20:25:34 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/10 02:40:17 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ MANDATORYSRCS		:=	$(addprefix main/,		main.c				\
 																	debug.c					\
 																	quicksort_lst_custom.c	\
 																	)						\
-											)
 
 BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												start_and_leave.c)	\
@@ -130,7 +129,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												vector_math.c			\
 												vector_math2.c			\
 												vector_math3.c			\
-													struct_utils.c			\
+												struct_utils.c			\
 												color_utils.c			\
 												bbox_utils.c			\
 												ft_itoa_custom.c		\
@@ -160,7 +159,7 @@ ifdef DEBUG
 	OPTFLAG 		:=	-g
 	LIBFT			:=	$(addsuffix .debug,$(LIBFT))
 	NAME			:=	$(DEBUGNAME)
-	BONUSNAME		:=	$(BONUSDEBUGNAME)
+	BONUS			:=	$(BONUSDEBUGNAME)
 	OUTDIR			:=	$(DEBUGDIR)
 endif
 
@@ -187,6 +186,11 @@ ifndef DEBUG
 	$(MAKE) $(DEBUGNAME) DEBUG=1
 endif
 
+$(BONUSDEBUGNAME)		:
+ifndef DEBUG
+	$(MAKE) $(BONUSDEBUGNAME) DEBUG=1
+endif
+
 ifdef DEBUG
 $(PROGNAME)			:	$(NAME)
 $(PROGNAME_BONUS)	:	$(BONUSNAME)
@@ -194,7 +198,7 @@ endif
 
 debug				:
 ifndef DEBUG
-	$(MAKE) DEBUG=1
+	$(MAKE) $(BONUSDEBUGNAME) DEBUG=1
 endif
 
 ifdef LIBFT

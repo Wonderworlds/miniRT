@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:03:33 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 03:32:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,43 +54,39 @@
 
 #include <stdio.h>
 
-void	check_value2(t_scene scene)
+void	check_value2(t_scene *scene)
 {
-	t_list	*check_vols = scene.vols;
-	t_list	*check_plane = scene.planes;
+	t_list	*check_vols = scene->vols;
+	t_list	*check_plane = scene->planes;
 	t_vol	*vol;
 	t_plane	*plane;
 
-	printf("resolut->win_width => %d\nresolut->win_height => %d\nresolut->aspect_ratio => %f\n", scene.resolut.win_width, scene.resolut.win_height, scene.resolut.aspect_ratio);
+	printf("resolut->win_width => %d\nresolut->win_height => %d\nresolut->aspect_ratio => %f\n", scene->resolut.win_width, scene->resolut.win_height, scene->resolut.aspect_ratio);
 	
 	while (check_vols)
 	{
 		vol = (t_vol *)(check_vols->content);
 		if (vol->type == TRIANGLE)
-			printf("tr	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d texture:%s bumpmap:%s ", vol->tr[0].x, vol->tr[0].y, vol->tr[0].z, vol->tr[1].x, vol->tr[1].y, vol->tr[1].z, vol->tr[2].x, vol->tr[2].y, vol->tr[2].z, vol->col.r, vol->col.g, vol->col.b, vol->tex.file, vol->bump.file);
+			printf("tr	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d texture:%s bumpmap:%s ", vol->tr[0].x, vol->tr[0].y, vol->tr[0].z, vol->tr[1].x, vol->tr[1].y, vol->tr[1].z, vol->tr[2].x, vol->tr[2].y, vol->tr[2].z, vol->col.r, vol->col.g, vol->col.b, ((vol->tex) ? "Yes" : "No"), ((vol->bump) ? "Yes" : "No"));
 		if (vol->disruption == NONE)
 			printf("disruption:none\n");
 		if (vol->disruption == CHECKERBOARD)
 			printf("disruption:checkerboard\n");
 		if (vol->disruption == OTHER)
 			printf("disruption:other\n");
-		if (vol->disruption == NO_SET)
-			printf("disruption:no_set\n");
 		check_vols = check_vols->next;
 	}
 		
 	while (check_plane)
 	{
 		plane = (t_plane *)(check_plane->content);
-		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d	texture:%s bumpmap:%s ", plane->pos.x, plane->pos.y, plane->pos.z, plane->vec3.x, plane->vec3.y, plane->vec3.z, plane->col.r, plane->col.g, plane->col.b, plane->tex.file, plane->bump.file);
+		printf("pl	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d	texture:%s bumpmap:%s ", plane->pos.x, plane->pos.y, plane->pos.z, plane->vec3.x, plane->vec3.y, plane->vec3.z, plane->col.r, plane->col.g, plane->col.b, ((plane->tex) ? "Yes" : "No"), ((plane->bump) ? "Yes" : "No"));
 		if (plane->disruption == NONE)
 			printf("disruption:none\n");
 		if (plane->disruption == CHECKERBOARD)
 			printf("disruption:checkerboard\n");
 		if (plane->disruption == OTHER)
 			printf("disruption:other\n");
-		if (plane->disruption == NO_SET)
-			printf("disruption:no_set\n");
 		check_plane = check_plane->next;
 	}
 }
@@ -110,10 +106,9 @@ int	main(int ac, char **av)
 	}
 	parse_rt(av[1], &scene);
 //	========== test parse =========
-	check_value2(scene);
+	check_value2(&scene);
 //	==============================
 //
 	graphic_process(&scene);
-	leave_rt(&scene);
 	return (EXIT_SUCCESS);
 }

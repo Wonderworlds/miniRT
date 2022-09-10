@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 19:18:35 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 02:09:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	return (gen_rgb(0, 0, 0));
 }
 
-t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
+t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene)
 {
 	t_ray	ray;
 	t_pos	dir;
@@ -75,13 +75,13 @@ t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 
 	u = (double)x / (WIN_WIDTH - 1);
 	v = (double)y / (WIN_HEIGHT - 1);
-	dir.x = cam.lower_left_corner.x + (u * cam.horizontal.x)
-		+ (v * cam.vertical.x) - cam.pos.x;
-	dir.y = cam.lower_left_corner.y + (u * cam.horizontal.y)
-		+ (v * cam.vertical.y) - cam.pos.y;
-	dir.z = cam.lower_left_corner.z + (u * cam.horizontal.z)
-		+ (v * cam.vertical.z) - cam.pos.z;
-	create_ray(cam.pos, dir, &ray);
+	dir.x = cam->lower_left_corner.x + (u * cam->horizontal.x)
+		+ (v * cam->vertical.x) - cam->pos.x;
+	dir.y = cam->lower_left_corner.y + (u * cam->horizontal.y)
+		+ (v * cam->vertical.y) - cam->pos.y;
+	dir.z = cam->lower_left_corner.z + (u * cam->horizontal.z)
+		+ (v * cam->vertical.z) - cam->pos.z;
+	create_ray(cam->pos, dir, &ray);
 	vector_scale(-1, &ray.dir);
 	return (ray_color(ray, scene));
 }

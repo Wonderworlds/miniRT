@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 18:45:14 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 02:20:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft.h"
 # include "mlx.h"
+
+typedef struct s_data t_data;
 
 typedef enum e_bool
 {
@@ -50,19 +52,20 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
-typedef struct s_xpm
-{
-	char			*file;
-	struct s_img	img;
-}	t_xpm;
-
 typedef enum e_disruption
 {
 	NONE,
 	CHECKERBOARD,
 	OTHER,
-	NO_SET
 }	t_disruption;
+
+typedef struct s_xpm
+{
+	char	*file;
+	void	*img;
+	int		h;
+	int		w;
+}	t_xpm;
 
 typedef struct s_pos
 {
@@ -108,8 +111,9 @@ typedef struct s_vol
 	t_box			rayon;
 	t_box			box;
 	t_disruption	disruption;
-	t_xpm			tex;
-	t_xpm			bump;
+	t_xpm			*tex;
+	t_xpm			*bump;
+	t_data			*data;
 }	t_vol;
 
 typedef struct s_plane
@@ -118,8 +122,9 @@ typedef struct s_plane
 	t_pos			vec3;
 	t_rgb			col;
 	t_disruption	disruption;
-	t_xpm			tex;
-	t_xpm			bump;
+	t_xpm			*tex;
+	t_xpm			*bump;
+	t_data			*data;
 }	t_plane;
 
 typedef struct s_cam
@@ -127,7 +132,6 @@ typedef struct s_cam
 	t_pos	pos;
 	t_pos	vec3;
 	int		h_fov;
-	t_bool	is_set;
 	t_pos	lookat;
 	t_pos	horizontal;
 	t_pos	vertical;
@@ -177,7 +181,8 @@ typedef struct s_scene
 	t_list		*lights;
 	t_light		*ambient;
 	t_list		*planes;
-	t_cam		cam;
+	t_list		*cameras;
+	t_cam		*cam;
 	int			fd;
 	char		*line_gnl;
 	t_bvh		*bvh;

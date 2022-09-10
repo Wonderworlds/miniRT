@@ -2,5 +2,4 @@ R   840 680
 
 A 0.2 255,255,255
 c   1200.0,800.0,-1300.0     1.0,0.0,1.0         70
-tr 302.395566,655.917763,0.121768 286.773252,664.887181,-49.812271 359.888741,718.063948,-0.181239 255,204,0 texture:Whaaaaaaaaaaaaaat.xpm bumpmap:Yooooooooo.xpm disruption:other
-pl  0.0,8.0,0.0              0.0,1.0,0.0        255,233,166                texture:pathFile.xpm disruption:checkerboard bumpmap:pathFile.xpm
+tr 302.395566,655.917763,0.121768 286.773252,664.887181,-49.812271 359.888741,718.063948,-0.181239 255,204,0 texture:earth_tex.xpm bumpmap:earth_tex.xpm disruption:checkerboard

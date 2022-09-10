@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:34:27 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 22:24:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	malloc_light(t_light **light, t_scene *scene)
 {
 	*light = malloc(sizeof(t_light));
-	if (!light)
+	if (!*light)
 		exit_parse(scene, "Error\nmalloc fail\n");
 }
 

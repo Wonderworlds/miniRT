@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:40:29 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/09 22:24:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	malloc_volume(t_vol **vol, t_scene *scene, int option)
 {
 	*vol = malloc(sizeof(t_vol));
-	if (!vol)
+	if (!*vol)
 		exit_parse(scene, "Error\nmalloc fail\n");
 	if (option == 0)
 		(*vol)->type = SPHERE;
@@ -29,7 +29,7 @@ void	malloc_volume(t_vol **vol, t_scene *scene, int option)
 void	malloc_pl(t_plane **pl, t_scene *scene)
 {
 	*pl = malloc(sizeof(t_plane));
-	if (!pl)
+	if (!*pl)
 		exit_parse(scene, "Error\nmalloc fail\n");
 }
 
