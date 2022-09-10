@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:39:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:29:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,12 @@ int	graphic_process(t_scene *scene)
 	if (!data.mlx_ptr)
 		error_mlx_data(&data, NULL);
 	data.win_ptr = mlx_new_window(data.mlx_ptr,
-			WIN_WIDTH, WIN_HEIGHT, "miniRT");
+			scene->resolut.win_width, scene->resolut.win_height, "miniRT");
 	if (!data.win_ptr)
 		error_mlx_data(&data, data.mlx_ptr);
 	mlx_set_font(data.mlx_ptr, data.win_ptr, "9x15bold");
-	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data.img.mlx_img = mlx_new_image(data.mlx_ptr,
+		scene->resolut.win_width, scene->resolut.win_height);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	init_texture_menu(&data, scene->planes, scene->vols);

@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/10 02:40:17 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/10 17:20:25 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												vector_math2.c			\
 												vector_math3.c			\
 												struct_utils.c			\
+												struct_utils2.c			\
 												color_utils.c			\
 												bbox_utils.c			\
 												ft_itoa_custom.c		\

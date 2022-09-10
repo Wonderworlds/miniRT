@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 02:20:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:12:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef enum e_bool
 	false,
 	true
 }	t_bool;
+
+typedef struct s_couple
+{
+	int	x;
+	int	y;
+}	t_couple;
 
 typedef struct s_resolut
 {
