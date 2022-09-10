@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:06:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 03:35:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm)
 	i = 0;
 	if (*xpm)
 		exit_parse(scene, NULL);
-	while (ft_isalpha(str[i]) || str[i] == '.')
+	while (str[i] && str[i] != ' ' && str[i] != '\n')
 		i++;
 	if (str[i] && str[i] != '\n' && str[i] != ' ')
 		exit_parse(scene, NULL);

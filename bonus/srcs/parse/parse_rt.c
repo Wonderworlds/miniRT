@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 23:14:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 03:40:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	read_rt(int fd, t_scene *scene)
 		free(str);
 		str = ft_gnl_rt(fd);
 	}
+	scene->line_gnl = NULL;
 }
 
 void	parse_rt(char *arg, t_scene *scene)
