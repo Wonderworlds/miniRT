@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 17:25:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:52:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_color(t_rgb color)
 	return (result);
 }
 
-int	img_pix_put(t_img *img, t_couple pos, t_couple lim, int color)
+int	img_pix_put(t_img_c *img, t_couple pos, t_couple lim, int color)
 {
 	char	*pixel;
 

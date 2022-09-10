@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 17:29:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:54:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "mlx_int.h"
 #include "minirt.h"
 
 void	exit_graphic(t_data *data, const char *error)
@@ -35,6 +36,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		pl->tex->file = NULL;
 		if (!pl->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		pl->tex->addr = (int *)((t_img *)pl->tex->img)->data;
 	}
 	if (pl && pl->bump)
 	{
@@ -44,6 +46,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		pl->bump->file = NULL;
 		if (!pl->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		pl->bump->addr = (int *)((t_img *)pl->bump->img)->data;
 	}
 }
 
@@ -57,6 +60,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		vol->tex->file = NULL;
 		if (!vol->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		vol->tex->addr = (int *)((t_img *)vol->tex->img)->data;
 	}
 	if (vol && vol->bump)
 	{
@@ -66,6 +70,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		vol->bump->file = NULL;
 		if (!vol->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		vol->bump->addr = (int *)((t_img *)vol->bump->img)->data;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 17:12:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:52:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ typedef struct s_menu
 	char	bprint[17];
 }			t_menu;
 
-typedef struct s_img
+typedef struct s_img_c
 {
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}			t_img;
+}			t_img_c;
 
 typedef enum e_disruption
 {
@@ -69,6 +69,7 @@ typedef struct s_xpm
 {
 	char	*file;
 	void	*img;
+	int		*addr;
 	int		h;
 	int		w;
 }	t_xpm;
@@ -198,7 +199,7 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
+	t_img_c	img;
 	t_scene	*scene;
 	t_menu	menu;
 }			t_data;
