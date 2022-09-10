@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:59:18 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 02:14:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MENU_H
 
 # include "mlx_data.h"
+# include "structs_utils.h"
 
 # define WHITE_PIXEL 13158600
 # define BLACK_PIXEL 2631720
