@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 02:17:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:25:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	add_dec_cam(t_data *data, int i)
 		add_dec_float(&data->scene->cam->vec3.z, i, gen_lim(-1, 1));
 	else if (menu->field_index == 6)
 		add_dec_int(&data->scene->cam->h_fov, i, gen_lim(0, 180));
-	set_camera(&data->scene->cam, &data->scene->resolut);
+	set_camera(data->scene->cam, &data->scene->resolut);
 	return (0);
 }
 

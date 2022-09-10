@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:37:15 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:24:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void	ambient_lightning(t_scene *scene, char *str)
 void	light(t_scene *scene, char *str)
 {
 	t_light	*l;
-	t_list	*lights;
 	int		i;
 
 	i = 1;
-	lights = scene->lights;
 	malloc_light(&l, scene);
 	l->type = LIGHT;
 	while (str[i] == ' ')

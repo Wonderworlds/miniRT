@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 23:17:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:22:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 #include "utils.h"
 #include "bvh.h"
 
-static void	free_vols(t_vol *vol)
+static void	free_vols(void *ptr)
 {
+	t_vol	*vol;
+
+	vol = (t_vol *)ptr;
 	if (vol->tex)
 	{
 		if (!vol->tex->file && vol->data)
-			mlx_destroy_image(vol->data->mlx_ptr, &vol->tex->img.mlx_img);
+			mlx_destroy_image(vol->data->mlx_ptr, vol->tex->img);
 		if (vol->tex->file)
 			free(vol->tex->file);
 		free(vol->tex);
@@ -28,7 +31,7 @@ static void	free_vols(t_vol *vol)
 	if (vol->bump && vol->data)
 	{
 		if (!vol->bump->file && vol->data)
-			mlx_destroy_image(vol->data->mlx_ptr, &vol->bump->img.mlx_img);
+			mlx_destroy_image(vol->data->mlx_ptr, vol->bump->img);
 		if (vol->bump->file)
 			free(vol->bump->file);
 		free(vol->bump);
@@ -36,12 +39,15 @@ static void	free_vols(t_vol *vol)
 	free(vol);
 }
 
-static void	free_planes(t_plane *pl)
+static void	free_planes(void *ptr)
 {
+	t_plane	*pl;
+
+	pl = (t_plane *)ptr;
 	if (pl->tex)
 	{
 		if (!pl->tex->file && pl->data)
-			mlx_destroy_image(pl->data->mlx_ptr, &pl->tex->img.mlx_img);
+			mlx_destroy_image(pl->data->mlx_ptr, pl->tex->img);
 		if (pl->tex->file)
 			free(pl->tex->file);
 		free(pl->tex);
@@ -49,7 +55,7 @@ static void	free_planes(t_plane *pl)
 	if (pl->bump && pl->data)
 	{
 		if (!pl->bump->file && pl->data)
-			mlx_destroy_image(pl->data->mlx_ptr, &pl->bump->img.mlx_img);
+			mlx_destroy_image(pl->data->mlx_ptr, pl->bump->img);
 		if (pl->bump->file)
 			free(pl->bump->file);
 		free(pl->bump);

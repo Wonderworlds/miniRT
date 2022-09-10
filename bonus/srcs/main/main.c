@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 01:52:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:25:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	main(int ac, char **av)
 			ft_fprintf(2, "Error\nToo many maps to load\nPlease choose one\n");
 		return (EXIT_FAILURE);
 	}
+	check_value2(scene);
+	return (0);
 	parse_rt(av[1], &scene);
 //	========== test parse =========
 	check_value2(scene);
