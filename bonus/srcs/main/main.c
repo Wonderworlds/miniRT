@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 02:25:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 03:12:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@
 
 #include <stdio.h>
 
-void	check_value2(t_scene scene)
+void	check_value2(t_scene *scene)
 {
-	t_list	*check_vols = scene.vols;
-	t_list	*check_plane = scene.planes;
+	t_list	*check_vols = scene->vols;
+	t_list	*check_plane = scene->planes;
 	t_vol	*vol;
 	t_plane	*plane;
 
-	printf("resolut->win_width => %d\nresolut->win_height => %d\nresolut->aspect_ratio => %f\n", scene.resolut.win_width, scene.resolut.win_height, scene.resolut.aspect_ratio);
+	printf("resolut->win_width => %d\nresolut->win_height => %d\nresolut->aspect_ratio => %f\n", scene->resolut.win_width, scene->resolut.win_height, scene->resolut.aspect_ratio);
 	
 	while (check_vols)
 	{
@@ -104,11 +104,9 @@ int	main(int ac, char **av)
 			ft_fprintf(2, "Error\nToo many maps to load\nPlease choose one\n");
 		return (EXIT_FAILURE);
 	}
-	check_value2(scene);
-	return (0);
 	parse_rt(av[1], &scene);
 //	========== test parse =========
-	check_value2(scene);
+	check_value2(&scene);
 //	==============================
 //
 	graphic_process(&scene);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 00:24:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 03:06:50 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@ static size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm)
 	i = 0;
 	if (*xpm)
 		exit_parse(scene, NULL);
-	while (ft_isalpha(str[i]))
+	while (ft_isalpha(str[i]) || str[i] == '.')
 		i++;
-	if (str[i] && (str[i] != '\n' || str[i] != ' '))
+	if (str[i] && str[i] != '\n' && str[i] != ' ')
 		exit_parse(scene, NULL);
 	file = ft_substr(str, 0, i);
 	if (!file)
 		exit_parse(scene, "Error\nmalloc fail\n");
-	if (ft_strncmp(file + i - 5, ".xpm", 4) || access(file, F_OK))
-		exit_parse(scene, NULL);
+	if (ft_strncmp(file + i - 4, ".xpm", 4) || access(file, F_OK))
+		exit_parse(scene, "Error\nIncorrect file\n");
 	malloc_xpm(file, xpm, scene);
+	while (str[i] == ' ')
+		i++;
 	return (i);
 }
 
@@ -60,6 +62,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 		*ptr = OTHER;
 	else
 		exit_parse(scene, NULL);
+	while (str[i] == ' ')
+		i++;
 	return (i);
 }
 
@@ -73,12 +77,13 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 	{
 		if (str[i] == ':')
 		{
+			i++;
 			if (!ft_strncmp(tbd[0], str, i))
-				i += set_t_xpm(scene, &str[i + 1],  &vol->tex);
+				i += set_t_xpm(scene, &str[i],  &vol->tex);
 			else if (!ft_strncmp(tbd[1], str, i))
-				i += set_t_xpm(scene, &str[i + 1], &vol->bump);
+				i += set_t_xpm(scene, &str[i], &vol->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
-				i += set_disruption(scene, &str[i + 1], &vol->disruption);
+				i += set_disruption(scene, &str[i], &vol->disruption);
 			else
 				exit_parse(scene, NULL);
 			str += i;
@@ -101,12 +106,13 @@ void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 	{
 		if (str[i] == ':')
 		{
+			i++;
 			if (!ft_strncmp(tbd[0], str, i))
-				i += set_t_xpm(scene, &str[i + 1], &pl->tex);
+				i += set_t_xpm(scene, &str[i], &pl->tex);
 			else if (!ft_strncmp(tbd[1], str, i))
-				i += set_t_xpm(scene, &str[i + 1], &pl->bump);
+				i += set_t_xpm(scene, &str[i], &pl->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
-				i += set_disruption(scene, &str[i + 1], &pl->disruption);
+				i += set_disruption(scene, &str[i], &pl->disruption);
 			else
 				exit_parse(scene, NULL);
 			str += i;

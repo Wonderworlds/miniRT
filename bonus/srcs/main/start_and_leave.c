@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 02:22:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 02:54:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	leave_rt(t_scene *scene)
 	if (scene->ambient)
 		free(scene->ambient);
 	if (scene->line_gnl)
-		free(scene->ambient);
+		free(scene->line_gnl);
 	if (scene->bvh)
 		btree_remove_infix(&scene->bvh, &free);
 }

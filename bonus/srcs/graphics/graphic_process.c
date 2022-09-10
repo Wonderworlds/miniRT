@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 01:57:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 03:18:24 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exit_graphic(t_data *data, const char *error)
 	leave_rt(data->scene);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
+	// mlx_destroy_display(data->mlx_ptr); SEG FAULT ?
 	free(data->mlx_ptr);
 	exit(EXIT_FAILURE);
 }
@@ -34,7 +34,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		free(pl->tex->file);
 		pl->tex->file = NULL;
 		if (!pl->tex->img)
-			exit_graphic(data, "Error\n load xpm fail\n");
+			exit_graphic(data, "Error\nLoad xpm fail\n");
 	}
 	if (pl && pl->bump)
 	{
@@ -43,7 +43,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		free(pl->bump->file);
 		pl->bump->file = NULL;
 		if (!pl->bump->img)
-			exit_graphic(data, "Error\n load xpm fail\n");
+			exit_graphic(data, "Error\nLoad xpm fail\n");
 	}
 }
 
@@ -56,7 +56,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		free(vol->tex->file);
 		vol->tex->file = NULL;
 		if (!vol->tex->img)
-			exit_graphic(data, "Error\n load xpm fail\n");
+			exit_graphic(data, "Error\nLoad xpm fail\n");
 	}
 	if (vol && vol->bump)
 	{
@@ -65,7 +65,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		free(vol->bump->file);
 		vol->bump->file = NULL;
 		if (!vol->bump->img)
-			exit_graphic(data, "Error\n load xpm fail\n");
+			exit_graphic(data, "Error\nLoad xpm fail\n");
 	}
 }
 
