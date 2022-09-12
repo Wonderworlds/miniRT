@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:19:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 11:50:14 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 12:08:46 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "structs_utils.h"
 #include "utils.h"
 #include "minirt.h"
-
-void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
 
 t_pos	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam)
