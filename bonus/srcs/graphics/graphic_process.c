@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:39:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:54:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "mlx_int.h"
 #include "minirt.h"
 
 void	exit_graphic(t_data *data, const char *error)
@@ -35,6 +36,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		pl->tex->file = NULL;
 		if (!pl->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		pl->tex->addr = (int *)((t_img *)pl->tex->img)->data;
 	}
 	if (pl && pl->bump)
 	{
@@ -44,6 +46,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 		pl->bump->file = NULL;
 		if (!pl->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		pl->bump->addr = (int *)((t_img *)pl->bump->img)->data;
 	}
 }
 
@@ -57,6 +60,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		vol->tex->file = NULL;
 		if (!vol->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		vol->tex->addr = (int *)((t_img *)vol->tex->img)->data;
 	}
 	if (vol && vol->bump)
 	{
@@ -66,6 +70,7 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 		vol->bump->file = NULL;
 		if (!vol->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
+		vol->bump->addr = (int *)((t_img *)vol->bump->img)->data;
 	}
 }
 
@@ -99,11 +104,12 @@ int	graphic_process(t_scene *scene)
 	if (!data.mlx_ptr)
 		error_mlx_data(&data, NULL);
 	data.win_ptr = mlx_new_window(data.mlx_ptr,
-			WIN_WIDTH, WIN_HEIGHT, "miniRT");
+			scene->resolut.win_width, scene->resolut.win_height, "miniRT");
 	if (!data.win_ptr)
 		error_mlx_data(&data, data.mlx_ptr);
 	mlx_set_font(data.mlx_ptr, data.win_ptr, "9x15bold");
-	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data.img.mlx_img = mlx_new_image(data.mlx_ptr,
+		scene->resolut.win_width, scene->resolut.win_height);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	init_texture_menu(&data, scene->planes, scene->vols);

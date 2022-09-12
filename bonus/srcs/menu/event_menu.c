@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 15:47:14 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/10 17:27:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
+#include "utils.h"
 #include "menu.h"
 #include "minirt.h"
 #include "bvh.h"
@@ -32,7 +33,8 @@ void	close_menu(t_data *data)
 				(unsigned int)size);
 		}
 	}
-	graphic_render(data);
+	graphic_render(data, gen_couple(data->scene->resolut.win_width,
+		data->scene->resolut.win_width));
 }
 
 void	open_menu(t_data *data)

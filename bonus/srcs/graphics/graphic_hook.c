@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 16:55:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:34:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	key_press_hook(int keysym, t_data *data)
 	if (keysym == XK_Tab)
 		switch_menu(data);
 	if (keysym == XK_p)
-		gen_bmp((unsigned char *)data->img.addr, WIN_HEIGHT, WIN_WIDTH);
+		gen_bmp((unsigned char *)data->img.addr,
+			data->scene->resolut.win_height, data->scene->resolut.win_width);
 	if (keysym == XK_Down && data->menu.is_visible)
 		updown_menu(data, -1);
 	if (keysym == XK_Up && data->menu.is_visible)
@@ -51,7 +52,9 @@ int	key_press_hook(int keysym, t_data *data)
 
 void	handle_hooks(t_data *data)
 {
-	graphic_render(data);
+	set_camera(data->scene->cam, &data->scene->resolut);
+	graphic_render(data, gen_couple(data->scene->resolut.win_width,
+		data->scene->resolut.win_height));
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_hook, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask,
 		exit_hook, data);

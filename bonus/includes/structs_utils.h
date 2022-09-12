@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 02:20:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:52:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef enum e_bool
 	false,
 	true
 }	t_bool;
+
+typedef struct s_couple
+{
+	int	x;
+	int	y;
+}	t_couple;
 
 typedef struct s_resolut
 {
@@ -43,14 +49,14 @@ typedef struct s_menu
 	char	bprint[17];
 }			t_menu;
 
-typedef struct s_img
+typedef struct s_img_c
 {
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}			t_img;
+}			t_img_c;
 
 typedef enum e_disruption
 {
@@ -63,6 +69,7 @@ typedef struct s_xpm
 {
 	char	*file;
 	void	*img;
+	int		*addr;
 	int		h;
 	int		w;
 }	t_xpm;
@@ -140,7 +147,6 @@ typedef struct s_cam
 	float	viewport_height;
 	float	viewport_width;
 	t_pos	uvw[3];
-
 }	t_cam;
 
 typedef struct s_light
@@ -192,7 +198,7 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
+	t_img_c	img;
 	t_scene	*scene;
 	t_menu	menu;
 }			t_data;
