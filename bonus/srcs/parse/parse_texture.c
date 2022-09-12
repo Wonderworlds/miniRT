@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:35:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:52:53 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 
 void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular :"};
 	size_t			i;
 
 	i = 0;
@@ -98,7 +99,8 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 
 void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular :"};
 	size_t			i;
 
 	i = 0;

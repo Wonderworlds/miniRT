@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 18:52:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:02:58 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ typedef struct s_xpm
 	int		w;
 }	t_xpm;
 
+typedef struct s_spec
+{
+	int		size;
+	float	intensity;
+}	t_spec;
+
 typedef struct s_pos
 {
 	float	x;
@@ -120,6 +126,7 @@ typedef struct s_vol
 	t_disruption	disruption;
 	t_xpm			*tex;
 	t_xpm			*bump;
+	t_spec			spec;
 	t_data			*data;
 }	t_vol;
 
@@ -131,6 +138,7 @@ typedef struct s_plane
 	t_disruption	disruption;
 	t_xpm			*tex;
 	t_xpm			*bump;
+	t_spec			spec;
 	t_data			*data;
 }	t_plane;
 
@@ -164,6 +172,7 @@ typedef struct s_hit
 	t_pos	pos;
 	t_pos	normal;
 	t_rgb	col;
+	t_spec	spec;
 }	t_hit;
 
 typedef struct s_ray
