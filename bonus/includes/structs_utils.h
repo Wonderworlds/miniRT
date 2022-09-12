@@ -147,7 +147,6 @@ typedef struct s_cam
 	float	viewport_height;
 	float	viewport_width;
 	t_pos	uvw[3];
-
 }	t_cam;
 
 typedef struct s_light
