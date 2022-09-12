@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/12 00:59:18 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/12 23:09:36 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												parse_volume.c		\
 												parse_light.c		\
 												parse_texture.c		\
+												parse_texture2.c		\
 												parse_camera.c		\
 												parse_volume2.c		\
 												parse_resolution.c	\

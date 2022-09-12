@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:00:43 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 22:56:12 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	set_rgb(t_scene *scene, t_rgb *col, char *str)
 			exit_parse(scene, NULL);
 		else if (times == 1 && (ft_atoi_err(str + i, &col->b) || col->b < 0
 				|| col->b > 255))
-			exit_parse(scene, "Yooooooooo");
+			exit_parse(scene, NULL);
 		while (ft_isdigit(str[i]))
 			i++;
 		if (str[i] == ',')

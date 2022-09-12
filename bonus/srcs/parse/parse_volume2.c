@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 16:31:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:46:26 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	triangle(t_scene *scene, char *str)
 
 	i = 2;
 	malloc_volume(&tr, scene, TRIANGLE);
-	ft_lstadd_back(&scene->vols, ft_lstnew(tr));
-	tr->type = TRIANGLE;
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &tr->tr[0], str + i);

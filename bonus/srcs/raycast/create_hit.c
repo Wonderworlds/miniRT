@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:53:31 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	hit_sphere(t_vol *vol, t_hit *hit)
 {
 	vector_ab(vol->pos, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
 }
 
 static void	hit_cylinder(t_vol *vol, t_hit *hit)
@@ -36,12 +38,16 @@ static void	hit_cylinder(t_vol *vol, t_hit *hit)
 	vector_add(vol->pos, vec3, &hit->normal);
 	vector_ab(hit->normal, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
 }	
 
 static void	hit_plane(t_plane *pl, t_hit *hit)
 {
 	col_cpy(&pl->col, &hit->col);
 	pos_cpy(&pl->vec3, &hit->normal);
+	hit->spec.size = pl->spec.size;
+	hit->spec.intensity = pl->spec.intensity;
 }
 
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)

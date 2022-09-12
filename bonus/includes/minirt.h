@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 17:06:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:13:04 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	camera(t_scene *scene, char *str);
 //		parse/parse_texture.c
 void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str);
 void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str);
+
+//		parse/parse_texture2.c
+size_t	set_specular(t_scene *scene, char *str, t_spec *spec);
 
 //		parse/resolution.c
 void	resolution(t_scene *scene, char *str);
