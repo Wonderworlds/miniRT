@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 02:05:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:39:37 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,10 @@ t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene);
 
 //		lights/lights.c
 t_rgb	add_lights(t_scene *scene, t_hit *hit);
+
+//		light/phong_reflection.c
+t_pos	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
+	t_light *lights, t_cam *cam);
+
 
 #endif

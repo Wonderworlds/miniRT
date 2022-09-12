@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phong_reflection.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/11 23:19:09 by amahla            #+#    #+#             */
+/*   Updated: 2022/09/12 10:54:33 by amahla           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <math.h>
+#include "structs_utils.h"
+#include "utils.h"
+#include "minirt.h"
+
+void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
+
+void	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
+	t_pos *diffuse, t_light *lights, t_cam *cam)
+{
+	t_pos	r;
+	t_pos	temp;
+	t_pos	temp2;
+	float	rr;
+	float	coeff;
+	t_pos	diffuse_2;
+
+	set_vector(0, 0, 0, &diffuse_2);
+	vector_equal(dir_light, &temp);
+	vector_equal(hit_from_camera.normal, &temp2);
+	vector_scale(-1, &temp);
+//	cross_product(hit_from_camera.normal, temp, &r);
+	rr = dot_product(hit_from_camera.normal, temp);
+	rr *= 2;
+//	vector_scale(2, &r);
+//	vector_multi(r, hit_from_camera.normal, &r);
+	vector_scale(rr, &temp2);
+	vector_sub(temp2, temp, &r);
+
+	vector_ab(cam->pos, hit_from_camera.pos, &temp);
+
+//	unit_vector(&temp);
+//	unit_vector(&r);
+	coeff = lights->r * powf(fmaxf(0.f, dot_product(r, cam->vec3)), 50);
+
+	coeff *= 0.1;
+	add_coeficient(diffuse, coeff, &lights->col);
+//	vector_add(diffuse_2, *diffuse, diffuse);
+
+}
