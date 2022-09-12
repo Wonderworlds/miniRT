@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 17:13:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:59:19 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void		hit_cpy(const t_hit *src, t_hit *dest);
 
 //		utils/struct_utils2.c
 t_couple	gen_couple(int x, int y);
+void		set_color(int r, int g, int b, t_rgb *col);
 
 //		utils/ft_itoa_custom.c
 void		ft_itoa_custom(int n, char *str, size_t size);
