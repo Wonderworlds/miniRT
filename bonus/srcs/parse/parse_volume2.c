@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_volume2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:08:33 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:31:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	triangle(t_scene *scene, char *str)
 	int		i;
 
 	i = 2;
-	malloc_volume(&tr, scene, 2);
+	malloc_volume(&tr, scene, TRIANGLE);
+	ft_lstadd_back(&scene->vols, ft_lstnew(tr));
 	tr->type = TRIANGLE;
 	while (str[i] == ' ')
 		i++;
@@ -40,5 +41,4 @@ void	triangle(t_scene *scene, char *str)
 	parse_vol_texture(scene, tr, str + i);
 //	unit_vector(&tr->vec3);
 //	triangle_bounds(tr);
-	ft_lstadd_back(&scene->vols, ft_lstnew(tr));
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 12:08:43 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:17:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		set_float(t_scene *scene, float *data, char *str, int option);
 int		set_h_fov(t_scene *scene, int *data, char *str);
 
 //		parse/parse_volume.c
-void	malloc_volume(t_vol **vol, t_scene *scene, int option);
+void	malloc_volume(t_vol **vol, t_scene *scene, t_type type);
 void	sphere(t_scene *scene, char *str);
 void	plane(t_scene *scene, char *str);
 void	cylinder(t_scene *scene, char *str);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 22:24:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:32:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 #include "utils.h"
 #include "libft.h"
 
-void	malloc_volume(t_vol **vol, t_scene *scene, int option)
+void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 {
 	*vol = malloc(sizeof(t_vol));
 	if (!*vol)
 		exit_parse(scene, "Error\nmalloc fail\n");
-	if (option == 0)
-		(*vol)->type = SPHERE;
-	else if (option == 1)
-		(*vol)->type = CYLINDER;
+	(*vol)->type = type;
 }
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
@@ -39,7 +36,8 @@ void	sphere(t_scene *scene, char *str)
 	int		i;
 
 	i = 2;
-	malloc_volume(&sp, scene, 0);
+	malloc_volume(&sp, scene, SPHERE);
+	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &sp->pos, str + i);
@@ -49,9 +47,7 @@ void	sphere(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
-	unit_vector(&sp->vec3);
 	sphere_bounds(sp);
-	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
 }
 
 void	plane(t_scene *scene, char *str)
@@ -61,6 +57,7 @@ void	plane(t_scene *scene, char *str)
 
 	i = 2;
 	malloc_pl(&pl, scene);
+	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &pl->pos, str + i);
@@ -73,7 +70,6 @@ void	plane(t_scene *scene, char *str)
 		i++;
 	i += set_rgb(scene, &pl->col, str + i);
 	unit_vector(&pl->vec3);
-	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 }
 
 void	cylinder(t_scene *scene, char *str)
@@ -82,7 +78,8 @@ void	cylinder(t_scene *scene, char *str)
 	int		i;
 
 	i = 2;
-	malloc_volume(&cy, scene, 1);
+	malloc_volume(&cy, scene, CYLINDER);
+	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &cy->pos, str + i);
@@ -102,5 +99,4 @@ void	cylinder(t_scene *scene, char *str)
 	i += set_rgb(scene, &cy->col, str + i);
 	unit_vector(&cy->vec3);
 	cylinder_bounds(cy);
-	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:35:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:29:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	malloc_xpm(char *str, t_xpm **xpm, t_scene *scene)
 {
 	*xpm = malloc(sizeof(t_xpm));
 	if (!*xpm)
+	{
+		free(str);
 		exit_parse(scene, "Error\nmalloc fail\n");
+	}
 	(*xpm)->file = str;
 }
 
@@ -39,7 +42,10 @@ static size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm)
 	if (!file)
 		exit_parse(scene, "Error\nmalloc fail\n");
 	if (ft_strncmp(file + i - 4, ".xpm", 4) || access(file, F_OK))
+	{
+		free(file);
 		exit_parse(scene, "Error\nIncorrect file\n");
+	}
 	malloc_xpm(file, xpm, scene);
 	while (str[i] == ' ')
 		i++;
