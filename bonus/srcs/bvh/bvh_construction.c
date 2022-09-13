@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 15:27:10 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 15:50:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "utils.h"
 #include "minirt.h"
 #include "bvh.h"
-
-static int	i = 0;
 
 static void	make_leaf(t_list *vols, t_bvh **root,
 				unsigned int begin, unsigned int end)
