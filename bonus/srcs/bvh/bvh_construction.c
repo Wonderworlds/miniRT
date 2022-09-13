@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 15:50:34 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:10:45 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	make_leaf(t_list *vols, t_bvh **root,
 	(*root)->left = btree_create_node(vol->box, vol);
 	if (vols->next && end != begin)
 	{
-		ft_printf("Done %d\n", i++);
 		vol = (t_vol *)(vols->next->content);
 		(*root)->right = btree_create_node(vol->box, vol);
 	}
