@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:17:59 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 14:31:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:36:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ void	sort_list_custom(t_list **lst, const t_pos *origin,
 int	cmp_nearest_vol(const t_vol *left, const t_vol *right,
 		const t_pos *origin)
 {
-	if (dist_ab(origin, &(left->box.center))
-		< dist_ab(origin, &(right->box.center)))
+	float	da;
+	float	db;
+
+	da = dist_ab(origin, &(left->box.center));
+	db = dist_ab(origin, &(right->box.center));
+	if (da < db)
 		return (1);
+	if (da > db)
+		return (-1);
 	return (0);
 }
 
@@ -52,7 +58,7 @@ static void	quicksort_lst(t_list **lst, size_t len, const t_pos *origin)
 	while (i < len)
 	{
 		if (cmp_nearest_vol((t_vol *)(ft_lst_at(*lst, i)->content),
-			(t_vol *)(ft_lst_at(*lst, len - 1)->content), origin))
+			(t_vol *)(ft_lst_at(*lst, len - 1)->content), origin) > 0)
 		{
 			swap_data(&(ft_lst_at(*lst, i)->content),
 				&(ft_lst_at(*lst, pivot)->content));

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:29:34 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:59:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,30 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 {
 	t_list			*new_start;
 	t_list			*index;
+	t_vol			*start;
+	t_vol			*last;
 	unsigned int	m;
+	int				compare;
+	int				nb_equal;
 
 	new_start = get_furthest_vol(&(box->center), *vols, begin, end);
 	new_lst_start(vols, new_start, begin, end);
 	sort_list_custom(&(*vols)->next,
 		&((t_vol *)new_start->content)->box.center, begin, end);
 	m = 0;
+	nb_equal = 0;
 	index = new_start;
+	start = (t_vol *)(new_start->content);
+	last = (t_vol *)(ft_lst_at(*vols, end)->content);
 	while (end-- > begin)
 	{
-		if (cmp_nearest_vol((t_vol *)new_start->content,
-				(t_vol *)ft_lstlast(new_start)->content,
-				&((t_vol *)index->content)->box.center))
+		compare = cmp_nearest_vol(start, last,
+				&((t_vol *)index->content)->box.center);
+		if (compare >= 0)
 			m++;
+		if (compare == 0)
+			nb_equal++;
 		index = index->next;
 	}
-	return (m + begin);
+	return (m + begin - (nb_equal / 2));
 }
