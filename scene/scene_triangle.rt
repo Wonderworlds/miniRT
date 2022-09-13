@@ -1,0 +1,7 @@
+R   840 680
+
+A 0.2 255,255,255
+c   0.0,0.0,4     0,0.0,-1.0         70
+l 5,4,10 0.7 255,255,255
+#l -5,-4,3 0.7 255,255,255
+tr 1,0,0 -1,0,0 0,1,0 255,204,0 texture:earth_tex.xpm bumpmap:earth_tex.xpm disruption:checkerboard

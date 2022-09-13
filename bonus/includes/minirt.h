@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 23:13:04 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 14:42:50 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	update_bounds_vol(t_list *vols);
 void	sphere_bounds(t_vol *sp);
 void	cylinder_bounds(t_vol *cy);
 
+//		volume/bounds2.c
+void	triangle_bounds_and_set(t_vol *tr);
+
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box,
 			unsigned int begin, unsigned int end);
@@ -96,6 +99,9 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 
 //		raycast/ray_cylinder_hit2.c
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
+
+//		raycast/ray_triangle_hit.c
+t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
 
 //		raycast//create_hit.c
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray);

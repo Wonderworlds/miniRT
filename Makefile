@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/12 23:09:36 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/13 14:46:27 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												set_variables.c)	\
 						$(addprefix volume/,	inside_vol.c		\
 												bounds.c			\
+												bounds2.c			\
 												bounds_total.c)		\
 						$(addprefix bvh/,		bvh_construction.c	\
 												sort_bvh.c			\
@@ -111,6 +112,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												ray_print.c			\
 												create_hit.c		\
 												ray_volume_hit.c	\
+												ray_triangle_hit.c	\
 												ray_cylinder_hit.c	\
 												ray_cylinder_hit2.c)\
 						$(addprefix menu/,		graphic_menu.c		\
