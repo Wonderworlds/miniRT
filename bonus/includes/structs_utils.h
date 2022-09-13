@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 17:02:58 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 22:21:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_couple
 	int	x;
 	int	y;
 }	t_couple;
+
+typedef struct s_couplef
+{
+	float	x;
+	float	y;
+}	t_couplef;
 
 typedef struct s_resolut
 {
@@ -68,10 +74,13 @@ typedef enum e_disruption
 typedef struct s_xpm
 {
 	char	*file;
-	void	*img;
-	int		*addr;
 	int		h;
 	int		w;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_xpm;
 
 typedef struct s_spec
@@ -173,6 +182,8 @@ typedef struct s_hit
 	t_pos	normal;
 	t_rgb	col;
 	t_spec	spec;
+	t_type	vol_type;
+	void	*vol;
 }	t_hit;
 
 typedef struct s_ray

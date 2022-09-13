@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 14:53:25 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 21:54:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	if (scene->bvh)
 		find_volume(scene->bvh, ray);
 	if (get_hit(&hit) != -1)
-		return (add_lights(scene, &hit));
+		return (add_lights(scene, &hit, &ray));
 	return (gen_rgb(0, 0, 0));
 }
 
