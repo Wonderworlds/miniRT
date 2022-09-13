@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:41:23 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:25:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 {
-	t_list *elem;
+	t_list	*elem;
 
 	elem = NULL;
 	*vol = malloc(sizeof(t_vol));
@@ -32,7 +32,7 @@ void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
 {
-	t_list *elem;
+	t_list	*elem;
 
 	elem = NULL;
 	*pl = malloc(sizeof(t_plane));
