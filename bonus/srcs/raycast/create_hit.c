@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 14:45:41 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 21:47:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	hit_triangle(t_vol *vol, t_hit *hit)
 	pos_cpy(&vol->vec3, &hit->normal);
 	hit->spec.size = vol->spec.size;
 	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = TRIANGLE;
 }
 
 static void	hit_sphere(t_vol *vol, t_hit *hit)
@@ -30,6 +31,7 @@ static void	hit_sphere(t_vol *vol, t_hit *hit)
 	unit_vector(&hit->normal);
 	hit->spec.size = vol->spec.size;
 	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = SPHERE;
 }
 
 static void	hit_cylinder(t_vol *vol, t_hit *hit)
@@ -47,7 +49,8 @@ static void	hit_cylinder(t_vol *vol, t_hit *hit)
 	unit_vector(&hit->normal);
 	hit->spec.size = vol->spec.size;
 	hit->spec.intensity = vol->spec.intensity;
-}	
+	hit->vol_type = CYLINDER;
+}
 
 static void	hit_plane(t_plane *pl, t_hit *hit)
 {
@@ -55,6 +58,8 @@ static void	hit_plane(t_plane *pl, t_hit *hit)
 	pos_cpy(&pl->vec3, &hit->normal);
 	hit->spec.size = pl->spec.size;
 	hit->spec.intensity = pl->spec.intensity;
+	hit->vol_type = PLANE;
+	hit->vol = pl;
 }
 
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
@@ -75,6 +80,7 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 			hit_cylinder(vol, &hit);
 		else if (vol->type == TRIANGLE)
 			hit_triangle(vol, &hit);
+		hit.vol = vol;
 	}
 	else if (pl)
 		hit_plane(pl, &hit);

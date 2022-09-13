@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:23:40 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:53:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	find_shadows(t_hit hit_from_camera, t_pos *dir_light,
 		find_volume(scene->bvh, ray_to_light);
 }
 
-t_rgb	add_lights(t_scene *scene, t_hit *hit)
+t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray)
 {
 	t_rgb	light_specular[2];
 	t_list	*lst_lights;
@@ -75,8 +75,8 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 		}
 		lst_lights = lst_lights->next;
 	}
-	
 	c_mult(&diffuse[0], &hit_from_camera.col, &hit_from_camera.col);
 	c_add(&hit_from_camera.col, &light_specular[0], &hit_from_camera.col);
+	get_tex_pixel(&hit_from_camera, ray);
 	return (hit_from_camera.col);
 }

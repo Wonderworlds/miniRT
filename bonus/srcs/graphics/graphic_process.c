@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 18:54:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:25:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,24 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 	if (pl && pl->tex)
 	{
 		pl->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			pl->tex->file, &pl->tex->h, &pl->tex->w);
+			pl->tex->file, &pl->tex->w, &pl->tex->h);
 		free(pl->tex->file);
 		pl->tex->file = NULL;
 		if (!pl->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
-		pl->tex->addr = (int *)((t_img *)pl->tex->img)->data;
+		pl->tex->addr = mlx_get_data_addr(pl->tex->img, &pl->tex->bpp,
+			&pl->tex->line_len, &pl->tex->endian);
 	}
 	if (pl && pl->bump)
 	{
 		pl->bump->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			pl->bump->file, &pl->bump->h, &pl->bump->w);
+			pl->bump->file, &pl->bump->w, &pl->bump->h);
 		free(pl->bump->file);
 		pl->bump->file = NULL;
 		if (!pl->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
-		pl->bump->addr = (int *)((t_img *)pl->bump->img)->data;
+		pl->bump->addr = mlx_get_data_addr(pl->bump->img, &pl->bump->bpp,
+			&pl->bump->line_len, &pl->bump->endian);
 	}
 }
 
@@ -55,22 +57,24 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 	if (vol && vol->tex)
 	{
 		vol->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			vol->tex->file, &vol->tex->h, &vol->tex->w);
+			vol->tex->file, &vol->tex->w, &vol->tex->h);
 		free(vol->tex->file);
 		vol->tex->file = NULL;
 		if (!vol->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
-		vol->tex->addr = (int *)((t_img *)vol->tex->img)->data;
+		vol->tex->addr = mlx_get_data_addr(vol->tex->img, &vol->tex->bpp,
+			&vol->tex->line_len, &vol->tex->endian);
 	}
 	if (vol && vol->bump)
 	{
 		vol->bump->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			vol->bump->file, &vol->bump->h, &vol->bump->w);
+			vol->bump->file, &vol->bump->w, &vol->bump->h);
 		free(vol->bump->file);
 		vol->bump->file = NULL;
 		if (!vol->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
-		vol->bump->addr = (int *)((t_img *)vol->bump->img)->data;
+		vol->bump->addr = mlx_get_data_addr(vol->bump->img, &vol->bump->bpp,
+			&vol->bump->line_len, &vol->bump->endian);
 	}
 }
 

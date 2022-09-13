@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:36:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:34:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_rgb	rgb2gray(t_rgb rgb)
 }
 
 
-static void	get_uv(t_hit *hit, t_pos ray_dir, t_couple *uv, t_xpm *xpm)
+static void	get_uv(t_hit *hit, t_pos ray_dir, t_couplef *uv, t_xpm *xpm)
 {
 	t_pos	local;
 	t_pos	ulocal;
@@ -67,24 +67,46 @@ static int	get_tex_pix(t_xpm *xpm, float u, float v)
 
 	x = fmodf(fmodf(u, xpm->w) + xpm->w, xpm->w);
 	y = fmodf(fmodf(v, xpm->h) + xpm->h, xpm->h);
-	return (xpm->addr[x * y]);
+	x *= xpm->bpp / 8;
+	y *= xpm->line_len;
+	return (*((int *)(xpm->addr + x + y)));
 }
 
-void	get_tex_pixel(t_vol *vol, t_hit *hit, t_ray *ray)
+static void get_tex_pixel2(t_xpm *tex, t_xpm *bump, t_hit *hit, t_ray *ray)
 {
-	t_couple	uv;
+	t_couplef	uv;
 	t_rgb		tex_rgb;
 
-	if (vol->tex)
+	if (tex)
 	{
-		get_uv(hit, ray->dir, &uv, vol->tex);
-		tex_rgb = int_to_rgb(get_tex_pix(vol->tex, uv.x, uv.y));
-		c_mult_basic(&tex_rgb, &vol->col);
+		get_uv(hit, ray->dir, &uv, tex);
+		tex_rgb = int_to_rgb(get_tex_pix(tex, uv.x, uv.y));
+		c_mult_basic(&tex_rgb, &hit->col);
 	}
-	if (vol->bump)
+	if (bump)
 	{
-		get_uv(hit, ray->dir, &uv, vol->bump);
-		tex_rgb = rgb2gray(int_to_rgb(get_tex_pix(vol->bump, uv.x, uv.y)));
-		c_mult_basic(&tex_rgb, &vol->col);
+		get_uv(hit, ray->dir, &uv, bump);
+		tex_rgb = rgb2gray(int_to_rgb(get_tex_pix(bump, uv.x, uv.y)));
+		c_mult_basic(&tex_rgb, &hit->col);
 	}
+}
+
+void	get_tex_pixel(t_hit *hit, t_ray *ray)
+{
+	t_plane		*pl;
+	t_vol		*vol;
+
+	pl = NULL;
+	vol = NULL;
+	if (hit->vol_type == PLANE)
+	{
+		pl = (t_plane *)hit->vol;
+		get_tex_pixel2(pl->tex, pl->bump, hit, ray);
+	}
+	else
+	{
+		vol = (t_vol *)hit->vol;
+		get_tex_pixel2(vol->tex, vol->bump, hit, ray);
+	}
+
 }

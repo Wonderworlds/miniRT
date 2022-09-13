@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:28:09 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 23:50:01 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 21:46:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,6 @@ void	hit_cpy(const t_hit *src, t_hit *dest)
 	dest->dst_origin = src->dst_origin;
 	dest->spec.size = src->spec.size;
 	dest->spec.intensity = src->spec.intensity;
+	dest->vol_type = src->vol_type;
+	dest->vol = src->vol;
 }
