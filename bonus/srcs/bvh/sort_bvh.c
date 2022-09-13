@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 17:24:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:28:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 {
 	t_list			*new_start;
 	t_list			*index;
-	t_vol			*vols[2];
+	t_vol			*start_end[2];
 	int				compare[3];
 
 	new_start = get_furthest_vol(&(box->center), *vols, begin, end);
@@ -95,11 +95,11 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 	compare[2] = 0;
 	compare[1] = 0;
 	index = new_start;
-	vols[0] = (t_vol *)(new_start->content);
-	vols[1] = (t_vol *)(ft_lst_at(*vols, end)->content);
+	start_end[0] = (t_vol *)(new_start->content);
+	start_end[1] = (t_vol *)(ft_lst_at(*vols, end)->content);
 	while (end-- > begin)
 	{
-		compare[0] = cmp_nearest_vol(vols[0], vols[1],
+		compare[0] = cmp_nearest_vol(start_end[0], start_end[1],
 				&((t_vol *)index->content)->box.center);
 		if (compare[0] >= 0)
 			compare[2]++;
