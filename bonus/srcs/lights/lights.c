@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 00:54:54 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 21:23:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 #include "structs_utils.h"
 #include "utils.h"
 #include "minirt.h"
-
-void	add_coeficient(t_pos *rgb, double coef, t_rgb *col)
-{
-	rgb->x += (coef * col->r) / 255;
-	rgb->y += (coef * col->g) / 255;
-	rgb->z += (coef * col->b) / 255;
-}
-
-t_rgb	int_to_rgb(int col)
-{
-	unsigned int	mask;
-	t_rgb			rgb;
-
-	mask = 255 << 16;
-	rgb.r = (col & mask) >> 16;
-	mask >>= 8;
-	rgb.g = (col & mask) >> 8;
-	mask >>= 8;
-	rgb.b = col & mask;
-	return (rgb);
-}
 
 void	apply_light(t_hit *hit_from_camera, t_pos *dir_light,
 	t_light *lights, t_pos	*diffuse)
