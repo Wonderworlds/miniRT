@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 15:21:17 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:09:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	parse_rt(char *arg, t_scene *scene)
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 		if (!scene->bvh)
 			exit_parse_cam(scene, "Error\nmalloc fail\n");
+		print_bvh("", scene->bvh, 0);	
 	}
 	close(fd);
 }
