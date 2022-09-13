@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 17:10:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:06:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	parse_rt(char *arg, t_scene *scene)
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
 	{
-		ft_printf("START bvh\n");
 		build_node(&scene->vols, &scene->bvh, 0, (unsigned int)size);
 		if (!scene->bvh)
 			exit_parse_cam(scene, "Error\nmalloc fail\n");
