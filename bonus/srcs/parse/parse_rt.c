@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 17:08:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:21:17 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	read_rt(int fd, t_scene *scene)
 			ambient_lightning(scene, str);
 		else if (str[0] == 'R' && str[1] == ' ')
 			resolution(scene, str);
-		else if (str[0] == 'c' && str[1] == ' ')
+		else if ((str[0] == 'c' || str[0] == 'C') && str[1] == ' ')
 			camera(scene, str);
-		else if (str[0] == 'l' && str[1] == ' ')
+		else if ((str[0] == 'l' || str[0] == 'L') && str[1] == ' ')
 			light(scene, str);
 		else if (str[0] == 's' && str[1] == 'p' && str[2] == ' ')
 			sphere(scene, str);
@@ -97,8 +97,11 @@ void	parse_rt(char *arg, t_scene *scene)
 		exit_parse_cam(scene,
 			"Error\nError parse format: camera 'C' is not set\n");
 	if (scene->resolut.is_set == false)
-		exit_parse_cam(scene,
-			"Error\nError parse format: resolution 'R' is not set\n");
+	{
+		scene->resolut.win_width = 1500;
+		scene->resolut.aspect_ratio = 16.0 / 9.0;
+		scene->resolut.win_height = 1500 / scene->resolut.aspect_ratio;
+	}
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)
 	{

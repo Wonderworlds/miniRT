@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/12 00:59:18 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/13 14:46:27 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,12 +95,14 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												parse_volume.c		\
 												parse_light.c		\
 												parse_texture.c		\
+												parse_texture2.c		\
 												parse_camera.c		\
 												parse_volume2.c		\
 												parse_resolution.c	\
 												set_variables.c)	\
 						$(addprefix volume/,	inside_vol.c		\
 												bounds.c			\
+												bounds2.c			\
 												bounds_total.c)		\
 						$(addprefix bvh/,		bvh_construction.c	\
 												sort_bvh.c			\
@@ -110,6 +112,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												ray_print.c			\
 												create_hit.c		\
 												ray_volume_hit.c	\
+												ray_triangle_hit.c	\
 												ray_cylinder_hit.c	\
 												ray_cylinder_hit2.c)\
 						$(addprefix menu/,		graphic_menu.c		\

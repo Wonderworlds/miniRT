@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 16:32:21 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:41:23 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,31 @@
 
 void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 {
+	t_list *elem;
+
+	elem = NULL;
 	*vol = malloc(sizeof(t_vol));
 	if (!*vol)
 		exit_parse(scene, "Error\nmalloc fail\n");
+	elem = ft_lstnew(*vol);
+	if (!elem)
+		exit_parse(scene, "Error\nmalloc fail\n");
+	ft_lstadd_back(&scene->vols, elem);
 	(*vol)->type = type;
 }
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
 {
+	t_list *elem;
+
+	elem = NULL;
 	*pl = malloc(sizeof(t_plane));
 	if (!*pl)
 		exit_parse(scene, "Error\nmalloc fail\n");
+	elem = ft_lstnew(*pl);
+	if (!elem)
+		exit_parse(scene, "Error\nmalloc fail\n");
+	ft_lstadd_back(&scene->planes, elem);
 }
 
 void	sphere(t_scene *scene, char *str)
@@ -37,7 +51,6 @@ void	sphere(t_scene *scene, char *str)
 
 	i = 2;
 	malloc_volume(&sp, scene, SPHERE);
-	ft_lstadd_back(&scene->vols, ft_lstnew(sp));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &sp->pos, str + i);
@@ -57,7 +70,6 @@ void	plane(t_scene *scene, char *str)
 
 	i = 2;
 	malloc_pl(&pl, scene);
-	ft_lstadd_back(&scene->planes, ft_lstnew(pl));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &pl->pos, str + i);
@@ -79,7 +91,6 @@ void	cylinder(t_scene *scene, char *str)
 
 	i = 2;
 	malloc_volume(&cy, scene, CYLINDER);
-	ft_lstadd_back(&scene->vols, ft_lstnew(cy));
 	while (str[i] == ' ')
 		i++;
 	i += set_pos(scene, &cy->pos, str + i);

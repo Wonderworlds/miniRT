@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:01:38 by amahla            #+#    #+#             */
-/*   Updated: 2022/08/29 17:26:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:50:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	make_leaf(t_list *vols, t_bvh **root,
 	(*root)->left = btree_create_node(vol->box, vol);
 	if (vols->next && end != begin)
 	{
+		ft_printf("Done %d\n", i++);
 		vol = (t_vol *)(vols->next->content);
 		(*root)->right = btree_create_node(vol->box, vol);
 	}
@@ -43,14 +44,18 @@ t_bvh	*build_node(t_list **vols, t_bvh **root,
 		*root = btree_create_node(vol->box, vol);
 		return (*root);
 	}
+	ft_printf("Done 1\n");
 	bounds_total(*vols, &box, begin, end);
+	ft_printf("Done 2\n");
 	*root = btree_create_node(box, NULL);
+	ft_printf("Done 3\n");
 	if (end - begin <= 1)
 	{
 		make_leaf(*vols, root, begin, end);
 		return (*root);
 	}
 	m = sort_vols(vols, &box, begin, end);
+	ft_printf("Done 4\n");
 	(*root)->left = build_node(vols, &(*root)->left, begin, m - 1);
 	(*root)->right = build_node(vols, &(*root)->right, m, end);
 	return (*root);

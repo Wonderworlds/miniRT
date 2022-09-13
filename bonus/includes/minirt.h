@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 16:17:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:42:50 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	camera(t_scene *scene, char *str);
 void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str);
 void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str);
 
+//		parse/parse_texture2.c
+size_t	set_specular(t_scene *scene, char *str, t_spec *spec);
+
 //		parse/resolution.c
 void	resolution(t_scene *scene, char *str);
 
@@ -70,6 +73,9 @@ t_bool	inside_vol(t_pos *pos, t_vol *volume);
 void	update_bounds_vol(t_list *vols);
 void	sphere_bounds(t_vol *sp);
 void	cylinder_bounds(t_vol *cy);
+
+//		volume/bounds2.c
+void	triangle_bounds_and_set(t_vol *tr);
 
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box,
@@ -94,6 +100,9 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 //		raycast/ray_cylinder_hit2.c
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
 
+//		raycast/ray_triangle_hit.c
+t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
+
 //		raycast//create_hit.c
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray);
 
@@ -108,7 +117,7 @@ void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
 t_rgb	add_lights(t_scene *scene, t_hit *hit);
 
 //		light/phong_reflection.c
-t_pos	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
+float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam);
 
 

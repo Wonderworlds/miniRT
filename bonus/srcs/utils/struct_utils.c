@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:28:09 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:36:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:50:01 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,6 @@ void	hit_cpy(const t_hit *src, t_hit *dest)
 	pos_cpy(&src->pos, &dest->pos);
 	pos_cpy(&src->normal, &dest->normal);
 	dest->dst_origin = src->dst_origin;
+	dest->spec.size = src->spec.size;
+	dest->spec.intensity = src->spec.intensity;
 }

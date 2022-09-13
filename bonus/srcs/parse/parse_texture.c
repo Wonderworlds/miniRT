@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 16:29:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:57:11 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 
 void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular:"};
 	size_t			i;
 
 	i = 0;
@@ -90,6 +91,8 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 				i += set_t_xpm(scene, &str[i], &vol->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
 				i += set_disruption(scene, &str[i], &vol->disruption);
+			else if (!ft_strncmp(tbd[3], str, i))
+				i += set_specular(scene, str + i, &vol->spec);
 			else
 				exit_parse(scene, NULL);
 			str += i;
@@ -104,7 +107,8 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 
 void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular:"};
 	size_t			i;
 
 	i = 0;
@@ -119,6 +123,8 @@ void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 				i += set_t_xpm(scene, &str[i], &pl->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
 				i += set_disruption(scene, &str[i], &pl->disruption);
+			else if (!ft_strncmp(tbd[3], str, i))
+				i += set_specular(scene, str + i, &pl->spec);
 			else
 				exit_parse(scene, NULL);
 			str += i;

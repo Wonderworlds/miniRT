@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 14:45:41 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 #include "libft.h"
 #include <math.h>
 
-static void	hit_sphere(t_vol *vol, t_hit *hit)
+static void	hit_triangle(t_vol *vol, t_hit *hit)
+{
+	col_cpy(&vol->col, &hit->col);
+	pos_cpy(&vol->vec3, &hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+}
 
+static void	hit_sphere(t_vol *vol, t_hit *hit)
 {
 	vector_ab(vol->pos, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
 }
 
 static void	hit_cylinder(t_vol *vol, t_hit *hit)
@@ -36,12 +45,16 @@ static void	hit_cylinder(t_vol *vol, t_hit *hit)
 	vector_add(vol->pos, vec3, &hit->normal);
 	vector_ab(hit->normal, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
 }	
 
 static void	hit_plane(t_plane *pl, t_hit *hit)
 {
 	col_cpy(&pl->col, &hit->col);
 	pos_cpy(&pl->vec3, &hit->normal);
+	hit->spec.size = pl->spec.size;
+	hit->spec.intensity = pl->spec.intensity;
 }
 
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
@@ -58,8 +71,10 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 		col_cpy(&vol->col, &hit.col);
 		if (vol->type == SPHERE)
 			hit_sphere(vol, &hit);
-		if (vol->type == CYLINDER)
+		else if (vol->type == CYLINDER)
 			hit_cylinder(vol, &hit);
+		else if (vol->type == TRIANGLE)
+			hit_triangle(vol, &hit);
 	}
 	else if (pl)
 		hit_plane(pl, &hit);
