@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 16:27:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:29:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ static void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
 	t_pos	proj;
 	t_pos	u;
 	t_pos	v;
+	t_pos	start;
+	t_pos	start_point;
+	double	add;
 
 	cross_product(cy->vec3, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)
@@ -88,14 +91,34 @@ static void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
 	unit_vector(&u);
 	cross_product(cy->vec3, u, &v);
 	unit_vector(&v);
+	start_point = gen_vec(cy->pos.x - (cy->d / 2), cy->pos.y, cy->pos.z);
+	start.x = dot_product(v, start_point);
+	start.y = dot_product(cy->vec3, start_point);
+	start.z = dot_product(u, start_point);
+	(void)start;
 	vector_sub(hit->pos, cy->pos, &on_cy);
-	proj.x = dot_product(u, on_cy);
+	if (on_cy.y < 0)
+		on_cy.y = 0;
+	if (on_cy.y > cy->h)
+		on_cy.y = cy->h;
+	proj.x = dot_product(v, on_cy);
 	proj.y = dot_product(cy->vec3, on_cy);
-	proj.z = dot_product(v, on_cy);
+	proj.z = dot_product(u, on_cy);
 	float theta = atan2f(proj.x, proj.z);
     float rawU = theta / (2 * M_PI);
+	if (cy->pos.x == proj.x && cy->pos.z == proj.z)
+		add = 0;
+	else
+		add = minf((vector_norm(gen_vec(proj.x - cy->pos.x, 0, proj.z - cy->pos.z))), (cy->d / 2));
+	if (proj.y >= cy->h)
+		proj.y = cy->h + (cy->d / 2) + ((cy->d / 2) - add);
+	else
+		proj.y += add;
+	proj.y /= cy->h + cy->d;
     uv->x = 1 - (rawU + 0.5);
 	uv->y = fmodf(fmodf(proj.y, 1) + 1, 1);
+	uv->x = cy->tex->w - (uv->x * cy->tex->w);
+	uv->y = cy->tex->h - (uv->y * cy->tex->h);
 }
 
 static void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
