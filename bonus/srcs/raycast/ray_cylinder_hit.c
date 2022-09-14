@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/12 23:48:27 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/14 16:35:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	set_extremity_hit(t_vol *cy, t_hit *hit, t_bool dir, t_ray *ray)
 	vector_add(hit->pos, offset, &hit->pos);
 	hit->spec.size = cy->spec.size;
 	hit->spec.intensity = cy->spec.intensity;
+	hit->vol_type = CYLINDER;
+	hit->vol = cy;
 	update_hit(hit);
 }
 
