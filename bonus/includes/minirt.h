@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:54:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:04:15 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	cylinder(t_scene *scene, char *str);
 
 //		parse/parse_volume2.c
 void	triangle(t_scene *scene, char *str);
+void	hyperboloid(t_scene *scene, char *str);
 
 //		parse/parse_light.c
 void	ambient_lightning(t_scene *scene, char *str);
