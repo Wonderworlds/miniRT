@@ -1,7 +1,7 @@
 R   840 680
 
 A 0.6 255,255,255
-c   5.0,10,20     0,-0.4,-1.0         50
+c   0,0,20     0,0,-1.0         50
 # c   0.0,-1,2     0,0.5,-1.0         70
 # c   20.0,15,0     -1,-0.8,0         70
 # c   20.0,5,0     -1,0.0,0         70
@@ -20,6 +20,10 @@ l   20.0,15,0     0.8 255,255,255
 # tr 409.030457,1200.344806,93.540318 393.946513,1193.88119,98.570765 434.378782,1224.968617,105.72499 255,204,0
 # pl 0,-10,0 0,1,0 255,255,255 texture:textures/earth_tex.xpm
 # pl 0,0,-10 0,0,1 255,255,255 texture:textures/checkerboard.xpm
-cy 0,0,0 1,1,1 10 10 255,255,255 texture:textures/earth_tex.xpm
+tr 0,0,0 -10,10,0 10,10,0 255,255,255 texture:textures/earth_tex.xpm
+tr 0,0,0 10,10,0 10,-10,0 255,255,255 texture:textures/earth_tex.xpm
+tr 0,0,0 10,-10,0 -10,-10,0 255,255,255 texture:textures/earth_tex.xpm
+tr 0,0,0 -10,-10,0 -10,10,0 255,255,255 texture:textures/earth_tex.xpm
+# cy 0,0,0 1,1,1 10 10 255,255,255 texture:textures/earth_tex.xpm
 # sp 0,0,0 20 255,255,255 specular:10,0.4 texture:textures/checkerboard.xpm
 # sp 0,0,0 20 255,255,255 specular:200,0.5 texture:textures/earth_tex.xpm

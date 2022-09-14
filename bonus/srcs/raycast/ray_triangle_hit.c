@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_triangle_hit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:11:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 15:05:55 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/14 22:51:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_bool	is_triangle_hit(t_ray *ray, t_vol *tr)
 	{
 		create_hit(abcde[5], tr, NULL, ray);
 		return (true);
-	}	
+	}
 	return (false);
 }
 
