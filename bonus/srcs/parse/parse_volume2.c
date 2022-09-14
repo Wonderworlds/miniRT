@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/14 00:21:27 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:45:44 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,36 @@ void	triangle(t_scene *scene, char *str)
 	triangle_normal(tr);
 }
 
-void	hyperboloid(t_scene *scene, char *str)
+void	cone(t_scene *scene, char *str)
 {
-	t_vol	*hy;
+	t_vol	*co;
 	int		i;
 
 	i = 2;
-	malloc_volume(&hy, scene, HYPERBOLOID);
+	malloc_volume(&co, scene, CONE);
 	while (str[i] == ' ')
 		i++;
-	i += set_pos(scene, &hy->pos, str + i);
+	i += set_pos(scene, &co->pos, str + i);
 	while (str[i] == ' ')
 		i++;
-	i += set_vec3(scene, &hy->vec3, str + i);
-	if (hy->vec3.x == 0 && hy->vec3.y == 0 && hy->vec3.z == 0)
-		hy->vec3.y = 1.f;
+	i += set_vec3(scene, &co->vec3, str + i);
+	if (co->vec3.x == 0 && co->vec3.y == 0 && co->vec3.z == 0)
+		co->vec3.y = 1.f;
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &hy->d, str + i, 1);
+	i += set_float(scene, &co->d, str + i, 1);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &hy->h, str + i, 1);
+	i += set_float(scene, &co->d_co, str + i, 1);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &hy->d_hy, str + i, 1);
+	i += set_float(scene, &co->h, str + i, 1);
 	while (str[i] == ' ')
 		i++;
-	i += set_rgb(scene, &hy->col, str + i);
+	i += set_rgb(scene, &co->col, str + i);
 	while (str[i] == ' ')
 		i++;
-	parse_vol_texture(scene, hy, str + i);
-	unit_vector(&hy->vec3);
-	cylinder_bounds(hy);
+	parse_vol_texture(scene, co, str + i);
+	unit_vector(&co->vec3);
+	cone_bounds(co);
 }

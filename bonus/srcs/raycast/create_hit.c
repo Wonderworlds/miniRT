@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:47:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:34:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ static void	hit_triangle(t_vol *vol, t_hit *hit)
 	hit->spec.intensity = vol->spec.intensity;
 	hit->vol_type = TRIANGLE;
 }
+
+static void	hit_cone(t_vol *vol, t_hit *hit)
+{
+	double	d;
+
+	d = sqrt(powf(hit->pos.x - vol->pos.x, 2) + powf(hit->pos.z * vol->pos.z, 2));
+	set_vector(hit->pos.x - vol->pos.x, d * ((vol->d / 2) / vol->h),
+		hit->pos.z - vol->pos.z, &hit->normal);
+	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = CONE;
+}
+
 
 static void	hit_sphere(t_vol *vol, t_hit *hit)
 {
@@ -80,6 +94,8 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 			hit_cylinder(vol, &hit);
 		else if (vol->type == TRIANGLE)
 			hit_triangle(vol, &hit);
+		else if (vol->type == CONE)
+			hit_cone(vol, &hit);
 		hit.vol = vol;
 	}
 	else if (pl)

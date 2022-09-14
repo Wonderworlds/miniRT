@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 00:04:15 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/14 17:30:29 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	cylinder(t_scene *scene, char *str);
 
 //		parse/parse_volume2.c
 void	triangle(t_scene *scene, char *str);
-void	hyperboloid(t_scene *scene, char *str);
+void	cone(t_scene *scene, char *str);
 
 //		parse/parse_light.c
 void	ambient_lightning(t_scene *scene, char *str);
@@ -77,6 +77,7 @@ void	cylinder_bounds(t_vol *cy);
 
 //		volume/bounds2.c
 void	triangle_bounds_and_set(t_vol *tr);
+void	cone_bounds(t_vol *cy);
 
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box,
@@ -91,6 +92,7 @@ float	get_hit(t_hit *ptr);
 void	reset_hit(void);
 
 //		raycast/ray_volume_hit.c
+float	solve_quadratic(float a, float b, float c);
 t_bool	is_aabb_hit(t_ray ray, t_box aabb);
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp);
 t_bool	is_plane_hit(t_ray *ray, t_plane *pl);
@@ -100,6 +102,9 @@ void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 
 //		raycast/ray_cylinder_hit2.c
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
+
+//		raycast/ray_hyperboloid_hit.c
+t_bool	is_cone_hit(t_ray *ray, t_vol *hy);
 
 //		raycast/ray_triangle_hit.c
 t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
@@ -115,7 +120,7 @@ t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene);
 
 //		lights/lights.c
 void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
-t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray);
+t_rgb	add_lights(t_scene *scene, t_hit *hit/*, t_ray *ray*/);
 
 //		light/phong_reflection.c
 float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,

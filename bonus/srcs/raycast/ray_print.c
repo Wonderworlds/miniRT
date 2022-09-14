@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 21:54:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:38:42 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	find_volume(t_bvh *root, t_ray ray)
 			is_cylinder_hit(&ray, root->vol);
 		if (root->vol->type == TRIANGLE)
 			is_triangle_hit(&ray, root->vol);
+		if (root->vol->type == CONE)
+			is_cone_hit(&ray, root->vol);
 	}
 	else if (is_aabb_hit(ray, root->box) == true)
 	{
@@ -64,7 +66,7 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 	if (scene->bvh)
 		find_volume(scene->bvh, ray);
 	if (get_hit(&hit) != -1)
-		return (add_lights(scene, &hit, &ray));
+		return (add_lights(scene, &hit/*, &ray*/));
 	return (gen_rgb(0, 0, 0));
 }
 

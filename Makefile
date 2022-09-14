@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/13 21:36:57 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/14 15:15:26 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												create_hit.c		\
 												ray_volume_hit.c	\
 												ray_triangle_hit.c	\
+												ray_hyperboloid_hit.c\
 												ray_cylinder_hit.c	\
 												ray_cylinder_hit2.c)\
 						$(addprefix menu/,		graphic_menu.c		\
