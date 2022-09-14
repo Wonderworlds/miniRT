@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 01:42:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:57:50 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,27 @@ static void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv)
 	unit_vector(&on_sp);
 	uv->x = 0.5 + atan2f(on_sp.z, on_sp.x) / M_PI * 0.5;
 	uv->y = 0.5 - asinf(on_sp.y) / M_PI;
+	uv->x *= sp->tex->w;
+	uv->y *= sp->tex->h;
+}
+
+static void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
+{
+	t_pos	on_pl;
+	t_pos	u;
+	t_pos	v;
+
+	cross_product(hit->normal, gen_vec(1, 0, 0), &u);
+	if (u.x == 0 && u.y == 0 && u.z == 0)
+		cross_product(hit->normal, gen_vec(0, 0, 1), &u);
+	unit_vector(&u);
+	cross_product(hit->normal, u, &v);
+	unit_vector(&v);
+	vector_sub(hit->pos, pl->pos, &on_pl);
+	uv->x = dot_product(u, on_pl);
+	uv->y = dot_product(v, on_pl);
+	uv->x = fmodf(fmodf(uv->x, pl->tex->w) + pl->tex->w, pl->tex->w);
+	uv->y = fmodf(fmodf(uv->y, pl->tex->h) + pl->tex->h, pl->tex->h);
 }
 
 static int	get_tex_pix(t_xpm *xpm, float u, float v)
@@ -76,8 +97,8 @@ static int	get_tex_pix(t_xpm *xpm, float u, float v)
 	int	x;
 	int	y;
 
-	x = xpm->w - (u * xpm->w);
-	y = v * xpm->h;
+	x = xpm->w - u;
+	y = v;
 	x *= xpm->bpp / 8;
 	y *= xpm->line_len;
 	return (*((int *)(xpm->addr + x + y)));
@@ -90,7 +111,10 @@ static void get_tex_pixel2(t_xpm *tex, t_xpm *bump, t_hit *hit, t_ray *ray)
 
 	if (tex)
 	{
-		get_uv_sp(hit, hit->vol, &uv);
+		if (hit->vol_type == SPHERE)
+			get_uv_sp(hit, hit->vol, &uv);
+		if (hit->vol_type == PLANE)
+			get_uv_pl(hit, hit->vol, &uv);
 		tex_rgb = int_to_rgb(get_tex_pix(tex, uv.x, uv.y));
 		c_mult_basic(&tex_rgb, &hit->col);
 	}

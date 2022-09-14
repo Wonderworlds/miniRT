@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:37:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:12:24 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ void	vector_scale(float scale, t_pos *dst)
 	dst->x *= scale;
 	dst->y *= scale;
 	dst->z *= scale;
+}
+
+t_pos	gen_vec(float x, float y, float z)
+{
+	t_pos	vec;
+
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
 }
