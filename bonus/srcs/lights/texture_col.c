@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 22:19:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:56:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,11 @@ static void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
 	cross_product(cy->vec3, u, &v);
 	unit_vector(&v);
 	vector_sub(hit->pos, cy->pos, &on_cy);
-	if (on_cy.y < 0)
-		on_cy.y = 0;
-	if (on_cy.y > cy->h)
-		on_cy.y = cy->h;
 	proj.x = dot_product(v, on_cy);
 	proj.y = dot_product(cy->vec3, on_cy);
 	proj.z = dot_product(u, on_cy);
+	if (proj.y < 0)
+		proj.y = 0;
 	float theta = atan2f(proj.x, proj.z);
     float rawU = theta / (2 * M_PI);
 	if (cy->pos.x == proj.x && cy->pos.z == proj.z)
