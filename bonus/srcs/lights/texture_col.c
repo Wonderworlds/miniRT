@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 15:06:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:27:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,35 @@ static void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv)
 	uv->y *= sp->tex->h;
 }
 
+static void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
+{
+	t_pos	on_cy;
+	t_pos	proj;
+	t_pos	u;
+	t_pos	v;
+
+	cross_product(cy->vec3, gen_vec(1, 0, 0), &u);
+	if (u.x == 0 && u.y == 0 && u.z == 0)
+		cross_product(cy->vec3, gen_vec(0, 0, 1), &u);
+	unit_vector(&u);
+	cross_product(cy->vec3, u, &v);
+	unit_vector(&v);
+	vector_sub(hit->pos, cy->pos, &on_cy);
+	proj.x = dot_product(u, on_cy);
+	proj.y = dot_product(cy->vec3, on_cy);
+	proj.z = dot_product(v, on_cy);
+	float theta = atan2f(proj.x, proj.z);
+    float rawU = theta / (2 * M_PI);
+    uv->x = 1 - (rawU + 0.5);
+	uv->y = fmodf(fmodf(proj.y, 1) + 1, 1);
+}
+
 static void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
 {
 	t_pos	on_pl;
 	t_pos	u;
 	t_pos	v;
+	float	size;
 
 	cross_product(hit->normal, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)
@@ -90,10 +114,10 @@ static void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
 	vector_sub(hit->pos, pl->pos, &on_pl);
 	uv->x = dot_product(v, on_pl);
 	uv->y = dot_product(u, on_pl);
-	uv->x = fmodf(fmodf(uv->x, pl->tex->w / SUBDIVISION)
-			+ pl->tex->w / SUBDIVISION, pl->tex->w / SUBDIVISION);
-	uv->y = fmodf(fmodf(uv->y, pl->tex->h / SUBDIVISION)
-			+ pl->tex->h / SUBDIVISION, pl->tex->h / SUBDIVISION);
+	size = pl->tex->w / SUBDIVISION;
+	uv->x = fmodf(fmodf(uv->x, size) + size, size);
+	size = pl->tex->h / SUBDIVISION;
+	uv->y = fmodf(fmodf(uv->y, size) + size, size);
 	uv->x *= SUBDIVISION;
 	uv->y = pl->tex->h - (uv->y * SUBDIVISION);
 }
@@ -117,7 +141,9 @@ static void get_tex_pixel2(t_xpm *tex, t_xpm *bump, t_hit *hit, t_ray *ray)
 	{
 		if (hit->vol_type == SPHERE)
 			get_uv_sp(hit, hit->vol, &uv);
-		if (hit->vol_type == PLANE)
+		else if (hit->vol_type == CYLINDER)
+			get_uv_cy(hit, hit->vol, &uv);
+		else if (hit->vol_type == PLANE || hit->vol_type == TRIANGLE)
 			get_uv_pl(hit, hit->vol, &uv);
 		tex_rgb = int_to_rgb(get_tex_pix(tex, uv.x, uv.y));
 		c_mult_basic(&tex_rgb, &hit->col);
@@ -145,6 +171,8 @@ void	get_tex_pixel(t_hit *hit, t_ray *ray)
 	else
 	{
 		vol = (t_vol *)hit->vol;
+		if (!vol)
+			ft_printf("here\n");
 		get_tex_pixel2(vol->tex, vol->bump, hit, ray);
 	}
 
