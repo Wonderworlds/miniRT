@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:19:13 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/14 23:01:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 			fminf(t[4], t[5]));
 	tmax = fminf(fminf(fmaxf(t[0], t[1]), fmaxf(t[2], t[3])),
 			fmaxf(t[4], t[5]));
-	if (tmin >= tmax)
+	if (tmin > tmax)
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 17:30:29 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 11:19:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,13 @@ t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene);
 
 //		lights/lights.c
 void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
-t_rgb	add_lights(t_scene *scene, t_hit *hit/*, t_ray *ray*/);
+t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray);
 
 //		light/phong_reflection.c
 float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam);
 
-void	get_tex_pixel(t_hit *hit, t_ray *ray);
+void	do_tex_bump(t_hit *hit, t_ray *ray);
 
 
 #endif
