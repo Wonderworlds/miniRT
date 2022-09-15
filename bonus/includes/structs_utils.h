@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 18:52:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:31:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_couple
 	int	x;
 	int	y;
 }	t_couple;
+
+typedef struct s_couplef
+{
+	float	x;
+	float	y;
+}	t_couplef;
 
 typedef struct s_resolut
 {
@@ -68,11 +74,21 @@ typedef enum e_disruption
 typedef struct s_xpm
 {
 	char	*file;
-	void	*img;
-	int		*addr;
 	int		h;
 	int		w;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	float	coeff;
 }	t_xpm;
+
+typedef struct s_spec
+{
+	int		size;
+	float	intensity;
+}	t_spec;
 
 typedef struct s_pos
 {
@@ -103,7 +119,9 @@ typedef enum e_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	TRIANGLE
+	TRIANGLE,
+	HYPERBOLOID,
+	CONE
 }	t_type;
 
 typedef struct s_vol
@@ -120,6 +138,7 @@ typedef struct s_vol
 	t_disruption	disruption;
 	t_xpm			*tex;
 	t_xpm			*bump;
+	t_spec			spec;
 	t_data			*data;
 }	t_vol;
 
@@ -131,6 +150,7 @@ typedef struct s_plane
 	t_disruption	disruption;
 	t_xpm			*tex;
 	t_xpm			*bump;
+	t_spec			spec;
 	t_data			*data;
 }	t_plane;
 
@@ -154,6 +174,7 @@ typedef struct s_light
 	t_type		type;
 	t_rgb		col;
 	float		r;
+	float		r_o;
 	t_pos		pos;
 	t_bool		is_set;
 }	t_light;
@@ -164,6 +185,9 @@ typedef struct s_hit
 	t_pos	pos;
 	t_pos	normal;
 	t_rgb	col;
+	t_spec	spec;
+	t_type	vol_type;
+	void	*vol;
 }	t_hit;
 
 typedef struct s_ray

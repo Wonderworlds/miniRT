@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 13:54:04 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,41 @@
 #include "libft.h"
 #include <math.h>
 
-static void	hit_sphere(t_vol *vol, t_hit *hit)
+static void	hit_triangle(t_vol *vol, t_hit *hit)
+{
+	col_cpy(&vol->col, &hit->col);
+	pos_cpy(&vol->vec3, &hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = TRIANGLE;
+}
 
+static void	hit_cone(t_vol *vol, t_hit *hit)
+{
+	t_pos vec3;
+	t_pos co_top;
+
+	set_vector(vol->pos.x + vol->h * vol->vec3.x, vol->pos.y
+		+ vol->h * vol->vec3.y, vol->pos.z + vol->h * vol->vec3.z, &co_top);
+	vector_ab(co_top, hit->pos, &vec3);
+	vector_equal(vec3, &hit->normal);
+	vector_scale(dot_product(vol->vec3, vec3), &hit->normal);
+	vector_div(hit->normal, dot_product(vec3, vec3), &hit->normal);
+	vector_sub(hit->normal, vol->vec3, &hit->normal);
+	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = CONE;
+}
+
+
+static void	hit_sphere(t_vol *vol, t_hit *hit)
 {
 	vector_ab(vol->pos, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = SPHERE;
 }
 
 static void	hit_cylinder(t_vol *vol, t_hit *hit)
@@ -36,12 +66,19 @@ static void	hit_cylinder(t_vol *vol, t_hit *hit)
 	vector_add(vol->pos, vec3, &hit->normal);
 	vector_ab(hit->normal, hit->pos, &hit->normal);
 	unit_vector(&hit->normal);
-}	
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = CYLINDER;
+}
 
 static void	hit_plane(t_plane *pl, t_hit *hit)
 {
 	col_cpy(&pl->col, &hit->col);
 	pos_cpy(&pl->vec3, &hit->normal);
+	hit->spec.size = pl->spec.size;
+	hit->spec.intensity = pl->spec.intensity;
+	hit->vol_type = PLANE;
+	hit->vol = pl;
 }
 
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
@@ -58,8 +95,13 @@ void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
 		col_cpy(&vol->col, &hit.col);
 		if (vol->type == SPHERE)
 			hit_sphere(vol, &hit);
-		if (vol->type == CYLINDER)
+		else if (vol->type == CYLINDER)
 			hit_cylinder(vol, &hit);
+		else if (vol->type == TRIANGLE)
+			hit_triangle(vol, &hit);
+		else if (vol->type == CONE)
+			hit_cone(vol, &hit);
+		hit.vol = vol;
 	}
 	else if (pl)
 		hit_plane(pl, &hit);

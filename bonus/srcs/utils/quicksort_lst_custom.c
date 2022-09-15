@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:17:59 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/29 14:31:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:04:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,43 @@ void	sort_list_custom(t_list **lst, const t_pos *origin,
 int	cmp_nearest_vol(const t_vol *left, const t_vol *right,
 		const t_pos *origin)
 {
-	if (dist_ab(origin, &(left->box.center))
-		< dist_ab(origin, &(right->box.center)))
+	float	da;
+	float	db;
+
+	da = dist_ab(origin, &(left->box.center));
+	db = dist_ab(origin, &(right->box.center));
+	if (da < db)
 		return (1);
+	if (da > db)
+		return (-1);
 	return (0);
 }
 
 static void	quicksort_lst(t_list **lst, size_t len, const t_pos *origin)
 {
-	size_t		i;
 	size_t		pivot;
-	t_list		*new_start;
+	t_list		*vols[3];
 
 	if (len <= 1)
 		return ;
-	i = 0;
 	pivot = 0;
-	while (i < len)
+	vols[0] = *lst;
+	vols[1] = *lst;
+	vols[2] = ft_lst_at(*lst, len - 1);
+	while (vols[0] != vols[2]->next)
 	{
-		if (cmp_nearest_vol((t_vol *)(ft_lst_at(*lst, i)->content),
-			(t_vol *)(ft_lst_at(*lst, len - 1)->content), origin))
+		if (cmp_nearest_vol(vols[0]->content, vols[2]->content, origin) > 0)
 		{
-			swap_data(&(ft_lst_at(*lst, i)->content),
-				&(ft_lst_at(*lst, pivot)->content));
+			swap_data(&vols[0]->content, &vols[1]->content);
 			pivot++;
+			vols[1] = vols[1]->next;
 		}
-		i++;
+		vols[0] = vols[0]->next;
 	}
-	swap_data(&(ft_lst_at(*lst, pivot)->content),
-		&(ft_lst_at(*lst, len - 1)->content));
+	swap_data(&vols[1]->content, &vols[2]->content);
 	quicksort_lst(lst, pivot++, origin);
-	new_start = ft_lst_at(*lst, pivot);
-	quicksort_lst(&new_start, len - pivot, origin);
+	vols[1] = vols[1]->next;
+	quicksort_lst(&vols[1], len - pivot, origin);
 }
 
 static void	swap_data(void **a, void **b)

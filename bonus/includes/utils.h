@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 17:13:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:45:35 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,19 @@ void		vector_sub(t_pos a, t_pos b, t_pos *dst);
 //		utils/vector_math3.c
 void		unit_vector(t_pos *vec);
 void		vector_scale(float scale, t_pos *dst);
+t_pos		gen_vec(float x, float y, float z);
+void		vector_div(t_pos a, float b, t_pos *dst);
 
 //		utils/color_utils.c
 t_rgb		gen_rgb(const int r, const int g, const int b);
 void		c_mult(const t_pos *c1, const t_rgb *c2, t_rgb *dest);
 void		c_add(const t_rgb *c1, const t_rgb *c2, t_rgb *dest);
 void		c_scale(const float f, t_rgb *rgb);
+
+//		utils/color_utils2.c
+t_rgb		int_to_rgb(int col);
+void		add_coeficient(t_pos *rgb, double coef, t_rgb *col);
+void		c_mult_basic(t_rgb *mult, t_rgb *dest);
 
 //		utils/bbox_utils.c
 void		bbox_center(const t_box *box, t_pos *center);
@@ -69,6 +76,7 @@ void		hit_cpy(const t_hit *src, t_hit *dest);
 
 //		utils/struct_utils2.c
 t_couple	gen_couple(int x, int y);
+void		set_color(int r, int g, int b, t_rgb *col);
 
 //		utils/ft_itoa_custom.c
 void		ft_itoa_custom(int n, char *str, size_t size);

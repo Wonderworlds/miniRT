@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:19:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:15:42 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:10:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 static void	display_bvh_content(char *prefix, t_bvh *node, int is_left)
 {
-	const char	*e_type[] = {"NODE", "SPHERE", "PLANE", "CYLINDER"};
-	const char	*e_colors[] = {"\x1b[32m", "\x1b[33m", "\x1b[36m", "\x1b[34m"};
+	const char	*e_type[] = {"NODE", "SPHERE", "PLANE", "CYLINDER", "TRIANGLE"};
+	const char	*e_colors[] = {"\x1b[32m", "\x1b[33m", "\x1b[36m", "\x1b[34m", "\x1b[35m"};
 
 	if (is_left)
 		ft_printf("%s├──", prefix);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:35:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:28:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	malloc_xpm(char *str, t_xpm **xpm, t_scene *scene)
 {
 	*xpm = malloc(sizeof(t_xpm));
 	if (!*xpm)
+	{
+		free(str);
 		exit_parse(scene, "Error\nmalloc fail\n");
+	}
 	(*xpm)->file = str;
 }
 
@@ -39,7 +42,10 @@ static size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm)
 	if (!file)
 		exit_parse(scene, "Error\nmalloc fail\n");
 	if (ft_strncmp(file + i - 4, ".xpm", 4) || access(file, F_OK))
+	{
+		free(file);
 		exit_parse(scene, "Error\nIncorrect file\n");
+	}
 	malloc_xpm(file, xpm, scene);
 	while (str[i] == ' ')
 		i++;
@@ -52,8 +58,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 	size_t		i;
 
 	i = 0;
-	if (*ptr != 0)
-		exit_parse(scene, NULL);
+//	if (*ptr != 0)
+//		exit_parse(scene, NULL);
 	while (ft_isalpha(str[i]))
 		i++;
 	if (!ft_strncmp(ok[0], str, i))
@@ -69,7 +75,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 
 void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular:"};
 	size_t			i;
 
 	i = 0;
@@ -84,6 +91,8 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 				i += set_t_xpm(scene, &str[i], &vol->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
 				i += set_disruption(scene, &str[i], &vol->disruption);
+			else if (!ft_strncmp(tbd[3], str, i))
+				i += set_specular(scene, str + i, &vol->spec);
 			else
 				exit_parse(scene, NULL);
 			str += i;
@@ -98,7 +107,8 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 
 void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 {
-	const char		*tbd[3] = {"texture:", "bumpmap:", "disruption:"};
+	const char		*tbd[4] = {"texture:", "bumpmap:", "disruption:",
+		"specular:"};
 	size_t			i;
 
 	i = 0;
@@ -113,6 +123,8 @@ void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 				i += set_t_xpm(scene, &str[i], &pl->bump);
 			else if (!ft_strncmp(tbd[2], str, i))
 				i += set_disruption(scene, &str[i], &pl->disruption);
+			else if (!ft_strncmp(tbd[3], str, i))
+				i += set_specular(scene, str + i, &pl->spec);
 			else
 				exit_parse(scene, NULL);
 			str += i;

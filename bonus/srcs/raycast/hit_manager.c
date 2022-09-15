@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:47:23 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 21:30:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:46:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 static float	hit_manager(int action, t_hit *ptr, float newdst)
 {
-	static t_hit	_hit = {-1, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+	static t_hit	_hit = {-1, {0, 0, 0}, {0, 0, 0},
+						{0, 0, 0}, {0, 0}, 0, NULL};
 
 	if (action == 2)
 		_hit.dst_origin = newdst;

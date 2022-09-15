@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:29:34 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:37:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,27 @@ unsigned int	sort_vols(t_list **vols, const t_box *box,
 {
 	t_list			*new_start;
 	t_list			*index;
-	unsigned int	m;
+	t_vol			*start_end[2];
+	int				compare[3];
 
 	new_start = get_furthest_vol(&(box->center), *vols, begin, end);
 	new_lst_start(vols, new_start, begin, end);
 	sort_list_custom(&(*vols)->next,
 		&((t_vol *)new_start->content)->box.center, begin, end);
-	m = 0;
+	compare[2] = 0;
+	compare[1] = 0;
 	index = new_start;
+	start_end[0] = (t_vol *)(new_start->content);
+	start_end[1] = (t_vol *)(ft_lst_at(*vols, end)->content);
 	while (end-- > begin)
 	{
-		if (cmp_nearest_vol((t_vol *)new_start->content,
-				(t_vol *)ft_lstlast(new_start)->content,
-				&((t_vol *)index->content)->box.center))
-			m++;
+		compare[0] = cmp_nearest_vol(start_end[0], start_end[1],
+				&((t_vol *)index->content)->box.center);
+		if (compare[0] >= 0)
+			compare[2]++;
+		if (compare[0] == 0)
+			compare[1]++;
 		index = index->next;
 	}
-	return (m + begin);
+	return (compare[2] + begin - (compare[1] / 2));
 }

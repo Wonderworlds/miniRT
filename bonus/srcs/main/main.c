@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:32:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:34:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 		check_plane = check_plane->next;
 	}
 }*/
-
+/*
 #include <stdio.h>
 
 void	check_value2(t_scene *scene)
@@ -67,7 +67,7 @@ void	check_value2(t_scene *scene)
 	{
 		vol = (t_vol *)(check_vols->content);
 		if (vol->type == TRIANGLE)
-			printf("tr	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d texture:%s bumpmap:%s ", vol->tr[0].x, vol->tr[0].y, vol->tr[0].z, vol->tr[1].x, vol->tr[1].y, vol->tr[1].z, vol->tr[2].x, vol->tr[2].y, vol->tr[2].z, vol->col.r, vol->col.g, vol->col.b, ((vol->tex) ? "Yes" : "No"), ((vol->bump) ? "Yes" : "No"));
+			printf("tr	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	%d,%d,%d	%.1f,%.1f,%.1f	%.1f,%.1f,%.1f	texture:%s bumpmap:%s ", vol->tr[0].x, vol->tr[0].y, vol->tr[0].z, vol->tr[1].x, vol->tr[1].y, vol->tr[1].z, vol->tr[2].x, vol->tr[2].y, vol->tr[2].z, vol->col.r, vol->col.g, vol->col.b, vol->pos.x, vol->pos.y, vol->pos.z, vol->vec3.x, vol->vec3.y, vol->vec3.z, ((vol->tex) ? "Yes" : "No"), ((vol->bump) ? "Yes" : "No"));
 		if (vol->disruption == NONE)
 			printf("disruption:none\n");
 		if (vol->disruption == CHECKERBOARD)
@@ -89,7 +89,7 @@ void	check_value2(t_scene *scene)
 			printf("disruption:other\n");
 		check_plane = check_plane->next;
 	}
-}
+}*/
 
 int	main(int ac, char **av)
 {
@@ -106,7 +106,7 @@ int	main(int ac, char **av)
 	}
 	parse_rt(av[1], &scene);
 //	========== test parse =========
-	check_value2(&scene);
+//	check_value2(&scene);
 //	==============================
 //
 	graphic_process(&scene);

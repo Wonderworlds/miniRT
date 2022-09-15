@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:46:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/09 16:59:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:55:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	create_filename(char *file, size_t size)
 
 	ft_memcpy(file, FILENAME_BASE, size);
 	file[size] = 0;
-	i = size - 5;
+	i = size - 6;
 	while (!access(file, F_OK))
 	{
 		while (file[i] == '9')
@@ -66,8 +66,8 @@ int	create_filename(char *file, size_t size)
 		if (i < size - 9)
 			return (1);
 		file[i] = file[i] + 1;
-		if (i < size - 5)
-			i = size - 5;
+		if (i < size - 6)
+			i = size - 6;
 	}
 	return (0);
 }
