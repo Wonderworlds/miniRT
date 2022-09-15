@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/15 14:27:22 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/15 18:53:25 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,40 +96,41 @@ BONUSSRCS			:=	$(addprefix main/,		main.c					\
 												parse_light.c			\
 												parse_texture.c			\
 												parse_texture2.c		\
-												parse_camera.c			\
-												parse_volume2.c			\
-												parse_resolution.c		\
-												set_variables.c)		\
-						$(addprefix volume/,	inside_vol.c			\
-												bounds.c				\
-												bounds2.c				\
-												bounds_total.c)			\
-						$(addprefix bvh/,		bvh_construction.c		\
-												sort_bvh.c				\
-												print_bvh.c				\
-												bvh_utils.c)			\
-						$(addprefix raycast/,	hit_manager.c			\
-												ray_print.c				\
-												create_hit.c			\
-												ray_volume_hit.c		\
-												ray_triangle_hit.c		\
-												ray_cylinder_hit.c		\
-												ray_cylinder_hit2.c)	\
-						$(addprefix menu/,		graphic_menu.c			\
-												build_menu.c			\
-												bp_utils.c				\
-												event_menu.c			\
-												copy_img.c				\
-												add_dec_menu.c			\
-												add_dec_menu2.c			\
-												add_dec_menu3.c			\
-												fill_menu.c				\
-												fill_menu2.c)			\
-						$(addprefix lights/,	lights.c				\
-												texture_col.c			\
-												get_uv.c				\
-												phong_reflection.c)		\
-						$(addprefix utils/,		ft_gnl_rt.c				\
+												parse_camera.c		\
+												parse_volume2.c		\
+												parse_resolution.c	\
+												set_variables.c)	\
+						$(addprefix volume/,	inside_vol.c		\
+												bounds.c			\
+												bounds2.c			\
+												bounds_total.c)		\
+						$(addprefix bvh/,		bvh_construction.c	\
+												sort_bvh.c			\
+												print_bvh.c			\
+												bvh_utils.c)		\
+						$(addprefix raycast/,	hit_manager.c		\
+												ray_print.c			\
+												create_hit.c		\
+												ray_volume_hit.c	\
+												ray_triangle_hit.c	\
+												ray_cone_hit.c		\
+												ray_cylinder_hit.c	\
+												ray_cylinder_hit2.c)\
+						$(addprefix menu/,		graphic_menu.c		\
+												build_menu.c		\
+												bp_utils.c			\
+												event_menu.c		\
+												copy_img.c			\
+												add_dec_menu.c		\
+												add_dec_menu2.c		\
+												add_dec_menu3.c		\
+												fill_menu.c			\
+												fill_menu2.c)		\
+						$(addprefix lights/,	lights.c			\
+												disruption.c		\
+												texture_col.c		\
+												phong_reflection.c)	\
+						$(addprefix utils/,		ft_gnl_rt.c			\
 												ft_strlen_rt.c			\
 												error_msg.c				\
 												vector_math.c			\

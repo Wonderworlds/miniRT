@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:57:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ static void	hit_triangle(t_vol *vol, t_hit *hit)
 	hit->spec.intensity = vol->spec.intensity;
 	hit->vol_type = TRIANGLE;
 }
+
+static void	hit_cone(t_vol *vol, t_hit *hit)
+{
+	t_pos vec3;
+	t_pos co_top;
+
+	set_vector(vol->pos.x + vol->h * vol->vec3.x, vol->pos.y
+		+ vol->h * vol->vec3.y, vol->pos.z + vol->h * vol->vec3.z, &co_top);
+	vector_ab(co_top, hit->pos, &vec3);
+	vector_equal(vec3, &hit->normal);
+	vector_scale(dot_product(vol->vec3, vec3), &hit->normal);
+	vector_div(hit->normal, dot_product(vec3, vec3), &hit->normal);
+	vector_sub(hit->normal, vol->vec3, &hit->normal);
+	unit_vector(&hit->normal);
+	hit->spec.size = vol->spec.size;
+	hit->spec.intensity = vol->spec.intensity;
+	hit->vol_type = CONE;
+}
+
 
 static void	hit_sphere(t_vol *vol, t_hit *hit)
 {
@@ -80,6 +99,8 @@ void	create_hit(double t, t_vol *vol, t_plane *pl, t_ray *ray)
 			hit_cylinder(vol, &hit);
 		else if (vol->type == TRIANGLE)
 			hit_triangle(vol, &hit);
+		else if (vol->type == CONE)
+			hit_cone(vol, &hit);
 		hit.vol = vol;
 	}
 	else if (pl)

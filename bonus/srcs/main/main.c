@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 16:08:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:34:34 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 		check_plane = check_plane->next;
 	}
 }*/
-
+/*
 #include <stdio.h>
 
 void	check_value2(t_scene *scene)
@@ -89,7 +89,7 @@ void	check_value2(t_scene *scene)
 			printf("disruption:other\n");
 		check_plane = check_plane->next;
 	}
-}
+}*/
 
 int	main(int ac, char **av)
 {

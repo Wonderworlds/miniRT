@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:57:11 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:28:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 	size_t		i;
 
 	i = 0;
-	if (*ptr != 0)
-		exit_parse(scene, NULL);
+//	if (*ptr != 0)
+//		exit_parse(scene, NULL);
 	while (ft_isalpha(str[i]))
 		i++;
 	if (!ft_strncmp(ok[0], str, i))

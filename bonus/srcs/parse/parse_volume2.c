@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 14:05:10 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 12:04:11 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,35 @@ void	triangle(t_scene *scene, char *str)
 	parse_vol_texture(scene, tr, str + i);
 	triangle_bounds_and_set(tr);
 	triangle_normal(tr);
+}
+
+void	cone(t_scene *scene, char *str)
+{
+	t_vol	*co;
+	int		i;
+
+	i = 2;
+	malloc_volume(&co, scene, CONE);
+	while (str[i] == ' ')
+		i++;
+	i += set_pos(scene, &co->pos, str + i);
+	while (str[i] == ' ')
+		i++;
+	i += set_vec3(scene, &co->vec3, str + i);
+	if (co->vec3.x == 0 && co->vec3.y == 0 && co->vec3.z == 0)
+		co->vec3.y = 1.f;
+	while (str[i] == ' ')
+		i++;
+	i += set_float(scene, &co->d, str + i, 1);
+	while (str[i] == ' ')
+		i++;
+	i += set_float(scene, &co->h, str + i, 1);
+	while (str[i] == ' ')
+		i++;
+	i += set_rgb(scene, &co->col, str + i);
+	while (str[i] == ' ')
+		i++;
+	parse_vol_texture(scene, co, str + i);
+	unit_vector(&co->vec3);
+	cone_bounds(co);
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:19:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:57:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #include "libft.h"
 #include <math.h>
 
-static double	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3)
+float	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3)
 {
 	vector_ab(ray->origin, cy, e);
 	vector_equal(cy, e + 1);
 	return (dot_product(e[0], cy_vec3));
 }
 
-static double	set_t2(double dot, double denom, t_bool *dir, t_bool sign)
+float	set_t2(float dot, float denom, t_bool *dir, t_bool sign)
 {
 	*dir = sign;
 	return (dot / denom);

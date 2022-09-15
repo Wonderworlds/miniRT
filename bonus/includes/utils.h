@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:56:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void		vector_sub(t_pos a, t_pos b, t_pos *dst);
 
 //		utils/vector_math3.c
 void		unit_vector(t_pos *vec);
-void		vector_scale(double scale, t_pos *dst);
-t_pos		gen_vec(double x, double y, double z);
+void		vector_scale(float scale, t_pos *dst);
+t_pos		gen_vec(float x, float y, float z);
+void		vector_div(t_pos a, float b, t_pos *dst);
 
 //		utils/color_utils.c
 t_rgb		gen_rgb(const int r, const int g, const int b);

@@ -6,7 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/15 18:06:15 by amahla           ###   ########.fr       */
+>>>>>>> b0bbfc6e67b269c74f516106a340ebd55be36dd7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +52,7 @@ void	cylinder(t_scene *scene, char *str);
 
 //		parse/parse_volume2.c
 void	triangle(t_scene *scene, char *str);
+void	cone(t_scene *scene, char *str);
 
 //		parse/parse_light.c
 void	ambient_lightning(t_scene *scene, char *str);
@@ -76,6 +81,7 @@ void	cylinder_bounds(t_vol *cy);
 
 //		volume/bounds2.c
 void	triangle_bounds_and_set(t_vol *tr);
+void	cone_bounds(t_vol *cy);
 
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box,
@@ -90,15 +96,21 @@ double	get_hit(t_hit *ptr);
 void	reset_hit(void);
 
 //		raycast/ray_volume_hit.c
+float	solve_quadratic(float a, float b, float c);
 t_bool	is_aabb_hit(t_ray ray, t_box aabb);
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp);
 t_bool	is_plane_hit(t_ray *ray, t_plane *pl);
 
 //		raycast/ray_cylinder_hit.c
+float	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3);
+float	set_t2(float dot, float denom, t_bool *dir, t_bool sign);
 void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 
 //		raycast/ray_cylinder_hit2.c
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
+
+//		raycast/ray_cone_hit.c
+t_bool	is_cone_hit(t_ray *ray, t_vol *hy);
 
 //		raycast/ray_triangle_hit.c
 t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
@@ -120,9 +132,17 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit);
 double	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam);
 
+<<<<<<< HEAD
 //		lights/texture_col.c
 void	do_tex_bump(t_hit *hit);
 void	bump_map(t_hit *hit, t_light *light);
+=======
+//		light/disruption.c
+void	do_disruption(t_hit *hit);
+
+//		light/texture_col.c
+void	do_tex_bump(t_hit *hit, t_ray *ray);
+>>>>>>> b0bbfc6e67b269c74f516106a340ebd55be36dd7
 
 //		lights/get_uv.c
 void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv, t_xpm *xpm);

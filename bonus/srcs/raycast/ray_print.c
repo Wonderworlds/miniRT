@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 17:24:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:57:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	find_volume(t_bvh *root, t_ray ray)
 			is_cylinder_hit(&ray, root->vol);
 		if (root->vol->type == TRIANGLE)
 			is_triangle_hit(&ray, root->vol);
+		if (root->vol->type == CONE)
+			is_cone_hit(&ray, root->vol);
 	}
 	else if (is_aabb_hit(ray, root->box) == true)
 	{

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:56:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,9 @@ typedef enum e_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	TRIANGLE
+	TRIANGLE,
+	HYPERBOLOID,
+	CONE
 }	t_type;
 
 typedef struct s_vol
