@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 11:19:14 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:01:44 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray)
 	set_vector(0, 0, 0, &diffuse[0]);
 	set_vector(0, 0, 0, &diffuse[1]);
 	do_tex_bump(&hit_from_camera, ray);
+	do_disruption(&hit_from_camera);
 	if (scene->ambient)
 		add_coeficient(&diffuse[0], scene->ambient->r, &scene->ambient->col);
 	while (lst_lights)
