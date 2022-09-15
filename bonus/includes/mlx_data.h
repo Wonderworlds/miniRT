@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 18:52:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:28:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 //		parse/parse_camera.c
 void	set_camera(t_cam *cam, t_resolut *res);
 
-//		graphics/error_mlx.c
+//		main/error_minirt.c
 void	error_mlx_data(t_data *data, void *mlx_ptr);
 
 //		graphics/graphics_process.c

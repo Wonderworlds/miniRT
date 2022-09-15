@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_resolution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:06:57 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 20:08:06 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:26:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	resolution(t_scene *scene, char *str)
 	i = 1;
 	while (str[i] == ' ')
 		i++;
-	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_width) || scene->resolut.win_width < 1 || scene->resolut.win_width > 1920) 
+	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_width)
+		|| scene->resolut.win_width < 1 || scene->resolut.win_width > 1920)
 		exit_parse(scene, NULL);
 	while (ft_isdigit(str[i]))
 		i++;
@@ -29,7 +30,8 @@ void	resolution(t_scene *scene, char *str)
 		exit_parse(scene, NULL);
 	while (str[i] == ' ')
 		i++;
-	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_height) || scene->resolut.win_height < 1 || scene->resolut.win_height > 1080) 
+	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_height)
+		|| scene->resolut.win_height < 1 || scene->resolut.win_height > 1080)
 		exit_parse(scene, NULL);
 	while (ft_isdigit(str[i]))
 		i++;

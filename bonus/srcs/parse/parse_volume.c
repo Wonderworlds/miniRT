@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:46:15 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:37:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 {
-	t_list *elem;
+	t_list	*elem;
 
 	elem = NULL;
 	*vol = malloc(sizeof(t_vol));
@@ -38,7 +38,7 @@ void	malloc_volume(t_vol **vol, t_scene *scene, t_type type)
 
 void	malloc_pl(t_plane **pl, t_scene *scene)
 {
-	t_list *elem;
+	t_list	*elem;
 
 	elem = NULL;
 	*pl = malloc(sizeof(t_plane));
@@ -53,28 +53,6 @@ void	malloc_pl(t_plane **pl, t_scene *scene)
 	(*pl)->data = NULL;
 	(*pl)->spec.size = 0;
 	(*pl)->spec.intensity = 0.f;
-}
-
-void	sphere(t_scene *scene, char *str)
-{
-	t_vol	*sp;
-	int		i;
-
-	i = 2;
-	malloc_volume(&sp, scene, SPHERE);
-	while (str[i] == ' ')
-		i++;
-	i += set_pos(scene, &sp->pos, str + i);
-	while (str[i] == ' ')
-		i++;
-	i += set_float(scene, &sp->d, str + i, 1);
-	while (str[i] == ' ')
-		i++;
-	i += set_rgb(scene, &sp->col, str + i);
-	while (str[i] == ' ')
-		i++;
-	parse_vol_texture(scene, sp, str + i);
-	sphere_bounds(sp);
 }
 
 void	plane(t_scene *scene, char *str)
@@ -101,6 +79,21 @@ void	plane(t_scene *scene, char *str)
 	unit_vector(&pl->vec3);
 }
 
+static void	cylinder2(t_scene *scene, const char *str, int i, t_vol *cy)
+{
+	while (str[i] == ' ')
+		i++;
+	i += set_float(scene, &cy->h, str + i, 1);
+	while (str[i] == ' ')
+		i++;
+	i += set_rgb(scene, &cy->col, str + i);
+	while (str[i] == ' ')
+		i++;
+	parse_vol_texture(scene, cy, str + i);
+	unit_vector(&cy->vec3);
+	cylinder_bounds(cy);
+}
+
 void	cylinder(t_scene *scene, char *str)
 {
 	t_vol	*cy;
@@ -119,15 +112,5 @@ void	cylinder(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	i += set_float(scene, &cy->d, str + i, 1);
-	while (str[i] == ' ')
-		i++;
-	i += set_float(scene, &cy->h, str + i, 1);
-	while (str[i] == ' ')
-		i++;
-	i += set_rgb(scene, &cy->col, str + i);
-	while (str[i] == ' ')
-		i++;
-	parse_vol_texture(scene, cy, str + i);
-	unit_vector(&cy->vec3);
-	cylinder_bounds(cy);
+	cylinder2(scene, str, i, cy);
 }

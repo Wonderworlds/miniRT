@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:15:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:46:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 //		main/start_and_leave.c
 void	init_scene(t_scene *scene);
 void	leave_rt(t_scene *scene);
+
+//		main/error_minirt.c
+void	exit_parse(t_scene *scene, const char *error);
+void	exit_parse_cam(t_scene *scene, char *str);
 
 //		parse/parse_rt.c
 void	parse_rt(char *arg, t_scene *scene);
@@ -63,6 +67,7 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str);
 
 //		parse/parse_texture2.c
 size_t	set_specular(t_scene *scene, char *str, t_spec *spec);
+size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm);
 
 //		parse/resolution.c
 void	resolution(t_scene *scene, char *str);
