@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 23:30:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:10:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	str_vol(t_scene *scene, t_menu *menu)
 {
 	void	(*f[8])(t_menu *);
 	int		add;
-	int		type;
 
 	f[0] = &bp_cam;
 	f[1] = &bp_ambient;
@@ -30,14 +29,14 @@ void	str_vol(t_scene *scene, t_menu *menu)
 	f[5] = &bp_cylinder;
 	f[6] = &bp_triangle;
 	f[7] = &bp_cylinder;
-	if (menu->item == m_vol)
-		type = ((t_vol *)ft_lst_at(scene->vols, menu->index)->content)->type;
 	add = 0;
-	if (type == CYLINDER)
+	if (menu->item == m_vol)
+		add = ((t_vol *)ft_lst_at(scene->vols, menu->index)->content)->type;
+	if (add == CYLINDER)
 		add = 1;
-	if (type == TRIANGLE)
+	else if (add == TRIANGLE)
 		add = 2;
-	if (type == CONE)
+	else if (add == CONE)
 		add = 3;
 	(*f[menu->item + add])(menu);
 }

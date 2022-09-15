@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 23:36:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:11:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	left_right_menu(t_data *data, int i)
 {
 	int		(*f[8])(t_data *, int );
 	int		add;
-	int		type;
 	t_menu	*menu;
 
 	menu = &data->menu;
@@ -99,13 +98,13 @@ void	left_right_menu(t_data *data, int i)
 	f[7] = &add_dec_cylinder;
 	add = 0;
 	if (menu->item == m_vol)
-		type = ((t_vol *)ft_lst_at(data->scene->vols,
+		add = ((t_vol *)ft_lst_at(data->scene->vols,
 				menu->index)->content)->type;
-	if (type == CYLINDER)
+	if (add == CYLINDER)
 		add = 1;
-	if (type == TRIANGLE)
+	else if (add == TRIANGLE)
 		add = 2;
-	if (type == CONE)
+	else if (add == CONE)
 		add = 3;
 	if (!(*f[menu->item + add])(data, i))
 		display_menu(data, &data->menu, data->scene);
