@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_hyperboloid_hit.c                              :+:      :+:    :+:   */
+/*   ray_cone_hit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 14:51:55 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:53:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_bool	check_extremity_cone(float t, t_pos h_norm, t_ray *ray, t_pos h,
 		return (false);
 	return (true);
 }
-
 
 t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 {

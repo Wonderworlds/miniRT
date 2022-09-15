@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_reflection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:19:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:54:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:57:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	coeff *= 2;
 	vector_scale(coeff, &temp[1]);
 	vector_sub(temp[1], temp[0], &r);
-	coeff = lights->r * powf(fmaxf(0.f, dot_product(r, cam->vec3))
-		, hit_from_camera.spec.size);
+	coeff = lights->r * powf(fmaxf(0.f, dot_product(r, cam->vec3)),
+			hit_from_camera.spec.size);
 	coeff *= hit_from_camera.spec.intensity;
 	return (coeff);
-
 }

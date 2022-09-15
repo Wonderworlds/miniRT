@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:54:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		c_scale(const float f, t_rgb *rgb);
 t_rgb		int_to_rgb(int col);
 void		add_coeficient(t_pos *rgb, float coef, t_rgb *col);
 void		c_mult_basic(t_rgb *mult, t_rgb *dest);
+t_rgb		rgb2gray(t_rgb rgb);
 
 //		utils/bbox_utils.c
 void		bbox_center(const t_box *box, t_pos *center);

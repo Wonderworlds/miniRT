@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:57:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 #include <math.h>
 
 #define BUMP_SCALE 10
-
-t_rgb	rgb2gray(t_rgb rgb)
-{
-	unsigned char	gray;
-
-	gray = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
-	return (gen_rgb(gray, gray, gray));
-}
 
 static int	get_tex_pix(t_xpm *xpm, float u, float v)
 {
@@ -50,7 +42,30 @@ void	bump_map(t_hit *hit, t_light *light)
 	light->r = light->r_o * (coeff + 0.6f);
 }
 
-static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
+static void	do_tex_bump3(t_xpm *bump, t_hit *hit)
+{
+	t_rgb		tex_rgb;
+	t_couplef	uv;
+
+	if (bump)
+	{
+		if (hit->vol_type == SPHERE)
+			get_uv_sp(hit, hit->vol, &uv, bump);
+		else if (hit->vol_type == CYLINDER)
+			get_uv_cy(hit, hit->vol, &uv, bump);
+		else if (hit->vol_type == PLANE)
+			get_uv_pl(hit, hit->vol, &uv, bump);
+		else if (hit->vol_type == TRIANGLE)
+			get_uv_tr(hit, hit->vol, &uv, bump);
+		else if (hit->vol_type == CONE)
+			get_uv_co(hit, hit->vol, &uv, bump);
+		tex_rgb = int_to_rgb(get_tex_pix(bump, uv.x, uv.y));
+		bump->coeff = (float)(tex_rgb.r + tex_rgb.g + tex_rgb.b)
+			/ (255.0f * 3.0f);
+	}
+}
+
+static void	do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
 {
 	t_couplef	uv;
 	t_rgb		tex_rgb;
@@ -70,23 +85,8 @@ static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
 		tex_rgb = int_to_rgb(get_tex_pix(tex, uv.x, uv.y));
 		c_mult_basic(&tex_rgb, &hit->col);
 	}
-	if (bump)
-	{
-		if (hit->vol_type == SPHERE)
-			get_uv_sp(hit, hit->vol, &uv, bump);
-		else if (hit->vol_type == CYLINDER)
-			get_uv_cy(hit, hit->vol, &uv, bump);
-		else if (hit->vol_type == PLANE)
-			get_uv_pl(hit, hit->vol, &uv, bump);
-		else if (hit->vol_type == TRIANGLE)
-			get_uv_tr(hit, hit->vol, &uv, bump);
-		else if (hit->vol_type == CONE)
-			get_uv_co(hit, hit->vol, &uv, bump);
-		tex_rgb = int_to_rgb(get_tex_pix(bump, uv.x, uv.y));
-		bump->coeff = (float)(tex_rgb.r + tex_rgb.g + tex_rgb.b) / (255.0f * 3.0f);
-	}
+	do_tex_bump3(bump, hit);
 }
-
 
 void	do_tex_bump(t_hit *hit)
 {

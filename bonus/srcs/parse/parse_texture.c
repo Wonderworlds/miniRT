@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:50:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:10:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	parse_vol_texture(t_scene *scene, t_vol *vol, char *str)
 		if (str[i] == ':')
 		{
 			i++;
-			i = parse_vol_texture2(scene, vol, str + i, tbd);
+			i += parse_vol_texture2(scene, vol, str + i, tbd);
 			str += i;
 			i = 0;
 		}
@@ -107,7 +107,7 @@ void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 		if (str[i] == ':')
 		{
 			i++;
-			i = parse_pl_texture2(scene, pl, str + i, tbd);
+			i += parse_pl_texture2(scene, pl, str + i, tbd);
 			str += i;
 			i = 0;
 		}
