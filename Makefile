@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/13 21:36:57 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/15 14:27:22 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,101 +34,102 @@ OBJDIR				:=	./obj
 BONUSOBJDIR			:=	$(OBJDIR)_bonus
 DEBUGDIR			:=	./debugobj
 
-MANDATORYSRCS		:=	$(addprefix main/,		main.c				\
-																	start_and_leave.c)	\
-											$(addprefix graphics/,	graphic_process.c	\
-																	error_mlx.c			\
-																	graphic_hook.c		\
-																	graphic_render.c)	\
-											$(addprefix parse/,		parse_rt.c			\
-																	format_data.c		\
-																	parse_volume.c		\
-																	parse_light.c		\
-																	parse_camera.c		\
-																	set_variables.c)	\
-											$(addprefix volume/,	inside_vol.c		\
-																	bounds.c			\
-																	bounds_total.c)		\
-											$(addprefix bvh/,		bvh_construction.c	\
-																	sort_bvh.c			\
-																	print_bvh.c			\
-																	bvh_utils.c)		\
-											$(addprefix raycast/,	hit_manager.c		\
-																	ray_print.c			\
-																	create_hit.c		\
-																	ray_volume_hit.c	\
-																	ray_cylinder_hit.c	\
-																	ray_cylinder_hit2.c)\
-											$(addprefix menu/,		graphic_menu.c		\
-																	build_menu.c		\
-																	bp_utils.c			\
-																	event_menu.c		\
-																	copy_img.c			\
-																	add_dec_menu.c		\
-																	add_dec_menu2.c		\
-																	add_dec_menu3.c		\
-																	fill_menu.c			\
-																	fill_menu2.c)		\
-											$(addprefix lights/,	lights.c)			\
-											$(addprefix utils/,		ft_gnl_rt.c			\
-																	error_msg.c				\
-																	vector_math.c			\
-																	vector_math2.c			\
-																	vector_math3.c			\
-																	struct_utils.c			\
-																	color_utils.c			\
-																	bbox_utils.c			\
-																	ft_itoa_custom.c		\
-																	ft_ftoa_custom.c		\
-																	debug.c					\
-																	quicksort_lst_custom.c	\
-																	)						\
+MANDATORYSRCS		:=	$(addprefix main/,		main.c					\
+												start_and_leave.c)		\
+						$(addprefix graphics/,	graphic_process.c		\
+												error_mlx.c				\
+												graphic_hook.c			\
+												graphic_render.c)		\
+						$(addprefix parse/,		parse_rt.c				\
+												format_data.c			\
+												parse_volume.c			\
+												parse_light.c			\
+												parse_camera.c			\
+												set_variables.c)		\
+						$(addprefix volume/,	inside_vol.c			\
+												bounds.c				\
+												bounds_total.c)			\
+						$(addprefix bvh/,		bvh_construction.c		\
+												sort_bvh.c				\
+												print_bvh.c				\
+												bvh_utils.c)			\
+						$(addprefix raycast/,	hit_manager.c			\
+												ray_print.c				\
+												create_hit.c			\
+												ray_volume_hit.c		\
+												ray_cylinder_hit.c		\
+												ray_cylinder_hit2.c)	\
+						$(addprefix menu/,		graphic_menu.c			\
+												build_menu.c			\
+												bp_utils.c				\
+												event_menu.c			\
+												copy_img.c				\
+												add_dec_menu.c			\
+												add_dec_menu2.c			\
+												add_dec_menu3.c			\
+												fill_menu.c				\
+												fill_menu2.c)			\
+						$(addprefix lights/,	lights.c)				\
+						$(addprefix utils/,		ft_gnl_rt.c				\
+												error_msg.c				\
+												vector_math.c			\
+												vector_math2.c			\
+												vector_math3.c			\
+												struct_utils.c			\
+												color_utils.c			\
+												bbox_utils.c			\
+												ft_itoa_custom.c		\
+												ft_ftoa_custom.c		\
+												debug.c					\
+												quicksort_lst_custom.c	\
+												)
 
-BONUSSRCS			:=	$(addprefix main/,		main.c				\
-												start_and_leave.c)	\
-						$(addprefix graphics/,	graphic_process.c	\
-												error_mlx.c			\
-												graphic_hook.c		\
-												graphic_render.c)	\
-						$(addprefix parse/,		parse_rt.c			\
-												format_data.c		\
-												parse_volume.c		\
-												parse_light.c		\
-												parse_texture.c		\
+BONUSSRCS			:=	$(addprefix main/,		main.c					\
+												start_and_leave.c)		\
+						$(addprefix graphics/,	graphic_process.c		\
+												error_mlx.c				\
+												graphic_hook.c			\
+												graphic_render.c)		\
+						$(addprefix parse/,		parse_rt.c				\
+												format_data.c			\
+												parse_volume.c			\
+												parse_light.c			\
+												parse_texture.c			\
 												parse_texture2.c		\
-												parse_camera.c		\
-												parse_volume2.c		\
-												parse_resolution.c	\
-												set_variables.c)	\
-						$(addprefix volume/,	inside_vol.c		\
-												bounds.c			\
-												bounds2.c			\
-												bounds_total.c)		\
-						$(addprefix bvh/,		bvh_construction.c	\
-												sort_bvh.c			\
-												print_bvh.c			\
-												bvh_utils.c)		\
-						$(addprefix raycast/,	hit_manager.c		\
-												ray_print.c			\
-												create_hit.c		\
-												ray_volume_hit.c	\
-												ray_triangle_hit.c	\
-												ray_cylinder_hit.c	\
-												ray_cylinder_hit2.c)\
-						$(addprefix menu/,		graphic_menu.c		\
-												build_menu.c		\
-												bp_utils.c			\
-												event_menu.c		\
-												copy_img.c			\
-												add_dec_menu.c		\
-												add_dec_menu2.c		\
-												add_dec_menu3.c		\
-												fill_menu.c			\
-												fill_menu2.c)		\
-						$(addprefix lights/,	lights.c			\
-												texture_col.c		\
-												phong_reflection.c)	\
-						$(addprefix utils/,		ft_gnl_rt.c			\
+												parse_camera.c			\
+												parse_volume2.c			\
+												parse_resolution.c		\
+												set_variables.c)		\
+						$(addprefix volume/,	inside_vol.c			\
+												bounds.c				\
+												bounds2.c				\
+												bounds_total.c)			\
+						$(addprefix bvh/,		bvh_construction.c		\
+												sort_bvh.c				\
+												print_bvh.c				\
+												bvh_utils.c)			\
+						$(addprefix raycast/,	hit_manager.c			\
+												ray_print.c				\
+												create_hit.c			\
+												ray_volume_hit.c		\
+												ray_triangle_hit.c		\
+												ray_cylinder_hit.c		\
+												ray_cylinder_hit2.c)	\
+						$(addprefix menu/,		graphic_menu.c			\
+												build_menu.c			\
+												bp_utils.c				\
+												event_menu.c			\
+												copy_img.c				\
+												add_dec_menu.c			\
+												add_dec_menu2.c			\
+												add_dec_menu3.c			\
+												fill_menu.c				\
+												fill_menu2.c)			\
+						$(addprefix lights/,	lights.c				\
+												texture_col.c			\
+												get_uv.c				\
+												phong_reflection.c)		\
+						$(addprefix utils/,		ft_gnl_rt.c				\
 												ft_strlen_rt.c			\
 												error_msg.c				\
 												vector_math.c			\
@@ -144,7 +145,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c				\
 												debug.c					\
 												quicksort_lst_custom.c	\
 												bmp_export.c			\
-												)						\
+												)
 
 CC					:=	cc
 RM					:=	rm

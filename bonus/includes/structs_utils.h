@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 22:21:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:46:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_xpm
 	int		bpp;
 	int		line_len;
 	int		endian;
+	float	coeff;
 }	t_xpm;
 
 typedef struct s_spec
