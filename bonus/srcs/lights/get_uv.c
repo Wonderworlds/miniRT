@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 20:59:45 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 21:01:13 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm)
 		proj.y = cy->d;
 	float theta = atan2f(proj.x, proj.z);
     float rawU = theta / (2 * M_PI);
-	if (cy->pos.x == proj.x && cy->pos.z == proj.z)
+	if (proj.x == 0 && proj.z == 0)
 		add = 0;
 	else
-		add = vector_norm(gen_vec(proj.x - cy->pos.x, 0, proj.z - cy->pos.z));
+		add = vector_norm(gen_vec(proj.x, 0, proj.z));
 	if (proj.y >= cy->h)
 		proj.y = cy->h + cy->d - add;
 	else
