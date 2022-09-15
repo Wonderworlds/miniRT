@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:21:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:14:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ void	fill_field(t_data *data, int y, void *item, int type)
 	}
 }
 
-void	fill_camera(t_data *data, t_cam *cam, int y_start)
+void	fill_camera(t_data *data, t_list *lst_cam, int y_start)
 {
+	t_cam	*cam;
+
+	cam = (t_cam *)lst_cam->content;
 	y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
-	y_start = fill_template(data, y_start, "CAMERA", 0);
+	y_start = fill_template(data, y_start, "camera", 0);
 	fill_field(data, y_start + STEP_FIELD, &cam->pos, m_t_pos);
 	y_start = fill_template(data, y_start, "position", 1);
 	fill_field(data, y_start + STEP_FIELD, &cam->vec3, m_t_pos);
@@ -57,6 +60,12 @@ void	fill_camera(t_data *data, t_cam *cam, int y_start)
 	y_start += STEP_FIELD;
 	fill_field(data, y_start, &cam->h_fov, m_int);
 	y_start = fill_template(data, y_start, "fov", 3);
+	y_start += STEP_FIELD;
+	if (cam == data->scene->cam)
+		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y_start, WP, "YES");
+	else
+		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y_start, WP, "NO");
+	y_start = fill_template(data, y_start, "use", 3);
 }
 
 void	fill_ambient(t_data *data, t_light *lg, int y_start)
@@ -83,6 +92,28 @@ void	fill_light(t_data *data, t_list *lg, int y_start)
 	y_start = fill_template(data, y_start, "color", 2);
 }
 
+static void	fill_vol2(t_data *data, t_vol *vol, int y_start)
+{
+	if (vol->type == CYLINDER || vol->type == CONE)
+	{
+		if (vol->type == CYLINDER)
+			y_start = fill_template(data, y_start, "CYLINDER", 0);
+		if (vol->type == CONE)
+			y_start = fill_template(data, y_start, "CONE", 0);
+		fill_field(data, y_start + STEP_FIELD, &vol->pos, m_t_pos);
+		y_start = fill_template(data, y_start, "position", 1);
+		fill_field(data, y_start + STEP_FIELD, &vol->vec3, m_t_pos);
+		y_start = fill_template(data, y_start, "direction", 1);
+		y_start += STEP_FIELD;
+		fill_field(data, y_start, &vol->h, m_float);
+		y_start = fill_template(data, y_start, "h", 3);
+		fill_field(data, y_start, &vol->d, m_float);
+		y_start = fill_template(data, y_start, "d", 3);
+	}
+	fill_field(data, y_start + STEP_FIELD, &vol->col, m_t_rgb);
+	y_start = fill_template(data, y_start, "color", 2);
+}
+
 void	fill_vol(t_data *data, t_list *lvol, int y_start)
 {
 	t_vol	*vol;
@@ -94,20 +125,18 @@ void	fill_vol(t_data *data, t_list *lvol, int y_start)
 		fill_field(data, y_start + STEP_FIELD, &vol->pos, m_t_pos);
 		y_start = fill_template(data, y_start, "position", 1);
 		y_start += STEP_FIELD;
+		fill_field(data, y_start, &vol->d, m_float);
+		y_start = fill_template(data, y_start, "d", 3);
 	}
-	if (vol->type == CYLINDER)
+	else if (vol->type == TRIANGLE)
 	{
-		y_start = fill_template(data, y_start, "CYLINDER", 0);
-		fill_field(data, y_start + STEP_FIELD, &vol->pos, m_t_pos);
-		y_start = fill_template(data, y_start, "position", 1);
-		fill_field(data, y_start + STEP_FIELD, &vol->vec3, m_t_pos);
-		y_start = fill_template(data, y_start, "direction", 1);
-		y_start += STEP_FIELD;
-		fill_field(data, y_start, &vol->h, m_float);
-		y_start = fill_template(data, y_start, "h", 3);
+		y_start = fill_template(data, y_start, "TRIANGLE", 0);
+		fill_field(data, y_start + STEP_FIELD, &vol->tr[0], m_t_pos);
+		y_start = fill_template(data, y_start, "position 1", 1);
+		fill_field(data, y_start + STEP_FIELD, &vol->tr[1], m_t_pos);
+		y_start = fill_template(data, y_start, "position 2", 1);
+		fill_field(data, y_start + STEP_FIELD, &vol->tr[2], m_t_pos);
+		y_start = fill_template(data, y_start, "position 3", 1);
 	}
-	fill_field(data, y_start, &vol->d, m_float);
-	y_start = fill_template(data, y_start, "d", 3);
-	fill_field(data, y_start + STEP_FIELD, &vol->col, m_t_rgb);
-	y_start = fill_template(data, y_start, "color", 2);
+	fill_vol2(data, vol, y_start);
 }

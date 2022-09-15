@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 18:52:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:16:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define RECT_END_X 210
 # define RECT_START_Y 20
 # define RECT_START_Y2 176
-# define RECT_END_Y2 462
+# define RECT_END_Y2 488
 
 # define FOFFSET_Y 5
 # define FOFFSET_X 10
@@ -85,7 +85,7 @@ void	bp_cylinder(t_menu *menu);
 
 //		menu/fill_menu2.c
 void	fill_field(t_data *data, int y, void *item, int type);
-void	fill_camera(t_data *data, t_cam *cam, int y_start);
+void	fill_camera(t_data *data, t_list *lst_cam, int y_start);
 void	fill_ambient(t_data *data, t_light *lg, int y_start);
 void	fill_light(t_data *data, t_list *lg, int y_start);
 void	fill_vol(t_data *data, t_list *lvol, int y_start);
@@ -111,6 +111,10 @@ void	add_dec_float(float *value, int op, t_delim lim);
 void	add_dec_int(int *value, int op, t_delim lim);
 t_delim	gen_lim(int min, int max);
 void	update_unit_vector(t_mitem type, t_scene *scene);
+
+//		menu/add_dec_menu4.c
+int		add_dec_triangle(t_data *data, int i);
+int		add_dec_cone(t_data *data, int i);
 
 //		menu/graphic_menu.c
 void	graphic_refresh(t_data *data, t_delim x, t_delim y);

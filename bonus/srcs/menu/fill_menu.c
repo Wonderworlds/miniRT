@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:46:58 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 02:17:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:27:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
 
 	y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
 	if (menu->item == m_cam)
-		fill_camera(data, scene->cam, y_start);
+		fill_camera(data, ft_lst_at(scene->cameras, menu->index), y_start);
 	else if (menu->item == m_ambient)
 		fill_ambient(data, scene->ambient, y_start);
 	else if (menu->item == m_light)
