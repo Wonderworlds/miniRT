@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:15:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:23:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,15 @@ typedef struct s_ray
 	t_pos	origin;
 	t_pos	dir;
 }	t_ray;
+
+typedef struct s_help_light
+{
+	t_rgb	light_specular[2];
+	t_light	*lights;
+	t_pos	dir_light;
+	t_hit	hit_from_camera;
+	t_pos	diffuse[2];
+}	t_help_light;
 
 typedef struct s_bvh
 {
