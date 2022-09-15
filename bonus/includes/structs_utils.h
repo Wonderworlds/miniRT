@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 18:39:40 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 12:01:02 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ typedef struct s_vol
 	t_pos			tr[3];
 	t_pos			vec3;
 	float			d;
-	float			d_co;
 	float			h;
 	t_rgb			col;
 	t_box			rayon;

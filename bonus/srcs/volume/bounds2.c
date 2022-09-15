@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:28:59 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 11:17:25 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 12:03:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void	cone_bounds(t_vol *co)
 	vec_e.y = sqrtf(1.f - tmp[0].y / dot_product(vec_a, vec_a));
 	vec_e.z = sqrtf(1.f - tmp[0].z / dot_product(vec_a, vec_a));
 	calcul_err_add(tmp, vec_e, co->d / 2, co->pos);
-	calcul_err_add(tmp + 1, vec_e, co->d_co / 2, co_top);
+	calcul_err_add(tmp + 1, vec_e, 0.f, co_top);
 	set_vector(fmaxf(tmp[0].x, tmp[1].x), fmaxf(tmp[0].y, tmp[1].y),
 		fmaxf(tmp[0].z, tmp[1].z), &co->box.max);
 	calcul_err_sub(tmp, vec_e, co->d / 2, co->pos);
-	calcul_err_sub(tmp + 1, vec_e, co->d_co / 2, co_top);
+	calcul_err_sub(tmp + 1, vec_e, 0.f, co_top);
 	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].y, tmp[1].y),
 		fminf(tmp[0].z, tmp[1].z), &co->box.min);
 	bbox_center(&co->box, &co->box.center);

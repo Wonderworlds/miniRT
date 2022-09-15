@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 11:19:49 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 14:55:16 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,14 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp);
 t_bool	is_plane_hit(t_ray *ray, t_plane *pl);
 
 //		raycast/ray_cylinder_hit.c
+float	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3);
+float	set_t2(float dot, float denom, t_bool *dir, t_bool sign);
 void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 
 //		raycast/ray_cylinder_hit2.c
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
 
-//		raycast/ray_hyperboloid_hit.c
+//		raycast/ray_cone_hit.c
 t_bool	is_cone_hit(t_ray *ray, t_vol *hy);
 
 //		raycast/ray_triangle_hit.c

@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/14 21:54:11 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 14:51:55 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,64 +16,52 @@
 #include "libft.h"
 #include <math.h>
 
-/*static t_bool	set_cone_hit(double *abcdef, double *hty,
-	t_ray *ray, t_vol *co)
+static void	set_extremity_hit(t_vol *co, t_hit *hit, t_bool dir, t_ray *ray)
 {
-	hty[0] = abcdef[9] * abcdef[9] - abcdef[8] * abcdef[10];
-	if (hty[0] < 0.0f)
-		return (false);
-	hty[0] = sqrtf(hty[0]);
-	hty[1] = (-1 * abcdef[9] - hty[0]) / abcdef[8];
-	hty[2] = abcdef[1] + hty[1] * abcdef[3];
-	if (hty[2] > 0.0 && hty[2] < abcdef[0])
-		create_hit(hty[1], co, NULL, ray);
-	hty[1] = (-1 * abcdef[9] + hty[0]) / abcdef[8];
-	hty[3] = abcdef[1] + hty[1] * abcdef[3];
-	if (hty[3] > 0.f && hty[3] < abcdef[0])
-		create_hit(hty[1], co, NULL, ray);
-	return (true);
+	t_pos	offset;
+
+	(void)dir;
+	col_cpy(&co->col, &hit->col);
+	vector_equal(co->vec3, &hit->normal);
+	if (dir == true)
+		vector_scale(-1, &hit->normal);
+	if (dot_product(hit->normal, ray->dir) > 0)
+		vector_scale(-1, &hit->normal);
+	vector_equal(hit->normal, &offset);
+	vector_scale(0.02f, &offset);
+	vector_add(hit->pos, offset, &hit->pos);
+	hit->spec.size = co->spec.size;
+	hit->spec.intensity = co->spec.intensity;
+	hit->vol_type = CONE;
+	hit->vol = co;
+	update_hit(hit);
 }
 
-t_bool	is_cone_hit(t_ray *ray, t_vol *co)
+void	check_cone_extremity(t_vol *co, t_ray *ray)
 {
-	t_pos	vec3_co;
-	t_pos	vec3[3];
-	double	abcdef[11];
-	double	hty[4];
+	float	denom;
+	float	t;
+	t_bool	dir;
+	t_pos	e[2];
 	t_hit	hit;
 
-	set_vector(co->pos.x + co->h * co->vec3.x, co->pos.y
-		+ co->h * co->vec3.y, co->pos.z + co->h * co->vec3.z, &vec3_co);
-	vector_ab(co->pos, vec3_co, &vec3[0]);
-	vector_ab(co->pos, ray->origin, &vec3[1]);
-	vector_ab(vec3_co, ray->origin, &vec3[2]);
-	abcdef[0] = dot_product(vec3[0], vec3[0]);
-	abcdef[1] = dot_product(vec3[0], vec3[1]);
-	abcdef[2] = dot_product(vec3[0], vec3[2]);
-	abcdef[3] = dot_product(vec3[0], ray->dir);
-
-	abcdef[4] = dot_product(ray->dir, vec3[1]);
-	abcdef[5] = dot_product(vec3[1], vec3[1]);
-	abcdef[6] = co->d / 2 - co->d_co / 2;
-	abcdef[7] = abcdef[0] - abcdef[6] * abcdef[6];
-
-	abcdef[8] = abcdef[0] * abcdef[0] - abcdef[3] * abcdef[3] * abcdef[7];
-
-	abcdef[9] = abcdef[0] * abcdef[0] * abcdef[4]
-		- abcdef[1] * abcdef[3] * abcdef[7]
-		+ abcdef[0] * (co->d / 2) * abcdef[6] * abcdef[3];
-
-	abcdef[10] = abcdef[0] * abcdef[0] * abcdef[5]
-		- abcdef[1] * abcdef[1] * abcdef[7]
-		+ abcdef[0] * (co->d / 2) * (abcdef[6] * abcdef[1] * 2
-			- abcdef[0] * co->d / 2);
-	if (set_cone_hit(abcdef, hty, ray, co) == false)
-		return (false);
-	check_cylinder_extremity(co, vec3_co, ray);
-	if (get_hit(&hit) != -1)
-		return (true);
-	return (false);
-}*/
+	denom = dot_product(co->vec3, ray->dir);
+	if (fabsf(denom) > 0.0001f)
+	{
+		t = set_t2(set_t(e, co->pos, ray, co->vec3), denom, &dir, true);
+		if (t >= 0.00001f)
+		{
+			vector_equal(ray->dir, &hit.pos);
+			vector_scale(t, &hit.pos);
+			vector_add(hit.pos, ray->origin, &hit.pos);
+			if (dist_ab(&hit.pos, e + 1) <= co->d / 2)
+			{
+				hit.dst_origin = t;
+				set_extremity_hit(co, &hit, dir, ray);
+			}
+		}
+	}
+}
 
 float	solve_quadratic_cone(float a, float b, float c)
 {
@@ -102,7 +90,7 @@ t_bool	check_extremity_cone(float t, t_pos h_norm, t_ray *ray, t_pos h,
 	vector_add(hit, ray->origin, &hit);
 	vector_sub(hit, co_top, &hit);
 	dot = dot_product(hit, h_norm);
-	if (dot <= 0 || dot > vector_norm(h))
+	if (dot < 0 || dot > vector_norm(h))
 		return (false);
 	return (true);
 }
@@ -115,18 +103,16 @@ t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 	t_pos	h_norm;
 	float	m;
 	t_pos	co_top;
-//	t_pos	vec3[3];
 	float	abc[3];
 	float	t;
-//	float	d;
-//	t_hit	hit;
+	float	d;
 
 	set_vector(co->pos.x + co->h * co->vec3.x, co->pos.y
 		+ co->h * co->vec3.y, co->pos.z + co->h * co->vec3.z, &co_top);
 	vector_sub(co->pos, co_top, &h);
 	vector_sub(co->pos, co_top, &h_norm);
 	unit_vector(&h_norm);
-	m = (co->d / 2) / dot_product(h, h);
+	m = powf((co->d / 2), 2) / dot_product(h, h);
 	vector_sub(ray->origin, co_top, &w);
 	abc[0] = dot_product(ray->dir, ray->dir)
 		- m * powf(dot_product(ray->dir, h_norm), 2)
@@ -137,14 +123,8 @@ t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 	abc[2] = dot_product(w, w) - m * powf(dot_product(w, h_norm), 2)
 		- powf(dot_product(w, h_norm), 2);
 	
-	t = solve_quadratic(abc[0], abc[1], abc[2]);
-	if (t < 0)
-		return (false);
-	if (check_extremity_cone(t, h_norm, ray, h, co_top))
-		create_hit(t, co, NULL, ray);
-	
 
-/*	d = (abc[1] * abc[1]) - (4 * abc[0] * abc[2]);
+	d = (abc[1] * abc[1]) - (4 * abc[0] * abc[2]);
 	if (d < 0)
 		return (false);
 	t = (-1 * abc[1] - sqrtf(d)) / (2 * abc[0]);
@@ -152,7 +132,9 @@ t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 		create_hit(t, co, NULL, ray);
 	t = (-1 * abc[1] + sqrtf(d)) / (2 * abc[0]);
 	if (check_extremity_cone(t, h_norm, ray, h, co_top))
-		create_hit(t, co, NULL, ray);*/
+		create_hit(t, co, NULL, ray);
+	check_cone_extremity(co, ray);
+
 	return (true);
 }
 

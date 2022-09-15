@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 11:15:21 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 13:54:04 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ static void	hit_triangle(t_vol *vol, t_hit *hit)
 
 static void	hit_cone(t_vol *vol, t_hit *hit)
 {
-	double	d;
+	t_pos vec3;
+	t_pos co_top;
 
-	d = sqrt(powf(hit->pos.x - vol->pos.x, 2) + powf(hit->pos.z * vol->pos.z, 2));
-	set_vector(hit->pos.x - vol->pos.x, d * ((vol->d / 2) / vol->h),
-		hit->pos.z - vol->pos.z, &hit->normal);
+	set_vector(vol->pos.x + vol->h * vol->vec3.x, vol->pos.y
+		+ vol->h * vol->vec3.y, vol->pos.z + vol->h * vol->vec3.z, &co_top);
+	vector_ab(co_top, hit->pos, &vec3);
+	vector_equal(vec3, &hit->normal);
+	vector_scale(dot_product(vol->vec3, vec3), &hit->normal);
+	vector_div(hit->normal, dot_product(vec3, vec3), &hit->normal);
+	vector_sub(hit->normal, vol->vec3, &hit->normal);
 	unit_vector(&hit->normal);
 	hit->spec.size = vol->spec.size;
 	hit->spec.intensity = vol->spec.intensity;
