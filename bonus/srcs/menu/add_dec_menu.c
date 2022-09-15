@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 22:47:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:17:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	add_dec_cam(t_data *data, int i)
 	menu = &data->menu;
 	if (menu->field_index == 0)
 		return (check_lst_index(data->scene->cameras, &menu->index, i));
-	cam = (t_cam *)(ft_lst_at(data->scene->cameras,
-				menu->index)->content);
+	cam = (t_cam *)(ft_lst_at(data->scene->cameras, menu->index)->content);
 	if (menu->field_index == 1)
 		add_dec_float(&cam->pos.x, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 2)

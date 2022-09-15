@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 23:14:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:19:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,6 @@ void	fill_camera(t_data *data, t_list *lst_cam, int y_start)
 	else
 		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y_start, WP, "NO");
 	y_start = fill_template(data, y_start, "use", 3);
-}
-
-void	fill_ambient(t_data *data, t_light *lg, int y_start)
-{
-	y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
-	fill_field(data, y_start, &lg->r, m_float);
-	y_start = fill_template(data, y_start, "r", 3);
-	fill_field(data, y_start + STEP_FIELD, &lg->col, m_t_rgb);
-	y_start = fill_template(data, y_start, "color", 2);
 }
 
 void	fill_light(t_data *data, t_list *lg, int y_start)

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 23:24:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:21:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fill_vol(t_data *data, t_list *lvol, int y_start);
 //		menu/fill_menu.c
 int		fill_template(t_data *data, int y_start, char *name,
 			const int type);
-void	fill_menu(t_menu *menu, t_data *data, t_scene *scene);
+void	fill_plane(t_data *data, t_list *lvol, int y_start);
 
 //		menu/add_dec_menu.c
 int		add_dec_cam(t_data *data, int i);

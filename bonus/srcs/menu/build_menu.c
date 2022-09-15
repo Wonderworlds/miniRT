@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:16:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 17:19:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:18:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rect_display(t_data *data, t_rect rect, int color)
 		while (x++ < rect.max_x)
 			img_pix_put(&data->img, gen_couple(x, rect.max_y),
 				gen_couple(data->scene->resolut.win_width,
-				data->scene->resolut.win_height), color);
+					data->scene->resolut.win_height), color);
 	}
 }
 

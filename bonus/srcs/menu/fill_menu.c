@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:46:58 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 22:27:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:19:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,11 @@ void	fill_plane(t_data *data, t_list *lpl, int y_start)
 	y_start = fill_template(data, y_start, "color", 2);
 }
 
-void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
+void	fill_ambient(t_data *data, t_light *lg, int y_start)
 {
-	int		y_start;
-
-	y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
-	if (menu->item == m_cam)
-		fill_camera(data, ft_lst_at(scene->cameras, menu->index), y_start);
-	else if (menu->item == m_ambient)
-		fill_ambient(data, scene->ambient, y_start);
-	else if (menu->item == m_light)
-		fill_light(data, ft_lst_at(scene->lights, menu->index), y_start);
-	else if (menu->item == m_plane)
-		fill_plane(data, ft_lst_at(scene->planes, menu->index), y_start);
-	else if (menu->item == m_vol)
-		fill_vol(data, ft_lst_at(scene->vols, menu->index), y_start);
+	y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
+	fill_field(data, y_start, &lg->r, m_float);
+	y_start = fill_template(data, y_start, "r", 3);
+	fill_field(data, y_start + STEP_FIELD, &lg->col, m_t_rgb);
+	y_start = fill_template(data, y_start, "color", 2);
 }

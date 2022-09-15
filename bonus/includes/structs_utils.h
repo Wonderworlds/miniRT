@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:05:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:15:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef enum e_bool
 {

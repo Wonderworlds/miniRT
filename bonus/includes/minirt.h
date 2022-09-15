@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:15:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit);
 
 //		light/phong_reflection.c
 float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
-	t_light *lights, t_cam *cam);
+			t_light *lights, t_cam *cam);
 
 //		light/disruption.c
 void	do_disruption(t_hit *hit);

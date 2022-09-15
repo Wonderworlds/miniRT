@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:11:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:18:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	close_menu(t_data *data)
 		}
 	}
 	graphic_render(data, gen_couple(data->scene->resolut.win_width,
-		data->scene->resolut.win_height));
+			data->scene->resolut.win_height));
 }
 
 void	open_menu(t_data *data)
@@ -99,7 +99,7 @@ void	left_right_menu(t_data *data, int i)
 	add = 0;
 	if (menu->item == m_vol)
 		add = ((t_vol *)ft_lst_at(data->scene->vols,
-				menu->index)->content)->type;
+					menu->index)->content)->type;
 	if (add == CYLINDER)
 		add = 1;
 	else if (add == TRIANGLE)

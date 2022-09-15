@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:10:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:21:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,22 @@ static int	check_empty(t_scene *scene, int type)
 	return (0);
 }
 
-// void	graphic_refresh(t_data *data, t_delim x, t_delim y)
-// {
-// 	t_rgb		color;
-// 	int			i;
+static void	fill_menu(t_menu *menu, t_data *data, t_scene *scene)
+{
+	int		y_start;
 
-// 	while (--y.max >= y.min)
-// 	{
-// 		i = x.min;
-// 		while (i++ < x.max)
-// 		{
-// 			color = ray_render(y.max, i, data->scene->cam, data->scene);
-// 			img_pix_put(&data->img, i, y.max, get_color(color));
-// 		}
-// 	}
-// }
+	y_start = RECT_START_Y + STEP_FIELD - FOFFSET_Y;
+	if (menu->item == m_cam)
+		fill_camera(data, ft_lst_at(scene->cameras, menu->index), y_start);
+	else if (menu->item == m_ambient)
+		fill_ambient(data, scene->ambient, y_start);
+	else if (menu->item == m_light)
+		fill_light(data, ft_lst_at(scene->lights, menu->index), y_start);
+	else if (menu->item == m_plane)
+		fill_plane(data, ft_lst_at(scene->planes, menu->index), y_start);
+	else if (menu->item == m_vol)
+		fill_vol(data, ft_lst_at(scene->vols, menu->index), y_start);
+}
 
 int	display_menu(t_data *data, t_menu *menu, t_scene *scene)
 {
