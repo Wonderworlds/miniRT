@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 18:28:49 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:02:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	malloc_xpm(char *str, t_xpm **xpm, t_scene *scene)
 		exit_parse(scene, "Error\nmalloc fail\n");
 	}
 	(*xpm)->file = str;
+	(*xpm)->img = NULL;
+	(*xpm)->addr = NULL;
 }
 
 static size_t	set_t_xpm(t_scene *scene, char *str, t_xpm **xpm)

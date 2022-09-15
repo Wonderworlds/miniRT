@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 23:16:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:24:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ void	bp_light(t_menu *menu);
 void	bp_plane(t_menu *menu);
 void	bp_sphere(t_menu *menu);
 void	bp_cylinder(t_menu *menu);
+
+//		menu/bp_utils2.c
+void	bp_cam(t_menu *menu);
+void	bp_triangle(t_menu *menu);
 
 //		menu/fill_menu2.c
 void	fill_field(t_data *data, int y, void *item, int type);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 22:23:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:10:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,9 @@
 #include "mlx_data.h"
 #include "minirt.h"
 
-void	bp_cam(t_menu *menu)
-{
-	menu->bprint[0] = '1';
-	menu->bprint[1] = '0';
-	menu->bprint[2] = '1';
-	menu->bprint[3] = '1';
-	menu->bprint[4] = '1';
-	menu->bprint[5] = '0';
-	menu->bprint[6] = '1';
-	menu->bprint[7] = '1';
-	menu->bprint[8] = '1';
-	menu->bprint[9] = '0';
-	menu->bprint[10] = '1';
-	menu->bprint[11] = '0';
-	menu->bprint[12] = '1';
-	menu->bprint[13] = 0;
-	menu->max_f_index = 8;
-}
-
 void	str_vol(t_scene *scene, t_menu *menu)
 {
-	void	(*f[6])(t_menu *);
+	void	(*f[8])(t_menu *);
 	int		add;
 
 	f[0] = &bp_cam;
@@ -46,10 +27,17 @@ void	str_vol(t_scene *scene, t_menu *menu)
 	f[3] = &bp_plane;
 	f[4] = &bp_sphere;
 	f[5] = &bp_cylinder;
+	f[6] = &bp_triangle;
+	f[7] = &bp_cylinder;
 	add = 0;
-	if (menu->item == m_vol && ((t_vol *)ft_lst_at(scene->vols,
-				menu->index)->content)->type == CYLINDER)
+	if (menu->item == m_vol)
+		add = ((t_vol *)ft_lst_at(scene->vols, menu->index)->content)->type;
+	if (add == CYLINDER)
 		add = 1;
+	else if (add == TRIANGLE)
+		add = 2;
+	else if (add == CONE)
+		add = 3;
 	(*f[menu->item + add])(menu);
 }
 
