@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:03:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool	set_cylinder_hit(double *abcdef, double *hty,
 	t_ray *ray, t_vol *cy)
 {
 	hty[0] = abcdef[4] * abcdef[4] - abcdef[3] * abcdef[5];
-	if (hty[0] < 0.0f)
+	if (hty[0] < 0.0)
 		return (false);
 	hty[0] = sqrtf(hty[0]);
 	hty[1] = (-1 * abcdef[4] - hty[0]) / abcdef[3];

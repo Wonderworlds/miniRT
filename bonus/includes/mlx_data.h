@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 18:52:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:02:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include "mlx.h"
 
 # define WIN_WIDTH 1400
-# define ASPECT_RATIO 1.78f
+# define ASPECT_RATIO 1.78
 # define WIN_HEIGHT 786
-# define VP_WIDTH 3.0f
-# define FOCAL_LENGTH 2.0f
+# define VP_WIDTH 3.0
+# define FOCAL_LENGTH 2.0
 
 //		parse/parse_camera.c
 void	set_camera(t_cam *cam, t_resolut *res);

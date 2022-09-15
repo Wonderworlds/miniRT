@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 18:58:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:01:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	check_cone_extremity(t_vol *co, t_ray *ray)
 	t_hit	hit;
 
 	denom = dot_product(co->vec3, ray->dir);
-	if (fabsf(denom) > 0.0001f)
+	if (fabs(denom) > 0.0001f)
 	{
 		t = set_t2(set_t(e, co->pos, ray, co->vec3), denom, &dir, true);
 		if (t >= 0.00001f)
