@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:47:12 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:13:00 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	inside_cylinder(t_pos *pos, t_vol *cy)
 	t_pos	vec_cy;
 	t_pos	vec_pt;
 	t_pos	cy_top;
-	double	dot;
-	double	lengthsquared;
+	float	dot;
+	float	lengthsquared;
 
 	cy_top.x = cy->pos.x + (cy->h * cy->vec3.x);
 	cy_top.y = cy->pos.y + (cy->h * cy->vec3.y);
@@ -48,7 +48,7 @@ int	inside_cylinder(t_pos *pos, t_vol *cy)
 
 int	inside_plane(t_pos *pos, t_vol *pl)
 {
-	double	dot;
+	float	dot;
 	t_pos	vec_pt;
 
 	vector_ab(*pos, pl->pos, &vec_pt);

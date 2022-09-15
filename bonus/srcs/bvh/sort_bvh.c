@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:54:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 17:37:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static t_list	*get_furthest_vol(const t_pos *pos, t_list *vols,
 					unsigned int begin, unsigned int end)
 {
-	double	dst;
-	double	tmp;
+	float	dst;
+	float	tmp;
 	t_list	*ret;
 	t_list	*index;
 

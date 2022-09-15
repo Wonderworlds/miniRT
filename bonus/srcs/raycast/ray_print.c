@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 19:31:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene)
 {
 	t_ray	ray;
 	t_pos	dir;
-	double	u;
-	double	v;
+	float	u;
+	float	v;
 
-	u = (double)x / (scene->resolut.win_width - 1);
-	v = (double)y / (scene->resolut.win_height - 1);
+	u = (float)x / (scene->resolut.win_width - 1);
+	v = (float)y / (scene->resolut.win_height - 1);
 	dir.x = cam->lower_left_corner.x + (u * cam->horizontal.x)
 		+ (v * cam->vertical.x) - cam->pos.x;
 	dir.y = cam->lower_left_corner.y + (u * cam->horizontal.y)

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:17:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:26:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_rgb	int_to_rgb(int col)
 	return (rgb);
 }
 
-void	add_coeficient(t_pos *rgb, double coef, t_rgb *col)
+void	add_coeficient(t_pos *rgb, float coef, t_rgb *col)
 {
 	rgb->x += (coef * col->r) / 255;
 	rgb->y += (coef * col->g) / 255;

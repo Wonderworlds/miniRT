@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 19:34:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	apply_light(t_hit *hit_from_camera, t_pos *dir_light,
 	t_light *lights, t_pos	*diffuse)
 {
-	double	coeff;
+	float	coeff;
 
 	coeff = dot_product(hit_from_camera->normal, *dir_light);
 	if (coeff > 0)

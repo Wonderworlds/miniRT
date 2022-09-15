@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 13:54:04 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	hit_sphere(t_vol *vol, t_hit *hit)
 
 static void	hit_cylinder(t_vol *vol, t_hit *hit)
 {
-	double	d;
+	float	d;
 	t_pos	vec3;
 
 	d = sqrt(powf(dist_ab(&vol->pos, &hit->pos), 2) - vol->d / 2 * vol->d / 2);
