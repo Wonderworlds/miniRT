@@ -6,7 +6,7 @@
 /*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:47:55 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 20:57:21 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 23:25:27 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,33 @@
 #include "libft.h"
 #include "utils.h"
 #include <math.h>
+
+void	checkerboard_sphere(t_couplef uv, t_hit *hit)
+{
+	float	u2;
+	float	v2;
+	int		res;
+
+	u2 = floorf(uv.x * 15);
+	v2 = floorf(uv.y * 15);
+	res = u2 + v2;
+	if (res % 2)
+	{
+		hit->col.r = 0;
+		hit->col.g = 0;
+		hit->col.b = 0;
+	}
+}
+
+void	get_uvw_sp(t_hit *hit, t_vol *sp, t_couplef *uv)
+{
+	t_pos	on_sp;
+
+	vector_sub(hit->pos, sp->pos, &on_sp);
+	unit_vector(&on_sp);
+	uv->x = 0.5 + atan2f(on_sp.z, on_sp.x) / M_PI * 0.5;
+	uv->y = 0.5 - asinf(on_sp.y) / M_PI;
+}
 
 void	checkerboard(t_pos on_vol, t_hit *hit)
 {
@@ -28,12 +55,6 @@ void	checkerboard(t_pos on_vol, t_hit *hit)
 		hit->col.g = 0;
 		hit->col.b = 0;
 	}
-}
-
-void	get_uvw_sp(t_hit *hit, t_vol *sp, t_pos *on_sp)
-{
-	vector_sub(hit->pos, sp->pos, on_sp);
-	unit_vector(on_sp);
 }
 
 void	get_uvw_pl(t_hit *hit, t_plane *pl, t_pos *on_pl)
@@ -94,19 +115,22 @@ void	get_uvw_tr(t_hit *hit, t_vol *tr, t_pos *on_tr)
 
 void	do_disruption2(t_disruption disruption, t_hit *hit)
 {
-	t_pos on_vol;
+	t_pos		on_vol;
+	t_couplef	uv;
 
 	if (disruption != NONE)
 	{
 		if (hit->vol_type == SPHERE)
-			get_uvw_sp(hit, hit->vol, &on_vol);
+			get_uvw_sp(hit, hit->vol, &uv);
 		else if (hit->vol_type == CYLINDER)
 			get_uvw_cy(hit, hit->vol, &on_vol);
 		else if (hit->vol_type == PLANE)
 			get_uvw_pl(hit, hit->vol, &on_vol);
 		else if (hit->vol_type == TRIANGLE)
 			get_uvw_tr(hit, hit->vol, &on_vol);
-		if (disruption == CHECKERBOARD)
+		if (disruption == CHECKERBOARD && hit->vol_type == SPHERE)
+			checkerboard_sphere(uv, hit);
+		else if (disruption == CHECKERBOARD)
 			checkerboard(on_vol, hit);
 	}
 }
