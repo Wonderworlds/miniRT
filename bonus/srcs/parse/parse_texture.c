@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 15:22:21 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:46:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:50:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static size_t	set_disruption(t_scene *scene, char *str, t_disruption *ptr)
 }
 
 static size_t	parse_vol_texture2(t_scene *scene, t_vol *vol,
-			const char *str, const char *tbd)
+			char *str, const char **tbd)
 {
 	size_t	i;
 
@@ -54,7 +54,7 @@ static size_t	parse_vol_texture2(t_scene *scene, t_vol *vol,
 }
 
 static size_t	parse_pl_texture2(t_scene *scene, t_plane *pl,
-			const char *str, const char *tbd)
+			char *str, const char **tbd)
 {
 	size_t	i;
 
@@ -107,7 +107,7 @@ void	parse_pl_texture(t_scene *scene, t_plane *pl, char *str)
 		if (str[i] == ':')
 		{
 			i++;
-			i = parse_vol_texture2(scene, pl, str + i, tbd);
+			i = parse_pl_texture2(scene, pl, str + i, tbd);
 			str += i;
 			i = 0;
 		}

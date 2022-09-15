@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/15 23:36:43 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/16 00:47:34 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,9 @@ MANDATORYSRCS		:=	$(addprefix main/,		main.c					\
 												)
 
 BONUSSRCS			:=	$(addprefix main/,		main.c					\
+												error_minirt.c			\
 												start_and_leave.c)		\
 						$(addprefix graphics/,	graphic_process.c		\
-												error_mlx.c				\
 												graphic_hook.c			\
 												graphic_render.c)		\
 						$(addprefix parse/,		parse_rt.c				\

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:36:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:49:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	triangle(t_scene *scene, char *str)
 	triangle_normal(tr);
 }
 
-static void	cone2(t_scene *scene, int i, const char *str, t_vol *co)
+static void	cone2(t_scene *scene, int i, char *str, t_vol *co)
 {
 	i += set_float(scene, &co->d, str + i, 1);
 	while (str[i] == ' ')

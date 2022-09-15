@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:32:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:48:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	open_file(char *arg)
 	return (fd);
 }
 
-static void	read_rt_if(const char *str, t_scene *scene)
+static void	read_rt_if(char *str, t_scene *scene)
 {
 	if (str[0] == 'A' && str[1] == ' ')
 		ambient_lightning(scene, str);

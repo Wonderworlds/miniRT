@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:37:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:49:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	plane(t_scene *scene, char *str)
 	unit_vector(&pl->vec3);
 }
 
-static void	cylinder2(t_scene *scene, const char *str, int i, t_vol *cy)
+static void	cylinder2(t_scene *scene, char *str, int i, t_vol *cy)
 {
 	while (str[i] == ' ')
 		i++;
