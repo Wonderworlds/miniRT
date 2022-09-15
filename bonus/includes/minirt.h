@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:46:43 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:28:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ void	resolution(t_scene *scene, char *str);
 t_bool	inside_vol(t_pos *pos, t_vol *volume);
 
 //		volume/bounds.c
-void	update_bounds_vol(t_list *vols);
 void	sphere_bounds(t_vol *sp);
 void	cylinder_bounds(t_vol *cy);
+void	cone_bounds(t_vol *cy);
 
 //		volume/bounds2.c
+void	update_bounds_vol(t_list *vols);
 void	triangle_bounds_and_set(t_vol *tr);
-void	cone_bounds(t_vol *cy);
 
 //		volume/bounds_total.c
 void	bounds_total(t_list *vols, t_box *box,

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 14:54:16 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 13:49:09 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/16 01:28:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,43 @@ void	cylinder_bounds(t_vol *cy)
 	cy->box.expend = bbox_expend(&cy->box);
 }
 
-void	update_bounds_vol(t_list *vols)
+static void	calcul_err_add(t_pos *tmp, t_pos vec_e, float r, t_pos co)
 {
-	t_vol	*vol;
+	vector_equal(vec_e, tmp);
+	vector_scale(r, tmp);
+	vector_add(co, *tmp, tmp);
+}
 
-	if (!vols)
-		return ;
-	while (vols)
-	{
-		vol = (t_vol *)vols->content;
-		if (vol->type == SPHERE)
-			sphere_bounds(vol);
-		else
-			cylinder_bounds(vol);
-		vols = vols->next;
-	}
+static void	calcul_err_sub(t_pos *tmp, t_pos vec_e, float r, t_pos co)
+{
+	vector_equal(vec_e, tmp);
+	vector_scale(r, tmp);
+	vector_sub(co, *tmp, tmp);
+}
+
+void	cone_bounds(t_vol *co)
+{
+	t_pos	co_top;
+	t_pos	vec_a;
+	t_pos	vec_e;
+	t_pos	tmp[2];
+
+	co_top.x = co->pos.x + (co->h * co->vec3.x);
+	co_top.y = co->pos.y + (co->h * co->vec3.y);
+	co_top.z = co->pos.z + (co->h * co->vec3.z);
+	vector_ab(co->pos, co_top, &vec_a);
+	vector_multi(vec_a, vec_a, tmp);
+	vec_e.x = sqrtf(1.f - tmp[0].x / dot_product(vec_a, vec_a));
+	vec_e.y = sqrtf(1.f - tmp[0].y / dot_product(vec_a, vec_a));
+	vec_e.z = sqrtf(1.f - tmp[0].z / dot_product(vec_a, vec_a));
+	calcul_err_add(tmp, vec_e, co->d / 2, co->pos);
+	calcul_err_add(tmp + 1, vec_e, 0.f, co_top);
+	set_vector(fmaxf(tmp[0].x, tmp[1].x), fmaxf(tmp[0].y, tmp[1].y),
+		fmaxf(tmp[0].z, tmp[1].z), &co->box.max);
+	calcul_err_sub(tmp, vec_e, co->d / 2, co->pos);
+	calcul_err_sub(tmp + 1, vec_e, 0.f, co_top);
+	set_vector(fminf(tmp[0].x, tmp[1].x), fminf(tmp[0].y, tmp[1].y),
+		fminf(tmp[0].z, tmp[1].z), &co->box.min);
+	bbox_center(&co->box, &co->box.center);
+	co->box.expend = bbox_expend(&co->box);
 }
