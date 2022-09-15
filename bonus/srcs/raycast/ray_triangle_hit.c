@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:11:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/14 22:51:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 t_bool	is_triangle_hit(t_ray *ray, t_vol *tr)
 {
 	t_pos	vec3[5];
-	float	abcde[5];
+	double	abcde[5];
 
 	vector_ab(tr->tr[0], tr->tr[1], &vec3[0]);
 	vector_ab(tr->tr[0], tr->tr[2], &vec3[1]);

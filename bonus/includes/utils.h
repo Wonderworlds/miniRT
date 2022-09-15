@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 14:12:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		vector_ab(t_pos a, t_pos b, t_pos *vec);
 double		dot_product(t_pos a, t_pos b);
 double		vector_norm(t_pos vec);
 void		vector_add(t_pos a, t_pos b, t_pos *vec);
-void		set_vector(float x, float y, float z, t_pos *vec);
+void		set_vector(double x, double y, double z, t_pos *vec);
 
 //		utils/vector_math2.c
 double		dist_ab(const t_pos *a, const t_pos *b);
@@ -37,14 +37,14 @@ void		vector_sub(t_pos a, t_pos b, t_pos *dst);
 
 //		utils/vector_math3.c
 void		unit_vector(t_pos *vec);
-void		vector_scale(float scale, t_pos *dst);
-t_pos		gen_vec(float x, float y, float z);
+void		vector_scale(double scale, t_pos *dst);
+t_pos		gen_vec(double x, double y, double z);
 
 //		utils/color_utils.c
 t_rgb		gen_rgb(const int r, const int g, const int b);
 void		c_mult(const t_pos *c1, const t_rgb *c2, t_rgb *dest);
 void		c_add(const t_rgb *c1, const t_rgb *c2, t_rgb *dest);
-void		c_scale(const float f, t_rgb *rgb);
+void		c_scale(const double f, t_rgb *rgb);
 
 //		utils/color_utils2.c
 t_rgb		int_to_rgb(int col);
@@ -53,7 +53,7 @@ void		c_mult_basic(t_rgb *mult, t_rgb *dest);
 
 //		utils/bbox_utils.c
 void		bbox_center(const t_box *box, t_pos *center);
-float		bbox_expend(const t_box *box);
+double		bbox_expend(const t_box *box);
 
 //		utils/quicksort_lst_custom.c
 
@@ -79,7 +79,7 @@ void		set_color(int r, int g, int b, t_rgb *col);
 
 //		utils/ft_itoa_custom.c
 void		ft_itoa_custom(int n, char *str, size_t size);
-void		ft_ftoa_custom(float n, char *str, size_t size);
+void		ft_ftoa_custom(double n, char *str, size_t size);
 
 //		utils/ft_strlen_rt.c
 size_t		ft_strlen_rt(const char *s);

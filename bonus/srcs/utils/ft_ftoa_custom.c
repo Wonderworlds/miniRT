@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:43:06 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 16:36:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_ftoa_custom2(char *str, size_t i)
 	}
 }
 
-void	ft_ftoa_custom(float n, char *str, size_t size)
+void	ft_ftoa_custom(double n, char *str, size_t size)
 {
 	size_t	i;
 

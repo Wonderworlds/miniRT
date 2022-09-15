@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:41:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/04 21:49:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_rgb	gen_rgb(const int r, const int g, const int b)
 	return (rgb);
 }
 
-void	c_scale(const float f, t_rgb *rgb)
+void	c_scale(const double f, t_rgb *rgb)
 {
 	rgb->r = check_rgb(f * rgb->r);
 	rgb->g = check_rgb(f * rgb->g);

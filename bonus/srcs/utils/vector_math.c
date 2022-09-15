@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 19:31:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	vector_add(t_pos a, t_pos b, t_pos *vec)
 	vec->z = a.z + b.z;
 }
 
-void	set_vector(float x, float y, float z, t_pos *vec)
+void	set_vector(double x, double y, double z, t_pos *vec)
 {
 	vec->x = x;
 	vec->y = y;

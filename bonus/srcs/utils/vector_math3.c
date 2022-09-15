@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 14:12:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	unit_vector(t_pos *vec)
 {
-	float	mag;
+	double	mag;
 	t_pos	tmp;
 
 	set_vector(0, 0, 0, &tmp);
@@ -28,14 +28,14 @@ void	unit_vector(t_pos *vec)
 	vec->z /= mag;
 }
 
-void	vector_scale(float scale, t_pos *dst)
+void	vector_scale(double scale, t_pos *dst)
 {
 	dst->x *= scale;
 	dst->y *= scale;
 	dst->z *= scale;
 }
 
-t_pos	gen_vec(float x, float y, float z)
+t_pos	gen_vec(double x, double y, double z)
 {
 	t_pos	vec;
 

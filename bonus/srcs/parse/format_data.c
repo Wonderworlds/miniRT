@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/09 19:58:29 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:16:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool	pos_format(char *str)
 t_bool	r_format(char *str)
 {
 	int		i;
-	float	n;
+	double	n;
 
 	i = 0;
 	if (!ft_isdigit(str[i]))
@@ -59,7 +59,7 @@ t_bool	r_format(char *str)
 		i++;
 	if (str[i] != ' ')
 		return (false);
-	if (ft_atof(str, &n) || n > 1.0 || n < 0.0)
+	if (ft_atod(str, &n) || n > 1.0 || n < 0.0)
 		return (false);
 	return (true);
 }

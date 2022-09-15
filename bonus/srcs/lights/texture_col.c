@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:23:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "utils.h"
 #include <math.h>
 
-#define BUMP_SCALE 10
+#define BUMP_SCALE 0.6
 
 t_rgb	rgb2gray(t_rgb rgb)
 {
@@ -26,7 +26,7 @@ t_rgb	rgb2gray(t_rgb rgb)
 	return (gen_rgb(gray, gray, gray));
 }
 
-static int	get_tex_pix(t_xpm *xpm, float u, float v)
+static int	get_tex_pix(t_xpm *xpm, double u, double v)
 {
 	int	x;
 	int	y;
@@ -47,7 +47,7 @@ void	bump_map(t_hit *hit, t_light *light)
 		coeff = ((t_vol *)hit->vol)->bump->coeff;
 	if (coeff == -1)
 		return ;
-	light->r = light->r_o * (coeff + 0.6f);
+	light->r = light->r_o * (coeff + BUMP_SCALE);
 }
 
 static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
@@ -78,8 +78,8 @@ static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
 			get_uv_pl(hit, hit->vol, &uv, bump);
 		else if (hit->vol_type == TRIANGLE)
 			get_uv_tr(hit, hit->vol, &uv, bump);
-		tex_rgb = int_to_rgb(get_tex_pix(bump, uv.x, uv.y));
-		bump->coeff = (float)(tex_rgb.r + tex_rgb.g + tex_rgb.b) / (255.0f * 3.0f);
+		tex_rgb = rgb2gray(int_to_rgb(get_tex_pix(bump, uv.x, uv.y)));
+		bump->coeff = (double)(tex_rgb.r + tex_rgb.g + tex_rgb.b) / (255.0 * 3.0);
 	}
 }
 

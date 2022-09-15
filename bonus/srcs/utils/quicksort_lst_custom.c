@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:17:59 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 18:04:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	sort_list_custom(t_list **lst, const t_pos *origin,
 int	cmp_nearest_vol(const t_vol *left, const t_vol *right,
 		const t_pos *origin)
 {
-	float	da;
-	float	db;
+	double	da;
+	double	db;
 
 	da = dist_ab(origin, &(left->box.center));
 	db = dist_ab(origin, &(right->box.center));

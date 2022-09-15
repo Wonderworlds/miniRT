@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 17:40:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_bool	float_format(char *str);
 int		set_pos(t_scene *scene, t_pos *pos, char *str);
 int		set_vec3(t_scene *scene, t_pos *vec3, char *str);
 int		set_rgb(t_scene *scene, t_rgb *col, char *str);
-int		set_float(t_scene *scene, float *data, char *str, int option);
+int		set_float(t_scene *scene, double *data, char *str, int option);
 int		set_h_fov(t_scene *scene, int *data, char *str);
 
 //		parse/parse_volume.c
@@ -86,7 +86,7 @@ t_bool	plane_and_sphere_intersect(t_vol pl, t_vol vol);
 
 //		raycast/hit_manager.c
 void	update_hit(t_hit *ptr);
-float	get_hit(t_hit *ptr);
+double	get_hit(t_hit *ptr);
 void	reset_hit(void);
 
 //		raycast/ray_volume_hit.c
@@ -104,7 +104,7 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy);
 t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
 
 //		raycast//create_hit.c
-void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray);
+void	create_hit(double t, t_vol *vol, t_plane *pl, t_ray *ray);
 
 //		raycast/ray_print.c
 void	create_ray(const t_pos origin, const t_pos dir, t_ray *ray);
@@ -117,7 +117,7 @@ void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
 t_rgb	add_lights(t_scene *scene, t_hit *hit);
 
 //		light/phong_reflection.c
-float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
+double	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam);
 
 //		lights/texture_col.c

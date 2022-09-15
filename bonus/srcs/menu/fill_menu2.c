@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/06 17:21:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	fill_field(t_data *data, int y, void *item, int type)
 	}
 	else if (type == m_float)
 	{
-		ft_ftoa_custom(*((float *)item), &str[0], 50);
+		ft_ftoa_custom(*((double *)item), &str[0], 50);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y, WP, &str[0]);
 	}
 	else if (type == m_t_rgb)

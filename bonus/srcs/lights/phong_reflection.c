@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_reflection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:19:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:54:57 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "utils.h"
 #include "minirt.h"
 
-float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
+double	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 	t_light *lights, t_cam *cam)
 {
 	t_pos	r;
 	t_pos	temp[2];
-	float	coeff;
+	double	coeff;
 
 	vector_equal(dir_light, &temp[0]);
 	vector_scale(-1, &temp[0]);

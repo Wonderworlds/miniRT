@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:07:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 18:23:28 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:15:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_uint_len_base(unsigned int n, int base);
 int		ft_lstsize(t_list *lst);
 int		ft_atoi(const char *nptr);
 int		ft_atof(const char *s, float *n);
+int		ft_atod(const char *s, double *n);
 int		ft_atoi_err(const char *s, int *n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

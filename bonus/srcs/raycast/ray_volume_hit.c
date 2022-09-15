@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 23:01:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:19:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 {
-	float	t[6];
-	float	tmin;
-	float	tmax;
+	double	t[6];
+	double	tmin;
+	double	tmax;
 
 	t[0] = (aabb.min.x - ray.origin.x) / ray.dir.x;
 	t[1] = (aabb.max.x - ray.origin.x) / ray.dir.x;
@@ -28,20 +28,20 @@ t_bool	is_aabb_hit(t_ray ray, t_box aabb)
 	t[3] = (aabb.max.y - ray.origin.y) / ray.dir.y;
 	t[4] = (aabb.min.z - ray.origin.z) / ray.dir.z;
 	t[5] = (aabb.max.z - ray.origin.z) / ray.dir.z;
-	tmin = fmaxf(fmaxf(fminf(t[0], t[1]), fminf(t[2], t[3])),
-			fminf(t[4], t[5]));
-	tmax = fminf(fminf(fmaxf(t[0], t[1]), fmaxf(t[2], t[3])),
-			fmaxf(t[4], t[5]));
+	tmin = maxd(maxd(mind(t[0], t[1]), mind(t[2], t[3])),
+			mind(t[4], t[5]));
+	tmax = mind(mind(maxd(t[0], t[1]), maxd(t[2], t[3])),
+			maxd(t[4], t[5]));
 	if (tmin > tmax)
 		return (false);
 	return (true);
 }
 
-float	solve_quadratic(float a, float b, float c)
+double	solve_quadratic(double a, double b, double c)
 {
-	float	discriminant;
-	float	t0;
-	float	t1;
+	double	discriminant;
+	double	t0;
+	double	t1;
 
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0)
@@ -56,8 +56,8 @@ float	solve_quadratic(float a, float b, float c)
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 {
 	t_pos	e;
-	float	abc[3];
-	float	t;
+	double	abc[3];
+	double	t;
 
 	vector_ab(sp->pos, ray->origin, &e);
 	abc[0] = dot_product(ray->dir, ray->dir);
@@ -74,12 +74,12 @@ t_bool	is_sphere_hit(t_ray *ray, t_vol *sp)
 
 t_bool	is_plane_hit(t_ray *ray, t_plane *pl)
 {
-	float	denom;
-	float	t;
+	double	denom;
+	double	t;
 	t_pos	e;
 
 	denom = dot_product(pl->vec3, ray->dir);
-	if (fabsf(denom) > 0.0001f)
+	if (fabs(denom) > 0.0001f)
 	{
 		vector_ab(ray->origin, pl->pos, &e);
 		t = dot_product(e, pl->vec3) / denom;

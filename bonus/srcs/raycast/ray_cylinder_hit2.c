@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:23 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include <math.h>
 
-static t_bool	set_cylinder_hit(float *abcdef, float *hty,
+static t_bool	set_cylinder_hit(double *abcdef, double *hty,
 	t_ray *ray, t_vol *cy)
 {
 	hty[0] = abcdef[4] * abcdef[4] - abcdef[3] * abcdef[5];
@@ -38,8 +38,8 @@ t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 {
 	t_pos	vec3_cy;
 	t_pos	vec3[2];
-	float	abcdef[6];
-	float	hty[4];
+	double	abcdef[6];
+	double	hty[4];
 	t_hit	hit;
 
 	set_vector(cy->pos.x + cy->h * cy->vec3.x, cy->pos.y

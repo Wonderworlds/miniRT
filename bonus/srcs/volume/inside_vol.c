@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:47:12 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/08 17:13:00 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:22:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	inside_cylinder(t_pos *pos, t_vol *cy)
 	vector_ab(cy->pos, *pos, &vec_pt);
 	dot = dot_product(vec_cy, vec_pt);
 	lengthsquared = powf(cy->h, 2);
-	if (dot < 0.0f || dot > lengthsquared)
+	if (dot < 0.0 || dot > lengthsquared)
 		return (false);
 	else if (((powf(vec_pt.x, 2) + powf(vec_pt.y, 2) + powf(vec_pt.z, 2))
 			- (powf(dot, 2) / lengthsquared)) > cy->d / 2)

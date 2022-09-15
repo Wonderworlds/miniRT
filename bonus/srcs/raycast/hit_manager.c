@@ -6,14 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:47:23 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/13 21:46:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
 #include "utils.h"
 
-static float	hit_manager(int action, t_hit *ptr, float newdst)
+static double	hit_manager(int action, t_hit *ptr, double newdst)
 {
 	static t_hit	_hit = {-1, {0, 0, 0}, {0, 0, 0},
 						{0, 0, 0}, {0, 0}, 0, NULL};
@@ -37,14 +37,14 @@ void	reset_hit(void)
 	hit_manager(2, NULL, -1);
 }
 
-float	get_hit(t_hit *ptr)
+double	get_hit(t_hit *ptr)
 {
 	return (hit_manager(0, ptr, 0));
 }
 
 void	update_hit(t_hit *ptr)
 {
-	float	dst;
+	double	dst;
 
 	if (ptr->dst_origin < 0)
 		return ;

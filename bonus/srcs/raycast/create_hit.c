@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/14 21:46:15 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	hit_plane(t_plane *pl, t_hit *hit)
 	hit->vol = pl;
 }
 
-void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray)
+void	create_hit(double t, t_vol *vol, t_plane *pl, t_ray *ray)
 {
 	t_hit	hit;
 	t_pos	offset;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 17:56:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ typedef struct s_couple
 
 typedef struct s_couplef
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_couplef;
 
 typedef struct s_resolut
 {
 	int		win_width;
 	int		win_height;
-	float	aspect_ratio;
+	double	aspect_ratio;
 	t_bool	is_set;
 }	t_resolut;
 
@@ -81,20 +81,20 @@ typedef struct s_xpm
 	int		bpp;
 	int		line_len;
 	int		endian;
-	float	coeff;
+	double	coeff;
 }	t_xpm;
 
 typedef struct s_spec
 {
 	int		size;
-	float	intensity;
+	double	intensity;
 }	t_spec;
 
 typedef struct s_pos
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_pos;
 
 typedef struct s_rgb
@@ -109,7 +109,7 @@ typedef struct s_box
 	t_pos	min;
 	t_pos	max;
 	t_pos	center;
-	float	expend;
+	double	expend;
 }	t_box;
 
 typedef enum e_type
@@ -128,8 +128,8 @@ typedef struct s_vol
 	t_pos			pos;
 	t_pos			tr[3];
 	t_pos			vec3;
-	float			d;
-	float			h;
+	double			d;
+	double			h;
 	t_rgb			col;
 	t_box			rayon;
 	t_box			box;
@@ -161,9 +161,9 @@ typedef struct s_cam
 	t_pos	horizontal;
 	t_pos	vertical;
 	t_pos	lower_left_corner;
-	float	focal_length;
-	float	viewport_height;
-	float	viewport_width;
+	double	focal_length;
+	double	viewport_height;
+	double	viewport_width;
 	t_pos	uvw[3];
 }	t_cam;
 
@@ -171,15 +171,15 @@ typedef struct s_light
 {
 	t_type		type;
 	t_rgb		col;
-	float		r;
-	float		r_o;
+	double		r;
+	double		r_o;
 	t_pos		pos;
 	t_bool		is_set;
 }	t_light;
 
 typedef struct s_hit
 {
-	float	dst_origin;
+	double	dst_origin;
 	t_pos	pos;
 	t_pos	normal;
 	t_rgb	col;

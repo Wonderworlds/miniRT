@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 17:39:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm)
 		proj.y = 0;
 	if (proj.y >=  cy->d)
 		proj.y = cy->d;
-	float theta = atan2f(proj.x, proj.z);
-    float rawU = theta / (2 * M_PI);
+	double theta = atan2f(proj.x, proj.z);
+    double rawU = theta / (2 * M_PI);
 	if (cy->pos.x == proj.x && cy->pos.z == proj.z)
 		add = 0;
 	else
@@ -74,7 +74,7 @@ void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv, t_xpm *xpm)
 	t_pos	on_pl;
 	t_pos	u;
 	t_pos	v;
-	float	size;
+	double	size;
 
 	cross_product(hit->normal, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)
@@ -99,7 +99,7 @@ void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm)
 	t_pos	on_pl;
 	t_pos	u;
 	t_pos	v;
-	float	size;
+	double	size;
 
 	cross_product(hit->normal, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)
