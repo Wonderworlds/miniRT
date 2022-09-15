@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/15 19:35:25 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/15 23:36:43 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,11 +119,13 @@ BONUSSRCS			:=	$(addprefix main/,		main.c					\
 						$(addprefix menu/,		graphic_menu.c			\
 												build_menu.c			\
 												bp_utils.c				\
+												bp_utils2.c				\
 												event_menu.c			\
 												copy_img.c				\
 												add_dec_menu.c			\
 												add_dec_menu2.c			\
 												add_dec_menu3.c			\
+												add_dec_menu4.c			\
 												fill_menu.c				\
 												fill_menu2.c)			\
 						$(addprefix lights/,	lights.c				\
