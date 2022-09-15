@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 00:00:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 00:00:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
 	proj.z = dot_product(u, on_cy);
 	if (proj.y < 0)
 		proj.y = 0;
-	if (proj.y >=  cy->d / 2)
-		proj.y = cy->d / 2;
+	if (proj.y >=  cy->d)
+		proj.y = cy->d;
 	float theta = atan2f(proj.x, proj.z);
     float rawU = theta / (2 * M_PI);
 	if (cy->pos.x == proj.x && cy->pos.z == proj.z)
