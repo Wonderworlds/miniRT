@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/10 17:27:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:19:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	close_menu(t_data *data)
 		}
 	}
 	graphic_render(data, gen_couple(data->scene->resolut.win_width,
-		data->scene->resolut.win_width));
+		data->scene->resolut.win_height));
 }
 
 void	open_menu(t_data *data)
@@ -83,7 +83,7 @@ void	updown_menu(t_data *data, int i)
 
 void	left_right_menu(t_data *data, int i)
 {
-	int		(*f[6])(t_data *, int );
+	int		(*f[8])(t_data *, int );
 	int		add;
 	t_menu	*menu;
 
@@ -94,6 +94,8 @@ void	left_right_menu(t_data *data, int i)
 	f[3] = &add_dec_plane;
 	f[4] = &add_dec_sphere;
 	f[5] = &add_dec_cylinder;
+	// f[6] = &add_dec_triangle;
+	// f[7] = &add_dec_cone;
 	add = 0;
 	if (menu->item == m_vol && ((t_vol *)ft_lst_at(data->scene->vols,
 				menu->index)->content)->type == CYLINDER)

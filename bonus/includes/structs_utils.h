@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 19:31:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:57:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_menu
 	int		index;
 	int		field_index;
 	int		max_f_index;
-	char	bprint[17];
+	char	bprint[18];
 }			t_menu;
 
 typedef struct s_img_c
