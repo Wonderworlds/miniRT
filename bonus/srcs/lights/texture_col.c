@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:33:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
 			get_uv_pl(hit, hit->vol, &uv, tex);
 		else if (hit->vol_type == TRIANGLE)
 			get_uv_tr(hit, hit->vol, &uv, tex);
+		else if (hit->vol_type == CONE)
+			get_uv_co(hit, hit->vol, &uv, tex);
 		tex_rgb = int_to_rgb(get_tex_pix(tex, uv.x, uv.y));
 		c_mult_basic(&tex_rgb, &hit->col);
 	}
@@ -78,6 +80,8 @@ static void do_tex_bump2(t_xpm *tex, t_xpm *bump, t_hit *hit)
 			get_uv_pl(hit, hit->vol, &uv, bump);
 		else if (hit->vol_type == TRIANGLE)
 			get_uv_tr(hit, hit->vol, &uv, bump);
+		else if (hit->vol_type == CONE)
+			get_uv_co(hit, hit->vol, &uv, bump);
 		tex_rgb = int_to_rgb(get_tex_pix(bump, uv.x, uv.y));
 		bump->coeff = (float)(tex_rgb.r + tex_rgb.g + tex_rgb.b) / (255.0f * 3.0f);
 	}
