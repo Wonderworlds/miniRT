@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/13 22:25:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:07:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exit_graphic(t_data *data, const char *error)
 
 static void	load_xpm_pl(t_data *data, t_plane *pl)
 {
+	pl->data = data;
 	if (pl && pl->tex)
 	{
 		pl->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -54,6 +55,7 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 
 static void	load_xpm_vol(t_data *data, t_vol *vol)
 {
+	vol->data = data;
 	if (vol && vol->tex)
 	{
 		vol->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,

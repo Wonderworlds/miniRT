@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/10 03:39:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:07:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	free_vols(void *ptr)
 	vol = (t_vol *)ptr;
 	if (vol->tex)
 	{
-		if (!vol->tex->file && vol->data)
+		if (vol->tex->img && vol->data)
 			mlx_destroy_image(vol->data->mlx_ptr, vol->tex->img);
 		if (vol->tex->file)
 			free(vol->tex->file);
@@ -30,7 +30,7 @@ static void	free_vols(void *ptr)
 	}
 	if (vol->bump && vol->data)
 	{
-		if (!vol->bump->file && vol->data)
+		if (vol->bump->img && vol->data)
 			mlx_destroy_image(vol->data->mlx_ptr, vol->bump->img);
 		if (vol->bump->file)
 			free(vol->bump->file);
@@ -46,7 +46,7 @@ static void	free_planes(void *ptr)
 	pl = (t_plane *)ptr;
 	if (pl->tex)
 	{
-		if (!pl->tex->file && pl->data)
+		if (pl->tex->img == NULL && pl->data)
 			mlx_destroy_image(pl->data->mlx_ptr, pl->tex->img);
 		if (pl->tex->file)
 			free(pl->tex->file);
@@ -54,7 +54,7 @@ static void	free_planes(void *ptr)
 	}
 	if (pl->bump && pl->data)
 	{
-		if (!pl->bump->file && pl->data)
+		if (pl->bump->img && pl->data)
 			mlx_destroy_image(pl->data->mlx_ptr, pl->bump->img);
 		if (pl->bump->file)
 			free(pl->bump->file);
