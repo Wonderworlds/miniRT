@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:07:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:23:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	exit_graphic(t_data *data, const char *error)
 	leave_rt(data->scene);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	// mlx_destroy_display(data->mlx_ptr); SEG FAULT ?
 	free(data->mlx_ptr);
 	exit(EXIT_FAILURE);
 }
@@ -32,24 +31,24 @@ static void	load_xpm_pl(t_data *data, t_plane *pl)
 	if (pl && pl->tex)
 	{
 		pl->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			pl->tex->file, &pl->tex->w, &pl->tex->h);
+				pl->tex->file, &pl->tex->w, &pl->tex->h);
 		free(pl->tex->file);
 		pl->tex->file = NULL;
 		if (!pl->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
 		pl->tex->addr = mlx_get_data_addr(pl->tex->img, &pl->tex->bpp,
-			&pl->tex->line_len, &pl->tex->endian);
+				&pl->tex->line_len, &pl->tex->endian);
 	}
 	if (pl && pl->bump)
 	{
 		pl->bump->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			pl->bump->file, &pl->bump->w, &pl->bump->h);
+				pl->bump->file, &pl->bump->w, &pl->bump->h);
 		free(pl->bump->file);
 		pl->bump->file = NULL;
 		if (!pl->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
 		pl->bump->addr = mlx_get_data_addr(pl->bump->img, &pl->bump->bpp,
-			&pl->bump->line_len, &pl->bump->endian);
+				&pl->bump->line_len, &pl->bump->endian);
 	}
 }
 
@@ -59,24 +58,24 @@ static void	load_xpm_vol(t_data *data, t_vol *vol)
 	if (vol && vol->tex)
 	{
 		vol->tex->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			vol->tex->file, &vol->tex->w, &vol->tex->h);
+				vol->tex->file, &vol->tex->w, &vol->tex->h);
 		free(vol->tex->file);
 		vol->tex->file = NULL;
 		if (!vol->tex->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
 		vol->tex->addr = mlx_get_data_addr(vol->tex->img, &vol->tex->bpp,
-			&vol->tex->line_len, &vol->tex->endian);
+				&vol->tex->line_len, &vol->tex->endian);
 	}
 	if (vol && vol->bump)
 	{
 		vol->bump->img = mlx_xpm_file_to_image(data->mlx_ptr,
-			vol->bump->file, &vol->bump->w, &vol->bump->h);
+				vol->bump->file, &vol->bump->w, &vol->bump->h);
 		free(vol->bump->file);
 		vol->bump->file = NULL;
 		if (!vol->bump->img)
 			exit_graphic(data, "Error\nLoad xpm fail\n");
 		vol->bump->addr = mlx_get_data_addr(vol->bump->img, &vol->bump->bpp,
-			&vol->bump->line_len, &vol->bump->endian);
+				&vol->bump->line_len, &vol->bump->endian);
 	}
 }
 
@@ -115,7 +114,7 @@ int	graphic_process(t_scene *scene)
 		error_mlx_data(&data, data.mlx_ptr);
 	mlx_set_font(data.mlx_ptr, data.win_ptr, "9x15bold");
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr,
-		scene->resolut.win_width, scene->resolut.win_height);
+			scene->resolut.win_width, scene->resolut.win_height);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	init_texture_menu(&data, scene->planes, scene->vols);
