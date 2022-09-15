@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 19:31:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:34:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 	set_color(0, 0, 0, &light_specular[0]);
 	set_vector(0, 0, 0, &diffuse[0]);
 	set_vector(0, 0, 0, &diffuse[1]);
-	do_tex_bump(&hit_from_camera, ray);
+	do_tex_bump(&hit_from_camera);
 	do_disruption(&hit_from_camera);
 	if (scene->ambient)
 	{
