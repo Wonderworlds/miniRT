@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef enum e_menu_item
 typedef enum e_m_key
 {
 	m_int,
-	m_float,
+	m_double,
 	m_t_pos,
 	m_t_rgb,
 }	t_m_key;
@@ -107,7 +107,7 @@ int		add_dec_plane(t_data *data, int i);
 int		add_dec_cylinder(t_data *data, int i);
 
 //		menu/add_dec_menu3.c
-void	add_dec_float(double *value, int op, t_delim lim);
+void	add_dec_double(double *value, int op, t_delim lim);
 void	add_dec_int(int *value, int op, t_delim lim);
 t_delim	gen_lim(int min, int max);
 void	update_unit_vector(t_mitem type, t_scene *scene);

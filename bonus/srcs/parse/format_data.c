@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 18:16:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_bool	h_fov_format(char *str)
 	return (true);
 }
 
-t_bool	float_format(char *str)
+t_bool	double_format(char *str)
 {
 	int	i;
 

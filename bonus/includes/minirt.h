@@ -35,13 +35,13 @@ t_bool	pos_format(char *str);
 t_bool	r_format(char *str);
 t_bool	rgb_format(char *str);
 t_bool	h_fov_format(char *str);
-t_bool	float_format(char *str);
+t_bool	double_format(char *str);
 
 //		parse/set_variables
 int		set_pos(t_scene *scene, t_pos *pos, char *str);
 int		set_vec3(t_scene *scene, t_pos *vec3, char *str);
 int		set_rgb(t_scene *scene, t_rgb *col, char *str);
-int		set_float(t_scene *scene, double *data, char *str, int option);
+int		set_double(t_scene *scene, double *data, char *str, int option);
 int		set_h_fov(t_scene *scene, int *data, char *str);
 
 //		parse/parse_volume.c
@@ -96,14 +96,14 @@ double	get_hit(t_hit *ptr);
 void	reset_hit(void);
 
 //		raycast/ray_volume_hit.c
-float	solve_quadratic(float a, float b, float c);
+double	solve_quadratic(double a, double b, double c);
 t_bool	is_aabb_hit(t_ray ray, t_box aabb);
 t_bool	is_sphere_hit(t_ray *ray, t_vol *sp);
 t_bool	is_plane_hit(t_ray *ray, t_plane *pl);
 
 //		raycast/ray_cylinder_hit.c
-float	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3);
-float	set_t2(float dot, float denom, t_bool *dir, t_bool sign);
+double	set_t(t_pos *e, t_pos cy, t_ray *ray, t_pos cy_vec3);
+double	set_t2(double dot, double denom, t_bool *dir, t_bool sign);
 void	check_cylinder_extremity(t_vol *cy, t_pos cy_top, t_ray *ray);
 
 //		raycast/ray_cylinder_hit2.c

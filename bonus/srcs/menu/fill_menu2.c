@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	fill_field(t_data *data, int y, void *item, int type)
 		ft_itoa_custom(*((int *)item), &str[0], 50);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y, WP, &str[0]);
 	}
-	else if (type == m_float)
+	else if (type == m_double)
 	{
 		ft_ftoa_custom(*((double *)item), &str[0], 50);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, FX, y, WP, &str[0]);
@@ -40,9 +40,9 @@ void	fill_field(t_data *data, int y, void *item, int type)
 	}
 	else if (type == m_t_pos)
 	{
-		fill_field(data, y, &((t_pos *)item)->x, m_float);
-		fill_field(data, y + STEP_FIELD, &((t_pos *)item)->y, m_float);
-		fill_field(data, y + STEP_FIELD * 2, &((t_pos *)item)->z, m_float);
+		fill_field(data, y, &((t_pos *)item)->x, m_double);
+		fill_field(data, y + STEP_FIELD, &((t_pos *)item)->y, m_double);
+		fill_field(data, y + STEP_FIELD * 2, &((t_pos *)item)->z, m_double);
 	}
 }
 
@@ -62,7 +62,7 @@ void	fill_camera(t_data *data, t_cam *cam, int y_start)
 void	fill_ambient(t_data *data, t_light *lg, int y_start)
 {
 	y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
-	fill_field(data, y_start, &lg->r, m_float);
+	fill_field(data, y_start, &lg->r, m_double);
 	y_start = fill_template(data, y_start, "r", 3);
 	fill_field(data, y_start + STEP_FIELD, &lg->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);
@@ -77,7 +77,7 @@ void	fill_light(t_data *data, t_list *lg, int y_start)
 	fill_field(data, y_start + STEP_FIELD, &light->pos, m_t_pos);
 	y_start = fill_template(data, y_start, "position", 1);
 	y_start += STEP_FIELD;
-	fill_field(data, y_start, &light->r, m_float);
+	fill_field(data, y_start, &light->r, m_double);
 	y_start = fill_template(data, y_start, "r", 3);
 	fill_field(data, y_start + STEP_FIELD, &light->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);
@@ -103,10 +103,10 @@ void	fill_vol(t_data *data, t_list *lvol, int y_start)
 		fill_field(data, y_start + STEP_FIELD, &vol->vec3, m_t_pos);
 		y_start = fill_template(data, y_start, "direction", 1);
 		y_start += STEP_FIELD;
-		fill_field(data, y_start, &vol->h, m_float);
+		fill_field(data, y_start, &vol->h, m_double);
 		y_start = fill_template(data, y_start, "h", 3);
 	}
-	fill_field(data, y_start, &vol->d, m_float);
+	fill_field(data, y_start, &vol->d, m_double);
 	y_start = fill_template(data, y_start, "d", 3);
 	fill_field(data, y_start + STEP_FIELD, &vol->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);

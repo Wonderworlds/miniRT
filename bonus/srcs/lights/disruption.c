@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disruption.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:47:55 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 18:16:26 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:58:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	checkerboard(t_hit *hit)
 {
-	float sines;
+	double sines;
 
 	sines = sinf(10 * hit->pos.x) * sinf(10 * hit->pos.y)
 		* sinf(10 * hit->pos.z);

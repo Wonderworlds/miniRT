@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:30:53 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 12:04:11 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	cone(t_scene *scene, char *str)
 		co->vec3.y = 1.f;
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &co->d, str + i, 1);
+	i += set_double(scene, &co->d, str + i, 1);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &co->h, str + i, 1);
+	i += set_double(scene, &co->h, str + i, 1);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &co->col, str + i);

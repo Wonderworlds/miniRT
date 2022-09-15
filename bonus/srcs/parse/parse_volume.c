@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/12 23:46:15 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	sphere(t_scene *scene, char *str)
 	i += set_pos(scene, &sp->pos, str + i);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &sp->d, str + i, 1);
+	i += set_double(scene, &sp->d, str + i, 1);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &sp->col, str + i);
@@ -118,10 +118,10 @@ void	cylinder(t_scene *scene, char *str)
 		cy->vec3.y = 1.f;
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &cy->d, str + i, 1);
+	i += set_double(scene, &cy->d, str + i, 1);
 	while (str[i] == ' ')
 		i++;
-	i += set_float(scene, &cy->h, str + i, 1);
+	i += set_double(scene, &cy->h, str + i, 1);
 	while (str[i] == ' ')
 		i++;
 	i += set_rgb(scene, &cy->col, str + i);

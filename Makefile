@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/15 18:53:25 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/15 18:53:50 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,6 +127,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c					\
 												fill_menu.c			\
 												fill_menu2.c)		\
 						$(addprefix lights/,	lights.c			\
+												get_uv.c			\
 												disruption.c		\
 												texture_col.c		\
 												phong_reflection.c)	\

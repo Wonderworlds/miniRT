@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_hyperboloid_hit.c                              :+:      :+:    :+:   */
+/*   ray_cone_hit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amahla <amahla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 14:51:55 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:58:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	set_extremity_hit(t_vol *co, t_hit *hit, t_bool dir, t_ray *ray)
 
 void	check_cone_extremity(t_vol *co, t_ray *ray)
 {
-	float	denom;
-	float	t;
+	double	denom;
+	double	t;
 	t_bool	dir;
 	t_pos	e[2];
 	t_hit	hit;
@@ -63,11 +63,11 @@ void	check_cone_extremity(t_vol *co, t_ray *ray)
 	}
 }
 
-float	solve_quadratic_cone(float a, float b, float c)
+double	solve_quadratic_cone(double a, double b, double c)
 {
-	float	discriminant;
-	float	t0;
-	float	t1;
+	double	discriminant;
+	double	t0;
+	double	t1;
 
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0)
@@ -79,11 +79,11 @@ float	solve_quadratic_cone(float a, float b, float c)
 	return (t0);
 }
 
-t_bool	check_extremity_cone(float t, t_pos h_norm, t_ray *ray, t_pos h,
+t_bool	check_extremity_cone(double t, t_pos h_norm, t_ray *ray, t_pos h,
 	t_pos co_top)
 {
 	t_pos	hit;
-	float	dot;
+	double	dot;
 
 	vector_equal(ray->dir, &hit);
 	vector_scale(t, &hit);
@@ -101,11 +101,11 @@ t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 	t_pos	h;
 	t_pos	w;
 	t_pos	h_norm;
-	float	m;
+	double	m;
 	t_pos	co_top;
-	float	abc[3];
-	float	t;
-	float	d;
+	double	abc[3];
+	double	t;
+	double	d;
 
 	set_vector(co->pos.x + co->h * co->vec3.x, co->pos.y
 		+ co->h * co->vec3.y, co->pos.z + co->h * co->vec3.z, &co_top);

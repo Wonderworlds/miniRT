@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 18:57:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:58:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_pos	gen_vec(double x, double y, double z)
 	return (vec);
 }
 
-void	vector_div(t_pos a, float b, t_pos *dst)
+void	vector_div(t_pos a, double b, t_pos *dst)
 {
 	dst->x = a.x / b;
 	dst->y = a.y / b;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:28:59 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 12:03:49 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:58:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	triangle_bounds_and_set(t_vol *tr)
 	tr->pos = tr->box.center;
 }
 
-static void	calcul_err_add(t_pos *tmp, t_pos vec_e, float r, t_pos co)
+static void	calcul_err_add(t_pos *tmp, t_pos vec_e, double r, t_pos co)
 {
 	vector_equal(vec_e, tmp);
 	vector_scale(r, tmp);
 	vector_add(co, *tmp, tmp);
 }
 
-static void	calcul_err_sub(t_pos *tmp, t_pos vec_e, float r, t_pos co)
+static void	calcul_err_sub(t_pos *tmp, t_pos vec_e, double r, t_pos co)
 {
 	vector_equal(vec_e, tmp);
 	vector_scale(r, tmp);

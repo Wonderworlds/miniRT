@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/15 18:56:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:59:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int	set_rgb(t_scene *scene, t_rgb *col, char *str)
 	return (i);
 }
 
-int	set_float(t_scene *scene, double *data, char *str, int option)
+int	set_double(t_scene *scene, double *data, char *str, int option)
 {
 	int	i;
 
 	i = 0;
-	if (!float_format(str + i) || ft_atod(str + i, data))
+	if (!double_format(str + i) || ft_atod(str + i, data))
 		exit_parse(scene, NULL);
 	if (option == 0 && (*data < 0.f || *data > 1.f))
 		exit_parse(scene, NULL);
