@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:29:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	find_plane(t_list *pl, t_ray *ray);
 t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene);
 
 //		lights/lights.c
-void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
+void	add_coeficient(t_pos *rgb, float coef, t_rgb *col);
 t_rgb	add_lights(t_scene *scene, t_hit *hit);
 
 //		light/phong_reflection.c

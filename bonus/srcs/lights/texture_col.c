@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:45:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:33:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	get_tex_pix(t_xpm *xpm, float u, float v)
 
 void	bump_map(t_hit *hit, t_light *light)
 {
-	double	coeff;
+	float	coeff;
 
 	coeff = -1;
 	if (hit->vol_type == PLANE && ((t_plane *)hit->vol)->bump)

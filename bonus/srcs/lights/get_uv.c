@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 21:37:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm)
 	t_pos	proj;
 	t_pos	u;
 	t_pos	v;
-	double	add;
+	float	add;
 
 	cross_product(cy->vec3, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)
@@ -76,7 +76,7 @@ void	get_uv_co(t_hit *hit, t_vol *co, t_couplef *uv, t_xpm *xpm)
 	t_pos	proj;
 	t_pos	u;
 	t_pos	v;
-	double	add;
+	float	add;
 
 	cross_product(co->vec3, gen_vec(1, 0, 0), &u);
 	if (u.x == 0 && u.y == 0 && u.z == 0)

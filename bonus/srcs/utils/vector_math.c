@@ -6,19 +6,19 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:16 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/26 19:31:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs_utils.h"
 #include <math.h>
 
-double	dot_product(t_pos a, t_pos b)
+float	dot_product(t_pos a, t_pos b)
 {
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
-double	vector_norm(t_pos vec)
+float	vector_norm(t_pos vec)
 {
 	return (sqrt(dot_product(vec, vec)));
 }

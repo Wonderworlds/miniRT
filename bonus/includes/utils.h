@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 13:45:35 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/15 21:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void		error_msg(char *str);
 
 //		utils/vector_math.c
 void		vector_ab(t_pos a, t_pos b, t_pos *vec);
-double		dot_product(t_pos a, t_pos b);
-double		vector_norm(t_pos vec);
+float		dot_product(t_pos a, t_pos b);
+float		vector_norm(t_pos vec);
 void		vector_add(t_pos a, t_pos b, t_pos *vec);
 void		set_vector(float x, float y, float z, t_pos *vec);
 
 //		utils/vector_math2.c
-double		dist_ab(const t_pos *a, const t_pos *b);
+float		dist_ab(const t_pos *a, const t_pos *b);
 void		vector_equal(const t_pos src, t_pos *dest);
 void		cross_product(t_pos a, t_pos b, t_pos *dst);
 void		vector_multi(t_pos a, t_pos b, t_pos *dst);
@@ -49,7 +49,7 @@ void		c_scale(const float f, t_rgb *rgb);
 
 //		utils/color_utils2.c
 t_rgb		int_to_rgb(int col);
-void		add_coeficient(t_pos *rgb, double coef, t_rgb *col);
+void		add_coeficient(t_pos *rgb, float coef, t_rgb *col);
 void		c_mult_basic(t_rgb *mult, t_rgb *dest);
 
 //		utils/bbox_utils.c
