@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 15:50:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:24:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	find_shadows(t_hit hit_from_camera, t_pos *dir_light,
 		find_volume(scene->bvh, ray_to_light);
 }
 
-t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray)
+t_rgb	add_lights(t_scene *scene, t_hit *hit)
 {
 	t_rgb	light_specular[2];
 	t_list	*lst_lights;
@@ -59,7 +59,10 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray)
 	set_vector(0, 0, 0, &diffuse[1]);
 	do_tex_bump(&hit_from_camera);
 	if (scene->ambient)
+	{
+		bump_map(&hit_from_camera, scene->ambient);
 		add_coeficient(&diffuse[0], scene->ambient->r, &scene->ambient->col);
+	}
 	while (lst_lights)
 	{
 		lights = (t_light *)lst_lights->content;
@@ -67,7 +70,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray)
 		if (get_hit(hit) == -1
 			|| hit->dst_origin > dist_ab(&hit_from_camera.pos, &lights->pos))
 		{
-			//	Bump normal change
+			bump_map(&hit_from_camera, lights);
 			apply_light(&hit_from_camera, &dir_light, lights, &diffuse[0]);
 			add_coeficient(&diffuse[1],
 				phong_reflection(hit_from_camera, dir_light, lights, scene->cam),

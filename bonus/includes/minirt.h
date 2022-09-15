@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 15:49:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:40:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene);
 
 //		lights/lights.c
 void	add_coeficient(t_pos *rgb, double coef, t_rgb *col);
-t_rgb	add_lights(t_scene *scene, t_hit *hit, t_ray *ray);
+t_rgb	add_lights(t_scene *scene, t_hit *hit);
 
 //		light/phong_reflection.c
 float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
@@ -122,11 +122,12 @@ float	phong_reflection(t_hit hit_from_camera, t_pos dir_light,
 
 //		lights/texture_col.c
 void	do_tex_bump(t_hit *hit);
+void	bump_map(t_hit *hit, t_light *light);
 
 //		lights/get_uv.c
-void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv);
-void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv);
-void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv);
-void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv);
+void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv, t_xpm *xpm);
+void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm);
+void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv, t_xpm *xpm);
+void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm);
 
 #endif

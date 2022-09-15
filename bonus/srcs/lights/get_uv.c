@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/15 15:20:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:39:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #define SUBDIVISION 24
 
-void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv)
+void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv, t_xpm *xpm)
 {
 	t_pos	on_sp;
 
@@ -26,11 +26,11 @@ void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv)
 	unit_vector(&on_sp);
 	uv->x = 0.5 + atan2f(on_sp.z, on_sp.x) / M_PI * 0.5;
 	uv->y = 0.5 - asinf(on_sp.y) / M_PI;
-	uv->x = sp->tex->w - (uv->x * sp->tex->w);
-	uv->y *= sp->tex->h;
+	uv->x = xpm->w - (uv->x * xpm->w);
+	uv->y *= xpm->h;
 }
 
-void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
+void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm)
 {
 	t_pos	on_cy;
 	t_pos	proj;
@@ -65,11 +65,11 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv)
 	proj.y /= (cy->h + cy->d);
     uv->x = 1 - (rawU + 0.5);
 	uv->y = fmodf(fmodf(proj.y, 1) + 1, 1);
-	uv->x = cy->tex->w - (uv->x * cy->tex->w);
-	uv->y = cy->tex->h - (uv->y * cy->tex->h);
+	uv->x = xpm->w - (uv->x * xpm->w);
+	uv->y = xpm->h - (uv->y *xpm->h);
 }
 
-void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
+void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv, t_xpm *xpm)
 {
 	t_pos	on_pl;
 	t_pos	u;
@@ -85,16 +85,16 @@ void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv)
 	vector_sub(hit->pos, pl->pos, &on_pl);
 	uv->x = dot_product(v, on_pl);
 	uv->y = dot_product(u, on_pl);
-	size = pl->tex->w / SUBDIVISION;
+	size = xpm->w / SUBDIVISION;
 	uv->x = fmodf(fmodf(uv->x, size) + size, size);
-	size = pl->tex->h / SUBDIVISION;
+	size =xpm->h / SUBDIVISION;
 	uv->y = fmodf(fmodf(uv->y, size) + size, size);
 	uv->x *= SUBDIVISION;
-	uv->y = pl->tex->h - (uv->y * SUBDIVISION);
+	uv->y = xpm->h - (uv->y * SUBDIVISION);
 }
 
 
-void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv)
+void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm)
 {
 	t_pos	on_pl;
 	t_pos	u;
@@ -110,11 +110,11 @@ void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv)
 	vector_sub(hit->pos, tr->tr[0], &on_pl);
 	uv->x = dot_product(v, on_pl);
 	uv->y = dot_product(u, on_pl);
-	size = tr->tex->w / SUBDIVISION;
+	size = xpm->w / SUBDIVISION;
 	uv->x = fmodf(fmodf(uv->x, size) + size, size);
-	size = tr->tex->h / SUBDIVISION;
+	size = xpm->h / SUBDIVISION;
 	uv->y = fmodf(fmodf(uv->y, size) + size, size);
 	uv->x *= SUBDIVISION;
-	uv->x = tr->tex->w - uv->x;
-	uv->y = tr->tex->h - (uv->y  * SUBDIVISION);
+	uv->x = xpm->w - uv->x;
+	uv->y = xpm->h - (uv->y  * SUBDIVISION);
 }
