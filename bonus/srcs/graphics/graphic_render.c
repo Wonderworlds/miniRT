@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 18:04:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 22:52:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	graphic_render(t_data *data, t_couple lim)
 	while (--xy_r_bar[1] >= 0)
 	{
 		xy_r_bar[2]++;
-		ft_printf("\rRendering ... [ \x1b[1;32m%i%%\x1b[0m ]",
+		ft_printf("\rRendering ... [\x1b[1;32m %i%% \x1b[0m]",
 			(xy_r_bar[2] * 100) / xy_r_bar[3]);
 		xy_r_bar[0] = 0;
 		while (xy_r_bar[0]++ < lim.x)

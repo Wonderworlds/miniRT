@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:25:50 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:26:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:38:07 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	free_planes(void *ptr)
 	pl = (t_plane *)ptr;
 	if (pl->tex)
 	{
-		if (pl->tex->img == NULL && pl->data)
+		if (pl->tex->img && pl->data)
 			mlx_destroy_image(pl->data->mlx_ptr, pl->tex->img);
 		if (pl->tex->file)
 			free(pl->tex->file);

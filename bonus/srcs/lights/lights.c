@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 01:23:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:14:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	add_lights_loop(t_scene *scene, t_hit *hit,
 	while (lst_lights)
 	{
 		h_light->lights = (t_light *)lst_lights->content;
+		h_light->lights->r = h_light->lights->r_o;
 		find_shadows(h_light->hit_from_camera, &h_light->dir_light,
 			scene, h_light->lights);
 		if (get_hit(hit) == -1

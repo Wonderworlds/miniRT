@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:49:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:22:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	malloc_pl(t_plane **pl, t_scene *scene)
 	(*pl)->bump = NULL;
 	(*pl)->tex = NULL;
 	(*pl)->data = NULL;
+	(*pl)->disruption = NONE;
 	(*pl)->spec.size = 0;
 	(*pl)->spec.intensity = 0.f;
 }
