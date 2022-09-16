@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:06:57 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 18:45:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:20:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	resolution(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_width)
-		|| scene->resolut.win_width < 1 || scene->resolut.win_width > 1920)
+		|| scene->resolut.win_width < 500 || scene->resolut.win_width > 1920)
 		exit_parse(scene, NULL);
 	while (ft_isdigit(str[i]))
 		i++;
@@ -61,7 +61,7 @@ void	resolution(t_scene *scene, char *str)
 	while (str[i] == ' ')
 		i++;
 	if (!ft_isdigit(str[i]) || ft_atoi_err(str + i, &scene->resolut.win_height)
-		|| scene->resolut.win_height < 1 || scene->resolut.win_height > 1080)
+		|| scene->resolut.win_height < 500 || scene->resolut.win_height > 1080)
 		exit_parse(scene, NULL);
 	while (ft_isdigit(str[i]))
 		i++;
