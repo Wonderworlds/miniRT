@@ -6,13 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:59:15 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:23:15 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:36:13 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_data.h"
 #include "mlx_int.h"
 #include "minirt.h"
+#include <time.h>
 
 void	exit_graphic(t_data *data, const char *error)
 {
@@ -104,6 +105,7 @@ int	graphic_process(t_scene *scene)
 {
 	t_data	data;
 
+	srand(time(NULL));
 	data.scene = scene;
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)

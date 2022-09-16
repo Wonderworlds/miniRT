@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:17:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:54:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:02:18 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ t_rgb	rgb2gray(t_rgb rgb)
 
 	gray = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
 	return (gen_rgb(gray, gray, gray));
+}
+
+void	c_add_color(const t_rgb c1, const t_rgb c2, t_rgb *dest)
+{
+	dest->r = c1.r + c2.r;
+	dest->g = c1.g + c2.g;
+	dest->b = c1.b + c2.b;
 }

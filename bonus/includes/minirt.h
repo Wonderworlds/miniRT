@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 02:07:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:30:08 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "structs_utils.h"
 
 # define ALBEDO 0.3f
+# define SAMPLES_PER_PIXEL 10
 
 //		main/start_and_leave.c
 void	init_scene(t_scene *scene);
@@ -159,5 +160,9 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm);
 void	get_uv_pl(t_hit *hit, t_plane *pl, t_couplef *uv, t_xpm *xpm);
 void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm);
 void	get_uv_co(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm);
+
+//		lights/antialiasing.c
+float	random_float(void);
+void	write_color(t_rgb *pixel_color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:54:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:48:46 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_pos		gen_vec(float x, float y, float z);
 void		vector_div(t_pos a, float b, t_pos *dst);
 
 //		utils/color_utils.c
+int			check_rgb(const int col);
 t_rgb		gen_rgb(const int r, const int g, const int b);
 void		c_mult(const t_pos *c1, const t_rgb *c2, t_rgb *dest);
 void		c_add(const t_rgb *c1, const t_rgb *c2, t_rgb *dest);
@@ -52,6 +53,7 @@ t_rgb		int_to_rgb(int col);
 void		add_coeficient(t_pos *rgb, float coef, t_rgb *col);
 void		c_mult_basic(t_rgb *mult, t_rgb *dest);
 t_rgb		rgb2gray(t_rgb rgb);
+void		c_add_color(const t_rgb c1, const t_rgb c2, t_rgb *dest);
 
 //		utils/bbox_utils.c
 void		bbox_center(const t_box *box, t_pos *center);
