@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 17:01:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:37:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	get_uv_tr(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm);
 void	get_uv_co(t_hit *hit, t_vol *tr, t_couplef *uv, t_xpm *xpm);
 
 //		lights/antialiasing.c
-float	random_float(t_resolut *res);
 void	write_color(t_rgb *pixel_color, t_resolut *res);
+void	rand_f(t_resolut *res, int index, t_couplef *uv);
 
 #endif

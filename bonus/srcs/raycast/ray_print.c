@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 16:28:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:38:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,22 @@ t_rgb	ray_color(t_ray ray, t_scene *scene)
 
 t_rgb	ray_render(int y, int x, t_cam *cam, t_scene *scene)
 {
-	t_ray	ray;
-	t_pos	dir;
-	float	uv[2];
-	int		s;
-	t_rgb	color;
+	t_ray		ray;
+	t_pos		dir;
+	t_couplef	uv;
+	int			s;
+	t_rgb		color;
 
 	s = 0;
 	color = gen_rgb(0, 0, 0);
 	while (s++ < scene->resolut.aliasing)
 	{
-		uv[0] = ((float)x + random_float(&scene->resolut))
-			/ (scene->resolut.win_width - 1);
-		uv[1] = ((float)y + random_float(&scene->resolut))
-			/ (scene->resolut.win_height - 1);
-		dir.x = (uv[0] * cam->horizontal.x) + (uv[1] * cam->vertical.x);
-		dir.y = (uv[0] * cam->horizontal.y) + (uv[1] * cam->vertical.y);
-		dir.z = (uv[0] * cam->horizontal.z) + (uv[1] * cam->vertical.z);
+		rand_f(&scene->resolut, s - 1, &uv);
+		uv.x += (float)x / (scene->resolut.win_width - 1);
+		uv.y += (float)y / (scene->resolut.win_height - 1);
+		dir.x = (uv.x * cam->horizontal.x) + (uv.y * cam->vertical.x);
+		dir.y = (uv.x * cam->horizontal.y) + (uv.y * cam->vertical.y);
+		dir.z = (uv.x * cam->horizontal.z) + (uv.y * cam->vertical.z);
 		vector_add(dir, cam->lower_left_corner, &dir);
 		vector_sub(dir, cam->pos, &dir);
 		create_ray(cam->pos, dir, &ray);

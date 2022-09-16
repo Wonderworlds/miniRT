@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:18:09 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:48:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:56:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	parse_rt(char *arg, t_scene *scene)
 		scene->resolut.win_width = 1500;
 		scene->resolut.aspect_ratio = 16.0 / 9.0;
 		scene->resolut.win_height = 1500 / scene->resolut.aspect_ratio;
+		scene->resolut.aliasing = 1;
 	}
 	size = ft_lstsize(scene->vols) - 1;
 	if (size >= 0)

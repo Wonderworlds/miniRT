@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:10:20 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:28:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:04:30 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exit_graphic(t_data *data, const char *error);
 
 //		graphics/graphic_render.c
 int		img_pix_put(t_img_c *img, t_couple pos, t_couple lim, int color);
-int		graphic_render(t_data *data, t_couple lim);
+void	graphic_render(t_data *data, t_couple lim);
 int		get_color(t_rgb color);
 
 //		graphics/graphic_hook.c

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 16:17:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:13:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_resolut
 	int		win_width;
 	int		win_height;
 	float	aspect_ratio;
+	float	subdivide;
 	int		aliasing;
 	t_bool	is_set;
 }	t_resolut;
