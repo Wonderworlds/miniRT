@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 01:28:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:37:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@ t_bool	is_triangle_hit(t_ray *ray, t_vol *tr);
 
 //		raycast//create_hit.c
 void	create_hit(float t, t_vol *vol, t_plane *pl, t_ray *ray);
+
+//		raycast//create_hit2.c
+void	hit_triangle(t_vol *vol, t_hit *hit);
+void	hit_cone(t_vol *vol, t_hit *hit);
+void	hit_sphere(t_vol *vol, t_hit *hit);
+void	hit_cylinder(t_vol *vol, t_hit *hit);
+void	hit_plane(t_plane *pl, t_hit *hit);
 
 //		raycast/ray_print.c
 void	create_ray(const t_pos origin, const t_pos dir, t_ray *ray);

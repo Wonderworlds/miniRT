@@ -24,11 +24,11 @@ l -5,-4,3 0.7 255,255,255
 # tr 409.030457,1200.344806,93.540318 393.946513,1193.88119,98.570765 434.378782,1224.968617,105.72499 255,204,0
 # pl 0,-10,0 0,1,0 255,255,255 texture:textures/earth_tex.xpm
 # pl 0,0,-10 0,0,1 255,255,255 texture:textures/checkerboard.xpm
-tr 0,0,0 -10,10,0 10,10,0 255,255,255 texture:textures/earth_tex.xpm
-tr 0,0,0 10,10,0 10,-10,0 255,255,255 texture:textures/earth_tex.xpm
-tr 0,0,0 10,-10,0 -10,-10,0 255,255,255 texture:textures/earth_tex.xpm
-tr 0,0,0 -10,-10,0 -10,10,0 255,255,255 texture:textures/earth_tex.xpm
+# tr 0,0,0 -10,10,0 10,10,0 255,255,255 texture:textures/earth_tex.xpm
+# tr 0,0,0 10,10,0 10,-10,0 255,255,255 texture:textures/earth_tex.xpm
+# tr 0,0,0 10,-10,0 -10,-10,0 255,255,255 texture:textures/earth_tex.xpm
+# tr 0,0,0 -10,-10,0 -10,10,0 255,255,255 texture:textures/earth_tex.xpm
 # cy 0,0,1 0,1,0 10 10 255,255,255 texture:textures/checkerboard.xpm
-# co 0,0,1 0,1,0 10 10 255,255,255 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm
+co 0,0,1 0,1,0 10 10 255,255,255 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm
 # sp 0,0,0 20 255,255,255 specular:10,0.4 texture:textures/checkerboard.xpm
 # sp 0,0,0 20 255,255,255 specular:50,0.5 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm

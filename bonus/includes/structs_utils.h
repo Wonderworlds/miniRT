@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 01:23:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:47:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,18 @@ typedef struct s_ray
 	t_pos	origin;
 	t_pos	dir;
 }	t_ray;
+
+typedef struct s_help_conehit
+{
+	t_pos	h;
+	t_pos	w;
+	t_pos	h_norm;
+	float	m;
+	t_pos	co_top;
+	float	abc[3];
+	float	t;
+	float	d;
+}	t_h_conehit;
 
 typedef struct s_help_light
 {

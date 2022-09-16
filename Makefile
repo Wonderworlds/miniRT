@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/16 01:04:49 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/09/16 01:37:05 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ BONUSSRCS			:=	$(addprefix main/,		main.c					\
 						$(addprefix raycast/,	hit_manager.c			\
 												ray_print.c				\
 												create_hit.c			\
+												create_hit2.c			\
 												ray_volume_hit.c		\
 												ray_triangle_hit.c		\
 												ray_cone_hit.c			\
