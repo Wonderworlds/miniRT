@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 01:05:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:18:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ void	get_uv_cy(t_hit *hit, t_vol *cy, t_couplef *uv, t_xpm *xpm)
 	proj.x = dot_product(v, on_cy);
 	proj.y = dot_product(cy->vec3, on_cy);
 	proj.z = dot_product(u, on_cy);
-	if (proj.y < 0)
-		proj.y = 0;
-	if (proj.y >= cy->d)
-		proj.y = cy->d;
 	get_uv_cy2(&proj, cy, uv, xpm);
 }
 
@@ -74,7 +70,7 @@ static void	get_uv_co2(t_pos *proj, t_vol *co, t_couplef *uv, t_xpm *xpm)
 		add = 0;
 	else
 		add = vector_norm(gen_vec(proj->x, 0, proj->z));
-	if (proj->y == 0)
+	if (proj->y <= 0)
 		proj->y += add;
 	else
 		proj->y += co->d / 2;
@@ -102,9 +98,5 @@ void	get_uv_co(t_hit *hit, t_vol *co, t_couplef *uv, t_xpm *xpm)
 	proj.x = dot_product(v, on_co);
 	proj.y = dot_product(co->vec3, on_co);
 	proj.z = dot_product(u, on_co);
-	if (proj.y < 0)
-		proj.y = 0;
-	if (proj.y >= co->d)
-		proj.y = co->d;
 	get_uv_co2(&proj, co, uv, xpm);
 }

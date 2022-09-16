@@ -5,6 +5,6 @@ L -15,15,15 0.7 255,255,255
 
 pl 0,-4,0 0,-1,0 0,0,255 disruption:checkerboard specular:10,0.2
 sp -2,0,0 3 255,255,255 disruption:checkerboard specular:10,0.2 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm
-cy 0.7,-1,0 1,1,0 1 3 255,255,255 specular:10,0.2 texture:textures/checkerboard.xpm
+cy 0.7,-1,0 0,1,1 1 3 255,255,255 specular:10,0.2 texture:textures/earth_tex.xpm
 tr 3,0,-0.1 5,0,0.1 4,1,0 255,255,255 disruption:checkerboard specular:10,0.2 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm
-co 5,-1,0 1,1,0 1 3 255,255,255 specular:10,0.2 texture:textures/checkerboard.xpm
+co 5,-1,0 1,1,0 1 3 255,255,255 specular:10,0.2 texture:textures/earth_tex.xpm
