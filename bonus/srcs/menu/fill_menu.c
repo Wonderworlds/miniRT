@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:46:58 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:19:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:17:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	fill_plane(t_data *data, t_list *lpl, int y_start)
 void	fill_ambient(t_data *data, t_light *lg, int y_start)
 {
 	y_start = fill_template(data, y_start, "AMBIENT LIGHT", 0);
-	fill_field(data, y_start, &lg->r, m_float);
+	fill_field(data, y_start, &lg->r_o, m_float);
 	y_start = fill_template(data, y_start, "r", 3);
 	fill_field(data, y_start + STEP_FIELD, &lg->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);

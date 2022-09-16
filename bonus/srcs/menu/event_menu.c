@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:18:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:14:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,6 @@ void	close_menu(t_data *data)
 			data->scene->resolut.win_height));
 }
 
-void	open_menu(t_data *data)
-{
-	data->menu.is_visible = true;
-	data->menu.has_changed = false;
-	set_save_img(&data->img,
-		gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y2, RECT_END_Y2));
-	display_menu(data, &data->menu, data->scene);
-}
-
 void	switch_menu(t_data *data)
 {
 	data->menu.field_index = 0;
@@ -61,7 +52,13 @@ void	switch_menu(t_data *data)
 		display_menu(data, &data->menu, data->scene);
 	}
 	else
-		open_menu(data);
+	{
+		data->menu.is_visible = true;
+		data->menu.has_changed = false;
+		set_save_img(&data->img,
+			gen_rect(RECT_START_X, RECT_END_X, RECT_START_Y2, RECT_END_Y2));
+		display_menu(data, &data->menu, data->scene);
+	}
 }
 
 void	updown_menu(t_data *data, int i)
@@ -81,6 +78,22 @@ void	updown_menu(t_data *data, int i)
 	display_menu(data, &data->menu, data->scene);
 }
 
+static int	pick_vol(t_vol *vol)
+{
+	int	add;
+
+	add = vol->type;
+	if (add == SPHERE)
+		add = 0;
+	if (add == CYLINDER)
+		add = 1;
+	else if (add == TRIANGLE)
+		add = 2;
+	else if (add == CONE)
+		add = 3;
+	return (add);
+}
+
 void	left_right_menu(t_data *data, int i)
 {
 	int		(*f[8])(t_data *, int );
@@ -98,14 +111,10 @@ void	left_right_menu(t_data *data, int i)
 	f[7] = &add_dec_cylinder;
 	add = 0;
 	if (menu->item == m_vol)
-		add = ((t_vol *)ft_lst_at(data->scene->vols,
-					menu->index)->content)->type;
-	if (add == CYLINDER)
-		add = 1;
-	else if (add == TRIANGLE)
-		add = 2;
-	else if (add == CONE)
-		add = 3;
+	{
+		add = pick_vol(ft_lst_at(data->scene->vols,
+					menu->index)->content);
+	}
 	if (!(*f[menu->item + add])(data, i))
 		display_menu(data, &data->menu, data->scene);
 }

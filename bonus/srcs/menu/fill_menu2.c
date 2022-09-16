@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:49:24 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:19:15 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:17:50 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	fill_light(t_data *data, t_list *lg, int y_start)
 	fill_field(data, y_start + STEP_FIELD, &light->pos, m_t_pos);
 	y_start = fill_template(data, y_start, "position", 1);
 	y_start += STEP_FIELD;
-	fill_field(data, y_start, &light->r, m_float);
+	fill_field(data, y_start, &light->r_o, m_float);
 	y_start = fill_template(data, y_start, "r", 3);
 	fill_field(data, y_start + STEP_FIELD, &light->col, m_t_rgb);
 	y_start = fill_template(data, y_start, "color", 2);

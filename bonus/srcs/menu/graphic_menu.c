@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:45:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:21:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:09:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	str_vol(t_scene *scene, t_menu *menu)
 	add = 0;
 	if (menu->item == m_vol)
 		add = ((t_vol *)ft_lst_at(scene->vols, menu->index)->content)->type;
+	if (add == SPHERE)
+		add = 0;
 	if (add == CYLINDER)
 		add = 1;
 	else if (add == TRIANGLE)

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 22:17:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 00:17:59 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:20:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,14 @@ int	add_dec_ambient(t_data *data, int i)
 	menu = &data->menu;
 	ambient = data->scene->ambient;
 	if (menu->field_index == 0)
-		add_dec_float(&ambient->r, i, gen_lim(0, 1));
+		add_dec_float(&ambient->r_o, i, gen_lim(0, 1));
 	else if (menu->field_index == 1)
 		add_dec_int(&ambient->col.r, i, gen_lim(0, 255));
 	else if (menu->field_index == 2)
 		add_dec_int(&ambient->col.g, i, gen_lim(0, 255));
 	else if (menu->field_index == 3)
 		add_dec_int(&ambient->col.b, i, gen_lim(0, 255));
+	ambient->r = ambient->r_o;
 	return (0);
 }
 
@@ -106,12 +107,13 @@ int	add_dec_light(t_data *data, int i)
 	else if (menu->field_index == 3)
 		add_dec_float(&light->pos.z, i, gen_lim(-10000, 10000));
 	else if (menu->field_index == 4)
-		add_dec_float(&light->r, i, gen_lim(0, 1));
+		add_dec_float(&light->r_o, i, gen_lim(0, 1));
 	else if (menu->field_index == 5)
 		add_dec_int(&light->col.r, i, gen_lim(0, 255));
 	else if (menu->field_index == 6)
 		add_dec_int(&light->col.g, i, gen_lim(0, 255));
 	else if (menu->field_index == 7)
 		add_dec_int(&light->col.b, i, gen_lim(0, 255));
+	light->r = light->r_o;
 	return (0);
 }
