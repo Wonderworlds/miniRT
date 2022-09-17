@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 01:52:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/17 02:20:52 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,6 @@ void	check_cone_extremity(t_vol *co, t_ray *ray)
 		}
 	}
 }
-
-// float	solve_quadratic_cone(float a, float b, float c)
-// {
-// 	float	discriminant;
-// 	float	t0;
-// 	float	t1;
-
-// 	discriminant = (b * b) - (4 * a * c);
-// 	if (discriminant < 0)
-// 		return (-1);
-// 	t0 = (-b - sqrtf(discriminant)) / (2 * a);
-// 	t1 = (-b + sqrtf(discriminant)) / (2 * a);
-// 	if (t0 > t1 || (t0 < 0 && t1 >= 0))
-// 		return (t1);
-// 	return (t0);
-// }
 
 t_bool	check_extremity_cone(t_h_conehit *h_cohit, t_ray *ray)
 {
