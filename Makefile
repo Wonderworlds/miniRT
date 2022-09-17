@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by fmauguin          #+#    #+#              #
-#    Updated: 2022/09/16 13:46:34 by amahla           ###   ########.fr        #
+#    Updated: 2022/09/18 00:13:10 by amahla           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ MANDATORYSRCS		:=	$(addprefix main/,		main.c					\
 						$(addprefix lights/,	lights.c)				\
 						$(addprefix utils/,		ft_gnl_rt.c				\
 												error_msg.c				\
+												format_vec3.c			\
 												vector_math.c			\
 												vector_math2.c			\
 												vector_math3.c			\

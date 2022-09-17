@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:56:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 19:18:35 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/17 23:09:44 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 	t_pos	dir;
 	double	u;
 	double	v;
+	t_rgb	color_black;
 
+	color_black = gen_rgb(0, 0, 0);
 	u = (double)x / (WIN_WIDTH - 1);
 	v = (double)y / (WIN_HEIGHT - 1);
 	dir.x = cam.lower_left_corner.x + (u * cam.horizontal.x)
@@ -83,5 +85,7 @@ t_rgb	ray_render(int y, int x, t_cam cam, t_scene *scene)
 		+ (v * cam.vertical.z) - cam.pos.z;
 	create_ray(cam.pos, dir, &ray);
 	vector_scale(-1, &ray.dir);
+	if (scene->cam.h_fov == 0)
+		return (color_black);
 	return (ray_color(ray, scene));
 }

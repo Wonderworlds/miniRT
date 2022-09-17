@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 18:23:45 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/07 20:27:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/18 01:34:12 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_bool	rgb_format(char *str)
 	i = 0;
 	while (--color)
 	{
+		if (str[i] == '-')
+			i++;
 		if (!ft_isdigit(str[i]))
 			break ;
 		while (ft_isdigit(str[i]))
@@ -90,6 +92,8 @@ t_bool	h_fov_format(char *str)
 	int		i;
 
 	i = 0;
+	if (str[0] == '-')
+		i++;
 	if (!ft_isdigit(str[i]))
 		return (false);
 	while (ft_isdigit(str[i]))
@@ -104,6 +108,8 @@ t_bool	float_format(char *str)
 	int	i;
 
 	i = 0;
+	if (str[0] == '-')
+		i++;
 	if (!ft_isdigit(str[i]))
 		return (false);
 	while (ft_isdigit(str[i]))

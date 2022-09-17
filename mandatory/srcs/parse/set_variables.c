@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/08 16:31:07 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/18 01:44:54 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "utils.h"
 #include "structs_utils.h"
 #include "libft.h"
 
@@ -54,13 +55,13 @@ int	set_vec3(t_scene *scene, t_pos *vec3, char *str)
 	while (--times)
 	{
 		if (times == 3 && (ft_atof(str + i, &vec3->x) || vec3->x < -1
-				|| vec3->x > 1))
+				|| vec3->x > 1 || !format_float2(str + i, 1)))
 			exit_parse(scene, NULL);
 		else if (times == 2 && (ft_atof(str + i, &vec3->y) || vec3->y < -1
-				|| vec3->y > 1))
+				|| vec3->y > 1 || !format_float2(str + i, 1)))
 			exit_parse(scene, NULL);
 		else if (times == 1 && (ft_atof(str + i, &vec3->z) || vec3->z < -1
-				|| vec3->z > 1))
+				|| vec3->z > 1 || !format_float2(str + i, 1)))
 			exit_parse(scene, NULL);
 		while (ft_isdigit(str[i]) || str[i] == '.' || str[i] == '-')
 			i++;
@@ -82,15 +83,15 @@ int	set_rgb(t_scene *scene, t_rgb *col, char *str)
 	while (--times)
 	{
 		if (times == 3 && (ft_atoi_err(str + i, &col->r) || col->r < 0
-				|| col->r > 255))
+				|| col->r > 255 || (str[i] == '-' && col->r != 0)))
 			exit_parse(scene, NULL);
 		else if (times == 2 && (ft_atoi_err(str + i, &col->g) || col->g < 0
-				|| col->g > 255))
+				|| col->g > 255 || (str[i] == '-' && col->g != 0)))
 			exit_parse(scene, NULL);
 		else if (times == 1 && (ft_atoi_err(str + i, &col->b) || col->b < 0
-				|| col->b > 255))
+				|| col->b > 255 || (str[i] == '-' && col->b != 0)))
 			exit_parse(scene, NULL);
-		while (ft_isdigit(str[i]))
+		while (ft_isdigit(str[i]) || str[i] == '-')
 			i++;
 		if (str[i] == ',')
 			i++;
@@ -105,11 +106,14 @@ int	set_float(t_scene *scene, float *data, char *str, int option)
 	i = 0;
 	if (!float_format(str + i) || ft_atof(str + i, data))
 		exit_parse(scene, NULL);
-	if (option == 0 && (*data < 0.f || *data > 1.f))
+	if (option == 0 && (*data < 0.f || *data > 1.f
+			|| (str[i] == '-' && !format_float2(str, 0))
+			|| !format_float2(str, 1)))
 		exit_parse(scene, NULL);
-	else if (option == 1 && (*data < 0.f || *data > 10000.f))
+	else if (option == 1 && (*data < 0.f || *data > 10000.f
+			|| (str[i] == '-' && !format_float2(str, 0))))
 		exit_parse(scene, NULL);
-	while (ft_isdigit(str[i]) || str[i] == '.')
+	while (ft_isdigit(str[i]) || str[i] == '.' || str[i] == '-')
 		i++;
 	return (i);
 }
@@ -119,9 +123,11 @@ int	set_h_fov(t_scene *scene, int *data, char *str)
 	int	i;
 
 	i = 0;
-	if (!h_fov_format(str + i) || ft_atoi_err(str + i, data) || *data <= 0
+	if (!h_fov_format(str + i) || ft_atoi_err(str + i, data) || *data < 0
 		|| *data > 180)
 		exit_parse(scene, NULL);
+	if (str[i] == '-')
+		i++;
 	while (ft_isdigit(str[i]))
 		i++;
 	return (i);

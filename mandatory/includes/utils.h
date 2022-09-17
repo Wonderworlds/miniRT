@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:04:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 23:15:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:53:49 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ void	hit_cpy(const t_hit *src, t_hit *dest);
 //		utils/ft_itoa_custom.c
 void	ft_itoa_custom(int n, char *str, size_t size);
 void	ft_ftoa_custom(float n, char *str, size_t size);
+
+//		utils/format_vec3.c
+t_bool	format_float2(char *str, int nb);
 
 #endif
