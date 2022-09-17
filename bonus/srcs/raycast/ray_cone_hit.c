@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:42:24 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/17 02:20:52 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/17 15:43:53 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,58 +63,65 @@ void	check_cone_extremity(t_vol *co, t_ray *ray)
 	}
 }
 
-t_bool	check_extremity_cone(t_h_conehit *h_cohit, t_ray *ray)
+static void	create_cone_hit(t_ray *ray, t_vol *co, t_pos co_top, float t)
 {
-	t_pos	hit;
-	float	dot;
+	t_pos	h;
+	t_pos	temp[2];
 
-	vector_equal(ray->dir, &hit);
-	vector_scale(h_cohit->t, &hit);
-	vector_add(hit, ray->origin, &hit);
-	vector_sub(hit, h_cohit->co_top, &hit);
-	dot = dot_product(hit, h_cohit->h_norm);
-	if (dot < 0 || dot > vector_norm(h_cohit->h))
-		return (false);
-	return (true);
+	vector_equal(ray->dir, &h);
+	vector_scale(t, &h);
+	vector_add(ray->origin, h, &h);
+	vector_ab(co->pos, h, &temp[0]);
+	vector_ab(co_top, h, &temp[1]);
+	if (dot_product(temp[0], co->vec3) > 0
+		&& dot_product(temp[1], co->vec3) < 0)
+		create_hit(t, co, NULL, ray);
 }
 
-void	is_cone_hit2(t_ray *ray, t_vol *co, t_h_conehit *h_cohit)
+static t_bool	set_cone_hit(float *abc, t_ray *ray, t_vol *co, t_pos co_top)
 {
-	set_vector(co->pos.x + co->h * co->vec3.x, co->pos.y
-		+ co->h * co->vec3.y, co->pos.z + co->h * co->vec3.z, &h_cohit->co_top);
-	vector_sub(co->pos, h_cohit->co_top, &h_cohit->h);
-	vector_sub(co->pos, h_cohit->co_top, &h_cohit->h_norm);
-	unit_vector(&h_cohit->h_norm);
-	h_cohit->m = powf((co->d / 2), 2) / dot_product(h_cohit->h, h_cohit->h);
-	vector_sub(ray->origin, h_cohit->co_top, &h_cohit->w);
-	h_cohit->abc[0] = dot_product(ray->dir, ray->dir)
-		- h_cohit->m * powf(dot_product(ray->dir, h_cohit->h_norm), 2)
-		- powf(dot_product(ray->dir, h_cohit->h_norm), 2);
-	h_cohit->abc[1] = 2 * (dot_product(ray->dir, h_cohit->w)
-			- h_cohit->m * dot_product(ray->dir, h_cohit->h_norm)
-			* dot_product(h_cohit->w, h_cohit->h_norm)
-			- dot_product(ray->dir, h_cohit->h_norm)
-			* dot_product(h_cohit->w, h_cohit->h_norm));
-	h_cohit->abc[2] = dot_product(h_cohit->w, h_cohit->w)
-		- h_cohit->m * powf(dot_product(h_cohit->w, h_cohit->h_norm), 2)
-		- powf(dot_product(h_cohit->w, h_cohit->h_norm), 2);
-	h_cohit->d = (h_cohit->abc[1] * h_cohit->abc[1])
-		- (4 * h_cohit->abc[0] * h_cohit->abc[2]);
+	t_hit	hit;
+	float	d;
+	float	t;
+
+	d = abc[1] * abc[1] - 4 * abc[0] * abc[2];
+	if (d < 0.f)
+		return (false);
+	d = sqrtf(d);
+	t = (-1 * abc[1] - d) / (2 * abc[0]);
+	create_cone_hit(ray, co, co_top, t);
+	t = (-1 * abc[1] + d) / (2 * abc[0]);
+	create_cone_hit(ray, co, co_top, t);
+	check_cone_extremity(co, ray);
+	if (get_hit(&hit) != -1)
+		return (true);
+	return (false);
 }
 
 t_bool	is_cone_hit(t_ray *ray, t_vol *co)
 {
-	t_h_conehit	h_cohit;
+	float	abc[3];
+	float	mvw[3];
+	t_pos	va_rao[2];
+	t_pos	temp[2];
+	t_pos	co_top;
 
-	is_cone_hit2(ray, co, &h_cohit);
-	if (h_cohit.d < 0)
+	set_vector(co->pos.x + co->h * co->vec3.x, co->pos.y
+		+ co->h * co->vec3.y, co->pos.z + co->h * co->vec3.z, &co_top);
+	cross_product(co->vec3, ray->dir, &temp[0]);
+	cross_product(temp[0], co->vec3, &va_rao[0]);
+	mvw[0] = powf((co->d / 2), 2) / powf(dist_ab(&co->pos, &co_top), 2);
+	mvw[1] = dot_product(ray->dir, co->vec3);
+	abc[0] = dot_product(va_rao[0], va_rao[0]) - powf(mvw[1], 2) * mvw[0];
+	mvw[2] = dist_ab(&co->pos, &co_top);
+	vector_ab(co->pos, ray->origin, &temp[1]);
+	mvw[2] -= dot_product(temp[1], co->vec3);
+	cross_product(co->vec3, temp[1], &temp[0]);
+	cross_product(temp[0], co->vec3, &va_rao[1]);
+	abc[1] = 2 * dot_product(va_rao[1], va_rao[0])
+		+ 2 * mvw[2] * mvw[1] * mvw[0];
+	abc[2] = dot_product(va_rao[1], va_rao[1]) - powf(mvw[2], 2) * mvw[0];
+	if (set_cone_hit(abc, ray, co, co_top) == false)
 		return (false);
-	h_cohit.t = (-1 * h_cohit.abc[1] - sqrtf(h_cohit.d)) / (2 * h_cohit.abc[0]);
-	if (check_extremity_cone(&h_cohit, ray))
-		create_hit(h_cohit.t, co, NULL, ray);
-	h_cohit.t = (-1 * h_cohit.abc[1] + sqrtf(h_cohit.d)) / (2 * h_cohit.abc[0]);
-	if (check_extremity_cone(&h_cohit, ray))
-		create_hit(h_cohit.t, co, NULL, ray);
-	check_cone_extremity(co, ray);
 	return (true);
 }

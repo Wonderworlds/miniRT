@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:23 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/17 15:44:22 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,59 @@
 #include "libft.h"
 #include <math.h>
 
-static t_bool	set_cylinder_hit(float *abcdef, float *hty,
-	t_ray *ray, t_vol *cy)
+static void	create_cylinder_hit(t_ray *ray, t_vol *cy, t_pos cy_top, float t)
 {
-	hty[0] = abcdef[4] * abcdef[4] - abcdef[3] * abcdef[5];
-	if (hty[0] < 0.0f)
+	t_pos	h;
+	t_pos	temp[2];
+
+	vector_equal(ray->dir, &h);
+	vector_scale(t, &h);
+	vector_add(ray->origin, h, &h);
+	vector_ab(cy->pos, h, &temp[0]);
+	vector_ab(cy_top, h, &temp[1]);
+	if (dot_product(temp[0], cy->vec3) > 0
+		&& dot_product(temp[1], cy->vec3) < 0)
+		create_hit(t, cy, NULL, ray);
+}
+
+static t_bool	set_cylinder_hit(float *abc, t_ray *ray, t_vol *cy,
+	t_pos cy_top)
+{
+	float	d;
+	float	t;
+
+	d = abc[1] * abc[1] - 4 * abc[0] * abc[2];
+	if (d < 0.f)
 		return (false);
-	hty[0] = sqrtf(hty[0]);
-	hty[1] = (-1 * abcdef[4] - hty[0]) / abcdef[3];
-	hty[2] = abcdef[2] + hty[1] * abcdef[1];
-	if (hty[2] > 0.0 && hty[2] < abcdef[0])
-		create_hit(hty[1], cy, NULL, ray);
-	hty[1] = (-1 * abcdef[4] + hty[0]) / abcdef[3];
-	hty[3] = abcdef[2] + hty[1] * abcdef[1];
-	if (hty[3] > 0.f && hty[3] < abcdef[0])
-		create_hit(hty[1], cy, NULL, ray);
+	d = sqrtf(d);
+	t = (-1 * abc[1] - d) / (2 * abc[0]);
+	create_cylinder_hit(ray, cy, cy_top, t);
+	t = (-1 * abc[1] + d) / (2 * abc[0]);
+	create_cylinder_hit(ray, cy, cy_top, t);
 	return (true);
 }
 
 t_bool	is_cylinder_hit(t_ray *ray, t_vol *cy)
 {
-	t_pos	vec3_cy;
-	t_pos	vec3[2];
-	float	abcdef[6];
-	float	hty[4];
+	float	abc[3];
+	t_pos	va_rao[2];
+	t_pos	temp[2];
+	t_pos	cy_top;
 	t_hit	hit;
 
 	set_vector(cy->pos.x + cy->h * cy->vec3.x, cy->pos.y
-		+ cy->h * cy->vec3.y, cy->pos.z + cy->h * cy->vec3.z, &vec3_cy);
-	vector_ab(cy->pos, vec3_cy, vec3);
-	vector_ab(cy->pos, ray->origin, vec3 + 1);
-	abcdef[0] = dot_product(vec3[0], vec3[0]);
-	abcdef[1] = dot_product(vec3[0], ray->dir);
-	abcdef[2] = dot_product(vec3[0], vec3[1]);
-	abcdef[3] = abcdef[0] - abcdef[1] * abcdef[1];
-	abcdef[4] = abcdef[0] * dot_product(vec3[1], ray->dir)
-		- abcdef[2] * abcdef[1];
-	abcdef[5] = abcdef[0] * dot_product(vec3[1], vec3[1])
-		- abcdef[2] * abcdef[2] - cy->d / 2 * cy->d / 2 * abcdef[0];
-	if (set_cylinder_hit(abcdef, hty, ray, cy) == false)
+		+ cy->h * cy->vec3.y, cy->pos.z + cy->h * cy->vec3.z, &cy_top);
+	cross_product(cy->vec3, ray->dir, &temp[0]);
+	cross_product(temp[0], cy->vec3, &va_rao[0]);
+	abc[0] = dot_product(va_rao[0], va_rao[0]);
+	vector_ab(cy->pos, ray->origin, &temp[1]);
+	cross_product(cy->vec3, temp[1], &temp[0]);
+	cross_product(temp[0], cy->vec3, &va_rao[1]);
+	abc[1] = 2 * dot_product(va_rao[1], va_rao[0]);
+	abc[2] = dot_product(va_rao[1], va_rao[1]) - cy->d / 2 * cy->d / 2;
+	if (set_cylinder_hit(abc, ray, cy, cy_top) == false)
 		return (false);
-	check_cylinder_extremity(cy, vec3_cy, ray);
+	check_cylinder_extremity(cy, cy_top, ray);
 	if (get_hit(&hit) != -1)
 		return (true);
 	return (false);

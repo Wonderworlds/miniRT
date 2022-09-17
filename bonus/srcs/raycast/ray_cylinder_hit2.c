@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:39:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/17 03:21:05 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/17 15:44:22 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	create_cylinder_hit(t_ray *ray, t_vol *cy, t_pos cy_top, float t)
 		create_hit(t, cy, NULL, ray);
 }
 
-static t_bool	set_cylinder_hit(float *abc, t_ray *ray, t_vol *cy, t_pos cy_top)
+static t_bool	set_cylinder_hit(float *abc, t_ray *ray, t_vol *cy,
+	t_pos cy_top)
 {
 	float	d;
 	float	t;
