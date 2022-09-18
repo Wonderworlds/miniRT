@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 18:09:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/29 18:22:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/18 02:49:26 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int	ft_atoi_err(const char *s, int *n)
 		*n += *s - '0';
 		s++;
 	}
+	*n *= minus;
 	return (0);
 }

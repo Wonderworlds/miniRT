@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/18 01:44:54 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/18 02:50:30 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ int	set_rgb(t_scene *scene, t_rgb *col, char *str)
 	while (--times)
 	{
 		if (times == 3 && (ft_atoi_err(str + i, &col->r) || col->r < 0
-				|| col->r > 255 || (str[i] == '-' && col->r != 0)))
+				|| col->r > 255))
 			exit_parse(scene, NULL);
 		else if (times == 2 && (ft_atoi_err(str + i, &col->g) || col->g < 0
-				|| col->g > 255 || (str[i] == '-' && col->g != 0)))
+				|| col->g > 255))
 			exit_parse(scene, NULL);
 		else if (times == 1 && (ft_atoi_err(str + i, &col->b) || col->b < 0
-				|| col->b > 255 || (str[i] == '-' && col->b != 0)))
+				|| col->b > 255))
 			exit_parse(scene, NULL);
 		while (ft_isdigit(str[i]) || str[i] == '-')
 			i++;
@@ -123,8 +123,8 @@ int	set_h_fov(t_scene *scene, int *data, char *str)
 	int	i;
 
 	i = 0;
-	if (!h_fov_format(str + i) || ft_atoi_err(str + i, data) || *data < 0
-		|| *data > 180)
+	if (!h_fov_format(str + i) || ft_atoi_err(str + i, data)
+		|| *data < 0 || *data > 180)
 		exit_parse(scene, NULL);
 	if (str[i] == '-')
 		i++;
