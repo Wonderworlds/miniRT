@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:29 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 22:38:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:51:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include <math.h>
 
-#define SUBDIVISION 3
+#define SUBDIVISION 24
 
 void	get_uv_sp(t_hit *hit, t_vol *sp, t_couplef *uv, t_xpm *xpm)
 {

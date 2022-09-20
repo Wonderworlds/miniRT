@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:16:54 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/16 23:14:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:19:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	add_lights_loop(t_scene *scene, t_hit *hit,
 				&h_light->light_specular[1]);
 			c_add(&h_light->light_specular[1], &h_light->light_specular[0],
 				&h_light->light_specular[0]);
+			h_light->lights->r = h_light->lights->r_o;
 		}
 		lst_lights = lst_lights->next;
 	}
@@ -86,6 +87,7 @@ t_rgb	add_lights(t_scene *scene, t_hit *hit)
 		bump_map(&h_light.hit_from_camera, scene->ambient);
 		add_coeficient(&h_light.diffuse[0], scene->ambient->r,
 			&scene->ambient->col);
+		scene->ambient->r = scene->ambient->r_o;
 	}
 	add_lights_loop(scene, hit, &h_light, scene->lights);
 	c_mult(&h_light.diffuse[0], &h_light.hit_from_camera.col,
