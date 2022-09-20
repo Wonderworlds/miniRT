@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:11:07 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/16 00:53:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/20 10:51:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_bool	is_triangle_hit(t_ray *ray, t_vol *tr)
 	abcde[3] = abcde[1] * dot_product(ray->dir, vec3[4]);
 	if (abcde[3] < 0.0 || abcde[3] + abcde[2] > 1.0)
 		return (false);
-	abcde[5] = abcde[1] * dot_product(vec3[1], vec3[4]);
-	if (abcde[5] > 0.00001)
+	abcde[4] = abcde[1] * dot_product(vec3[1], vec3[4]);
+	if (abcde[4] > 0.00001)
 	{
-		create_hit(abcde[5], tr, NULL, ray);
+		create_hit(abcde[4], tr, NULL, ray);
 		return (true);
 	}
 	return (false);
