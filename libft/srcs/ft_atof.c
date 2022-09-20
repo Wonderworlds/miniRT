@@ -6,12 +6,25 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:21:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/09/01 19:31:09 by amahla           ###   ########.fr       */
+/*   Updated: 2022/09/20 11:10:05 by amahla           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <float.h>
 #include "libft.h"
+
+static int	float_len(float f)
+{
+	int	i;
+
+	i = 0;
+	while (f >= 1)
+	{
+		i++;
+		f /= 10;
+	}
+	return (i);
+}
 
 static int	ft_atof_pre(const char *nptr, float *n, unsigned int index)
 {
@@ -60,7 +73,7 @@ static int	ft_atof_suf(const char *s, float *dec, float *n, unsigned int i)
 		if ((*n == FLT_MAX || *n == -FLT_MAX) || !ft_atof_pre(&s[i], dec, 0))
 			return (1);
 	}
-	dec_size = ft_int_len(*dec) + n_zero;
+	dec_size = float_len(*dec) + n_zero;
 	while (dec_size--)
 		*dec /= 10;
 	return (0);
