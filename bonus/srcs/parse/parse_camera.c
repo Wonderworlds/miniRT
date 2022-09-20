@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 19:19:36 by amahla            #+#    #+#             */
-/*   Updated: 2022/09/20 10:52:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:29:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,12 @@ void	set_camera(t_cam *cam, t_resolut *res)
 	cam->viewport_width = VP_WIDTH * tan((cam->h_fov * (M_PI / 180) / 2));
 	cam->viewport_height = cam->viewport_width / res->aspect_ratio;
 	vector_equal(cam->vec3, &cam->uvw[2]);
-	unit_vector(&cam->uvw[2]);
 	cross_product(vup, cam->uvw[2], &cam->uvw[0]);
+	if (cam->uvw[0].x == 0 && cam->uvw[0].y == 0 && cam->uvw[0].z == 0)
+	{
+		set_vector(0, 0, 1, &vup);
+		cross_product(vup, cam->uvw[2], &cam->uvw[0]);
+	}
 	cross_product(cam->uvw[2], cam->uvw[0], &cam->uvw[1]);
 	vector_equal(cam->uvw[0], &cam->horizontal);
 	vector_scale(cam->viewport_width * cam->focal_length, &cam->horizontal);
