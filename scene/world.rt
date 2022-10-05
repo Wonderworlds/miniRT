@@ -1,0 +1,25 @@
+R  800   600 antialiasing:1
+A  0.1   255,255,255
+
+c  0,15,0   -1,-0.7,0   70
+c  300,200,0   -1,-0.7,0   60
+
+l  -200,-200,200   0.7   255,255,255
+# l  200,200,-200   0.7   255,255,255
+# l  200,200,0   0.7   255,255,255
+# l  -20,20,20   0.7   255,255,255
+# l  0,0,0   0.7   255,255,255
+# l  0,20,0   0.7   255,255,255
+# l  -20,20,-20   0.7   255,255,255
+# l  0,0,200   0.7   255,255,255
+# l  0,0,-200   0.7   255,255,255
+
+pl 0,0,-400   0,0,1   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+pl 0,0,400   0,0,-1   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+pl 0,400,0   0,-1,0   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+pl 0,-400,0   0,1,0   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+pl 400,0,0   -1,0,0   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+pl -400,0,0   1,0,0   255,255,255 texture:textures/seamless-space.xpm bumpmap:textures/seamless-space.xpm
+
+sp 0,0.0,0   200.0   255,255,255 texture:textures/earth_tex.xpm bumpmap:textures/earth_bump.xpm
+sp -20,0.0,0   20.0   255,255,255  texture:textures/earth_tex.xpm
